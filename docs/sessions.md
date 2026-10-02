@@ -132,4 +132,9 @@ The PM plan: how the [roadmap](../ROADMAP.md) turns into working sessions with M
 
 ### Pre-S1
 - **2026-10-01:** Carlos's `gh` account has read-only access to `M-Peredo/M-Peredo.github.io`. Pushing needs either Molly's account or collaborator access. **Decided:** Molly adds Carlos as a collaborator.
+- **2026-10-01:** Brand direction: Molly is interested in a design system inspired by *The Night Circus* (Erin Morgenstern). Feeds the brand intake (S1/S2), and isn't decided yet. Threads to explore:
+  - Strict black and white base with a single red accent (the striped tents; the fans' red scarves)
+  - Night mood (opens at nightfall, closes at dawn): a dark theme as an option, with candlelight, clockwork, iron gates and Victorian playbill type as textures
+  - Optional structural metaphor (the circus as the site, a tent per case study). Nav labels stay plain.
+  - Watch: red text on black usually fails contrast, so use red for accents and a lighter shade for text links; the theme frames the work rather than competing with it; evoke the book rather than quoting its text or using its title
 - **2026-10-01:** Possible case study: this rebuild itself, built agentically with Claude Code. It would answer the research's "where AI fit" question directly.
