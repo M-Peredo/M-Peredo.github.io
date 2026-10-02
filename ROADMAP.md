@@ -41,10 +41,10 @@ Legacy remote branches `Staging` (identical to `main`) and `prelim-test` (an ear
 
 ## Phase 0: Setup & Archive
 - [x] (prep) Clone repo locally, create `archive/squarespace` and `redesign` branches
-- [ ] (session) Molly adds Carlos (`PaleoDM`) as a collaborator with write access
-- [ ] (prep) Push `archive/squarespace` and `redesign` to GitHub (once collaborator access is in place)
+- [x] (session) Molly adds Carlos (`PaleoDM`) as a collaborator with write access
+- [x] (prep) Push `archive/squarespace` and `redesign` to GitHub (once collaborator access is in place)
+- [x] (prep) Clear the old site off `redesign`, keeping `CNAME`; add `.gitignore`
 - [ ] (session) Delete legacy `Staging` and `prelim-test` branches
-- [ ] (prep) Exclude build/dependency folders from Dropbox sync once the stack is installed
 
 **Success**: `archive/squarespace` exists on GitHub with the full old site; `redesign` exists; the live site is unaffected.
 
@@ -64,6 +64,7 @@ Legacy remote branches `Staging` (identical to `main`) and `prelim-test` (an ear
 
 ## Phase 2: Brand & Design System
 - [ ] (prep) Pick the stack and scaffold the skeleton project on `redesign` (leaning Astro — see Open Decisions)
+- [ ] (prep) Exclude build/dependency folders from Dropbox sync once the stack is installed
 - [ ] (prep) Content model: each case study is one Markdown file with a `status` field (`live` / `unlisted` / `draft`)
 - [ ] (session) Colors, type, spacing, and a small set of components
 - [ ] (session) Unlisted `/styleguide` page showing every token and component
