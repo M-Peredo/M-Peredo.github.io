@@ -41,7 +41,7 @@ Legacy remote branches `Staging` (identical to `main`) and `prelim-test` (an ear
 
 ## Phase 0: Setup & Archive
 - [x] (prep) Clone repo locally, create `archive/squarespace` and `redesign` branches
-- [ ] (session) Molly adds Carlos (`CarlosPeredo_vvt`) as a collaborator with write access
+- [ ] (session) Molly adds Carlos (`PaleoDM`) as a collaborator with write access
 - [ ] (prep) Push `archive/squarespace` and `redesign` to GitHub (once collaborator access is in place)
 - [ ] (session) Delete legacy `Staging` and `prelim-test` branches
 - [ ] (prep) Exclude build/dependency folders from Dropbox sync once the stack is installed
