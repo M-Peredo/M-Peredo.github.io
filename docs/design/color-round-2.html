@@ -185,7 +185,7 @@ main { flex: 1; min-height: 0; }
 
 <header class="pager">
   <div class="pager-inner">
-    <h1>Color, round 1</h1>
+    <h1>Color, round 2</h1>
     <nav class="tabs" id="tabs" aria-label="Pages"></nav>
     <div class="nav-btns">
       <span class="count" id="count"></span>
@@ -198,60 +198,346 @@ main { flex: 1; min-height: 0; }
 <main id="main"></main>
 
 <script>
-const ROUND = 1;
+const ROUND = 2;
 const KEY = "molly-color-round-" + ROUND;
 
 const OPTIONS = [
   {
-    id: "A", name: "Papercut", mark: "diamond", mode: "Light",
-    blurb: "Black ink on paper, with red as small points, like the tulips and flames on the papercut cover.",
-    notes: [
-      ["Red's role", "links, the focus ring, one small mark per section"],
-      ["Pros", "best for long reading; the deep red passes contrast everywhere; the most restrained"],
-      ["Cons", "the least \"night\"; the theme comes mostly from type and ornament"],
-      ["Contrast", "text 18.2 · secondary 6.6 · red links 6.4 · white on red button 6.9"]
+    "id": "A",
+    "name": "Ice Garden",
+    "mark": "edge",
+    "mode": "Light",
+    "blurb": "",
+    "notes": [
+      [
+        "Mood",
+        "frost and clean air; deep blue ink, with a single candle-amber line"
+      ],
+      [
+        "Pros",
+        "fresh, calm and professional; blue is the most familiar link color in ed tech"
+      ],
+      [
+        "Cons",
+        "the coolest and least theatrical; the tie to the book is the quietest"
+      ]
     ],
-    top:  { bg: "#F7F6F3", surface: "#EAE9E5", text: "#0B0B0B", text2: "#585858", link: "#B01E23", accent: "#B01E23", accentHover: "#700000", accentText: "#FFFFFF", border: "#CFCECE" },
-    body: { bg: "#F7F6F3", surface: "#EAE9E5", text: "#0B0B0B", text2: "#585858", link: "#B01E23", accent: "#B01E23", accentHover: "#700000", accentText: "#FFFFFF", border: "#CFCECE" },
-    swatches: [["", [["Paper", "#F7F6F3", "background"], ["Ink", "#0B0B0B", "text"], ["Graphite", "#585858", "secondary text"], ["Silver", "#CFCECE", "borders"], ["Crimson", "#B01E23", "accent, links"], ["Oxblood", "#700000", "hover, pressed"]]]]
+    "top": {
+      "bg": "#F1F5F8",
+      "surface": "#E1E9EF",
+      "text": "#0F1E2D",
+      "text2": "#4A5A6A",
+      "link": "#1B5E8C",
+      "accent": "#E39B2D",
+      "accentHover": "#144A6E",
+      "accentText": "#FFFFFF",
+      "btn": "#1B5E8C",
+      "btnHover": "#144A6E",
+      "border": "#C5D2DC"
+    },
+    "body": {
+      "bg": "#F1F5F8",
+      "surface": "#E1E9EF",
+      "text": "#0F1E2D",
+      "text2": "#4A5A6A",
+      "link": "#1B5E8C",
+      "accent": "#E39B2D",
+      "accentHover": "#144A6E",
+      "accentText": "#FFFFFF",
+      "btn": "#1B5E8C",
+      "btnHover": "#144A6E",
+      "border": "#C5D2DC"
+    },
+    "swatches": [
+      [
+        "",
+        [
+          [
+            "Frost",
+            "#F1F5F8",
+            "background"
+          ],
+          [
+            "Midnight ink",
+            "#0F1E2D",
+            "text"
+          ],
+          [
+            "Slate",
+            "#4A5A6A",
+            "secondary text"
+          ],
+          [
+            "Ice",
+            "#C5D2DC",
+            "borders"
+          ],
+          [
+            "Glacier",
+            "#1B5E8C",
+            "links, buttons"
+          ],
+          [
+            "Candle",
+            "#E39B2D",
+            "accent line"
+          ]
+        ]
+      ]
+    ],
+    "edge": "#E39B2D"
   },
   {
-    id: "B", name: "After Dark", mark: "ribbon", mode: "Dark",
-    blurb: "Silver on black, with red as one sweeping gesture, like the ribbon through the UK cover's title.",
-    notes: [
-      ["Red's role", "one gesture per page (a ribbon under the title), plus buttons"],
-      ["The catch", "true scarf red on black is 2.9:1, so red appears filled or as large decoration only; text links use a lighter lantern red"],
-      ["Pros", "the most immersive and the most Night Circus; light product screenshots pop on black"],
-      ["Cons", "long light-on-dark reading is harder for some; two reds to manage; closest to \"fan site\""],
-      ["Contrast", "text 16.2 · secondary 9.5 · lantern links 6.6 · white on oxblood button 8.8"]
+    "id": "B",
+    "name": "Tarot",
+    "mark": "diamond",
+    "mode": "Light",
+    "blurb": "",
+    "notes": [
+      [
+        "Mood",
+        "a worn deck of cards; parchment, brown-black ink, plum and gold"
+      ],
+      [
+        "Pros",
+        "warm and literary; the most distinctive of the light options"
+      ],
+      [
+        "Cons",
+        "the warmest and most vintage; risks feeling old-fashioned for a tech audience"
+      ]
     ],
-    top:  { bg: "#0C0B0B", surface: "#1A1919", text: "#E9E9E9", text2: "#B4B4B7", link: "#E8736D", accent: "#911B17", accentHover: "#700000", accentText: "#FFFFFF", border: "#3A3939" },
-    body: { bg: "#0C0B0B", surface: "#1A1919", text: "#E9E9E9", text2: "#B4B4B7", link: "#E8736D", accent: "#911B17", accentHover: "#700000", accentText: "#FFFFFF", border: "#3A3939" },
-    swatches: [["", [["Night", "#0C0B0B", "background"], ["Raised", "#1A1919", "surfaces"], ["Papercut", "#E9E9E9", "text"], ["Pewter", "#B4B4B7", "secondary text"], ["Oxblood", "#911B17", "buttons, ribbon"], ["Lantern", "#E8736D", "text links"]]]]
+    "top": {
+      "bg": "#F5EDDC",
+      "surface": "#EADFC6",
+      "text": "#2B1A14",
+      "text2": "#6A5648",
+      "link": "#7A1F44",
+      "accent": "#B8892B",
+      "accentHover": "#5A1432",
+      "accentText": "#FFFFFF",
+      "btn": "#7A1F44",
+      "btnHover": "#5A1432",
+      "border": "#D6C7A6"
+    },
+    "body": {
+      "bg": "#F5EDDC",
+      "surface": "#EADFC6",
+      "text": "#2B1A14",
+      "text2": "#6A5648",
+      "link": "#7A1F44",
+      "accent": "#B8892B",
+      "accentHover": "#5A1432",
+      "accentText": "#FFFFFF",
+      "btn": "#7A1F44",
+      "btnHover": "#5A1432",
+      "border": "#D6C7A6"
+    },
+    "swatches": [
+      [
+        "",
+        [
+          [
+            "Parchment",
+            "#F5EDDC",
+            "background"
+          ],
+          [
+            "Walnut ink",
+            "#2B1A14",
+            "text"
+          ],
+          [
+            "Umber",
+            "#6A5648",
+            "secondary text"
+          ],
+          [
+            "Linen",
+            "#D6C7A6",
+            "borders"
+          ],
+          [
+            "Plum",
+            "#7A1F44",
+            "links, buttons"
+          ],
+          [
+            "Gilt",
+            "#B8892B",
+            "ornaments"
+          ]
+        ]
+      ]
+    ]
   },
   {
-    id: "C", name: "Silver Ribbon", mark: "ribbon", mode: "Light",
-    blurb: "Cool silver ground, black ink and black buttons, with red as a single ribbon, like the UK cover.",
-    notes: [
-      ["Red's role", "one ribbon under each title, plus text links"],
-      ["Pros", "cooler and more modern than A; black buttons keep red rare; strongest contrast"],
-      ["Cons", "less warm and bookish than A; fewer red points to carry the theme"]
+    "id": "C",
+    "name": "Wishing Tree",
+    "mark": "ribbon",
+    "mode": "Dark",
+    "blurb": "",
+    "notes": [
+      [
+        "Mood",
+        "a dark room lit by candles; midnight blue, ivory text, amber light"
+      ],
+      [
+        "Pros",
+        "warm and welcoming for a dark theme; amber stands out strongly on dark"
+      ],
+      [
+        "Cons",
+        "amber can read as a warning color; long light-on-dark reading"
+      ]
     ],
-    top:  { bg: "#ECECEE", surface: "#DEDEE1", text: "#0C0B0B", text2: "#4F4F55", link: "#B01E23", accent: "#B01E23", accentHover: "#700000", accentText: "#FFFFFF", btn: "#0C0B0B", btnHover: "#34343A", border: "#C4C4C9" },
-    body: { bg: "#ECECEE", surface: "#DEDEE1", text: "#0C0B0B", text2: "#4F4F55", link: "#B01E23", accent: "#B01E23", accentHover: "#700000", accentText: "#FFFFFF", btn: "#0C0B0B", btnHover: "#34343A", border: "#C4C4C9" },
-    swatches: [["", [["Silver", "#ECECEE", "background"], ["Ink", "#0C0B0B", "text, buttons"], ["Steel", "#4F4F55", "secondary text"], ["Mist", "#C4C4C9", "borders"], ["Crimson", "#B01E23", "ribbon, links"], ["Oxblood", "#700000", "hover"]]]]
+    "top": {
+      "bg": "#0B1020",
+      "surface": "#141B30",
+      "text": "#F2EAD8",
+      "text2": "#B3B0A6",
+      "link": "#F5C46B",
+      "accent": "#F2B134",
+      "accentHover": "#FFC857",
+      "accentText": "#1A1405",
+      "btn": "#F2B134",
+      "btnHover": "#FFC857",
+      "border": "#2A3350"
+    },
+    "body": {
+      "bg": "#0B1020",
+      "surface": "#141B30",
+      "text": "#F2EAD8",
+      "text2": "#B3B0A6",
+      "link": "#F5C46B",
+      "accent": "#F2B134",
+      "accentHover": "#FFC857",
+      "accentText": "#1A1405",
+      "btn": "#F2B134",
+      "btnHover": "#FFC857",
+      "border": "#2A3350"
+    },
+    "swatches": [
+      [
+        "",
+        [
+          [
+            "Midnight",
+            "#0B1020",
+            "background"
+          ],
+          [
+            "Dusk",
+            "#141B30",
+            "surfaces"
+          ],
+          [
+            "Ivory",
+            "#F2EAD8",
+            "text"
+          ],
+          [
+            "Ash",
+            "#B3B0A6",
+            "secondary text"
+          ],
+          [
+            "Candle",
+            "#F2B134",
+            "buttons, ribbon"
+          ],
+          [
+            "Flame",
+            "#F5C46B",
+            "text links"
+          ]
+        ]
+      ]
+    ]
   },
   {
-    id: "D", name: "Red Spine", mark: "spine", mode: "Dark",
-    blurb: "Black with silhouette greys, and one red stripe down the edge, like the US cover's spine.",
-    notes: [
-      ["Red's role", "a vertical stripe on the page edge, plus buttons"],
-      ["Pros", "dark and calm; one bold structural move; the red stays out of the reading text"],
-      ["Cons", "light-on-dark for long reading; the stripe needs a plan on phones"]
+    "id": "D",
+    "name": "Pool of Tears",
+    "mark": "spine",
+    "mode": "Dark",
+    "blurb": "",
+    "notes": [
+      [
+        "Mood",
+        "still dark water; ink teal, pale aqua text, a glint of cool green"
+      ],
+      [
+        "Pros",
+        "calm, modern and the furthest from the book's red; easy on the eyes"
+      ],
+      [
+        "Cons",
+        "teal is common in tech; the least obviously Night Circus"
+      ]
     ],
-    top:  { bg: "#050505", surface: "#151414", text: "#D8D8DA", text2: "#A0A0A6", link: "#F08A84", accent: "#B02020", accentHover: "#8A1818", accentText: "#FFFFFF", border: "#333333" },
-    body: { bg: "#050505", surface: "#151414", text: "#D8D8DA", text2: "#A0A0A6", link: "#F08A84", accent: "#B02020", accentHover: "#8A1818", accentText: "#FFFFFF", border: "#333333" },
-    swatches: [["", [["Black", "#050505", "background"], ["Raised", "#151414", "surfaces"], ["Silhouette", "#D8D8DA", "text"], ["Smoke", "#A0A0A6", "secondary text"], ["Spine", "#B02020", "stripe, buttons"], ["Rose", "#F08A84", "text links"]]]]
+    "top": {
+      "bg": "#06161A",
+      "surface": "#0E2429",
+      "text": "#DCEBEC",
+      "text2": "#9DB6B9",
+      "link": "#6FDCD0",
+      "accent": "#2FB5A8",
+      "accentHover": "#5CCFC2",
+      "accentText": "#04201D",
+      "btn": "#2FB5A8",
+      "btnHover": "#5CCFC2",
+      "border": "#1E3A40"
+    },
+    "body": {
+      "bg": "#06161A",
+      "surface": "#0E2429",
+      "text": "#DCEBEC",
+      "text2": "#9DB6B9",
+      "link": "#6FDCD0",
+      "accent": "#2FB5A8",
+      "accentHover": "#5CCFC2",
+      "accentText": "#04201D",
+      "btn": "#2FB5A8",
+      "btnHover": "#5CCFC2",
+      "border": "#1E3A40"
+    },
+    "swatches": [
+      [
+        "",
+        [
+          [
+            "Deep water",
+            "#06161A",
+            "background"
+          ],
+          [
+            "Basin",
+            "#0E2429",
+            "surfaces"
+          ],
+          [
+            "Mist",
+            "#DCEBEC",
+            "text"
+          ],
+          [
+            "Fog",
+            "#9DB6B9",
+            "secondary text"
+          ],
+          [
+            "Tide",
+            "#2FB5A8",
+            "buttons, stripe"
+          ],
+          [
+            "Shallows",
+            "#6FDCD0",
+            "text links"
+          ]
+        ]
+      ]
+    ]
   }
 ];
 const PAGES = [...OPTIONS.map(o => o.id), "summary"];
