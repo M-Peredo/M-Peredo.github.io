@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Molly's Design Options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cinzel:wght@500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* Page chrome stays neutral so the options are the only color on the page. */
+:root {
+  --c-bg: #F3F3F4;
+  --c-surface: #FFFFFF;
+  --c-ink: #17171A;
+  --c-muted: #5D5D66;
+  --c-line: #DADADF;
+  --c-star: #17171A;
+  --c-font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-bg: #141416;
+    --c-surface: #1D1D20;
+    --c-ink: #EDEDF0;
+    --c-muted: #A3A3AD;
+    --c-line: #34343A;
+    --c-star: #EDEDF0;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--c-bg);
+  color: var(--c-ink);
+  font: 15px/1.5 var(--c-font);
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding-inline: 20px; padding-block: 0 80px; }
+
+/* Status bar */
+.status {
+  position: sticky; top: 0; z-index: 5;
+  background: color-mix(in srgb, var(--c-bg) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--c-line);
+}
+.status .wrap { padding-block: 10px; display: flex; flex-wrap: wrap; gap: 6px 20px; align-items: baseline; }
+.status b { font-weight: 600; }
+.status span { color: var(--c-muted); font-size: 13px; }
+.status .pill { color: var(--c-ink); font-size: 13px; }
+
+header.intro { padding-block: 48px 24px; display: grid; gap: 12px; max-width: 70ch; }
+header.intro h1 { font-size: 30px; line-height: 1.15; margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+header.intro p { margin: 0; color: var(--c-muted); }
+
+section.group { padding-block: 40px 8px; display: grid; gap: 20px; }
+.group-head { display: grid; gap: 6px; max-width: 72ch; }
+.group-head .eyebrow { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--c-muted); font-weight: 600; }
+.group-head h2 { margin: 0; font-size: 24px; line-height: 1.2; }
+.group-head p { margin: 0; color: var(--c-muted); }
+.group-head .previewing { font-size: 13px; color: var(--c-muted); }
+.group-head .previewing b { color: var(--c-ink); font-weight: 600; }
+
+.card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: 10px;
+  padding: 20px;
+  display: grid; gap: 16px;
+}
+.card.is-accepted { border: 2px solid var(--c-ink); padding: 19px; }
+.card.is-rejected .spec, .card.is-rejected .details { opacity: .45; }
+.card-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+.card-head .letter { font-weight: 700; font-size: 13px; letter-spacing: .08em; color: var(--c-muted); }
+.card-head h3 { margin: 0; font-size: 20px; }
+.card-head .badge { margin-left: auto; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; border: 1px solid var(--c-line); border-radius: 999px; padding: 2px 10px; }
+.card-head .badge:empty { display: none; }
+.card .blurb { margin: 0; max-width: 72ch; }
+.details { display: grid; gap: 12px; min-width: 0; }
+.details ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; max-width: 80ch; }
+.details li { color: var(--c-muted); }
+.details li b { color: var(--c-ink); font-weight: 600; }
+
+/* Swatches */
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+.zone-label { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--c-muted); grid-column: 1 / -1; margin-top: 4px; }
+.swatch { border: 1px solid var(--c-line); border-radius: 6px; overflow: hidden; display: grid; min-width: 0; }
+.swatch .chip { height: 44px; }
+.swatch .info { padding: 6px 8px; display: grid; font-size: 12px; line-height: 1.35; }
+.swatch .info b { font-weight: 600; }
+.swatch .info code { color: var(--c-muted); font-size: 11.5px; }
+
+/* Type ladder and spacing bars */
+.ladder { display: grid; gap: 6px; border: 1px solid var(--c-line); border-radius: 6px; padding: 14px; overflow-x: auto; }
+.ladder .row { display: grid; grid-template-columns: 90px 1fr; gap: 12px; align-items: baseline; }
+.ladder .row span:first-child { font-size: 12px; color: var(--c-muted); }
+.scale { display: grid; gap: 4px; border: 1px solid var(--c-line); border-radius: 6px; padding: 14px; overflow-x: auto; }
+.scale .row { display: grid; grid-template-columns: 56px 1fr; gap: 12px; align-items: center; font-size: 12px; color: var(--c-muted); font-variant-numeric: tabular-nums; }
+.scale .bar { height: 10px; background: var(--c-ink); border-radius: 2px; }
+
+/* Controls */
+.controls { display: grid; grid-template-columns: auto auto 1fr; gap: 10px 16px; align-items: start; border-top: 1px solid var(--c-line); padding-top: 16px; }
+.stars { display: flex; gap: 2px; align-items: center; }
+.stars .label { font-size: 12px; color: var(--c-muted); margin-right: 6px; }
+.star { appearance: none; border: 0; background: none; padding: 2px; font-size: 22px; line-height: 1; cursor: pointer; color: var(--c-line); }
+.star.on { color: var(--c-star); }
+.decide { display: flex; gap: 6px; }
+.btn-c {
+  appearance: none; font: inherit; font-size: 14px; font-weight: 600;
+  padding: 7px 14px; border-radius: 6px; cursor: pointer;
+  border: 1px solid var(--c-line); background: transparent; color: var(--c-ink);
+}
+.btn-c:hover { border-color: var(--c-muted); }
+.btn-c[aria-pressed="true"] { background: var(--c-ink); color: var(--c-surface); border-color: var(--c-ink); }
+.notes { display: grid; gap: 4px; min-width: 0; }
+.notes label { font-size: 12px; color: var(--c-muted); }
+.notes textarea {
+  font: inherit; font-size: 14px; color: var(--c-ink); background: var(--c-bg);
+  border: 1px solid var(--c-line); border-radius: 6px; padding: 8px 10px;
+  min-height: 40px; resize: vertical; width: 100%;
+}
+:where(button, textarea, a):focus-visible { outline: 2px solid var(--c-ink); outline-offset: 2px; }
+
+/* Summary */
+.summary-box { background: var(--c-surface); border: 1px solid var(--c-line); border-radius: 10px; padding: 20px; display: grid; gap: 12px; }
+.summary-box pre { margin: 0; white-space: pre-wrap; font: 13px/1.55 ui-monospace, "SF Mono", Menlo, monospace; background: var(--c-bg); border: 1px solid var(--c-line); border-radius: 6px; padding: 14px; overflow-x: auto; }
+.summary-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.summary-actions .msg { font-size: 13px; color: var(--c-muted); }
+
+/* ---------- Specimen: every value comes from the option being previewed ---------- */
+.spec {
+  border-radius: 6px; overflow: hidden; border: 1px solid var(--c-line);
+  font-family: var(--f-body); font-size: var(--body); line-height: var(--lh);
+  position: relative;
+}
+.spec .tag {
+  position: absolute; top: 8px; right: 10px; z-index: 1;
+  font: 600 10px/1 var(--c-font); letter-spacing: .08em; text-transform: uppercase;
+  color: var(--z-text2); opacity: .8;
+}
+.zone { background: var(--z-bg); color: var(--z-text); padding: var(--section) var(--gutter); display: flex; flex-direction: column; gap: var(--pgap); }
+.zone.top { padding-top: var(--s3); }
+.zone a { color: var(--z-link); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.zone a:hover { text-decoration-thickness: 2px; }
+.zone a:focus-visible, .zone .btn:focus-visible { outline: 2px solid var(--z-link); outline-offset: 3px; }
+.s-nav { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s3); flex-wrap: wrap; margin-bottom: calc(var(--section) - var(--pgap)); }
+.s-word { font-family: var(--f-display); font-weight: var(--dw); font-size: 1.05em; letter-spacing: .02em; }
+.s-links { display: flex; gap: var(--s4); font-size: .9em; }
+.zone .s-links a { color: var(--z-text); text-decoration: none; }
+.zone .s-links a[aria-current] { text-decoration: underline; text-decoration-color: var(--z-accent); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.s-summary { max-width: var(--measure); display: flex; flex-direction: column; gap: var(--pgap); }
+.s-dateline { font-family: var(--f-display); font-size: .78em; letter-spacing: .14em; text-transform: uppercase; color: var(--z-text2); display: flex; align-items: center; gap: .7em; }
+.mark-diamond .s-dateline::before { content: ""; width: 7px; height: 7px; background: var(--z-accent); transform: rotate(45deg); flex: none; }
+.s-h1 { font-family: var(--f-display); font-weight: var(--dw); font-size: clamp(1.7rem, 4.2vw, var(--h1)); line-height: 1.08; margin: 0; text-wrap: balance; letter-spacing: var(--dls); }
+.s-ribbon { display: none; width: 72px; height: 4px; background: var(--z-accent); }
+.mark-ribbon .s-ribbon { display: block; }
+.s-hook { margin: 0; font-size: 1.15em; color: var(--z-text2); }
+.s-meta { display: grid; grid-template-columns: repeat(3, minmax(0, max-content)); gap: var(--s2) var(--s5); font-size: .85em; }
+.s-meta dt { color: var(--z-text2); font-size: .85em; letter-spacing: .06em; text-transform: uppercase; }
+.s-meta dd { margin: 0; }
+.s-metrics { display: flex; flex-wrap: wrap; gap: var(--s5); }
+.s-metric { display: grid; gap: 2px; max-width: 14ch; }
+.s-metric b { font-family: var(--f-display); font-weight: var(--dw); font-size: 2em; line-height: 1; font-variant-numeric: tabular-nums lining-nums; }
+.s-metric span { font-size: .8em; color: var(--z-text2); }
+.s-btns { display: flex; flex-wrap: wrap; gap: var(--s3); }
+.btn { display: inline-block; padding: .65em 1.15em; font-family: var(--f-body); font-weight: 600; font-size: .95em; text-decoration: none !important; border-radius: 2px; border: 1px solid transparent; }
+.btn.primary { background: var(--z-accent); color: var(--z-accentText) !important; }
+.btn.primary:hover { background: var(--z-accentHover); }
+.btn.secondary { background: transparent; color: var(--z-text) !important; border-color: var(--z-text); }
+.btn.secondary:hover { background: var(--z-surface); }
+.s-edge { height: 3px; background: var(--edge, transparent); display: none; }
+.mark-edge .s-edge { display: block; }
+.s-h2 { font-family: var(--f-display); font-weight: var(--dw); font-size: var(--h2); line-height: 1.2; margin: 0; max-width: var(--measure); text-wrap: balance; letter-spacing: var(--dls); }
+.s-p { margin: 0; max-width: var(--measure); }
+.s-quote { margin: 0; padding-left: var(--s4); border-left: 2px solid var(--z-accent); max-width: var(--measure); font-family: var(--f-display); font-style: var(--qs); font-size: 1.2em; line-height: 1.4; }
+.s-quote cite { display: block; margin-top: var(--s2); font-family: var(--f-body); font-style: normal; font-size: .75em; color: var(--z-text2); }
+.s-figure { margin: 0; display: grid; gap: var(--s2); max-width: calc(var(--measure) + 12ch); }
+.s-frame { aspect-ratio: 16 / 7; max-width: 100%; background: var(--z-surface); border: 1px solid var(--z-border); display: grid; place-items: center; font-size: .85em; color: var(--z-text2); }
+.s-figure figcaption { font-size: .8em; color: var(--z-text2); }
+
+@media (max-width: 640px) {
+  .controls { grid-template-columns: 1fr; }
+  .s-meta { grid-template-columns: 1fr 1fr; }
+  .ladder .row { grid-template-columns: 1fr; gap: 2px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="status" aria-live="polite"><div class="wrap" id="status"></div></div>
+
+<div class="wrap">
+  <header class="intro">
+    <h1>Design options, round 1</h1>
+    <p>Three choices each for color, type and spacing, built from the three Night Circus covers. Rate each option, accept one or reject any, and leave notes. Every preview uses your current picks from the other sections, so the page updates as you decide.</p>
+    <p>Picks save in this browser. When you're done, copy the summary at the bottom and paste it to Claude. All sample copy and numbers are placeholders.</p>
+  </header>
+
+  <section class="group" id="color">
+    <div class="group-head">
+      <span class="eyebrow">Part 1</span>
+      <h2>Color</h2>
+      <p>Black, white-to-silver, and red, sampled from the covers. Red covers 0.4–7% of each cover, so every option keeps it rare. They differ in background and in how red behaves.</p>
+      <p class="previewing" data-previewing="color"></p>
+    </div>
+    <div class="cards" data-cards="color" style="display:grid;gap:20px"></div>
+  </section>
+
+  <section class="group" id="type">
+    <div class="group-head">
+      <span class="eyebrow">Part 2</span>
+      <h2>Typography</h2>
+      <p>A display face for headings paired with a face for reading. Each pairing echoes a different cover.</p>
+      <p class="previewing" data-previewing="type"></p>
+    </div>
+    <div class="cards" data-cards="type" style="display:grid;gap:20px"></div>
+  </section>
+
+  <section class="group" id="spacing">
+    <div class="group-head">
+      <span class="eyebrow">Part 3</span>
+      <h2>Spacing</h2>
+      <p>How much room the page breathes with: the spacing scale, the reading column width, and the gaps between sections.</p>
+      <p class="previewing" data-previewing="spacing"></p>
+    </div>
+    <div class="cards" data-cards="spacing" style="display:grid;gap:20px"></div>
+  </section>
+
+  <section class="group" id="summary">
+    <div class="group-head">
+      <span class="eyebrow">Wrap up</span>
+      <h2>Summary for Claude</h2>
+      <p>Copy this and paste it into the chat.</p>
+    </div>
+    <div class="summary-box">
+      <pre id="summary-text"></pre>
+      <div class="summary-actions">
+        <button class="btn-c" id="copy-btn" type="button">Copy summary</button>
+        <button class="btn-c" id="reset-btn" type="button">Start over</button>
+        <span class="msg" id="summary-msg"></span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+const ROUND = 1;
+const KEY = "molly-design-options-round-" + ROUND;
+
+const DATA = {
+  color: [
+    {
+      id: "A", name: "Papercut", mark: "diamond", mode: "Light",
+      blurb: "Black ink on paper, with red as small points, like the tulips and flames on the papercut cover.",
+      notes: [
+        ["Red's role", "links, the focus ring, one small mark per section"],
+        ["Pros", "best for long reading; the deep red passes contrast everywhere; the most restrained"],
+        ["Cons", "the least \"night\"; the theme comes mostly from type and ornament"],
+        ["Contrast", "text 18.2 · secondary 6.6 · red links 6.4 · white on red button 6.9"]
+      ],
+      top:  { bg: "#F7F6F3", surface: "#EAE9E5", text: "#0B0B0B", text2: "#585858", link: "#B01E23", accent: "#B01E23", accentHover: "#700000", accentText: "#FFFFFF", border: "#CFCECE" },
+      body: { bg: "#F7F6F3", surface: "#EAE9E5", text: "#0B0B0B", text2: "#585858", link: "#B01E23", accent: "#B01E23", accentHover: "#700000", accentText: "#FFFFFF", border: "#CFCECE" },
+      swatches: [
+        ["", [["Paper", "#F7F6F3", "background"], ["Ink", "#0B0B0B", "text"], ["Graphite", "#585858", "secondary text"], ["Silver", "#CFCECE", "borders"], ["Crimson", "#B01E23", "accent, links"], ["Oxblood", "#700000", "hover, pressed"]]]
+      ]
+    },
+    {
+      id: "B", name: "After Dark", mark: "ribbon", mode: "Dark",
+      blurb: "Silver on black, with red as one sweeping gesture, like the ribbon through the UK cover's title.",
+      notes: [
+        ["Red's role", "one gesture per page (a ribbon under the title), plus buttons"],
+        ["The catch", "true scarf red on black is 2.9:1, so red appears filled or as large decoration only; text links use a lighter lantern red"],
+        ["Pros", "the most immersive and the most Night Circus; light product screenshots pop on black"],
+        ["Cons", "long light-on-dark reading is harder for some; two reds to manage; closest to \"fan site\""],
+        ["Contrast", "text 16.2 · secondary 9.5 · lantern links 6.6 · white on oxblood button 8.8"]
+      ],
+      top:  { bg: "#0C0B0B", surface: "#1A1919", text: "#E9E9E9", text2: "#B4B4B7", link: "#E8736D", accent: "#911B17", accentHover: "#700000", accentText: "#FFFFFF", border: "#3A3939" },
+      body: { bg: "#0C0B0B", surface: "#1A1919", text: "#E9E9E9", text2: "#B4B4B7", link: "#E8736D", accent: "#911B17", accentHover: "#700000", accentText: "#FFFFFF", border: "#3A3939" },
+      swatches: [
+        ["", [["Night", "#0C0B0B", "background"], ["Raised", "#1A1919", "surfaces"], ["Papercut", "#E9E9E9", "text"], ["Pewter", "#B4B4B7", "secondary text"], ["Oxblood", "#911B17", "buttons, ribbon"], ["Lantern", "#E8736D", "text links"]]]
+      ]
+    },
+    {
+      id: "C", name: "Nightfall and Dawn", mark: "edge", mode: "Both", edge: "#B01E23",
+      blurb: "The circus opens at nightfall and closes at dawn. The header and case study summary are night; the reading area is dawn. A red edge marks the line between them, like the US cover's spine.",
+      notes: [
+        ["Red's role", "a structural edge between night and dawn, plus links and buttons"],
+        ["Why", "matches the two-layer principle from Phase 1: drama in the summary, calm where people read"],
+        ["Pros", "attention where it's earned, readability where it's needed"],
+        ["Cons", "the most complex: two color sets, and every component designed for both"],
+        ["Contrast", "night text 17.0 · night links 7.0 · dawn text 17.6 · dawn links 6.1"]
+      ],
+      top:  { bg: "#030303", surface: "#141414", text: "#E9E9E9", text2: "#B4B4B7", link: "#E8736D", accent: "#911B17", accentHover: "#700000", accentText: "#FFFFFF", border: "#333333" },
+      body: { bg: "#F2F2F0", surface: "#E4E4E1", text: "#0B0B0B", text2: "#585858", link: "#B01E23", accent: "#B01E23", accentHover: "#700000", accentText: "#FFFFFF", border: "#CFCECE" },
+      swatches: [
+        ["Night", [["Night", "#030303", "background"], ["Papercut", "#E9E9E9", "text"], ["Pewter", "#B4B4B7", "secondary text"], ["Lantern", "#E8736D", "links"]]],
+        ["Dawn", [["Dawn", "#F2F2F0", "background"], ["Ink", "#0B0B0B", "text"], ["Graphite", "#585858", "secondary text"], ["Crimson", "#B01E23", "links, edge"]]]
+      ]
+    }
+  ],
+  type: [
+    {
+      id: "1", name: "Roman Caps",
+      display: '"Cinzel", "Trajan Pro", Georgia, serif', dw: 600, dls: "0.01em", qs: "normal",
+      body: '"Source Serif 4", Georgia, serif', bodySize: "1.0625rem", lh: 1.65, h1: "2.6rem", h2: "1.5rem",
+      blurb: "Classical capitals like the US cover's title, with a book serif for reading. Formal and literary.",
+      notes: [["Display", "Cinzel (capitals only, so headings are always in caps)"], ["Body", "Source Serif 4"], ["Feel", "the most bookish; headings read as inscriptions"]]
+    },
+    {
+      id: "2", name: "Playbill",
+      display: '"Bodoni Moda", "Didot", Georgia, serif', dw: 700, dls: "-0.01em", qs: "italic",
+      body: '"Instrument Sans", system-ui, sans-serif', bodySize: "1rem", lh: 1.6, h1: "3rem", h2: "1.65rem",
+      blurb: "A high-contrast Didone like the UK cover's swash lettering, with a clean sans for reading.",
+      notes: [["Display", "Bodoni Moda (headings only; its hairline strokes need size)"], ["Body", "Instrument Sans"], ["Feel", "the most dramatic; period headings over a modern product voice"]]
+    },
+    {
+      id: "3", name: "Quiet Modern",
+      display: '"Fraunces", Georgia, serif', dw: 600, dls: "-0.005em", qs: "italic",
+      body: '"Atkinson Hyperlegible Next", system-ui, sans-serif', bodySize: "1.0625rem", lh: 1.6, h1: "2.7rem", h2: "1.55rem",
+      blurb: "A soft modern serif with a hint of the period, paired with a body face designed by the Braille Institute for low-vision readers.",
+      notes: [["Display", "Fraunces"], ["Body", "Atkinson Hyperlegible Next"], ["Feel", "the least themed and the most readable; the body face is an accessibility statement in itself"]]
+    }
+  ],
+  spacing: [
+    {
+      id: "S", name: "Snug", scale: [4, 8, 12, 16, 24, 32, 48], measure: "60ch", section: 48, gutter: 24, pgap: 12,
+      blurb: "A 4px-based scale with tight sections. Dense and efficient; more fits on screen.",
+      notes: [["Scale", "4 · 8 · 12 · 16 · 24 · 32 · 48"], ["Reading column", "about 60 characters"], ["Between sections", "48px"]]
+    },
+    {
+      id: "M", name: "Comfortable", scale: [8, 16, 24, 32, 48, 64, 96], measure: "66ch", section: 80, gutter: 40, pgap: 16,
+      blurb: "An 8px-based scale with clear breathing room. The common middle ground for product sites.",
+      notes: [["Scale", "8 · 16 · 24 · 32 · 48 · 64 · 96"], ["Reading column", "about 66 characters"], ["Between sections", "80px"]]
+    },
+    {
+      id: "L", name: "Generous", scale: [8, 16, 32, 48, 80, 128, 160], measure: "70ch", section: 128, gutter: 64, pgap: 24,
+      blurb: "Wide margins and long pauses between sections. Editorial and unhurried, like a printed book.",
+      notes: [["Scale", "8 · 16 · 32 · 48 · 80 · 128 · 160"], ["Reading column", "about 70 characters"], ["Between sections", "128px"]]
+    }
+  ]
+};
+const DEFAULTS = { color: "A", type: "3", spacing: "M" };
+const LABELS = { color: "Color", type: "Type", spacing: "Spacing" };
+
+/* ---------- State (localStorage, guarded) ---------- */
+function load() {
+  try { const raw = localStorage.getItem(KEY); return raw ? JSON.parse(raw) : null; } catch (e) { return null; }
+}
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* storage unavailable; picks last for this visit */ }
+}
+let state = load() || { color: {}, type: {}, spacing: {} };
+for (const s of Object.keys(DATA)) state[s] = state[s] || {};
+function entry(sec, id) {
+  if (!state[sec][id]) state[sec][id] = { rating: 0, status: null, notes: "" };
+  return state[sec][id];
+}
+function applied(sec) {
+  const opts = DATA[sec], e = state[sec];
+  const acc = opts.find(o => e[o.id] && e[o.id].status === "accepted");
+  if (acc) return { opt: acc, why: "accepted" };
+  const live = opts.filter(o => !(e[o.id] && e[o.id].status === "rejected"));
+  const rated = live.filter(o => e[o.id] && e[o.id].rating > 0).sort((a, b) => e[b.id].rating - e[a.id].rating);
+  if (rated.length) return { opt: rated[0], why: "top rated" };
+  return { opt: live.find(o => o.id === DEFAULTS[sec]) || live[0] || opts[0], why: "default" };
+}
+
+/* ---------- Specimen ---------- */
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+function zoneVars(z) {
+  return `--z-bg:${z.bg};--z-surface:${z.surface};--z-text:${z.text};--z-text2:${z.text2};--z-link:${z.link};--z-accent:${z.accent};--z-accentHover:${z.accentHover};--z-accentText:${z.accentText};--z-border:${z.border};`;
+}
+function specimen(color, type, sp) {
+  const s = sp.scale;
+  const vars = [
+    `--f-display:${type.display}`, `--f-body:${type.body}`, `--dw:${type.dw}`, `--dls:${type.dls}`, `--qs:${type.qs}`,
+    `--body:${type.bodySize}`, `--lh:${type.lh}`, `--h1:${type.h1}`, `--h2:${type.h2}`,
+    `--s1:${s[0]}px`, `--s2:${s[1]}px`, `--s3:${s[2]}px`, `--s4:${s[3]}px`, `--s5:${s[4]}px`,
+    `--measure:${sp.measure}`, `--section:${sp.section}px`, `--gutter:${sp.gutter}px`, `--pgap:${sp.pgap}px`,
+    `--edge:${color.edge || "transparent"}`
+  ].join(";").replace(/"/g, "'");
+  return `
+  <div class="spec mark-${color.mark}" style="${vars}">
+    <div class="zone top" style="${zoneVars(color.top)}">
+      <span class="tag">Sample copy</span>
+      <nav class="s-nav" aria-label="Sample navigation">
+        <span class="s-word">Molly Peredo</span>
+        <span class="s-links"><a href="#" aria-current="page" onclick="return false">Work</a><a href="#" onclick="return false">Contact</a></span>
+      </nav>
+      <div class="s-summary">
+        <div class="s-dateline">Teaching Assistant · 2023–2026</div>
+        <h3 class="s-h1">Building an AI teaching assistant teachers trust</h3>
+        <span class="s-ribbon" aria-hidden="true"></span>
+        <p class="s-hook">Three years of small bets that added up to one platform-wide tool.</p>
+        <dl class="s-meta">
+          <div><dt>Role</dt><dd>Lead product designer</dd></div>
+          <div><dt>Timeline</dt><dd>3 years, 4 releases</dd></div>
+          <div><dt>Domain</dt><dd>K-12 computer science</dd></div>
+        </dl>
+        <div class="s-metrics">
+          <div class="s-metric"><b>38%</b><span>of active teachers using it weekly</span></div>
+          <div class="s-metric"><b>4.6</b><span>average teacher rating</span></div>
+          <div class="s-metric"><b>2×</b><span>faster lesson setup</span></div>
+        </div>
+        <div class="s-btns">
+          <a class="btn primary" href="#" onclick="return false">Try the prototype</a>
+          <a class="btn secondary" href="#" onclick="return false">Read the case study</a>
+        </div>
+      </div>
+    </div>
+    <div class="s-edge" aria-hidden="true"></div>
+    <div class="zone body" style="${zoneVars(color.body)}">
+      <h4 class="s-h2">The hard call: what we left out of the MVP</h4>
+      <p class="s-p">Grading support was the feature teachers asked for most, and the riskiest one to get wrong. We shipped without it and shaped the data model so it could arrive as a fast follow, without moving anything teachers had already learned. <a href="#" onclick="return false">See the fast-follow plan</a>.</p>
+      <blockquote class="s-quote">“It finally feels like it's working for me, not the other way around.”<cite>Middle school CS teacher, pilot interview</cite></blockquote>
+      <figure class="s-figure">
+        <div class="s-frame">Embedded prototype</div>
+        <figcaption>The recap and reflection flow, playable in the page.</figcaption>
+      </figure>
+    </div>
+  </div>`;
+}
+
+/* ---------- Option details ---------- */
+function detailsHTML(sec, o) {
+  const list = `<ul>${o.notes.map(([k, v]) => `<li><b>${esc(k)}:</b> ${esc(v)}</li>`).join("")}</ul>`;
+  if (sec === "color") {
+    const sw = o.swatches.map(([zone, items]) =>
+      (zone ? `<div class="zone-label">${esc(zone)}</div>` : "") +
+      items.map(([n, hex, role]) => `<div class="swatch"><div class="chip" style="background:${hex}"></div><div class="info"><b>${esc(n)}</b><code>${hex}</code><span>${esc(role)}</span></div></div>`).join("")
+    ).join("");
+    return `<div class="swatches">${sw}</div>${list}`;
+  }
+  if (sec === "type") {
+    const f = o.display.replace(/"/g, "'"), b = o.body.replace(/"/g, "'");
+    return `<div class="ladder">
+      <div class="row"><span>Display</span><span style="font-family:${f};font-weight:${o.dw};font-size:2.2rem;line-height:1.1">Opens at nightfall</span></div>
+      <div class="row"><span>Heading</span><span style="font-family:${f};font-weight:${o.dw};font-size:1.4rem">The hard call</span></div>
+      <div class="row"><span>Body</span><span style="font-family:${b};font-size:${o.bodySize};line-height:${o.lh}">Teachers trusted the tool once they could see why it suggested what it did.</span></div>
+      <div class="row"><span>Numbers</span><span style="font-family:${f};font-weight:${o.dw};font-size:1.6rem;font-variant-numeric:tabular-nums lining-nums">0123456789 · 38%</span></div>
+    </div>${list}`;
+  }
+  const bars = o.scale.map(v => `<div class="row"><span>${v}px</span><div class="bar" style="width:${v}px"></div></div>`).join("");
+  return `<div class="scale">${bars}</div>${list}`;
+}
+
+/* ---------- Build cards ---------- */
+function buildCards() {
+  for (const sec of Object.keys(DATA)) {
+    const host = document.querySelector(`[data-cards="${sec}"]`);
+    host.innerHTML = DATA[sec].map(o => `
+      <article class="card" data-sec="${sec}" data-id="${o.id}">
+        <div class="card-head">
+          <span class="letter">${sec === "color" ? "OPTION" : sec === "type" ? "OPTION" : "OPTION"} ${esc(o.id)}</span>
+          <h3>${esc(o.name)}</h3>
+          <span class="badge" data-badge></span>
+        </div>
+        <p class="blurb">${esc(o.blurb)}</p>
+        <div class="details">${detailsHTML(sec, o)}</div>
+        <div data-spec></div>
+        <div class="controls">
+          <div class="stars" role="group" aria-label="Rate ${esc(o.name)}">
+            <span class="label">Rating</span>
+            ${[1, 2, 3, 4, 5].map(n => `<button type="button" class="star" data-star="${n}" aria-label="${n} of 5" aria-pressed="false">★</button>`).join("")}
+          </div>
+          <div class="decide">
+            <button type="button" class="btn-c" data-act="accepted" aria-pressed="false">Accept</button>
+            <button type="button" class="btn-c" data-act="rejected" aria-pressed="false">Reject</button>
+          </div>
+          <div class="notes">
+            <label for="notes-${sec}-${o.id}">Notes</label>
+            <textarea id="notes-${sec}-${o.id}" rows="1" placeholder="What works, what doesn't"></textarea>
+          </div>
+        </div>
+      </article>`).join("");
+  }
+}
+
+/* ---------- Render ---------- */
+function render() {
+  const cur = { color: applied("color"), type: applied("type"), spacing: applied("spacing") };
+
+  document.querySelectorAll(".card").forEach(card => {
+    const sec = card.dataset.sec, id = card.dataset.id, e = entry(sec, id);
+    card.classList.toggle("is-accepted", e.status === "accepted");
+    card.classList.toggle("is-rejected", e.status === "rejected");
+    card.querySelector("[data-badge]").textContent = e.status === "accepted" ? "Accepted" : e.status === "rejected" ? "Rejected" : "";
+    card.querySelectorAll(".star").forEach(b => {
+      const on = Number(b.dataset.star) <= e.rating;
+      b.classList.toggle("on", on);
+      b.setAttribute("aria-pressed", String(Number(b.dataset.star) === e.rating));
+    });
+    card.querySelectorAll("[data-act]").forEach(b => b.setAttribute("aria-pressed", String(e.status === b.dataset.act)));
+    const ta = card.querySelector("textarea");
+    if (document.activeElement !== ta && ta.value !== e.notes) ta.value = e.notes;
+
+    const o = DATA[sec].find(x => x.id === id);
+    const color = sec === "color" ? o : cur.color.opt;
+    const type = sec === "type" ? o : cur.type.opt;
+    const sp = sec === "spacing" ? o : cur.spacing.opt;
+    card.querySelector("[data-spec]").innerHTML = specimen(color, type, sp);
+  });
+
+  const why = w => w === "accepted" ? "accepted" : w === "top rated" ? "top rated" : "default until you pick";
+  document.getElementById("status").innerHTML = Object.keys(DATA).map(sec =>
+    `<span class="pill"><b>${LABELS[sec]}:</b> ${esc(cur[sec].opt.id)} ${esc(cur[sec].opt.name)} <span>(${why(cur[sec].why)})</span></span>`
+  ).join("");
+
+  const others = { color: ["type", "spacing"], type: ["color", "spacing"], spacing: ["color", "type"] };
+  document.querySelectorAll("[data-previewing]").forEach(p => {
+    const sec = p.dataset.previewing;
+    p.innerHTML = "Previewed with " + others[sec].map(s => `<b>${LABELS[s].toLowerCase()} ${esc(cur[s].opt.id)} (${esc(cur[s].opt.name)})</b>`).join(" and ") + ".";
+  });
+
+  renderSummary(cur);
+}
+
+function renderSummary(cur) {
+  cur = cur || { color: applied("color"), type: applied("type"), spacing: applied("spacing") };
+  const lines = [`Design options, round ${ROUND}`, ""];
+  for (const sec of Object.keys(DATA)) {
+    const a = cur[sec];
+    lines.push(`${LABELS[sec].toUpperCase()}: ${a.why === "accepted" ? "Accepted" : "Leaning"} ${a.opt.id} (${a.opt.name})${a.why === "default" ? " [no input yet]" : ""}`);
+    for (const o of DATA[sec]) {
+      const e = state[sec][o.id] || { rating: 0, status: null, notes: "" };
+      const bits = [`${o.id} ${o.name}`, e.rating ? `${e.rating}/5` : "unrated"];
+      if (e.status) bits.push(e.status);
+      lines.push(`  - ${bits.join(" · ")}${e.notes.trim() ? `\n      Notes: ${e.notes.trim().replace(/\n+/g, " / ")}` : ""}`);
+    }
+    lines.push("");
+  }
+  document.getElementById("summary-text").textContent = lines.join("\n").trim();
+}
+
+/* ---------- Events ---------- */
+document.addEventListener("click", ev => {
+  const card = ev.target.closest(".card");
+  if (!card) return;
+  const sec = card.dataset.sec, id = card.dataset.id, e = entry(sec, id);
+  const star = ev.target.closest("[data-star]");
+  const act = ev.target.closest("[data-act]");
+  if (star) {
+    const n = Number(star.dataset.star);
+    e.rating = e.rating === n ? 0 : n;
+  } else if (act) {
+    const want = act.dataset.act;
+    if (e.status === want) e.status = null;
+    else {
+      if (want === "accepted") for (const o of DATA[sec]) { const other = entry(sec, o.id); if (other.status === "accepted") other.status = null; }
+      e.status = want;
+    }
+  } else return;
+  save();
+  render();
+});
+
+let noteTimer;
+document.addEventListener("input", ev => {
+  const ta = ev.target.closest("textarea");
+  if (!ta) return;
+  const card = ta.closest(".card");
+  entry(card.dataset.sec, card.dataset.id).notes = ta.value;
+  clearTimeout(noteTimer);
+  noteTimer = setTimeout(() => { save(); renderSummary(); }, 300);
+});
+
+document.getElementById("copy-btn").addEventListener("click", async () => {
+  const text = document.getElementById("summary-text").textContent;
+  const msg = document.getElementById("summary-msg");
+  try {
+    await navigator.clipboard.writeText(text);
+    msg.textContent = "Copied. Paste it into the chat.";
+  } catch (e) {
+    const r = document.createRange();
+    r.selectNodeContents(document.getElementById("summary-text"));
+    const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    msg.textContent = "Selected. Press Cmd+C to copy.";
+  }
+});
+
+let resetArmed = false;
+document.getElementById("reset-btn").addEventListener("click", ev => {
+  const msg = document.getElementById("summary-msg");
+  if (!resetArmed) {
+    resetArmed = true;
+    ev.target.textContent = "Click again to clear everything";
+    msg.textContent = "";
+    setTimeout(() => { resetArmed = false; ev.target.textContent = "Start over"; }, 4000);
+    return;
+  }
+  resetArmed = false;
+  ev.target.textContent = "Start over";
+  state = { color: {}, type: {}, spacing: {} };
+  save();
+  document.querySelectorAll(".card textarea").forEach(t => t.value = "");
+  render();
+  msg.textContent = "Cleared.";
+});
+
+buildCards();
+render();
+</script>
+</body>
+</html>
