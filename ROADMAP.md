@@ -65,7 +65,8 @@ Legacy remote branches `Staging` (identical to `main`) and `prelim-test` (an ear
 - [ ] (prep) Pick the stack and scaffold the skeleton project on `redesign` (leaning Astro — see Open Decisions)
 - [ ] (prep) Exclude build/dependency folders from Dropbox sync once the stack is installed
 - [ ] (prep) Content model: each case study is one Markdown file with a `status` field (`live` / `unlisted` / `draft`)
-- [ ] (session) Colors, type, spacing, and a small set of components
+- [x] (prep) Design system checklist + Night Circus research → `docs/design-system-checklist.md`
+- [ ] (session) Work through the checklist: colors, type, spacing, states, components
 - [ ] (session) Unlisted `/styleguide` page showing every token and component
 - [ ] (session) Record the design system in `CLAUDE.md` so every later session follows it
 

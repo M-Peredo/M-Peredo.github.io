@@ -16,6 +16,7 @@ The PM plan: how the [roadmap](../ROADMAP.md) turns into working sessions with M
 | Seed research | S1 | Done | `docs/research/prior-research.md` |
 | Targeting | S1 | Done | `docs/research/targeting.md` |
 | Brand intake questionnaire | S1 / S2 | — | `docs/research/brand-intake.md` |
+| Design system checklist + Night Circus research | S2 | Done | `docs/design-system-checklist.md` |
 | Stack choice + skeleton scaffold | S2 | — | `redesign` branch |
 | Content model (`status` field) | S2 | — | `redesign` branch |
 | Interview question bank | S3 | — | `docs/research/interview-questions.md` |
@@ -49,7 +50,7 @@ The research is done *with* Molly, not for her: it has to be tailored to the rol
 ## S2 — Brand & Design System
 *Phase 2*
 
-**Prep:** completed brand intake (homework from S1) · stack chosen, skeleton scaffolded · content model in place
+**Prep:** completed brand intake (homework from S1) · design system checklist (`docs/design-system-checklist.md`) · stack chosen, skeleton scaffolded · content model in place
 
 **Agenda**
 1. Review brand intake answers and references
