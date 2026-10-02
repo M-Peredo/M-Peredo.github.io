@@ -185,7 +185,7 @@ main { flex: 1; min-height: 0; }
 
 <header class="pager">
   <div class="pager-inner">
-    <h1>Color, round 3</h1>
+    <h1>Color, round 4</h1>
     <nav class="tabs" id="tabs" aria-label="Pages"></nav>
     <div class="nav-btns">
       <span class="count" id="count"></span>
@@ -198,89 +198,93 @@ main { flex: 1; min-height: 0; }
 <main id="main"></main>
 
 <script>
-const ROUND = 3;
+const ROUND = 4;
 const KEY = "molly-color-round-" + ROUND;
 
 const OPTIONS = [
   {
     "id": "A",
-    "name": "Scarlet Poster",
-    "mark": "ribbon",
+    "name": "Gilded Show",
+    "mark": "diamond",
     "mode": "Light",
     "blurb": "",
     "notes": [
       [
+        "Added",
+        "gold and ivory"
+      ],
+      [
         "Idea",
-        "a circus playbill: crisp white, heavy black, bold scarlet doing real work"
+        "soft gray ground, black ink, red links and buttons, gold rules like a playbill border"
       ],
       [
         "Pros",
-        "the boldest light option; red carries links, buttons and headings accents, so the theme is obvious"
+        "the closest to the book while still warm; gold gives it a theatrical lift"
       ],
       [
         "Cons",
-        "more red on screen than the book uses; needs discipline in long text"
+        "gold can look dated if overused"
       ]
     ],
     "top": {
-      "bg": "#FAFAF8",
-      "surface": "#EFEFEC",
-      "text": "#0A0A0A",
-      "text2": "#4D4D4D",
-      "link": "#C8101C",
-      "accent": "#C8101C",
-      "accentHover": "#8F0B14",
+      "bg": "#EEEEF0",
+      "surface": "#FBF8F1",
+      "text": "#0C0B0B",
+      "text2": "#55555B",
+      "link": "#B01E23",
+      "accent": "#C9962E",
+      "accentHover": "#7E1218",
       "accentText": "#FFFFFF",
-      "btn": "#C8101C",
-      "btnHover": "#8F0B14",
-      "border": "#D4D4D0"
+      "btn": "#B01E23",
+      "btnHover": "#7E1218",
+      "border": "#D2D2D6"
     },
     "body": {
-      "bg": "#FAFAF8",
-      "surface": "#EFEFEC",
-      "text": "#0A0A0A",
-      "text2": "#4D4D4D",
-      "link": "#C8101C",
-      "accent": "#C8101C",
-      "accentHover": "#8F0B14",
+      "bg": "#EEEEF0",
+      "surface": "#FBF8F1",
+      "text": "#0C0B0B",
+      "text2": "#55555B",
+      "link": "#B01E23",
+      "accent": "#C9962E",
+      "accentHover": "#7E1218",
       "accentText": "#FFFFFF",
-      "btn": "#C8101C",
-      "btnHover": "#8F0B14",
-      "border": "#D4D4D0"
+      "btn": "#B01E23",
+      "btnHover": "#7E1218",
+      "border": "#D2D2D6"
     },
     "swatches": [
       [
         "",
         [
           [
-            "Chalk",
-            "#FAFAF8",
+            "Soft gray",
+            "#EEEEF0",
             "background"
           ],
           [
-            "Ink",
-            "#0A0A0A",
+            "Black",
+            "#0C0B0B",
             "text"
           ],
           [
-            "Graphite",
-            "#4D4D4D",
-            "secondary text"
-          ],
-          [
-            "Tent canvas",
-            "#D4D4D0",
-            "borders"
-          ],
-          [
-            "Scarlet",
-            "#C8101C",
+            "Red",
+            "#B01E23",
             "links, buttons"
           ],
           [
-            "Oxblood",
-            "#8F0B14",
-            "hover"
+            "Ivory",
+            "#FBF8F1",
+            "cards"
+          ],
+          [
+            "Gold",
+            "#C9962E",
+            "rules, ornaments"
+          ],
+          [
+            "Pewter",
+            "#55555B",
+            "secondary text"
           ]
         ]
       ]
@@ -288,83 +292,87 @@ const OPTIONS = [
   },
   {
     "id": "B",
-    "name": "Pewter and Wine",
-    "mark": "diamond",
+    "name": "Garden Party",
+    "mark": "ribbon",
     "mode": "Light",
     "blurb": "",
     "notes": [
       [
+        "Added",
+        "sage and blush"
+      ],
+      [
         "Idea",
-        "the circus in daylight: smoky silver-grey, with the red turned down to deep wine"
+        "daylight at the circus: soft gray and blush, black ink, red as the pop, sage as a calm second note"
       ],
       [
         "Pros",
-        "muted and sophisticated; the most grown-up light option; red stays rare"
+        "the freshest and friendliest; the most different from a typical portfolio"
       ],
       [
         "Cons",
-        "the lowest-energy option; grey ground can feel flat next to colorful screenshots"
+        "pastels risk reading as youthful; blush must stay light to protect contrast"
       ]
     ],
     "top": {
-      "bg": "#E4E4E7",
-      "surface": "#D4D4D9",
-      "text": "#17171B",
-      "text2": "#52525A",
-      "link": "#6E1423",
-      "accent": "#6E1423",
-      "accentHover": "#4F0E19",
+      "bg": "#EFEFF0",
+      "surface": "#F7E7E6",
+      "text": "#0C0B0B",
+      "text2": "#58585E",
+      "link": "#B01E23",
+      "accent": "#7E9C80",
+      "accentHover": "#7E1218",
       "accentText": "#FFFFFF",
-      "btn": "#6E1423",
-      "btnHover": "#4F0E19",
-      "border": "#BDBDC4"
+      "btn": "#B01E23",
+      "btnHover": "#7E1218",
+      "border": "#D6D0D0"
     },
     "body": {
-      "bg": "#E4E4E7",
-      "surface": "#D4D4D9",
-      "text": "#17171B",
-      "text2": "#52525A",
-      "link": "#6E1423",
-      "accent": "#6E1423",
-      "accentHover": "#4F0E19",
+      "bg": "#EFEFF0",
+      "surface": "#F7E7E6",
+      "text": "#0C0B0B",
+      "text2": "#58585E",
+      "link": "#B01E23",
+      "accent": "#7E9C80",
+      "accentHover": "#7E1218",
       "accentText": "#FFFFFF",
-      "btn": "#6E1423",
-      "btnHover": "#4F0E19",
-      "border": "#BDBDC4"
+      "btn": "#B01E23",
+      "btnHover": "#7E1218",
+      "border": "#D6D0D0"
     },
     "swatches": [
       [
         "",
         [
           [
-            "Smoke",
-            "#E4E4E7",
+            "Soft gray",
+            "#EFEFF0",
             "background"
           ],
           [
-            "Charcoal",
-            "#17171B",
+            "Black",
+            "#0C0B0B",
             "text"
           ],
           [
-            "Pewter",
-            "#52525A",
-            "secondary text"
-          ],
-          [
-            "Iron",
-            "#BDBDC4",
-            "borders"
-          ],
-          [
-            "Wine",
-            "#6E1423",
+            "Red",
+            "#B01E23",
             "links, buttons"
           ],
           [
-            "Dregs",
-            "#4F0E19",
-            "hover"
+            "Blush",
+            "#F7E7E6",
+            "cards"
+          ],
+          [
+            "Sage",
+            "#7E9C80",
+            "accents"
+          ],
+          [
+            "Pewter",
+            "#58585E",
+            "secondary text"
           ]
         ]
       ]
@@ -372,83 +380,87 @@ const OPTIONS = [
   },
   {
     "id": "C",
-    "name": "Silver Moon",
+    "name": "Bonfire",
     "mark": "ribbon",
     "mode": "Dark",
     "blurb": "",
     "notes": [
       [
+        "Added",
+        "amber and plum-black"
+      ],
+      [
         "Idea",
-        "almost monochrome: black and moonlit silver, with only a glint of red"
+        "black ground lit from the middle: soft gray text, red buttons, amber links like firelight"
       ],
       [
         "Pros",
-        "the most restrained dark option; screenshots stand out; red feels precious"
+        "warm and dramatic; amber links read well on black"
       ],
       [
         "Cons",
-        "the red barely shows, so the Night Circus link is subtle; silver buttons are less urgent"
+        "amber can feel like a warning color; two warm accents compete"
       ]
     ],
     "top": {
-      "bg": "#0F1114",
-      "surface": "#1A1D21",
-      "text": "#ECEDEF",
-      "text2": "#A9ACB3",
-      "link": "#F4F4F6",
-      "accent": "#D41F2C",
-      "accentHover": "#FFFFFF",
-      "accentText": "#0F1114",
-      "btn": "#D9DADE",
-      "btnHover": "#FFFFFF",
-      "border": "#30343A"
+      "bg": "#0C0B0B",
+      "surface": "#1E1519",
+      "text": "#DADADD",
+      "text2": "#A7A7AD",
+      "link": "#F5B65A",
+      "accent": "#C8202B",
+      "accentHover": "#D32F35",
+      "accentText": "#FFFFFF",
+      "btn": "#B01E23",
+      "btnHover": "#D32F35",
+      "border": "#3A2D33"
     },
     "body": {
-      "bg": "#0F1114",
-      "surface": "#1A1D21",
-      "text": "#ECEDEF",
-      "text2": "#A9ACB3",
-      "link": "#F4F4F6",
-      "accent": "#D41F2C",
-      "accentHover": "#FFFFFF",
-      "accentText": "#0F1114",
-      "btn": "#D9DADE",
-      "btnHover": "#FFFFFF",
-      "border": "#30343A"
+      "bg": "#0C0B0B",
+      "surface": "#1E1519",
+      "text": "#DADADD",
+      "text2": "#A7A7AD",
+      "link": "#F5B65A",
+      "accent": "#C8202B",
+      "accentHover": "#D32F35",
+      "accentText": "#FFFFFF",
+      "btn": "#B01E23",
+      "btnHover": "#D32F35",
+      "border": "#3A2D33"
     },
     "swatches": [
       [
         "",
         [
           [
-            "Night",
-            "#0F1114",
+            "Black",
+            "#0C0B0B",
             "background"
           ],
           [
-            "Slate",
-            "#1A1D21",
-            "surfaces"
-          ],
-          [
-            "Moonlight",
-            "#ECEDEF",
+            "Soft gray",
+            "#DADADD",
             "text"
           ],
           [
-            "Fog",
-            "#A9ACB3",
+            "Red",
+            "#B01E23",
+            "buttons, ribbon"
+          ],
+          [
+            "Plum black",
+            "#1E1519",
+            "cards"
+          ],
+          [
+            "Amber",
+            "#F5B65A",
+            "text links"
+          ],
+          [
+            "Smoke",
+            "#A7A7AD",
             "secondary text"
-          ],
-          [
-            "Silver",
-            "#D9DADE",
-            "buttons"
-          ],
-          [
-            "Glint",
-            "#D41F2C",
-            "ribbon, accents"
           ]
         ]
       ]
@@ -456,83 +468,87 @@ const OPTIONS = [
   },
   {
     "id": "D",
-    "name": "Red Tent",
-    "mark": "diamond",
+    "name": "Ice Garden at Night",
+    "mark": "spine",
     "mode": "Dark",
     "blurb": "",
     "notes": [
       [
+        "Added",
+        "ice blue and midnight navy"
+      ],
+      [
         "Idea",
-        "step inside the tent: deep red canvas all around, with ivory light"
+        "the Ice Garden after dark: black-blue, soft gray text, ice-blue links, a red stripe and buttons as the one warm note"
       ],
       [
         "Pros",
-        "the most memorable and the most Night Circus; nobody else will have it"
+        "cool and calm; red pops harder against the blue; links separate cleanly from body text"
       ],
       [
         "Cons",
-        "the riskiest: a red page is intense for long reading, and screenshots must hold their own against it"
+        "the coolest dark option; blue is the most common tech palette"
       ]
     ],
     "top": {
-      "bg": "#4A0B13",
-      "surface": "#63121D",
-      "text": "#F7EFE8",
-      "text2": "#E6C4C4",
-      "link": "#FFD0CC",
-      "accent": "#F7EFE8",
-      "accentHover": "#FFFFFF",
-      "accentText": "#4A0B13",
-      "btn": "#F7EFE8",
-      "btnHover": "#FFFFFF",
-      "border": "#8A2B37"
+      "bg": "#0A0C11",
+      "surface": "#141A25",
+      "text": "#DADCE0",
+      "text2": "#A3A8B2",
+      "link": "#8EC9E8",
+      "accent": "#B01E23",
+      "accentHover": "#D32F35",
+      "accentText": "#FFFFFF",
+      "btn": "#B01E23",
+      "btnHover": "#D32F35",
+      "border": "#273041"
     },
     "body": {
-      "bg": "#4A0B13",
-      "surface": "#63121D",
-      "text": "#F7EFE8",
-      "text2": "#E6C4C4",
-      "link": "#FFD0CC",
-      "accent": "#F7EFE8",
-      "accentHover": "#FFFFFF",
-      "accentText": "#4A0B13",
-      "btn": "#F7EFE8",
-      "btnHover": "#FFFFFF",
-      "border": "#8A2B37"
+      "bg": "#0A0C11",
+      "surface": "#141A25",
+      "text": "#DADCE0",
+      "text2": "#A3A8B2",
+      "link": "#8EC9E8",
+      "accent": "#B01E23",
+      "accentHover": "#D32F35",
+      "accentText": "#FFFFFF",
+      "btn": "#B01E23",
+      "btnHover": "#D32F35",
+      "border": "#273041"
     },
     "swatches": [
       [
         "",
         [
           [
-            "Tent red",
-            "#4A0B13",
+            "Black-blue",
+            "#0A0C11",
             "background"
           ],
           [
-            "Velvet",
-            "#63121D",
-            "surfaces"
+            "Soft gray",
+            "#DADCE0",
+            "text"
           ],
           [
-            "Ivory",
-            "#F7EFE8",
-            "text, buttons"
+            "Red",
+            "#B01E23",
+            "buttons, stripe"
           ],
           [
-            "Rosewater",
-            "#E6C4C4",
-            "secondary text"
+            "Midnight",
+            "#141A25",
+            "cards"
           ],
           [
-            "Blush",
-            "#FFD0CC",
+            "Ice blue",
+            "#8EC9E8",
             "text links"
           ],
           [
-            "Seam",
-            "#8A2B37",
-            "borders"
+            "Steel",
+            "#A3A8B2",
+            "secondary text"
           ]
         ]
       ]
@@ -607,7 +623,7 @@ function optionPage(o, i) {
       <h2>${esc(o.name)}</h2>
       <span class="badge" data-badge></span>
       <div class="swatches">${sw}</div>
-      <ul>${o.notes.filter(n => ["Pros", "Cons"].includes(n[0])).map(([k, v]) => `<li><b>${esc(k)}:</b> ${esc(v)}</li>`).join("")}</ul>
+      <ul>${o.notes.filter(n => ["Added", "Pros", "Cons"].includes(n[0])).map(([k, v]) => `<li><b>${esc(k)}:</b> ${esc(v)}</li>`).join("")}</ul>
       <div class="controls">
         <div class="stars" role="group" aria-label="Rate ${esc(o.name)}">
           <span class="label">Rating</span>
