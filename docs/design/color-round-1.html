@@ -87,6 +87,11 @@ main { flex: 1; min-height: 0; }
 .swatch .info b { font-weight: 600; font-size: 13px; }
 .swatch .info span { color: var(--c-muted); }
 
+.variants { display: flex; flex-wrap: wrap; gap: 6px; }
+.vchip { appearance: none; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--c-line); background: transparent; color: var(--c-ink); }
+.vchip:hover { border-color: var(--c-muted); }
+.vchip[aria-pressed="true"] { border-color: var(--c-ink); box-shadow: inset 0 0 0 1px var(--c-ink); }
+.vdot { width: 14px; height: 14px; border-radius: 50%; border: 1px solid var(--c-line); flex: none; }
 .controls { display: grid; gap: 12px; border-top: 1px solid var(--c-line); padding-top: 16px; }
 .stars { display: flex; gap: 2px; align-items: center; }
 .stars .label { font-size: 12px; color: var(--c-muted); width: 52px; }
@@ -188,7 +193,7 @@ main { flex: 1; min-height: 0; }
 
 <header class="pager">
   <div class="pager-inner">
-    <h1>Color, round 7</h1>
+    <h1>Color, round 8</h1>
     <nav class="tabs" id="tabs" aria-label="Pages"></nav>
     <div class="nav-btns">
       <span class="count" id="count"></span>
@@ -201,7 +206,7 @@ main { flex: 1; min-height: 0; }
 <main id="main"></main>
 
 <script>
-const ROUND = 7;
+const ROUND = 8;
 const KEY = "molly-color-round-" + ROUND;
 
 const OPTIONS = [
@@ -1166,7 +1171,13 @@ const OPTIONS = [
   ]
  }
 ];
-const PAGES = [...OPTIONS.map(o => o.id), "summary"];
+const GROUPS = [
+  { id: "E Teal", name: "Clouded Vision + Teal", variants: OPTIONS.slice(0, 3) },
+  { id: "E Ochre", name: "Clouded Vision + Ochre", variants: OPTIONS.slice(3, 6) },
+  { id: "G Teal", name: "Bone + Teal", variants: OPTIONS.slice(6, 9) },
+  { id: "G Ochre", name: "Bone + Ochre", variants: OPTIONS.slice(9, 12) }
+];
+const PAGES = [...GROUPS.map(g => g.id), "summary"];
 
 /* ---------- State (localStorage, guarded) ---------- */
 function load() { try { const r = localStorage.getItem(KEY); return r ? JSON.parse(r) : null; } catch (e) { return null; } }
@@ -1174,7 +1185,8 @@ function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catc
 let state = load() || { picks: {}, page: 0 };
 state.picks = state.picks || {};
 if (!(state.page >= 0 && state.page < PAGES.length)) state.page = 0;
-const pick = id => state.picks[id] || (state.picks[id] = { rating: 0, status: null, notes: "" });
+const pick = id => state.picks[id] || (state.picks[id] = { rating: 0, status: null, notes: "", vi: 0 });
+const variantOf = g => g.variants[Math.min(pick(g.id).vi || 0, g.variants.length - 1)];
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const zoneVars = z => `--z-bg:${z.bg};--z-surface:${z.surface};--z-text:${z.text};--z-text2:${z.text2};--z-link:${z.link};--z-accent:${z.accent};--z-accentHover:${z.accentHover};--z-accentText:${z.accentText};--z-border:${z.border};--z-btn:${z.btn || z.accent};--z-btnHover:${z.btnHover || z.accentHover};`;
@@ -1226,35 +1238,45 @@ function specimen(o) {
   </div>`;
 }
 
-function optionPage(o, i) {
-  const sw = o.swatches.map(([zone, items]) =>
+
+function swatchHTML(o) {
+  return o.swatches.map(([zone, items]) =>
     (zone ? `<div class="zone-label">${esc(zone)}</div>` : "") +
     items.map(([n, hex, role]) => `<div class="swatch"><span class="chip" style="background:${hex}"></span><span class="info"><b>${esc(n)}</b><span>${hex} · ${esc(role)}</span></span></div>`).join("")
   ).join("");
+}
+function notesHTML(o) {
+  return o.notes.map(([k, v]) => `<li><b>${esc(k)}:</b> ${esc(v)}</li>`).join("");
+}
+
+function optionPage(g) {
   return `
-  <section class="page" data-opt="${o.id}">
+  <section class="page" data-opt="${g.id}">
     <div class="side">
-      <span class="eyebrow">${esc(o.mode)}</span>
-      <h2>${esc(o.name)}</h2>
+      <span class="eyebrow">Light</span>
+      <h2>${esc(g.name)}</h2>
       <span class="badge" data-badge></span>
-      <div class="swatches">${sw}</div>
-      <ul>${o.notes.filter(n => ["Idea", "Color", "From", "Added", "Pros", "Cons"].includes(n[0])).map(([k, v]) => `<li><b>${esc(k)}:</b> ${esc(v)}</li>`).join("")}</ul>
+      <div class="variants" role="group" aria-label="Shade">
+        ${g.variants.map((v, i) => `<button type="button" class="vchip" data-variant="${i}" aria-pressed="false"><span class="vdot" style="background:${v.top.link}"></span>${esc(v.id.split("·")[1])}</button>`).join("")}
+      </div>
+      <div class="swatches" data-sw></div>
+      <ul data-notes></ul>
       <div class="controls">
-        <div class="stars" role="group" aria-label="Rate ${esc(o.name)}">
+        <div class="stars" role="group" aria-label="Rate ${esc(g.name)}">
           <span class="label">Rating</span>
           ${[1, 2, 3, 4, 5].map(n => `<button type="button" class="star" data-star="${n}" aria-label="${n} of 5" aria-pressed="false">★</button>`).join("")}
         </div>
         <div class="decide">
-          <button type="button" class="btn-c" data-act="accepted" aria-pressed="false">Accept</button>
+          <button type="button" class="btn-c" data-act="accepted" aria-pressed="false">Accept this shade</button>
           <button type="button" class="btn-c" data-act="rejected" aria-pressed="false">Reject</button>
         </div>
         <div class="notes">
-          <label for="notes-${o.id}">Notes</label>
-          <textarea id="notes-${o.id}" placeholder="What works, what doesn't"></textarea>
+          <label for="notes-${g.id.replace(" ", "-")}">Notes</label>
+          <textarea id="notes-${g.id.replace(" ", "-")}" placeholder="What works, what doesn't"></textarea>
         </div>
       </div>
     </div>
-    <div class="stage">${specimen(o)}</div>
+    <div class="stage" data-spec></div>
   </section>`;
 }
 
@@ -1264,13 +1286,13 @@ function summaryPage() {
     <div class="summary-inner">
       <h2>Summary</h2>
       <div class="compare">
-        ${OPTIONS.map((o, i) => `
-          <button type="button" class="cmp" data-goto="${i}" aria-label="Go to ${esc(o.name)}">
-            <span class="strip">${o.swatches.flatMap(([, items]) => items).map(([, hex]) => `<span style="background:${hex}"></span>`).join("")}</span>
+        ${GROUPS.map((g, i) => `
+          <button type="button" class="cmp" data-goto="${i}" aria-label="Go to ${esc(g.name)}">
+            <span class="strip" data-cmp-strip="${g.id}"></span>
             <span class="body">
-              <b>${o.id} · ${esc(o.name)}</b>
-              <span class="meta" data-cmp-meta="${o.id}"></span>
-              <span class="note" data-cmp-note="${o.id}"></span>
+              <b>${esc(g.id)}</b>
+              <span class="meta" data-cmp-meta="${g.id}"></span>
+              <span class="note" data-cmp-note="${g.id}"></span>
             </span>
           </button>`).join("")}
       </div>
@@ -1286,11 +1308,12 @@ function summaryPage() {
 
 /* ---------- Render ---------- */
 const main = document.getElementById("main");
-main.innerHTML = OPTIONS.map(optionPage).join("") + summaryPage();
+main.innerHTML = GROUPS.map(optionPage).join("") + summaryPage();
 const pageEls = [...main.children];
 
-function statusText(p) {
+function statusText(p, g) {
   const bits = [];
+  if (g) bits.push(variantOf(g).id.split("·")[1]);
   if (p.rating) bits.push(`${p.rating}/5`);
   if (p.status) bits.push(p.status);
   return bits.join(" · ");
@@ -1304,14 +1327,19 @@ function render() {
 
   document.getElementById("tabs").innerHTML = PAGES.map((id, i) => {
     if (id === "summary") return `<button type="button" class="tab" data-goto="${i}" ${i === state.page ? 'aria-current="page"' : ""}>Summary</button>`;
-    const o = OPTIONS[i], p = pick(id), st = statusText(p);
-    return `<button type="button" class="tab" data-goto="${i}" ${i === state.page ? 'aria-current="page"' : ""}><span class="dot" style="background:${o.body.accent}"></span>${esc(id)}${st ? ` <span class="state">${esc(st)}</span>` : ""}</button>`;
+    const g = GROUPS[i], p = pick(id), st = statusText(p, g);
+    return `<button type="button" class="tab" data-goto="${i}" ${i === state.page ? 'aria-current="page"' : ""}><span class="dot" style="background:${variantOf(g).top.link}"></span>${esc(id)}${st ? ` <span class="state">${esc(st)}</span>` : ""}</button>`;
   }).join("");
 
-  pageEls.forEach(el => {
-    const id = el.dataset.opt;
-    if (!id) return;
-    const p = pick(id);
+  GROUPS.forEach((g, i) => {
+    const el = pageEls[i], p = pick(g.id), o = variantOf(g);
+    if (el.dataset.vi !== String(p.vi || 0)) {
+      el.dataset.vi = String(p.vi || 0);
+      el.querySelector("[data-sw]").innerHTML = swatchHTML(o);
+      el.querySelector("[data-notes]").innerHTML = notesHTML(o);
+      el.querySelector("[data-spec]").innerHTML = specimen(o);
+    }
+    el.querySelectorAll("[data-variant]").forEach(b => b.setAttribute("aria-pressed", String(Number(b.dataset.variant) === (p.vi || 0))));
     el.querySelector("[data-badge]").textContent = p.status === "accepted" ? "Accepted" : p.status === "rejected" ? "Rejected" : "";
     el.querySelectorAll(".star").forEach(b => {
       b.classList.toggle("on", Number(b.dataset.star) <= p.rating);
@@ -1326,19 +1354,20 @@ function render() {
 }
 
 function renderSummary() {
-  OPTIONS.forEach(o => {
-    const p = pick(o.id);
-    const card = main.querySelector(`.cmp[data-goto="${OPTIONS.indexOf(o)}"]`);
+  GROUPS.forEach((g, i) => {
+    const p = pick(g.id), o = variantOf(g);
+    const card = main.querySelector(`.cmp[data-goto="${i}"]`);
     card.classList.toggle("is-accepted", p.status === "accepted");
     card.classList.toggle("is-rejected", p.status === "rejected");
-    main.querySelector(`[data-cmp-meta="${o.id}"]`).textContent = statusText(p) || "Not rated yet";
-    main.querySelector(`[data-cmp-note="${o.id}"]`).textContent = p.notes.trim();
+    main.querySelector(`[data-cmp-strip="${g.id}"]`).innerHTML = o.swatches.flatMap(([, items]) => items).map(([, hex]) => `<span style="background:${hex}"></span>`).join("");
+    main.querySelector(`[data-cmp-meta="${g.id}"]`).textContent = statusText(p, g) || "Not rated yet";
+    main.querySelector(`[data-cmp-note="${g.id}"]`).textContent = p.notes.trim();
   });
-  const acc = OPTIONS.find(o => pick(o.id).status === "accepted");
-  const lines = [`Color, round ${ROUND}`, acc ? `Accepted: ${acc.id} (${acc.name})` : "Accepted: none yet", ""];
-  OPTIONS.forEach(o => {
-    const p = pick(o.id);
-    lines.push(`${o.id} ${o.name}: ${statusText(p) || "unrated"}`);
+  const acc = GROUPS.find(g => pick(g.id).status === "accepted");
+  const lines = [`Color, round ${ROUND}`, acc ? `Accepted: ${acc.id} (${variantOf(acc).id.split("·")[1]})` : "Accepted: none yet", ""];
+  GROUPS.forEach(g => {
+    const p = pick(g.id);
+    lines.push(`${g.id}: ${statusText(p, g)}${p.rating || p.status ? "" : " (not rated)"}`);
     if (p.notes.trim()) lines.push(`   Notes: ${p.notes.trim().replace(/\n+/g, " / ")}`);
   });
   document.getElementById("summary-text").textContent = lines.join("\n");
@@ -1370,14 +1399,17 @@ document.addEventListener("click", ev => {
   const id = page.dataset.opt, p = pick(id);
   const star = ev.target.closest("[data-star]");
   const act = ev.target.closest("[data-act]");
-  if (star) {
+  const vch = ev.target.closest("[data-variant]");
+  if (vch) {
+    p.vi = Number(vch.dataset.variant);
+  } else if (star) {
     const n = Number(star.dataset.star);
     p.rating = p.rating === n ? 0 : n;
   } else if (act) {
     const want = act.dataset.act;
     if (p.status === want) p.status = null;
     else {
-      if (want === "accepted") OPTIONS.forEach(o => { if (pick(o.id).status === "accepted") pick(o.id).status = null; });
+      if (want === "accepted") GROUPS.forEach(x => { if (pick(x.id).status === "accepted") pick(x.id).status = null; });
       p.status = want;
     }
   } else return;
@@ -1419,6 +1451,7 @@ document.getElementById("reset-btn").addEventListener("click", ev => {
   resetArmed = false;
   ev.target.textContent = "Start over";
   state = { picks: {}, page: state.page };
+  pageEls.forEach(el => { delete el.dataset.vi; });
   save();
   main.querySelectorAll("textarea").forEach(t => t.value = "");
   render();
