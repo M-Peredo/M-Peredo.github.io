@@ -168,10 +168,8 @@ main { flex: 1; min-height: 0; }
 .s-figure { margin: 0; display: grid; gap: 8px; max-width: 78ch; }
 .s-frame { position: relative; aspect-ratio: 16 / 9; max-width: 100%; background: var(--z-surface); border: 1px solid var(--z-border); overflow: hidden; }
 .s-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.loud { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); }
-.loud i:nth-child(1) { background: #00ADBC; } .loud i:nth-child(2) { background: #FFD62E; } .loud i:nth-child(3) { background: #FF4F9A; }
-.loud i:nth-child(4) { background: #7665A0; } .loud i:nth-child(5) { background: #6FD34B; } .loud i:nth-child(6) { background: #FF7A1A; }
-.loud-label { position: absolute; left: 10px; bottom: 10px; background: rgba(0,0,0,.75); color: #fff; font: 600 11px/1 var(--c-font); letter-spacing: .06em; text-transform: uppercase; padding: 6px 8px; border-radius: 3px; }
+.s-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.s-figure { gap: 12px; }
 .s-figure figcaption { font-size: .8em; color: var(--z-text2); }
 
 @media (max-width: 900px) {
@@ -681,12 +679,12 @@ function specimen(o) {
       <p class="s-p">Grading support was the feature teachers asked for most, and the riskiest one to get wrong. We shipped without it and shaped the data model so it could arrive as a fast follow, without moving anything teachers had already learned. <a href="#" onclick="return false">See the fast-follow plan</a>.</p>
       <blockquote class="s-quote">“It finally feels like it's working for me, not the other way around.”<cite>Middle school CS teacher, pilot interview</cite></blockquote>
       <figure class="s-figure">
-        <div class="s-frame">
-          <div class="loud" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-          <img src="assets/code-sample.png" alt="" onerror="this.remove()">
-          <span class="loud-label">Stand-in for a Code.org screenshot</span>
+        <div class="s-frame"><img src="assets/code-1.jpg" alt="Sample product screenshot 1"></div>
+        <div class="s-pair">
+          <div class="s-frame"><img src="assets/code-2.jpg" alt="Sample product screenshot 2"></div>
+          <div class="s-frame"><img src="assets/code-3.jpg" alt="Sample product screenshot 3"></div>
         </div>
-        <figcaption>The recap and reflection flow, playable in the page.</figcaption>
+        <figcaption>Sample screenshots for contrast testing.</figcaption>
       </figure>
     </div>
   </div>`;
