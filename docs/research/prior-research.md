@@ -45,6 +45,7 @@ No proven "correct" case study structure exists. The outline combines the hiring
 
 ## Notes for Phase 1 (added 2026-10-01)
 
-- **This is one content type, not several.** The outline above is a deep-dive format for recent product work. The "selected earlier work" idea suggests a second, short format, probably the right home for her older graphic design pieces (Wish-A-Mile, AKJ, Hope Is Essential, etc.). Whether a third type exists, such as a mid-length one for smaller product projects, is an open question for `content-types.md`.
+- **Ruled out: "selected earlier work."** The old graphic design pieces are retired, and every case study is a deep one (decided 2026-10-01).
+- **The outline is one format; the content types are variations on it.** The 2–4 types in `content-types.md` are all deep case studies, differing by the kind of project (for example, how much weight goes to research, systems, accessibility, or shipping at scale) rather than by depth.
 - **"Where AI fit" assumes she has AI-assisted work to show.** If her recent projects predate that, this rebuild can serve as the example.
 - **To verify in the redo:** the Figma survey figures (73%, 58%, 56%), the NN/g claim, the 10–15 second skim time, and the referral statistics.

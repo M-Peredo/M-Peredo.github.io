@@ -18,7 +18,9 @@ A deliberately small site:
 | `/work/<slug>` | Individual case studies (3–4 live at launch) |
 | `/contact` | Optional, light |
 
-Everything on the current site is archived, not migrated. Old images and copy can be pulled from the archive branch as source material.
+Everything on the current site is archived, not migrated. The old graphic design work is retired; old product design copy and images can be pulled from the archive branch if a project returns as a case study.
+
+Every case study is a deep, robust one. There's no short-format or "selected earlier work" section.
 
 ## Branch Strategy
 
@@ -39,7 +41,7 @@ Legacy remote branches `Staging` (identical to `main`) and `prelim-test` (an ear
 
 ## Phase 0: Setup & Archive
 - [x] (prep) Clone repo locally, create `archive/squarespace` and `redesign` branches
-- [ ] (prep) Inventory the old site — per case study: what copy and assets exist, quality, reuse candidates → `docs/research/old-site-inventory.md`
+- [ ] (prep) Inventory the old site's product design case studies (PocketChange, Sonatype, Tavern Meetup, Cheers, Forte) — what copy and assets exist, in case any return as a deep case study → `docs/research/old-site-inventory.md`. The graphic design work is retired.
 - [ ] (session) Push `archive/squarespace` and `redesign` to GitHub (needs Molly's account or collaborator access for Carlos)
 - [ ] (session) Delete legacy `Staging` and `prelim-test` branches
 - [ ] (prep) Exclude build/dependency folders from Dropbox sync once the stack is installed
@@ -49,7 +51,7 @@ Legacy remote branches `Staging` (identical to `main`) and `prelim-test` (an ear
 ## Phase 1: Discovery & Positioning
 - [x] (prep) Seed research carried over from an earlier chat → `docs/research/prior-research.md`
 - [ ] (prep) Market research: how product design hiring and portfolio expectations have changed since ~2022, verifying and citing the seed → `docs/research/market.md`
-- [ ] (prep) Draft 2–4 candidate case study **content types** — section outlines with the purpose of each section → `docs/research/content-types.md`
+- [ ] (prep) Draft 2–4 candidate case study **content types** — all deep case studies, varying by kind of project; section outlines with the purpose of each section → `docs/research/content-types.md`
 - [ ] (prep) Brand direction intake questionnaire → `docs/research/brand-intake.md`
 - [ ] (session) Target audience: roles, seniority, company types
 - [ ] (session) Positioning statement / one-line pitch
@@ -126,3 +128,4 @@ Legacy remote branches `Staging` (identical to `main`) and `prelim-test` (an ear
 | 2026-10-01 | Small site: Home, portfolio + case studies, optional Contact |
 | 2026-10-01 | 3–4 case studies at launch |
 | 2026-10-01 | Build on `redesign`; `main` stays live until cutover |
+| 2026-10-01 | All case studies are deep and robust; old graphic design work is retired, with no "earlier work" section |

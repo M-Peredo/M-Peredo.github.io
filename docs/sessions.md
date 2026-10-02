@@ -34,7 +34,7 @@ The PM plan: how the [roadmap](../ROADMAP.md) turns into working sessions with M
 1. Walk through the plan and how the sessions will run (10 min)
 2. Market research: what's changed, what reviewers look for (15 min)
 3. Target audience and positioning: roles, seniority, company types, one-line pitch
-4. Case study selection: go through the inventory and new candidates (Code.org work?), shortlist 3–4, flag confidentiality agreement constraints
+4. Case study selection: new candidates first (Code.org work? this rebuild?), then any old product design projects worth returning from the inventory. Shortlist 3–4, all deep; flag confidentiality agreement constraints
 5. Content types: react to the candidates, pick, assign one to each case study
 6. Push branches to GitHub; settle the GitHub access question
 7. Hand off brand intake as homework if there's no time left
