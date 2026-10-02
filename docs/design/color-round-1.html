@@ -106,7 +106,7 @@ main { flex: 1; min-height: 0; }
 .summary { overflow: auto; padding: 20px; height: 100%; }
 .summary-inner { max-width: 1000px; margin: 0 auto; display: grid; gap: 20px; }
 .summary h2 { margin: 0; font-size: 26px; }
-.compare { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
 .cmp { background: var(--c-surface); border: 1px solid var(--c-line); border-radius: 10px; overflow: hidden; display: grid; cursor: pointer; text-align: left; font: inherit; color: inherit; padding: 0; }
 .cmp.is-accepted { border: 2px solid var(--c-ink); }
 .cmp.is-rejected { opacity: .5; }
@@ -553,6 +553,187 @@ const OPTIONS = [
         ]
       ]
     ]
+  },
+  {
+    "id": "E",
+    "name": "Clouded Brick",
+    "mark": "diamond",
+    "mode": "Light",
+    "blurb": "",
+    "notes": [
+      [
+        "From",
+        "the first image: Caboose, Thamar Black, Heavy Metal, Clayton, Posh Red, Clouded Vision"
+      ],
+      [
+        "Idea",
+        "a gray winter room: warm clouded gray ground, near-black ink, brick red as the one color"
+      ],
+      [
+        "Pros",
+        "softer and warmer than A and B; the red is deep and quiet, never loud"
+      ],
+      [
+        "Cons",
+        "a gray ground can feel flat next to colorful screenshots"
+      ]
+    ],
+    "top": {
+      "bg": "#D1CFD1",
+      "surface": "#E3E1E3",
+      "text": "#181A18",
+      "text2": "#47463F",
+      "link": "#7B251E",
+      "accent": "#83756E",
+      "accentHover": "#5A1A15",
+      "accentText": "#FFFFFF",
+      "btn": "#7B251E",
+      "btnHover": "#5A1A15",
+      "border": "#A8A3A0"
+    },
+    "body": {
+      "bg": "#D1CFD1",
+      "surface": "#E3E1E3",
+      "text": "#181A18",
+      "text2": "#47463F",
+      "link": "#7B251E",
+      "accent": "#83756E",
+      "accentHover": "#5A1A15",
+      "accentText": "#FFFFFF",
+      "btn": "#7B251E",
+      "btnHover": "#5A1A15",
+      "border": "#A8A3A0"
+    },
+    "swatches": [
+      [
+        "",
+        [
+          [
+            "Clouded Vision",
+            "#D1CFD1",
+            "background"
+          ],
+          [
+            "Thamar Black",
+            "#181A18",
+            "text"
+          ],
+          [
+            "Heavy Metal",
+            "#47463F",
+            "secondary text"
+          ],
+          [
+            "Posh Red",
+            "#7B251E",
+            "links, buttons"
+          ],
+          [
+            "Caboose",
+            "#A8A3A0",
+            "borders"
+          ],
+          [
+            "Clayton",
+            "#83756E",
+            "accents"
+          ]
+        ]
+      ]
+    ]
+  },
+  {
+    "id": "F",
+    "name": "Black Raspberry",
+    "mark": "ribbon",
+    "mode": "Dark",
+    "blurb": "",
+    "notes": [
+      [
+        "From",
+        "the second image: Soft Dove, Spiced Hot Chocolate, Moon Rock, Dark Sienna, Black Raspberry"
+      ],
+      [
+        "Idea",
+        "a dark red-brown room, soft dove text, a brightened brick red for action"
+      ],
+      [
+        "Pros",
+        "the warmest dark option; sienna surfaces feel rich without being loud"
+      ],
+      [
+        "Cons",
+        "brown-black can read muddy; the action red is brightened beyond the original swatches"
+      ]
+    ],
+    "top": {
+      "bg": "#160F0C",
+      "surface": "#391214",
+      "text": "#C0BAB3",
+      "text2": "#A0958E",
+      "link": "#E0A39B",
+      "accent": "#A12E26",
+      "accentHover": "#C13A31",
+      "accentText": "#FFFFFF",
+      "btn": "#A12E26",
+      "btnHover": "#C13A31",
+      "border": "#52423D"
+    },
+    "body": {
+      "bg": "#160F0C",
+      "surface": "#391214",
+      "text": "#C0BAB3",
+      "text2": "#A0958E",
+      "link": "#E0A39B",
+      "accent": "#A12E26",
+      "accentHover": "#C13A31",
+      "accentText": "#FFFFFF",
+      "btn": "#A12E26",
+      "btnHover": "#C13A31",
+      "border": "#52423D"
+    },
+    "swatches": [
+      [
+        "",
+        [
+          [
+            "Black Raspberry",
+            "#160F0C",
+            "background"
+          ],
+          [
+            "Dark Sienna",
+            "#391214",
+            "cards"
+          ],
+          [
+            "Soft Dove",
+            "#C0BAB3",
+            "text"
+          ],
+          [
+            "Moon Rock",
+            "#887D77",
+            "muted"
+          ],
+          [
+            "Spiced Chocolate",
+            "#52423D",
+            "borders"
+          ],
+          [
+            "Brick (brightened)",
+            "#A12E26",
+            "buttons, ribbon"
+          ],
+          [
+            "Rose (derived)",
+            "#E0A39B",
+            "text links"
+          ]
+        ]
+      ]
+    ]
   }
 ];
 const PAGES = [...OPTIONS.map(o => o.id), "summary"];
@@ -623,7 +804,7 @@ function optionPage(o, i) {
       <h2>${esc(o.name)}</h2>
       <span class="badge" data-badge></span>
       <div class="swatches">${sw}</div>
-      <ul>${o.notes.filter(n => ["Added", "Pros", "Cons"].includes(n[0])).map(([k, v]) => `<li><b>${esc(k)}:</b> ${esc(v)}</li>`).join("")}</ul>
+      <ul>${o.notes.filter(n => ["From", "Added", "Pros", "Cons"].includes(n[0])).map(([k, v]) => `<li><b>${esc(k)}:</b> ${esc(v)}</li>`).join("")}</ul>
       <div class="controls">
         <div class="stars" role="group" aria-label="Rate ${esc(o.name)}">
           <span class="label">Rating</span>
