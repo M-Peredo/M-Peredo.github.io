@@ -154,8 +154,8 @@ main { flex: 1; min-height: 0; }
 .s-metric span { font-size: .8em; color: var(--z-text2); }
 .s-btns { display: flex; flex-wrap: wrap; gap: 12px; }
 .btn { display: inline-block; padding: .65em 1.15em; font-weight: 600; font-size: .95em; text-decoration: none !important; border-radius: 2px; border: 1px solid transparent; }
-.btn.primary { background: var(--z-accent); color: var(--z-accentText) !important; }
-.btn.primary:hover { background: var(--z-accentHover); }
+.btn.primary { background: var(--z-btn); color: var(--z-accentText) !important; }
+.btn.primary:hover { background: var(--z-btnHover); }
 .btn.secondary { background: transparent; color: var(--z-text) !important; border-color: var(--z-text); }
 .btn.secondary:hover { background: var(--z-surface); }
 .mark-spine::after { content: ""; position: absolute; top: 0; bottom: 0; right: 0; width: 14px; background: var(--z-accent); }
@@ -230,21 +230,16 @@ const OPTIONS = [
     swatches: [["", [["Night", "#0C0B0B", "background"], ["Raised", "#1A1919", "surfaces"], ["Papercut", "#E9E9E9", "text"], ["Pewter", "#B4B4B7", "secondary text"], ["Oxblood", "#911B17", "buttons, ribbon"], ["Lantern", "#E8736D", "text links"]]]]
   },
   {
-    id: "C", name: "Nightfall and Dawn", mark: "edge", mode: "Light, dark header", edge: "#B01E23",
-    blurb: "The circus opens at nightfall and closes at dawn. The header and case study summary are night; the reading area is dawn. A red edge marks the line between them, like the US cover's spine.",
+    id: "C", name: "Silver Ribbon", mark: "ribbon", mode: "Light",
+    blurb: "Cool silver ground, black ink and black buttons, with red as a single ribbon, like the UK cover.",
     notes: [
-      ["Red's role", "a structural edge between night and dawn, plus links and buttons"],
-      ["Why", "matches the two-layer principle from Phase 1: drama in the summary, calm where people read"],
-      ["Pros", "attention where it's earned, readability where it's needed"],
-      ["Cons", "the most complex: two color sets, and every component designed for both"],
-      ["Contrast", "night text 17.0 · night links 7.0 · dawn text 17.6 · dawn links 6.1"]
+      ["Red's role", "one ribbon under each title, plus text links"],
+      ["Pros", "cooler and more modern than A; black buttons keep red rare; strongest contrast"],
+      ["Cons", "less warm and bookish than A; fewer red points to carry the theme"]
     ],
-    top:  { bg: "#030303", surface: "#141414", text: "#E9E9E9", text2: "#B4B4B7", link: "#E8736D", accent: "#911B17", accentHover: "#700000", accentText: "#FFFFFF", border: "#333333" },
-    body: { bg: "#F2F2F0", surface: "#E4E4E1", text: "#0B0B0B", text2: "#585858", link: "#B01E23", accent: "#B01E23", accentHover: "#700000", accentText: "#FFFFFF", border: "#CFCECE" },
-    swatches: [
-      ["Night", [["Night", "#030303", "background"], ["Papercut", "#E9E9E9", "text"], ["Pewter", "#B4B4B7", "secondary text"], ["Lantern", "#E8736D", "links"]]],
-      ["Dawn", [["Dawn", "#F2F2F0", "background"], ["Ink", "#0B0B0B", "text"], ["Graphite", "#585858", "secondary text"], ["Crimson", "#B01E23", "links, edge"]]]
-    ]
+    top:  { bg: "#ECECEE", surface: "#DEDEE1", text: "#0C0B0B", text2: "#4F4F55", link: "#B01E23", accent: "#B01E23", accentHover: "#700000", accentText: "#FFFFFF", btn: "#0C0B0B", btnHover: "#34343A", border: "#C4C4C9" },
+    body: { bg: "#ECECEE", surface: "#DEDEE1", text: "#0C0B0B", text2: "#4F4F55", link: "#B01E23", accent: "#B01E23", accentHover: "#700000", accentText: "#FFFFFF", btn: "#0C0B0B", btnHover: "#34343A", border: "#C4C4C9" },
+    swatches: [["", [["Silver", "#ECECEE", "background"], ["Ink", "#0C0B0B", "text, buttons"], ["Steel", "#4F4F55", "secondary text"], ["Mist", "#C4C4C9", "borders"], ["Crimson", "#B01E23", "ribbon, links"], ["Oxblood", "#700000", "hover"]]]]
   },
   {
     id: "D", name: "Red Spine", mark: "spine", mode: "Dark",
@@ -270,7 +265,7 @@ if (!(state.page >= 0 && state.page < PAGES.length)) state.page = 0;
 const pick = id => state.picks[id] || (state.picks[id] = { rating: 0, status: null, notes: "" });
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-const zoneVars = z => `--z-bg:${z.bg};--z-surface:${z.surface};--z-text:${z.text};--z-text2:${z.text2};--z-link:${z.link};--z-accent:${z.accent};--z-accentHover:${z.accentHover};--z-accentText:${z.accentText};--z-border:${z.border};`;
+const zoneVars = z => `--z-bg:${z.bg};--z-surface:${z.surface};--z-text:${z.text};--z-text2:${z.text2};--z-link:${z.link};--z-accent:${z.accent};--z-accentHover:${z.accentHover};--z-accentText:${z.accentText};--z-border:${z.border};--z-btn:${z.btn || z.accent};--z-btnHover:${z.btnHover || z.accentHover};`;
 
 function specimen(o) {
   return `
