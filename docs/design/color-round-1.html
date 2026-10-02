@@ -166,7 +166,12 @@ main { flex: 1; min-height: 0; }
 .s-quote { margin: 0; padding-left: 16px; border-left: 2px solid var(--z-accent); max-width: 66ch; font-family: var(--f-display); font-style: italic; font-size: 1.2em; line-height: 1.4; }
 .s-quote cite { display: block; margin-top: 8px; font-family: var(--f-body); font-style: normal; font-size: .75em; color: var(--z-text2); }
 .s-figure { margin: 0; display: grid; gap: 8px; max-width: 78ch; }
-.s-frame { aspect-ratio: 16 / 7; max-width: 100%; background: var(--z-surface); border: 1px solid var(--z-border); display: grid; place-items: center; font-size: .85em; color: var(--z-text2); }
+.s-frame { position: relative; aspect-ratio: 16 / 9; max-width: 100%; background: var(--z-surface); border: 1px solid var(--z-border); overflow: hidden; }
+.s-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.loud { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); }
+.loud i:nth-child(1) { background: #00ADBC; } .loud i:nth-child(2) { background: #FFD62E; } .loud i:nth-child(3) { background: #FF4F9A; }
+.loud i:nth-child(4) { background: #7665A0; } .loud i:nth-child(5) { background: #6FD34B; } .loud i:nth-child(6) { background: #FF7A1A; }
+.loud-label { position: absolute; left: 10px; bottom: 10px; background: rgba(0,0,0,.75); color: #fff; font: 600 11px/1 var(--c-font); letter-spacing: .06em; text-transform: uppercase; padding: 6px 8px; border-radius: 3px; }
 .s-figure figcaption { font-size: .8em; color: var(--z-text2); }
 
 @media (max-width: 900px) {
@@ -185,7 +190,7 @@ main { flex: 1; min-height: 0; }
 
 <header class="pager">
   <div class="pager-inner">
-    <h1>Color, round 4</h1>
+    <h1>Color, round 5</h1>
     <nav class="tabs" id="tabs" aria-label="Pages"></nav>
     <div class="nav-btns">
       <span class="count" id="count"></span>
@@ -198,365 +203,13 @@ main { flex: 1; min-height: 0; }
 <main id="main"></main>
 
 <script>
-const ROUND = 4;
+const ROUND = 5;
 const KEY = "molly-color-round-" + ROUND;
 
 const OPTIONS = [
   {
-    "id": "A",
-    "name": "Gilded Show",
-    "mark": "diamond",
-    "mode": "Light",
-    "blurb": "",
-    "notes": [
-      [
-        "Added",
-        "gold and ivory"
-      ],
-      [
-        "Idea",
-        "soft gray ground, black ink, red links and buttons, gold rules like a playbill border"
-      ],
-      [
-        "Pros",
-        "the closest to the book while still warm; gold gives it a theatrical lift"
-      ],
-      [
-        "Cons",
-        "gold can look dated if overused"
-      ]
-    ],
-    "top": {
-      "bg": "#EEEEF0",
-      "surface": "#FBF8F1",
-      "text": "#0C0B0B",
-      "text2": "#55555B",
-      "link": "#B01E23",
-      "accent": "#C9962E",
-      "accentHover": "#7E1218",
-      "accentText": "#FFFFFF",
-      "btn": "#B01E23",
-      "btnHover": "#7E1218",
-      "border": "#D2D2D6"
-    },
-    "body": {
-      "bg": "#EEEEF0",
-      "surface": "#FBF8F1",
-      "text": "#0C0B0B",
-      "text2": "#55555B",
-      "link": "#B01E23",
-      "accent": "#C9962E",
-      "accentHover": "#7E1218",
-      "accentText": "#FFFFFF",
-      "btn": "#B01E23",
-      "btnHover": "#7E1218",
-      "border": "#D2D2D6"
-    },
-    "swatches": [
-      [
-        "",
-        [
-          [
-            "Soft gray",
-            "#EEEEF0",
-            "background"
-          ],
-          [
-            "Black",
-            "#0C0B0B",
-            "text"
-          ],
-          [
-            "Red",
-            "#B01E23",
-            "links, buttons"
-          ],
-          [
-            "Ivory",
-            "#FBF8F1",
-            "cards"
-          ],
-          [
-            "Gold",
-            "#C9962E",
-            "rules, ornaments"
-          ],
-          [
-            "Pewter",
-            "#55555B",
-            "secondary text"
-          ]
-        ]
-      ]
-    ]
-  },
-  {
-    "id": "B",
-    "name": "Garden Party",
-    "mark": "ribbon",
-    "mode": "Light",
-    "blurb": "",
-    "notes": [
-      [
-        "Added",
-        "sage and blush"
-      ],
-      [
-        "Idea",
-        "daylight at the circus: soft gray and blush, black ink, red as the pop, sage as a calm second note"
-      ],
-      [
-        "Pros",
-        "the freshest and friendliest; the most different from a typical portfolio"
-      ],
-      [
-        "Cons",
-        "pastels risk reading as youthful; blush must stay light to protect contrast"
-      ]
-    ],
-    "top": {
-      "bg": "#EFEFF0",
-      "surface": "#F7E7E6",
-      "text": "#0C0B0B",
-      "text2": "#58585E",
-      "link": "#B01E23",
-      "accent": "#7E9C80",
-      "accentHover": "#7E1218",
-      "accentText": "#FFFFFF",
-      "btn": "#B01E23",
-      "btnHover": "#7E1218",
-      "border": "#D6D0D0"
-    },
-    "body": {
-      "bg": "#EFEFF0",
-      "surface": "#F7E7E6",
-      "text": "#0C0B0B",
-      "text2": "#58585E",
-      "link": "#B01E23",
-      "accent": "#7E9C80",
-      "accentHover": "#7E1218",
-      "accentText": "#FFFFFF",
-      "btn": "#B01E23",
-      "btnHover": "#7E1218",
-      "border": "#D6D0D0"
-    },
-    "swatches": [
-      [
-        "",
-        [
-          [
-            "Soft gray",
-            "#EFEFF0",
-            "background"
-          ],
-          [
-            "Black",
-            "#0C0B0B",
-            "text"
-          ],
-          [
-            "Red",
-            "#B01E23",
-            "links, buttons"
-          ],
-          [
-            "Blush",
-            "#F7E7E6",
-            "cards"
-          ],
-          [
-            "Sage",
-            "#7E9C80",
-            "accents"
-          ],
-          [
-            "Pewter",
-            "#58585E",
-            "secondary text"
-          ]
-        ]
-      ]
-    ]
-  },
-  {
-    "id": "C",
-    "name": "Bonfire",
-    "mark": "ribbon",
-    "mode": "Dark",
-    "blurb": "",
-    "notes": [
-      [
-        "Added",
-        "amber and plum-black"
-      ],
-      [
-        "Idea",
-        "black ground lit from the middle: soft gray text, red buttons, amber links like firelight"
-      ],
-      [
-        "Pros",
-        "warm and dramatic; amber links read well on black"
-      ],
-      [
-        "Cons",
-        "amber can feel like a warning color; two warm accents compete"
-      ]
-    ],
-    "top": {
-      "bg": "#0C0B0B",
-      "surface": "#1E1519",
-      "text": "#DADADD",
-      "text2": "#A7A7AD",
-      "link": "#F5B65A",
-      "accent": "#C8202B",
-      "accentHover": "#D32F35",
-      "accentText": "#FFFFFF",
-      "btn": "#B01E23",
-      "btnHover": "#D32F35",
-      "border": "#3A2D33"
-    },
-    "body": {
-      "bg": "#0C0B0B",
-      "surface": "#1E1519",
-      "text": "#DADADD",
-      "text2": "#A7A7AD",
-      "link": "#F5B65A",
-      "accent": "#C8202B",
-      "accentHover": "#D32F35",
-      "accentText": "#FFFFFF",
-      "btn": "#B01E23",
-      "btnHover": "#D32F35",
-      "border": "#3A2D33"
-    },
-    "swatches": [
-      [
-        "",
-        [
-          [
-            "Black",
-            "#0C0B0B",
-            "background"
-          ],
-          [
-            "Soft gray",
-            "#DADADD",
-            "text"
-          ],
-          [
-            "Red",
-            "#B01E23",
-            "buttons, ribbon"
-          ],
-          [
-            "Plum black",
-            "#1E1519",
-            "cards"
-          ],
-          [
-            "Amber",
-            "#F5B65A",
-            "text links"
-          ],
-          [
-            "Smoke",
-            "#A7A7AD",
-            "secondary text"
-          ]
-        ]
-      ]
-    ]
-  },
-  {
-    "id": "D",
-    "name": "Ice Garden at Night",
-    "mark": "spine",
-    "mode": "Dark",
-    "blurb": "",
-    "notes": [
-      [
-        "Added",
-        "ice blue and midnight navy"
-      ],
-      [
-        "Idea",
-        "the Ice Garden after dark: black-blue, soft gray text, ice-blue links, a red stripe and buttons as the one warm note"
-      ],
-      [
-        "Pros",
-        "cool and calm; red pops harder against the blue; links separate cleanly from body text"
-      ],
-      [
-        "Cons",
-        "the coolest dark option; blue is the most common tech palette"
-      ]
-    ],
-    "top": {
-      "bg": "#0A0C11",
-      "surface": "#141A25",
-      "text": "#DADCE0",
-      "text2": "#A3A8B2",
-      "link": "#8EC9E8",
-      "accent": "#B01E23",
-      "accentHover": "#D32F35",
-      "accentText": "#FFFFFF",
-      "btn": "#B01E23",
-      "btnHover": "#D32F35",
-      "border": "#273041"
-    },
-    "body": {
-      "bg": "#0A0C11",
-      "surface": "#141A25",
-      "text": "#DADCE0",
-      "text2": "#A3A8B2",
-      "link": "#8EC9E8",
-      "accent": "#B01E23",
-      "accentHover": "#D32F35",
-      "accentText": "#FFFFFF",
-      "btn": "#B01E23",
-      "btnHover": "#D32F35",
-      "border": "#273041"
-    },
-    "swatches": [
-      [
-        "",
-        [
-          [
-            "Black-blue",
-            "#0A0C11",
-            "background"
-          ],
-          [
-            "Soft gray",
-            "#DADCE0",
-            "text"
-          ],
-          [
-            "Red",
-            "#B01E23",
-            "buttons, stripe"
-          ],
-          [
-            "Midnight",
-            "#141A25",
-            "cards"
-          ],
-          [
-            "Ice blue",
-            "#8EC9E8",
-            "text links"
-          ],
-          [
-            "Steel",
-            "#A3A8B2",
-            "secondary text"
-          ]
-        ]
-      ]
-    ]
-  },
-  {
     "id": "E",
-    "name": "Clouded Brick",
+    "name": "Clouded Brick (her pick)",
     "mark": "diamond",
     "mode": "Light",
     "blurb": "",
@@ -644,91 +297,334 @@ const OPTIONS = [
   },
   {
     "id": "F",
-    "name": "Black Raspberry",
-    "mark": "ribbon",
-    "mode": "Dark",
+    "name": "Gallery Gray",
+    "mark": "diamond",
+    "mode": "Light",
     "blurb": "",
     "notes": [
       [
-        "From",
-        "the second image: Soft Dove, Spiced Hot Chocolate, Moon Rock, Dark Sienna, Black Raspberry"
-      ],
-      [
         "Idea",
-        "a dark red-brown room, soft dove text, a brightened brick red for action"
+        "E, but darker: a mid-light gray wall, so loud screenshots sit on a neutral that isn't white"
       ],
       [
         "Pros",
-        "the warmest dark option; sienna surfaces feel rich without being loud"
+        "gray makes bright colors look intentional; the same red and ink as E"
       ],
       [
         "Cons",
-        "brown-black can read muddy; the action red is brightened beyond the original swatches"
+        "the dullest ground; a lot of gray all day"
       ]
     ],
     "top": {
-      "bg": "#160F0C",
-      "surface": "#391214",
-      "text": "#C0BAB3",
-      "text2": "#A0958E",
-      "link": "#E0A39B",
-      "accent": "#A12E26",
-      "accentHover": "#C13A31",
+      "bg": "#C8C5C6",
+      "surface": "#D9D7D8",
+      "text": "#181A18",
+      "text2": "#47463F",
+      "link": "#7B251E",
+      "accent": "#47463F",
+      "accentHover": "#5A1A15",
       "accentText": "#FFFFFF",
-      "btn": "#A12E26",
-      "btnHover": "#C13A31",
-      "border": "#52423D"
+      "btn": "#7B251E",
+      "btnHover": "#5A1A15",
+      "border": "#9C9794"
     },
     "body": {
-      "bg": "#160F0C",
-      "surface": "#391214",
-      "text": "#C0BAB3",
-      "text2": "#A0958E",
-      "link": "#E0A39B",
-      "accent": "#A12E26",
-      "accentHover": "#C13A31",
+      "bg": "#C8C5C6",
+      "surface": "#D9D7D8",
+      "text": "#181A18",
+      "text2": "#47463F",
+      "link": "#7B251E",
+      "accent": "#47463F",
+      "accentHover": "#5A1A15",
       "accentText": "#FFFFFF",
-      "btn": "#A12E26",
-      "btnHover": "#C13A31",
-      "border": "#52423D"
+      "btn": "#7B251E",
+      "btnHover": "#5A1A15",
+      "border": "#9C9794"
     },
     "swatches": [
       [
         "",
         [
           [
-            "Black Raspberry",
-            "#160F0C",
+            "Gallery wall",
+            "#C8C5C6",
             "background"
           ],
           [
-            "Dark Sienna",
-            "#391214",
-            "cards"
-          ],
-          [
-            "Soft Dove",
-            "#C0BAB3",
+            "Thamar Black",
+            "#181A18",
             "text"
           ],
           [
-            "Moon Rock",
-            "#887D77",
+            "Heavy Metal",
+            "#47463F",
+            "secondary text"
+          ],
+          [
+            "Posh Red",
+            "#7B251E",
+            "links, buttons"
+          ],
+          [
+            "Mat",
+            "#D9D7D8",
+            "cards"
+          ],
+          [
+            "Seam",
+            "#9C9794",
+            "borders"
+          ]
+        ]
+      ]
+    ]
+  },
+  {
+    "id": "G",
+    "name": "Bone and Brick",
+    "mark": "ribbon",
+    "mode": "Light",
+    "blurb": "",
+    "notes": [
+      [
+        "Idea",
+        "E, but lighter and warmer: bone white page, near-black ink, brick red"
+      ],
+      [
+        "Pros",
+        "the cleanest and brightest; the most room for color to breathe"
+      ],
+      [
+        "Cons",
+        "the closest to a typical portfolio; loud screenshots dominate it"
+      ]
+    ],
+    "top": {
+      "bg": "#F1EEEA",
+      "surface": "#FFFFFF",
+      "text": "#181A18",
+      "text2": "#57544D",
+      "link": "#8A2A22",
+      "accent": "#83756E",
+      "accentHover": "#661E18",
+      "accentText": "#FFFFFF",
+      "btn": "#8A2A22",
+      "btnHover": "#661E18",
+      "border": "#D2CDC7"
+    },
+    "body": {
+      "bg": "#F1EEEA",
+      "surface": "#FFFFFF",
+      "text": "#181A18",
+      "text2": "#57544D",
+      "link": "#8A2A22",
+      "accent": "#83756E",
+      "accentHover": "#661E18",
+      "accentText": "#FFFFFF",
+      "btn": "#8A2A22",
+      "btnHover": "#661E18",
+      "border": "#D2CDC7"
+    },
+    "swatches": [
+      [
+        "",
+        [
+          [
+            "Bone",
+            "#F1EEEA",
+            "background"
+          ],
+          [
+            "Thamar Black",
+            "#181A18",
+            "text"
+          ],
+          [
+            "Umber gray",
+            "#57544D",
+            "secondary text"
+          ],
+          [
+            "Brick",
+            "#8A2A22",
+            "links, buttons"
+          ],
+          [
+            "White",
+            "#FFFFFF",
+            "cards"
+          ],
+          [
+            "Clayton",
+            "#83756E",
+            "accents"
+          ]
+        ]
+      ]
+    ]
+  },
+  {
+    "id": "H",
+    "name": "Charcoal Brick",
+    "mark": "diamond",
+    "mode": "Dark",
+    "blurb": "",
+    "notes": [
+      [
+        "Idea",
+        "E turned dark: near-black ground, clouded gray text, brightened brick for action"
+      ],
+      [
+        "Pros",
+        "bright screenshots glow on near-black; keeps E's palette"
+      ],
+      [
+        "Cons",
+        "the brick has to be brightened to work on dark"
+      ]
+    ],
+    "top": {
+      "bg": "#181A18",
+      "surface": "#252724",
+      "text": "#D1CFD1",
+      "text2": "#A8A3A0",
+      "link": "#E8A49C",
+      "accent": "#B03A30",
+      "accentHover": "#C94A3F",
+      "accentText": "#FFFFFF",
+      "btn": "#B03A30",
+      "btnHover": "#C94A3F",
+      "border": "#47463F"
+    },
+    "body": {
+      "bg": "#181A18",
+      "surface": "#252724",
+      "text": "#D1CFD1",
+      "text2": "#A8A3A0",
+      "link": "#E8A49C",
+      "accent": "#B03A30",
+      "accentHover": "#C94A3F",
+      "accentText": "#FFFFFF",
+      "btn": "#B03A30",
+      "btnHover": "#C94A3F",
+      "border": "#47463F"
+    },
+    "swatches": [
+      [
+        "",
+        [
+          [
+            "Thamar Black",
+            "#181A18",
+            "background"
+          ],
+          [
+            "Charcoal",
+            "#252724",
+            "cards"
+          ],
+          [
+            "Clouded Vision",
+            "#D1CFD1",
+            "text"
+          ],
+          [
+            "Caboose",
+            "#A8A3A0",
             "muted"
           ],
           [
-            "Spiced Chocolate",
-            "#52423D",
-            "borders"
-          ],
-          [
             "Brick (brightened)",
-            "#A12E26",
+            "#B03A30",
             "buttons, ribbon"
           ],
           [
             "Rose (derived)",
-            "#E0A39B",
+            "#E8A49C",
+            "text links"
+          ]
+        ]
+      ]
+    ]
+  },
+  {
+    "id": "I",
+    "name": "Graphite",
+    "mark": "ribbon",
+    "mode": "Dark",
+    "blurb": "",
+    "notes": [
+      [
+        "Idea",
+        "a mid-dark warm graphite, so loud screenshots are the brightest thing on the page"
+      ],
+      [
+        "Pros",
+        "less harsh than black; the most neutral stage for colorful work"
+      ],
+      [
+        "Cons",
+        "mid-tones can look muddy; buttons are near-black, not red"
+      ]
+    ],
+    "top": {
+      "bg": "#47463F",
+      "surface": "#3A3933",
+      "text": "#F4F2F2",
+      "text2": "#D1CFD1",
+      "link": "#FFC8BF",
+      "accent": "#E0685A",
+      "accentHover": "#000000",
+      "accentText": "#F4F2F2",
+      "btn": "#181A18",
+      "btnHover": "#000000",
+      "border": "#6B6A62"
+    },
+    "body": {
+      "bg": "#47463F",
+      "surface": "#3A3933",
+      "text": "#F4F2F2",
+      "text2": "#D1CFD1",
+      "link": "#FFC8BF",
+      "accent": "#E0685A",
+      "accentHover": "#000000",
+      "accentText": "#F4F2F2",
+      "btn": "#181A18",
+      "btnHover": "#000000",
+      "border": "#6B6A62"
+    },
+    "swatches": [
+      [
+        "",
+        [
+          [
+            "Heavy Metal",
+            "#47463F",
+            "background"
+          ],
+          [
+            "Shade",
+            "#3A3933",
+            "cards"
+          ],
+          [
+            "Clouded Vision",
+            "#D1CFD1",
+            "muted"
+          ],
+          [
+            "Thamar Black",
+            "#181A18",
+            "buttons"
+          ],
+          [
+            "Coral (derived)",
+            "#E0685A",
+            "ribbon"
+          ],
+          [
+            "Blush (derived)",
+            "#FFC8BF",
             "text links"
           ]
         ]
@@ -785,7 +681,11 @@ function specimen(o) {
       <p class="s-p">Grading support was the feature teachers asked for most, and the riskiest one to get wrong. We shipped without it and shaped the data model so it could arrive as a fast follow, without moving anything teachers had already learned. <a href="#" onclick="return false">See the fast-follow plan</a>.</p>
       <blockquote class="s-quote">“It finally feels like it's working for me, not the other way around.”<cite>Middle school CS teacher, pilot interview</cite></blockquote>
       <figure class="s-figure">
-        <div class="s-frame">Embedded prototype</div>
+        <div class="s-frame">
+          <div class="loud" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <img src="assets/code-sample.png" alt="" onerror="this.remove()">
+          <span class="loud-label">Stand-in for a Code.org screenshot</span>
+        </div>
         <figcaption>The recap and reflection flow, playable in the page.</figcaption>
       </figure>
     </div>
