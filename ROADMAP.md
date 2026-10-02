@@ -30,7 +30,7 @@ Every case study is a deep, robust one. There's no short-format or "selected ear
 | `archive/squarespace` | Frozen snapshot of the old site. |
 | `redesign` | All new work happens here. Merged to `main` at launch (Phase 6). |
 
-Legacy remote branches `Staging` (identical to `main`) and `prelim-test` (an earlier upload) are covered by the archive and can be deleted in Phase 0.
+Legacy remote branches `Staging` (identical to `main`) and `prelim-test` (an earlier upload) were deleted in Phase 0 (2026-10-02).
 
 ## Legend
 
@@ -39,12 +39,12 @@ Legacy remote branches `Staging` (identical to `main`) and `prelim-test` (an ear
 
 ---
 
-## Phase 0: Setup & Archive
+## Phase 0: Setup & Archive — COMPLETE
 - [x] (prep) Clone repo locally, create `archive/squarespace` and `redesign` branches
 - [x] (session) Molly adds Carlos (`PaleoDM`) as a collaborator with write access
 - [x] (prep) Push `archive/squarespace` and `redesign` to GitHub (once collaborator access is in place)
 - [x] (prep) Clear the old site off `redesign`, keeping `CNAME`; add `.gitignore`
-- [ ] (session) Delete legacy `Staging` and `prelim-test` branches
+- [x] (session) Delete legacy `Staging` and `prelim-test` branches
 
 **Success**: `archive/squarespace` exists on GitHub with the full old site; `redesign` exists; the live site is unaffected.
 
