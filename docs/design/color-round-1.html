@@ -185,7 +185,7 @@ main { flex: 1; min-height: 0; }
 
 <header class="pager">
   <div class="pager-inner">
-    <h1>Color, round 2</h1>
+    <h1>Color, round 3</h1>
     <nav class="tabs" id="tabs" aria-label="Pages"></nav>
     <div class="nav-btns">
       <span class="count" id="count"></span>
@@ -198,174 +198,173 @@ main { flex: 1; min-height: 0; }
 <main id="main"></main>
 
 <script>
-const ROUND = 2;
+const ROUND = 3;
 const KEY = "molly-color-round-" + ROUND;
 
 const OPTIONS = [
   {
     "id": "A",
-    "name": "Ice Garden",
-    "mark": "edge",
+    "name": "Scarlet Poster",
+    "mark": "ribbon",
     "mode": "Light",
     "blurb": "",
     "notes": [
       [
-        "Mood",
-        "frost and clean air; deep blue ink, with a single candle-amber line"
+        "Idea",
+        "a circus playbill: crisp white, heavy black, bold scarlet doing real work"
       ],
       [
         "Pros",
-        "fresh, calm and professional; blue is the most familiar link color in ed tech"
+        "the boldest light option; red carries links, buttons and headings accents, so the theme is obvious"
       ],
       [
         "Cons",
-        "the coolest and least theatrical; the tie to the book is the quietest"
+        "more red on screen than the book uses; needs discipline in long text"
       ]
     ],
     "top": {
-      "bg": "#F1F5F8",
-      "surface": "#E1E9EF",
-      "text": "#0F1E2D",
-      "text2": "#4A5A6A",
-      "link": "#1B5E8C",
-      "accent": "#E39B2D",
-      "accentHover": "#144A6E",
+      "bg": "#FAFAF8",
+      "surface": "#EFEFEC",
+      "text": "#0A0A0A",
+      "text2": "#4D4D4D",
+      "link": "#C8101C",
+      "accent": "#C8101C",
+      "accentHover": "#8F0B14",
       "accentText": "#FFFFFF",
-      "btn": "#1B5E8C",
-      "btnHover": "#144A6E",
-      "border": "#C5D2DC"
+      "btn": "#C8101C",
+      "btnHover": "#8F0B14",
+      "border": "#D4D4D0"
     },
     "body": {
-      "bg": "#F1F5F8",
-      "surface": "#E1E9EF",
-      "text": "#0F1E2D",
-      "text2": "#4A5A6A",
-      "link": "#1B5E8C",
-      "accent": "#E39B2D",
-      "accentHover": "#144A6E",
+      "bg": "#FAFAF8",
+      "surface": "#EFEFEC",
+      "text": "#0A0A0A",
+      "text2": "#4D4D4D",
+      "link": "#C8101C",
+      "accent": "#C8101C",
+      "accentHover": "#8F0B14",
       "accentText": "#FFFFFF",
-      "btn": "#1B5E8C",
-      "btnHover": "#144A6E",
-      "border": "#C5D2DC"
+      "btn": "#C8101C",
+      "btnHover": "#8F0B14",
+      "border": "#D4D4D0"
     },
     "swatches": [
       [
         "",
         [
           [
-            "Frost",
-            "#F1F5F8",
+            "Chalk",
+            "#FAFAF8",
             "background"
           ],
           [
-            "Midnight ink",
-            "#0F1E2D",
+            "Ink",
+            "#0A0A0A",
             "text"
           ],
           [
-            "Slate",
-            "#4A5A6A",
+            "Graphite",
+            "#4D4D4D",
             "secondary text"
           ],
           [
-            "Ice",
-            "#C5D2DC",
+            "Tent canvas",
+            "#D4D4D0",
             "borders"
           ],
           [
-            "Glacier",
-            "#1B5E8C",
+            "Scarlet",
+            "#C8101C",
             "links, buttons"
           ],
           [
-            "Candle",
-            "#E39B2D",
-            "accent line"
+            "Oxblood",
+            "#8F0B14",
+            "hover"
           ]
         ]
       ]
-    ],
-    "edge": "#E39B2D"
+    ]
   },
   {
     "id": "B",
-    "name": "Tarot",
+    "name": "Pewter and Wine",
     "mark": "diamond",
     "mode": "Light",
     "blurb": "",
     "notes": [
       [
-        "Mood",
-        "a worn deck of cards; parchment, brown-black ink, plum and gold"
+        "Idea",
+        "the circus in daylight: smoky silver-grey, with the red turned down to deep wine"
       ],
       [
         "Pros",
-        "warm and literary; the most distinctive of the light options"
+        "muted and sophisticated; the most grown-up light option; red stays rare"
       ],
       [
         "Cons",
-        "the warmest and most vintage; risks feeling old-fashioned for a tech audience"
+        "the lowest-energy option; grey ground can feel flat next to colorful screenshots"
       ]
     ],
     "top": {
-      "bg": "#F5EDDC",
-      "surface": "#EADFC6",
-      "text": "#2B1A14",
-      "text2": "#6A5648",
-      "link": "#7A1F44",
-      "accent": "#B8892B",
-      "accentHover": "#5A1432",
+      "bg": "#E4E4E7",
+      "surface": "#D4D4D9",
+      "text": "#17171B",
+      "text2": "#52525A",
+      "link": "#6E1423",
+      "accent": "#6E1423",
+      "accentHover": "#4F0E19",
       "accentText": "#FFFFFF",
-      "btn": "#7A1F44",
-      "btnHover": "#5A1432",
-      "border": "#D6C7A6"
+      "btn": "#6E1423",
+      "btnHover": "#4F0E19",
+      "border": "#BDBDC4"
     },
     "body": {
-      "bg": "#F5EDDC",
-      "surface": "#EADFC6",
-      "text": "#2B1A14",
-      "text2": "#6A5648",
-      "link": "#7A1F44",
-      "accent": "#B8892B",
-      "accentHover": "#5A1432",
+      "bg": "#E4E4E7",
+      "surface": "#D4D4D9",
+      "text": "#17171B",
+      "text2": "#52525A",
+      "link": "#6E1423",
+      "accent": "#6E1423",
+      "accentHover": "#4F0E19",
       "accentText": "#FFFFFF",
-      "btn": "#7A1F44",
-      "btnHover": "#5A1432",
-      "border": "#D6C7A6"
+      "btn": "#6E1423",
+      "btnHover": "#4F0E19",
+      "border": "#BDBDC4"
     },
     "swatches": [
       [
         "",
         [
           [
-            "Parchment",
-            "#F5EDDC",
+            "Smoke",
+            "#E4E4E7",
             "background"
           ],
           [
-            "Walnut ink",
-            "#2B1A14",
+            "Charcoal",
+            "#17171B",
             "text"
           ],
           [
-            "Umber",
-            "#6A5648",
+            "Pewter",
+            "#52525A",
             "secondary text"
           ],
           [
-            "Linen",
-            "#D6C7A6",
+            "Iron",
+            "#BDBDC4",
             "borders"
           ],
           [
-            "Plum",
-            "#7A1F44",
+            "Wine",
+            "#6E1423",
             "links, buttons"
           ],
           [
-            "Gilt",
-            "#B8892B",
-            "ornaments"
+            "Dregs",
+            "#4F0E19",
+            "hover"
           ]
         ]
       ]
@@ -373,83 +372,83 @@ const OPTIONS = [
   },
   {
     "id": "C",
-    "name": "Wishing Tree",
+    "name": "Silver Moon",
     "mark": "ribbon",
     "mode": "Dark",
     "blurb": "",
     "notes": [
       [
-        "Mood",
-        "a dark room lit by candles; midnight blue, ivory text, amber light"
+        "Idea",
+        "almost monochrome: black and moonlit silver, with only a glint of red"
       ],
       [
         "Pros",
-        "warm and welcoming for a dark theme; amber stands out strongly on dark"
+        "the most restrained dark option; screenshots stand out; red feels precious"
       ],
       [
         "Cons",
-        "amber can read as a warning color; long light-on-dark reading"
+        "the red barely shows, so the Night Circus link is subtle; silver buttons are less urgent"
       ]
     ],
     "top": {
-      "bg": "#0B1020",
-      "surface": "#141B30",
-      "text": "#F2EAD8",
-      "text2": "#B3B0A6",
-      "link": "#F5C46B",
-      "accent": "#F2B134",
-      "accentHover": "#FFC857",
-      "accentText": "#1A1405",
-      "btn": "#F2B134",
-      "btnHover": "#FFC857",
-      "border": "#2A3350"
+      "bg": "#0F1114",
+      "surface": "#1A1D21",
+      "text": "#ECEDEF",
+      "text2": "#A9ACB3",
+      "link": "#F4F4F6",
+      "accent": "#D41F2C",
+      "accentHover": "#FFFFFF",
+      "accentText": "#0F1114",
+      "btn": "#D9DADE",
+      "btnHover": "#FFFFFF",
+      "border": "#30343A"
     },
     "body": {
-      "bg": "#0B1020",
-      "surface": "#141B30",
-      "text": "#F2EAD8",
-      "text2": "#B3B0A6",
-      "link": "#F5C46B",
-      "accent": "#F2B134",
-      "accentHover": "#FFC857",
-      "accentText": "#1A1405",
-      "btn": "#F2B134",
-      "btnHover": "#FFC857",
-      "border": "#2A3350"
+      "bg": "#0F1114",
+      "surface": "#1A1D21",
+      "text": "#ECEDEF",
+      "text2": "#A9ACB3",
+      "link": "#F4F4F6",
+      "accent": "#D41F2C",
+      "accentHover": "#FFFFFF",
+      "accentText": "#0F1114",
+      "btn": "#D9DADE",
+      "btnHover": "#FFFFFF",
+      "border": "#30343A"
     },
     "swatches": [
       [
         "",
         [
           [
-            "Midnight",
-            "#0B1020",
+            "Night",
+            "#0F1114",
             "background"
           ],
           [
-            "Dusk",
-            "#141B30",
+            "Slate",
+            "#1A1D21",
             "surfaces"
           ],
           [
-            "Ivory",
-            "#F2EAD8",
+            "Moonlight",
+            "#ECEDEF",
             "text"
           ],
           [
-            "Ash",
-            "#B3B0A6",
+            "Fog",
+            "#A9ACB3",
             "secondary text"
           ],
           [
-            "Candle",
-            "#F2B134",
-            "buttons, ribbon"
+            "Silver",
+            "#D9DADE",
+            "buttons"
           ],
           [
-            "Flame",
-            "#F5C46B",
-            "text links"
+            "Glint",
+            "#D41F2C",
+            "ribbon, accents"
           ]
         ]
       ]
@@ -457,83 +456,83 @@ const OPTIONS = [
   },
   {
     "id": "D",
-    "name": "Pool of Tears",
-    "mark": "spine",
+    "name": "Red Tent",
+    "mark": "diamond",
     "mode": "Dark",
     "blurb": "",
     "notes": [
       [
-        "Mood",
-        "still dark water; ink teal, pale aqua text, a glint of cool green"
+        "Idea",
+        "step inside the tent: deep red canvas all around, with ivory light"
       ],
       [
         "Pros",
-        "calm, modern and the furthest from the book's red; easy on the eyes"
+        "the most memorable and the most Night Circus; nobody else will have it"
       ],
       [
         "Cons",
-        "teal is common in tech; the least obviously Night Circus"
+        "the riskiest: a red page is intense for long reading, and screenshots must hold their own against it"
       ]
     ],
     "top": {
-      "bg": "#06161A",
-      "surface": "#0E2429",
-      "text": "#DCEBEC",
-      "text2": "#9DB6B9",
-      "link": "#6FDCD0",
-      "accent": "#2FB5A8",
-      "accentHover": "#5CCFC2",
-      "accentText": "#04201D",
-      "btn": "#2FB5A8",
-      "btnHover": "#5CCFC2",
-      "border": "#1E3A40"
+      "bg": "#4A0B13",
+      "surface": "#63121D",
+      "text": "#F7EFE8",
+      "text2": "#E6C4C4",
+      "link": "#FFD0CC",
+      "accent": "#F7EFE8",
+      "accentHover": "#FFFFFF",
+      "accentText": "#4A0B13",
+      "btn": "#F7EFE8",
+      "btnHover": "#FFFFFF",
+      "border": "#8A2B37"
     },
     "body": {
-      "bg": "#06161A",
-      "surface": "#0E2429",
-      "text": "#DCEBEC",
-      "text2": "#9DB6B9",
-      "link": "#6FDCD0",
-      "accent": "#2FB5A8",
-      "accentHover": "#5CCFC2",
-      "accentText": "#04201D",
-      "btn": "#2FB5A8",
-      "btnHover": "#5CCFC2",
-      "border": "#1E3A40"
+      "bg": "#4A0B13",
+      "surface": "#63121D",
+      "text": "#F7EFE8",
+      "text2": "#E6C4C4",
+      "link": "#FFD0CC",
+      "accent": "#F7EFE8",
+      "accentHover": "#FFFFFF",
+      "accentText": "#4A0B13",
+      "btn": "#F7EFE8",
+      "btnHover": "#FFFFFF",
+      "border": "#8A2B37"
     },
     "swatches": [
       [
         "",
         [
           [
-            "Deep water",
-            "#06161A",
+            "Tent red",
+            "#4A0B13",
             "background"
           ],
           [
-            "Basin",
-            "#0E2429",
+            "Velvet",
+            "#63121D",
             "surfaces"
           ],
           [
-            "Mist",
-            "#DCEBEC",
-            "text"
+            "Ivory",
+            "#F7EFE8",
+            "text, buttons"
           ],
           [
-            "Fog",
-            "#9DB6B9",
+            "Rosewater",
+            "#E6C4C4",
             "secondary text"
           ],
           [
-            "Tide",
-            "#2FB5A8",
-            "buttons, stripe"
+            "Blush",
+            "#FFD0CC",
+            "text links"
           ],
           [
-            "Shallows",
-            "#6FDCD0",
-            "text links"
+            "Seam",
+            "#8A2B37",
+            "borders"
           ]
         ]
       ]
