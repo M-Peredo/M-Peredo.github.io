@@ -15,17 +15,16 @@ The PM plan: how the [roadmap](../ROADMAP.md) turns into working sessions with M
 | Clone repo, local branches | S1 | Done | `archive/squarespace`, `redesign` |
 | Seed research | S1 | Done | `docs/research/prior-research.md` |
 | Targeting | S1 | Done | `docs/research/targeting.md` |
-| Brand intake questionnaire | S1 / S2 | — | `docs/research/brand-intake.md` |
+| Research decisions + section suggestions | S1 | Done | `docs/case-study-guidance.md` |
 | Design system checklist + Night Circus research | S2 | Done | `docs/design-system-checklist.md` |
 | Stack choice + skeleton scaffold | S2 | — | `redesign` branch |
 | Content model (`status` field) | S2 | — | `redesign` branch |
-| Interview question bank | S3 | — | `docs/research/interview-questions.md` |
 | Deploy workflow (Actions) | S8 | — | `.github/workflows/` |
 
 ---
 
-## S1 — Kickoff, Research & Positioning
-*Phases 0–1 · likely two sittings*
+## S1 — Kickoff, Research & Positioning — DONE
+*Phases 0–1 · ran as a chat review plus a Pocket recording (2026-10-02). Case study selection moved to Phase 3; positioning is a placeholder; brand intake retired. Outputs in `docs/case-study-guidance.md`.*
 
 **Prep:** targeting (`targeting.md`) · seed research (`prior-research.md`) as a starting hypothesis · brand intake questionnaire
 
@@ -50,10 +49,10 @@ The research is done *with* Molly, not for her: it has to be tailored to the rol
 ## S2 — Brand & Design System
 *Phase 2*
 
-**Prep:** completed brand intake (homework from S1) · design system checklist (`docs/design-system-checklist.md`) · stack chosen, skeleton scaffolded · content model in place
+**Prep:** design system checklist (`docs/design-system-checklist.md`) · stack chosen, skeleton scaffolded · content model in place
 
 **Agenda**
-1. Review brand intake answers and references
+1. Make the "Decisions for Molly" from the checklist
 2. Design workflow: Figma first, or directly in code?
 3. Build tokens: color, type, spacing
 4. Core components (buttons, links, cards, image + caption, summary card)
@@ -66,22 +65,24 @@ The research is done *with* Molly, not for her: it has to be tailored to the rol
 
 *May need two sessions.*
 
-## S3–S6 — Case Study Content (one per case study)
+## S3+ — Case Study Content (one per case study, 3–5)
 *Phase 3; can start before S2 is done*
 
-**Prep:** interview question bank for that case study's content type
+**Prep:** `docs/case-study-guidance.md` · her saved hiring-manager comments · the project's prototype, if one exists
+
+An iterative conversation, not an interview-then-draft. Molly writes; Claude helps her brainstorm.
 
 **Agenda**
-1. Claude interviews Molly using the question bank. Record raw answers verbatim.
-2. Claude drafts into the content-type outline
-3. Molly edits for voice — the goal is details only she would know, not polish
-4. List the images/artifacts still needed and who's getting them
+1. Pick the project and its shape (multi-year program, end-to-end, shipped then ongoing)
+2. Brainstorm: talk through the project, pull out the hard calls, trade-offs, metrics and AI angles
+3. Choose which section suggestions fit this project
+4. Brainstorm which visuals best complement each section: prototype, annotated screens, metrics
+5. Molly drafts the copy; Claude reacts, asks questions and flags generic phrasing
+6. List the images and prototypes still needed
 
-**Molly decides:** what's true · what's under a confidentiality agreement · her voice
+**Molly decides:** which projects · what's true · the words
 
 **Done when:** a Markdown draft Molly is happy with; asset list complete.
-
-**Notes:** watch for generic phrasing and evenly sized sections; both read as AI-written (see `prior-research.md`).
 
 ## S7 — Case Study Templates
 *Phase 4*
@@ -89,7 +90,7 @@ The research is done *with* Molly, not for her: it has to be tailored to the rol
 **Prep:** all case study drafts in Markdown · `status` field wired into the content model
 
 **Agenda**
-1. Build one template per content type against the real drafts
+1. Build 2–4 template variations that support the section suggestions, against the real drafts
 2. Check each case study in its template; adjust the template or copy
 3. Verify `live` / `unlisted` / `draft` behavior
 
@@ -100,7 +101,7 @@ The research is done *with* Molly, not for her: it has to be tailored to the rol
 ## S8 — Site Pages
 *Phase 5*
 
-**Prep:** draft Home copy from the positioning (S1) for Molly to edit
+**Prep:** Molly's positioning, replacing the placeholder
 
 **Agenda**
 1. Home
@@ -126,7 +127,7 @@ The research is done *with* Molly, not for her: it has to be tailored to the rol
 *Phase 7*
 
 **Agenda**
-1. Write the `new-case-study` skill from what worked in S3–S6
+1. Write the `new-case-study` skill from what worked in the Phase 3 sessions
 2. Practice rotating a case study between `live` and `unlisted`, including on github.com in a browser
 
 **Done when:** Molly adds or rotates a case study without help.
@@ -137,7 +138,7 @@ The research is done *with* Molly, not for her: it has to be tailored to the rol
 
 ### Pre-S1
 - **2026-10-01:** Carlos's `gh` account has read-only access to `M-Peredo/M-Peredo.github.io`. Pushing needs either Molly's account or collaborator access. **Decided:** Molly adds Carlos as a collaborator.
-- **2026-10-01:** Brand direction: Molly is interested in a design system inspired by *The Night Circus* (Erin Morgenstern). Feeds the brand intake (S1/S2), and isn't decided yet. Threads to explore:
+- **2026-10-01:** Brand direction: Molly is interested in a design system inspired by *The Night Circus* (Erin Morgenstern). Feeds S2, and isn't decided yet. Threads to explore:
   - Strict black and white base with a single red accent (the striped tents; the fans' red scarves)
   - Night mood (opens at nightfall, closes at dawn): a dark theme as an option, with candlelight, clockwork, iron gates and Victorian playbill type as textures
   - Optional structural metaphor (the circus as the site, a tent per case study). Nav labels stay plain.

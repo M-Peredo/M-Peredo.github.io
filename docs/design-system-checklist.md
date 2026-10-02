@@ -87,9 +87,12 @@ A red that reads as a scarf fails text contrast on black, but passes on off-whit
 - [ ] **Images:** image with caption, full-width image, side-by-side pair, annotated screenshot, before/after comparison
 - [ ] **Pull quote:** for a teacher or stakeholder voice
 - [ ] **Decision block:** options considered, what she chose, why
+- [ ] **Sticky-note annotations:** notes on screens that narrate her thinking (Molly's request)
+- [ ] **Embedded prototype:** a working prototype playable inside the page, with a frame, loading state and a fallback for phones
 - [ ] **Aside or callout box**
-- [ ] **Video walkthrough player** with its cover image (if video is in)
-- [ ] **Tags** (domain, platform)
+- [ ] **Retrospective section** treatment (every case study ends with one)
+- [ ] **Video player** (only if a case study needs one; prototypes come first)
+- [ ] **Tags** (domain, platform), so reviewers can tell which case studies are relevant to them
 - [ ] **Next / previous case study** links
 - [ ] **Section jump links** for long case studies (optional)
 - [ ] **Contact block**, plus form fields and error messages if there's a form
