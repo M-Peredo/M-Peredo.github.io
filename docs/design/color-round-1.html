@@ -30,6 +30,7 @@
   }
 }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html, body { height: 100%; }
 body {
   margin: 0; background: var(--c-bg); color: var(--c-ink);
@@ -105,7 +106,7 @@ main { flex: 1; min-height: 0; }
 .summary { overflow: auto; padding: 20px; height: 100%; }
 .summary-inner { max-width: 1000px; margin: 0 auto; display: grid; gap: 20px; }
 .summary h2 { margin: 0; font-size: 26px; }
-.compare { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.compare { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
 .cmp { background: var(--c-surface); border: 1px solid var(--c-line); border-radius: 10px; overflow: hidden; display: grid; cursor: pointer; text-align: left; font: inherit; color: inherit; padding: 0; }
 .cmp.is-accepted { border: 2px solid var(--c-ink); }
 .cmp.is-rejected { opacity: .5; }
@@ -157,6 +158,7 @@ main { flex: 1; min-height: 0; }
 .btn.primary:hover { background: var(--z-accentHover); }
 .btn.secondary { background: transparent; color: var(--z-text) !important; border-color: var(--z-text); }
 .btn.secondary:hover { background: var(--z-surface); }
+.mark-spine::after { content: ""; position: absolute; top: 0; bottom: 0; right: 0; width: 14px; background: var(--z-accent); }
 .s-edge { height: 3px; background: var(--edge, transparent); display: none; }
 .mark-edge .s-edge { display: block; }
 .s-h2 { font-family: var(--f-display); font-weight: 600; font-size: 1.55rem; line-height: 1.2; margin: 0; max-width: 66ch; text-wrap: balance; }
@@ -228,7 +230,7 @@ const OPTIONS = [
     swatches: [["", [["Night", "#0C0B0B", "background"], ["Raised", "#1A1919", "surfaces"], ["Papercut", "#E9E9E9", "text"], ["Pewter", "#B4B4B7", "secondary text"], ["Oxblood", "#911B17", "buttons, ribbon"], ["Lantern", "#E8736D", "text links"]]]]
   },
   {
-    id: "C", name: "Nightfall and Dawn", mark: "edge", mode: "Both", edge: "#B01E23",
+    id: "C", name: "Nightfall and Dawn", mark: "edge", mode: "Light, dark header", edge: "#B01E23",
     blurb: "The circus opens at nightfall and closes at dawn. The header and case study summary are night; the reading area is dawn. A red edge marks the line between them, like the US cover's spine.",
     notes: [
       ["Red's role", "a structural edge between night and dawn, plus links and buttons"],
@@ -243,6 +245,18 @@ const OPTIONS = [
       ["Night", [["Night", "#030303", "background"], ["Papercut", "#E9E9E9", "text"], ["Pewter", "#B4B4B7", "secondary text"], ["Lantern", "#E8736D", "links"]]],
       ["Dawn", [["Dawn", "#F2F2F0", "background"], ["Ink", "#0B0B0B", "text"], ["Graphite", "#585858", "secondary text"], ["Crimson", "#B01E23", "links, edge"]]]
     ]
+  },
+  {
+    id: "D", name: "Red Spine", mark: "spine", mode: "Dark",
+    blurb: "Black with silhouette greys, and one red stripe down the edge, like the US cover's spine.",
+    notes: [
+      ["Red's role", "a vertical stripe on the page edge, plus buttons"],
+      ["Pros", "dark and calm; one bold structural move; the red stays out of the reading text"],
+      ["Cons", "light-on-dark for long reading; the stripe needs a plan on phones"]
+    ],
+    top:  { bg: "#050505", surface: "#151414", text: "#D8D8DA", text2: "#A0A0A6", link: "#F08A84", accent: "#B02020", accentHover: "#8A1818", accentText: "#FFFFFF", border: "#333333" },
+    body: { bg: "#050505", surface: "#151414", text: "#D8D8DA", text2: "#A0A0A6", link: "#F08A84", accent: "#B02020", accentHover: "#8A1818", accentText: "#FFFFFF", border: "#333333" },
+    swatches: [["", [["Black", "#050505", "background"], ["Raised", "#151414", "surfaces"], ["Silhouette", "#D8D8DA", "text"], ["Smoke", "#A0A0A6", "secondary text"], ["Spine", "#B02020", "stripe, buttons"], ["Rose", "#F08A84", "text links"]]]]
   }
 ];
 const PAGES = [...OPTIONS.map(o => o.id), "summary"];
