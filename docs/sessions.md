@@ -36,10 +36,10 @@ The PM plan: how the [roadmap](../ROADMAP.md) turns into working sessions with M
 3. Target audience and positioning: roles, seniority, company types, one-line pitch
 4. Case study selection: new candidates first (Code.org work? this rebuild?), then any old product design projects worth returning from the inventory. Shortlist 3–4, all deep; flag confidentiality agreement constraints
 5. Content types: react to the candidates, pick, assign one to each case study
-6. Push branches to GitHub; settle the GitHub access question
+6. Molly adds Carlos as a collaborator (Settings → Collaborators); push the branches
 7. Hand off brand intake as homework if there's no time left
 
-**Molly decides:** target audience · positioning · which case studies · which content types · GitHub access
+**Molly decides:** target audience · positioning · which case studies · which content types
 
 **Done when:** 3–4 case studies, each mapped to a content type; positioning written down; branches on GitHub.
 
@@ -132,5 +132,5 @@ The PM plan: how the [roadmap](../ROADMAP.md) turns into working sessions with M
 ## Notes
 
 ### Pre-S1
-- **2026-10-01:** Carlos's `gh` account has read-only access to `M-Peredo/M-Peredo.github.io`. Pushing needs either Molly's account or collaborator access.
+- **2026-10-01:** Carlos's `gh` account has read-only access to `M-Peredo/M-Peredo.github.io`. Pushing needs either Molly's account or collaborator access. **Decided:** Molly adds Carlos as a collaborator.
 - **2026-10-01:** Possible case study: this rebuild itself, built agentically with Claude Code. It would answer the research's "where AI fit" question directly.

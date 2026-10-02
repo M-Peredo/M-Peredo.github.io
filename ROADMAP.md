@@ -42,7 +42,8 @@ Legacy remote branches `Staging` (identical to `main`) and `prelim-test` (an ear
 ## Phase 0: Setup & Archive
 - [x] (prep) Clone repo locally, create `archive/squarespace` and `redesign` branches
 - [ ] (prep) Inventory the old site's product design case studies (PocketChange, Sonatype, Tavern Meetup, Cheers, Forte) — what copy and assets exist, in case any return as a deep case study → `docs/research/old-site-inventory.md`. The graphic design work is retired.
-- [ ] (session) Push `archive/squarespace` and `redesign` to GitHub (needs Molly's account or collaborator access for Carlos)
+- [ ] (session) Molly adds Carlos (`CarlosPeredo_vvt`) as a collaborator with write access
+- [ ] (prep) Push `archive/squarespace` and `redesign` to GitHub (once collaborator access is in place)
 - [ ] (session) Delete legacy `Staging` and `prelim-test` branches
 - [ ] (prep) Exclude build/dependency folders from Dropbox sync once the stack is installed
 
@@ -118,7 +119,6 @@ Legacy remote branches `Staging` (identical to `main`) and `prelim-test` (an ear
 |----------|---------|------|-----------|
 | Stack | Astro · Next.js static export (matches Carlos's site) · plain HTML/CSS | Astro — built around Markdown files with validated fields | Phase 2 prep |
 | Design workflow | Figma first, then code · design directly in code with Claude | Molly's call | Phase 2 session |
-| GitHub access | Molly runs all git pushes · add Carlos as a collaborator | — | Phase 0 session |
 | Contact page | Dedicated page · footer link only | — | Phase 5 |
 
 ## Decisions Log
@@ -128,4 +128,5 @@ Legacy remote branches `Staging` (identical to `main`) and `prelim-test` (an ear
 | 2026-10-01 | Small site: Home, portfolio + case studies, optional Contact |
 | 2026-10-01 | 3–4 case studies at launch |
 | 2026-10-01 | Build on `redesign`; `main` stays live until cutover |
+| 2026-10-01 | Carlos gets collaborator access to the repo so prep work can be pushed between sessions |
 | 2026-10-01 | All case studies are deep and robust; old graphic design work is retired, with no "earlier work" section |
