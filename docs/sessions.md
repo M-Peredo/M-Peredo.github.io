@@ -14,7 +14,6 @@ The PM plan: how the [roadmap](../ROADMAP.md) turns into working sessions with M
 |-----------|-------------|--------|--------|
 | Clone repo, local branches | S1 | Done | `archive/squarespace`, `redesign` |
 | Seed research | S1 | Done | `docs/research/prior-research.md` |
-| Old site inventory | S1 | — | `docs/research/old-site-inventory.md` |
 | Market research (verified, cited) | S1 | — | `docs/research/market.md` |
 | Candidate content types | S1 | — | `docs/research/content-types.md` |
 | Brand intake questionnaire | S1 / S2 | — | `docs/research/brand-intake.md` |
@@ -28,13 +27,13 @@ The PM plan: how the [roadmap](../ROADMAP.md) turns into working sessions with M
 ## S1 — Kickoff & Positioning
 *Phases 0–1*
 
-**Prep:** old site inventory · market research · candidate content types · brand intake questionnaire
+**Prep:** market research · candidate content types · brand intake questionnaire
 
 **Agenda**
 1. Walk through the plan and how the sessions will run (10 min)
 2. Market research: what's changed, what reviewers look for (15 min)
 3. Target audience and positioning: roles, seniority, company types, one-line pitch
-4. Case study selection: new candidates first (Code.org work? this rebuild?), then any old product design projects worth returning from the inventory. Shortlist 3–4, all deep; flag confidentiality agreement constraints
+4. Case study selection: from her newer work (Code.org? this rebuild?). Shortlist 3–4, all deep; flag confidentiality agreement constraints
 5. Content types: react to the candidates, pick, assign one to each case study
 6. Molly adds Carlos as a collaborator (Settings → Collaborators); push the branches
 7. Hand off brand intake as homework if there's no time left
@@ -65,7 +64,7 @@ The PM plan: how the [roadmap](../ROADMAP.md) turns into working sessions with M
 ## S3–S6 — Case Study Content (one per case study)
 *Phase 3; can start before S2 is done*
 
-**Prep:** interview question bank for that case study's content type · pull the old copy/assets for it from the archive (if it existed before)
+**Prep:** interview question bank for that case study's content type
 
 **Agenda**
 1. Claude interviews Molly using the question bank. Record raw answers verbatim.
