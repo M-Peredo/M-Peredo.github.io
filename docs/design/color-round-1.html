@@ -188,7 +188,7 @@ main { flex: 1; min-height: 0; }
 
 <header class="pager">
   <div class="pager-inner">
-    <h1>Color, round 6</h1>
+    <h1>Color, round 7</h1>
     <nav class="tabs" id="tabs" aria-label="Pages"></nav>
     <div class="nav-btns">
       <span class="count" id="count"></span>
@@ -201,346 +201,970 @@ main { flex: 1; min-height: 0; }
 <main id="main"></main>
 
 <script>
-const ROUND = 6;
+const ROUND = 7;
 const KEY = "molly-color-round-" + ROUND;
 
 const OPTIONS = [
-  {
-    "id": "E1",
-    "name": "Clouded Teal",
-    "mark": "diamond",
-    "mode": "Light",
-    "blurb": "",
-    "notes": [
-      [
-        "Idea",
-        "E's clouded gray and near-black, with deep teal in place of the red"
-      ],
-      [
-        "Pros",
-        "teal sits between Code.org's blues and greens, so it harmonizes with their content"
-      ],
-      [
-        "Cons",
-        "close enough to their palette that it could feel borrowed"
-      ]
-    ],
-    "top": {
-      "bg": "#D1CFD1",
-      "surface": "#E3E1E3",
-      "text": "#181A18",
-      "text2": "#47463F",
-      "link": "#0B5F66",
-      "accent": "#0B5F66",
-      "accentHover": "#07464B",
-      "accentText": "#FFFFFF",
-      "btn": "#0B5F66",
-      "btnHover": "#07464B",
-      "border": "#A8A3A0"
-    },
-    "body": {
-      "bg": "#D1CFD1",
-      "surface": "#E3E1E3",
-      "text": "#181A18",
-      "text2": "#47463F",
-      "link": "#0B5F66",
-      "accent": "#0B5F66",
-      "accentHover": "#07464B",
-      "accentText": "#FFFFFF",
-      "btn": "#0B5F66",
-      "btnHover": "#07464B",
-      "border": "#A8A3A0"
-    },
-    "swatches": [
-      [
-        "",
-        [
-          [
-            "Clouded Vision",
-            "#D1CFD1",
-            "background"
-          ],
-          [
-            "Thamar Black",
-            "#181A18",
-            "text"
-          ],
-          [
-            "Heavy Metal",
-            "#47463F",
-            "secondary text"
-          ],
-          [
-            "Deep teal",
-            "#0B5F66",
-            "links, buttons"
-          ],
-          [
-            "Caboose",
-            "#A8A3A0",
-            "borders"
-          ],
-          [
-            "Mat",
-            "#E3E1E3",
-            "cards"
-          ]
-        ]
-      ]
-    ]
+ {
+  "id": "E\u00b7Harbor",
+  "name": "Clouded Vision + Harbor",
+  "mark": "diamond",
+  "mode": "Light",
+  "blurb": "",
+  "notes": [
+   [
+    "Idea",
+    "E's ground and ink with a blue-leaning teal: the nearest to Code.org's blues"
+   ],
+   [
+    "Color",
+    "#0A5870 on #D1CFD1"
+   ]
+  ],
+  "top": {
+   "bg": "#D1CFD1",
+   "surface": "#E3E1E3",
+   "text": "#181A18",
+   "text2": "#47463F",
+   "link": "#0A5870",
+   "accent": "#0A5870",
+   "accentHover": "#074254",
+   "accentText": "#FFFFFF",
+   "btn": "#0A5870",
+   "btnHover": "#074254",
+   "border": "#A8A3A0"
   },
-  {
-    "id": "E2",
-    "name": "Clouded Ochre",
-    "mark": "ribbon",
-    "mode": "Light",
-    "blurb": "",
-    "notes": [
-      [
-        "Idea",
-        "E's clouded gray and near-black, with a deep ochre in place of the red"
-      ],
-      [
-        "Pros",
-        "warm yellow is the counterpart to Code.org's violet, so their colors pop against it"
-      ],
-      [
-        "Cons",
-        "ochre can read as brown or dated; the least obviously ed tech"
-      ]
-    ],
-    "top": {
-      "bg": "#D1CFD1",
-      "surface": "#E3E1E3",
-      "text": "#181A18",
-      "text2": "#47463F",
-      "link": "#7A4E00",
-      "accent": "#7A4E00",
-      "accentHover": "#5A3A00",
-      "accentText": "#FFFFFF",
-      "btn": "#7A4E00",
-      "btnHover": "#5A3A00",
-      "border": "#A8A3A0"
-    },
-    "body": {
-      "bg": "#D1CFD1",
-      "surface": "#E3E1E3",
-      "text": "#181A18",
-      "text2": "#47463F",
-      "link": "#7A4E00",
-      "accent": "#7A4E00",
-      "accentHover": "#5A3A00",
-      "accentText": "#FFFFFF",
-      "btn": "#7A4E00",
-      "btnHover": "#5A3A00",
-      "border": "#A8A3A0"
-    },
-    "swatches": [
-      [
-        "",
-        [
-          [
-            "Clouded Vision",
-            "#D1CFD1",
-            "background"
-          ],
-          [
-            "Thamar Black",
-            "#181A18",
-            "text"
-          ],
-          [
-            "Heavy Metal",
-            "#47463F",
-            "secondary text"
-          ],
-          [
-            "Deep ochre",
-            "#7A4E00",
-            "links, buttons"
-          ],
-          [
-            "Caboose",
-            "#A8A3A0",
-            "borders"
-          ],
-          [
-            "Mat",
-            "#E3E1E3",
-            "cards"
-          ]
-        ]
-      ]
-    ]
+  "body": {
+   "bg": "#D1CFD1",
+   "surface": "#E3E1E3",
+   "text": "#181A18",
+   "text2": "#47463F",
+   "link": "#0A5870",
+   "accent": "#0A5870",
+   "accentHover": "#074254",
+   "accentText": "#FFFFFF",
+   "btn": "#0A5870",
+   "btnHover": "#074254",
+   "border": "#A8A3A0"
   },
-  {
-    "id": "G1",
-    "name": "Bone and Teal",
-    "mark": "diamond",
-    "mode": "Light",
-    "blurb": "",
-    "notes": [
-      [
-        "Idea",
-        "G's bone-white page and near-black ink, with deep teal in place of the red"
-      ],
-      [
-        "Pros",
-        "the cleanest option, and the teal reads as modern and calm"
-      ],
-      [
-        "Cons",
-        "the closest to a typical portfolio"
-      ]
-    ],
-    "top": {
-      "bg": "#F1EEEA",
-      "surface": "#FFFFFF",
-      "text": "#181A18",
-      "text2": "#57544D",
-      "link": "#0A6A72",
-      "accent": "#0A6A72",
-      "accentHover": "#074F55",
-      "accentText": "#FFFFFF",
-      "btn": "#0A6A72",
-      "btnHover": "#074F55",
-      "border": "#D2CDC7"
-    },
-    "body": {
-      "bg": "#F1EEEA",
-      "surface": "#FFFFFF",
-      "text": "#181A18",
-      "text2": "#57544D",
-      "link": "#0A6A72",
-      "accent": "#0A6A72",
-      "accentHover": "#074F55",
-      "accentText": "#FFFFFF",
-      "btn": "#0A6A72",
-      "btnHover": "#074F55",
-      "border": "#D2CDC7"
-    },
-    "swatches": [
-      [
-        "",
-        [
-          [
-            "Bone",
-            "#F1EEEA",
-            "background"
-          ],
-          [
-            "Thamar Black",
-            "#181A18",
-            "text"
-          ],
-          [
-            "Umber gray",
-            "#57544D",
-            "secondary text"
-          ],
-          [
-            "Deep teal",
-            "#0A6A72",
-            "links, buttons"
-          ],
-          [
-            "White",
-            "#FFFFFF",
-            "cards"
-          ],
-          [
-            "Clayton",
-            "#83756E",
-            "muted"
-          ]
-        ]
-      ]
+  "swatches": [
+   [
+    "",
+    [
+     [
+      "Clouded Vision",
+      "#D1CFD1",
+      "background"
+     ],
+     [
+      "Thamar Black",
+      "#181A18",
+      "text"
+     ],
+     [
+      "Gray",
+      "#47463F",
+      "secondary text"
+     ],
+     [
+      "Harbor",
+      "#0A5870",
+      "links, buttons"
+     ],
+     [
+      "Mat",
+      "#E3E1E3",
+      "cards"
+     ],
+     [
+      "Seam",
+      "#A8A3A0",
+      "borders"
+     ]
     ]
+   ]
+  ]
+ },
+ {
+  "id": "E\u00b7Lagoon",
+  "name": "Clouded Vision + Lagoon",
+  "mark": "diamond",
+  "mode": "Light",
+  "blurb": "",
+  "notes": [
+   [
+    "Idea",
+    "E's ground and ink with a true teal"
+   ],
+   [
+    "Color",
+    "#0B5F66 on #D1CFD1"
+   ]
+  ],
+  "top": {
+   "bg": "#D1CFD1",
+   "surface": "#E3E1E3",
+   "text": "#181A18",
+   "text2": "#47463F",
+   "link": "#0B5F66",
+   "accent": "#0B5F66",
+   "accentHover": "#08474C",
+   "accentText": "#FFFFFF",
+   "btn": "#0B5F66",
+   "btnHover": "#08474C",
+   "border": "#A8A3A0"
   },
-  {
-    "id": "G2",
-    "name": "Bone and Ochre",
-    "mark": "ribbon",
-    "mode": "Light",
-    "blurb": "",
-    "notes": [
-      [
-        "Idea",
-        "G's bone-white page and near-black ink, with a deep ochre in place of the red"
-      ],
-      [
-        "Pros",
-        "warm and distinctive; the most different from anything Code.org does"
-      ],
-      [
-        "Cons",
-        "ochre on bone can feel vintage rather than modern"
-      ]
-    ],
-    "top": {
-      "bg": "#F1EEEA",
-      "surface": "#FFFFFF",
-      "text": "#181A18",
-      "text2": "#57544D",
-      "link": "#8A5B00",
-      "accent": "#8A5B00",
-      "accentHover": "#664300",
-      "accentText": "#FFFFFF",
-      "btn": "#8A5B00",
-      "btnHover": "#664300",
-      "border": "#D2CDC7"
-    },
-    "body": {
-      "bg": "#F1EEEA",
-      "surface": "#FFFFFF",
-      "text": "#181A18",
-      "text2": "#57544D",
-      "link": "#8A5B00",
-      "accent": "#8A5B00",
-      "accentHover": "#664300",
-      "accentText": "#FFFFFF",
-      "btn": "#8A5B00",
-      "btnHover": "#664300",
-      "border": "#D2CDC7"
-    },
-    "swatches": [
-      [
-        "",
-        [
-          [
-            "Bone",
-            "#F1EEEA",
-            "background"
-          ],
-          [
-            "Thamar Black",
-            "#181A18",
-            "text"
-          ],
-          [
-            "Umber gray",
-            "#57544D",
-            "secondary text"
-          ],
-          [
-            "Deep ochre",
-            "#8A5B00",
-            "links, buttons"
-          ],
-          [
-            "White",
-            "#FFFFFF",
-            "cards"
-          ],
-          [
-            "Clayton",
-            "#83756E",
-            "muted"
-          ]
-        ]
-      ]
+  "body": {
+   "bg": "#D1CFD1",
+   "surface": "#E3E1E3",
+   "text": "#181A18",
+   "text2": "#47463F",
+   "link": "#0B5F66",
+   "accent": "#0B5F66",
+   "accentHover": "#08474C",
+   "accentText": "#FFFFFF",
+   "btn": "#0B5F66",
+   "btnHover": "#08474C",
+   "border": "#A8A3A0"
+  },
+  "swatches": [
+   [
+    "",
+    [
+     [
+      "Clouded Vision",
+      "#D1CFD1",
+      "background"
+     ],
+     [
+      "Thamar Black",
+      "#181A18",
+      "text"
+     ],
+     [
+      "Gray",
+      "#47463F",
+      "secondary text"
+     ],
+     [
+      "Lagoon",
+      "#0B5F66",
+      "links, buttons"
+     ],
+     [
+      "Mat",
+      "#E3E1E3",
+      "cards"
+     ],
+     [
+      "Seam",
+      "#A8A3A0",
+      "borders"
+     ]
     ]
-  }
+   ]
+  ]
+ },
+ {
+  "id": "E\u00b7Fern",
+  "name": "Clouded Vision + Fern",
+  "mark": "diamond",
+  "mode": "Light",
+  "blurb": "",
+  "notes": [
+   [
+    "Idea",
+    "E's ground and ink with a green-leaning teal: the nearest to their green banner"
+   ],
+   [
+    "Color",
+    "#0A6153 on #D1CFD1"
+   ]
+  ],
+  "top": {
+   "bg": "#D1CFD1",
+   "surface": "#E3E1E3",
+   "text": "#181A18",
+   "text2": "#47463F",
+   "link": "#0A6153",
+   "accent": "#0A6153",
+   "accentHover": "#07483E",
+   "accentText": "#FFFFFF",
+   "btn": "#0A6153",
+   "btnHover": "#07483E",
+   "border": "#A8A3A0"
+  },
+  "body": {
+   "bg": "#D1CFD1",
+   "surface": "#E3E1E3",
+   "text": "#181A18",
+   "text2": "#47463F",
+   "link": "#0A6153",
+   "accent": "#0A6153",
+   "accentHover": "#07483E",
+   "accentText": "#FFFFFF",
+   "btn": "#0A6153",
+   "btnHover": "#07483E",
+   "border": "#A8A3A0"
+  },
+  "swatches": [
+   [
+    "",
+    [
+     [
+      "Clouded Vision",
+      "#D1CFD1",
+      "background"
+     ],
+     [
+      "Thamar Black",
+      "#181A18",
+      "text"
+     ],
+     [
+      "Gray",
+      "#47463F",
+      "secondary text"
+     ],
+     [
+      "Fern",
+      "#0A6153",
+      "links, buttons"
+     ],
+     [
+      "Mat",
+      "#E3E1E3",
+      "cards"
+     ],
+     [
+      "Seam",
+      "#A8A3A0",
+      "borders"
+     ]
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "E\u00b7Mustard",
+  "name": "Clouded Vision + Mustard",
+  "mark": "diamond",
+  "mode": "Light",
+  "blurb": "",
+  "notes": [
+   [
+    "Idea",
+    "E's ground and ink with a yellow-leaning: the brightest and the most amber"
+   ],
+   [
+    "Color",
+    "#6E5000 on #D1CFD1"
+   ]
+  ],
+  "top": {
+   "bg": "#D1CFD1",
+   "surface": "#E3E1E3",
+   "text": "#181A18",
+   "text2": "#47463F",
+   "link": "#6E5000",
+   "accent": "#6E5000",
+   "accentHover": "#523C00",
+   "accentText": "#FFFFFF",
+   "btn": "#6E5000",
+   "btnHover": "#523C00",
+   "border": "#A8A3A0"
+  },
+  "body": {
+   "bg": "#D1CFD1",
+   "surface": "#E3E1E3",
+   "text": "#181A18",
+   "text2": "#47463F",
+   "link": "#6E5000",
+   "accent": "#6E5000",
+   "accentHover": "#523C00",
+   "accentText": "#FFFFFF",
+   "btn": "#6E5000",
+   "btnHover": "#523C00",
+   "border": "#A8A3A0"
+  },
+  "swatches": [
+   [
+    "",
+    [
+     [
+      "Clouded Vision",
+      "#D1CFD1",
+      "background"
+     ],
+     [
+      "Thamar Black",
+      "#181A18",
+      "text"
+     ],
+     [
+      "Gray",
+      "#47463F",
+      "secondary text"
+     ],
+     [
+      "Mustard",
+      "#6E5000",
+      "links, buttons"
+     ],
+     [
+      "Mat",
+      "#E3E1E3",
+      "cards"
+     ],
+     [
+      "Seam",
+      "#A8A3A0",
+      "borders"
+     ]
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "E\u00b7Ochre",
+  "name": "Clouded Vision + Ochre",
+  "mark": "diamond",
+  "mode": "Light",
+  "blurb": "",
+  "notes": [
+   [
+    "Idea",
+    "E's ground and ink with a true ochre"
+   ],
+   [
+    "Color",
+    "#754A00 on #D1CFD1"
+   ]
+  ],
+  "top": {
+   "bg": "#D1CFD1",
+   "surface": "#E3E1E3",
+   "text": "#181A18",
+   "text2": "#47463F",
+   "link": "#754A00",
+   "accent": "#754A00",
+   "accentHover": "#573700",
+   "accentText": "#FFFFFF",
+   "btn": "#754A00",
+   "btnHover": "#573700",
+   "border": "#A8A3A0"
+  },
+  "body": {
+   "bg": "#D1CFD1",
+   "surface": "#E3E1E3",
+   "text": "#181A18",
+   "text2": "#47463F",
+   "link": "#754A00",
+   "accent": "#754A00",
+   "accentHover": "#573700",
+   "accentText": "#FFFFFF",
+   "btn": "#754A00",
+   "btnHover": "#573700",
+   "border": "#A8A3A0"
+  },
+  "swatches": [
+   [
+    "",
+    [
+     [
+      "Clouded Vision",
+      "#D1CFD1",
+      "background"
+     ],
+     [
+      "Thamar Black",
+      "#181A18",
+      "text"
+     ],
+     [
+      "Gray",
+      "#47463F",
+      "secondary text"
+     ],
+     [
+      "Ochre",
+      "#754A00",
+      "links, buttons"
+     ],
+     [
+      "Mat",
+      "#E3E1E3",
+      "cards"
+     ],
+     [
+      "Seam",
+      "#A8A3A0",
+      "borders"
+     ]
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "E\u00b7Copper",
+  "name": "Clouded Vision + Copper",
+  "mark": "diamond",
+  "mode": "Light",
+  "blurb": "",
+  "notes": [
+   [
+    "Idea",
+    "E's ground and ink with a rust-leaning: the warmest, closest to the old red"
+   ],
+   [
+    "Color",
+    "#804318 on #D1CFD1"
+   ]
+  ],
+  "top": {
+   "bg": "#D1CFD1",
+   "surface": "#E3E1E3",
+   "text": "#181A18",
+   "text2": "#47463F",
+   "link": "#804318",
+   "accent": "#804318",
+   "accentHover": "#603212",
+   "accentText": "#FFFFFF",
+   "btn": "#804318",
+   "btnHover": "#603212",
+   "border": "#A8A3A0"
+  },
+  "body": {
+   "bg": "#D1CFD1",
+   "surface": "#E3E1E3",
+   "text": "#181A18",
+   "text2": "#47463F",
+   "link": "#804318",
+   "accent": "#804318",
+   "accentHover": "#603212",
+   "accentText": "#FFFFFF",
+   "btn": "#804318",
+   "btnHover": "#603212",
+   "border": "#A8A3A0"
+  },
+  "swatches": [
+   [
+    "",
+    [
+     [
+      "Clouded Vision",
+      "#D1CFD1",
+      "background"
+     ],
+     [
+      "Thamar Black",
+      "#181A18",
+      "text"
+     ],
+     [
+      "Gray",
+      "#47463F",
+      "secondary text"
+     ],
+     [
+      "Copper",
+      "#804318",
+      "links, buttons"
+     ],
+     [
+      "Mat",
+      "#E3E1E3",
+      "cards"
+     ],
+     [
+      "Seam",
+      "#A8A3A0",
+      "borders"
+     ]
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "G\u00b7Harbor",
+  "name": "Bone + Harbor",
+  "mark": "ribbon",
+  "mode": "Light",
+  "blurb": "",
+  "notes": [
+   [
+    "Idea",
+    "G's ground and ink with a blue-leaning teal: the nearest to Code.org's blues"
+   ],
+   [
+    "Color",
+    "#0A5870 on #F1EEEA"
+   ]
+  ],
+  "top": {
+   "bg": "#F1EEEA",
+   "surface": "#FFFFFF",
+   "text": "#181A18",
+   "text2": "#57544D",
+   "link": "#0A5870",
+   "accent": "#0A5870",
+   "accentHover": "#074254",
+   "accentText": "#FFFFFF",
+   "btn": "#0A5870",
+   "btnHover": "#074254",
+   "border": "#D2CDC7"
+  },
+  "body": {
+   "bg": "#F1EEEA",
+   "surface": "#FFFFFF",
+   "text": "#181A18",
+   "text2": "#57544D",
+   "link": "#0A5870",
+   "accent": "#0A5870",
+   "accentHover": "#074254",
+   "accentText": "#FFFFFF",
+   "btn": "#0A5870",
+   "btnHover": "#074254",
+   "border": "#D2CDC7"
+  },
+  "swatches": [
+   [
+    "",
+    [
+     [
+      "Bone",
+      "#F1EEEA",
+      "background"
+     ],
+     [
+      "Thamar Black",
+      "#181A18",
+      "text"
+     ],
+     [
+      "Gray",
+      "#57544D",
+      "secondary text"
+     ],
+     [
+      "Harbor",
+      "#0A5870",
+      "links, buttons"
+     ],
+     [
+      "White",
+      "#FFFFFF",
+      "cards"
+     ],
+     [
+      "Seam",
+      "#D2CDC7",
+      "borders"
+     ]
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "G\u00b7Lagoon",
+  "name": "Bone + Lagoon",
+  "mark": "ribbon",
+  "mode": "Light",
+  "blurb": "",
+  "notes": [
+   [
+    "Idea",
+    "G's ground and ink with a true teal"
+   ],
+   [
+    "Color",
+    "#0B5F66 on #F1EEEA"
+   ]
+  ],
+  "top": {
+   "bg": "#F1EEEA",
+   "surface": "#FFFFFF",
+   "text": "#181A18",
+   "text2": "#57544D",
+   "link": "#0B5F66",
+   "accent": "#0B5F66",
+   "accentHover": "#08474C",
+   "accentText": "#FFFFFF",
+   "btn": "#0B5F66",
+   "btnHover": "#08474C",
+   "border": "#D2CDC7"
+  },
+  "body": {
+   "bg": "#F1EEEA",
+   "surface": "#FFFFFF",
+   "text": "#181A18",
+   "text2": "#57544D",
+   "link": "#0B5F66",
+   "accent": "#0B5F66",
+   "accentHover": "#08474C",
+   "accentText": "#FFFFFF",
+   "btn": "#0B5F66",
+   "btnHover": "#08474C",
+   "border": "#D2CDC7"
+  },
+  "swatches": [
+   [
+    "",
+    [
+     [
+      "Bone",
+      "#F1EEEA",
+      "background"
+     ],
+     [
+      "Thamar Black",
+      "#181A18",
+      "text"
+     ],
+     [
+      "Gray",
+      "#57544D",
+      "secondary text"
+     ],
+     [
+      "Lagoon",
+      "#0B5F66",
+      "links, buttons"
+     ],
+     [
+      "White",
+      "#FFFFFF",
+      "cards"
+     ],
+     [
+      "Seam",
+      "#D2CDC7",
+      "borders"
+     ]
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "G\u00b7Fern",
+  "name": "Bone + Fern",
+  "mark": "ribbon",
+  "mode": "Light",
+  "blurb": "",
+  "notes": [
+   [
+    "Idea",
+    "G's ground and ink with a green-leaning teal: the nearest to their green banner"
+   ],
+   [
+    "Color",
+    "#0A6153 on #F1EEEA"
+   ]
+  ],
+  "top": {
+   "bg": "#F1EEEA",
+   "surface": "#FFFFFF",
+   "text": "#181A18",
+   "text2": "#57544D",
+   "link": "#0A6153",
+   "accent": "#0A6153",
+   "accentHover": "#07483E",
+   "accentText": "#FFFFFF",
+   "btn": "#0A6153",
+   "btnHover": "#07483E",
+   "border": "#D2CDC7"
+  },
+  "body": {
+   "bg": "#F1EEEA",
+   "surface": "#FFFFFF",
+   "text": "#181A18",
+   "text2": "#57544D",
+   "link": "#0A6153",
+   "accent": "#0A6153",
+   "accentHover": "#07483E",
+   "accentText": "#FFFFFF",
+   "btn": "#0A6153",
+   "btnHover": "#07483E",
+   "border": "#D2CDC7"
+  },
+  "swatches": [
+   [
+    "",
+    [
+     [
+      "Bone",
+      "#F1EEEA",
+      "background"
+     ],
+     [
+      "Thamar Black",
+      "#181A18",
+      "text"
+     ],
+     [
+      "Gray",
+      "#57544D",
+      "secondary text"
+     ],
+     [
+      "Fern",
+      "#0A6153",
+      "links, buttons"
+     ],
+     [
+      "White",
+      "#FFFFFF",
+      "cards"
+     ],
+     [
+      "Seam",
+      "#D2CDC7",
+      "borders"
+     ]
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "G\u00b7Mustard",
+  "name": "Bone + Mustard",
+  "mark": "ribbon",
+  "mode": "Light",
+  "blurb": "",
+  "notes": [
+   [
+    "Idea",
+    "G's ground and ink with a yellow-leaning: the brightest and the most amber"
+   ],
+   [
+    "Color",
+    "#7D5C00 on #F1EEEA"
+   ]
+  ],
+  "top": {
+   "bg": "#F1EEEA",
+   "surface": "#FFFFFF",
+   "text": "#181A18",
+   "text2": "#57544D",
+   "link": "#7D5C00",
+   "accent": "#7D5C00",
+   "accentHover": "#5D4500",
+   "accentText": "#FFFFFF",
+   "btn": "#7D5C00",
+   "btnHover": "#5D4500",
+   "border": "#D2CDC7"
+  },
+  "body": {
+   "bg": "#F1EEEA",
+   "surface": "#FFFFFF",
+   "text": "#181A18",
+   "text2": "#57544D",
+   "link": "#7D5C00",
+   "accent": "#7D5C00",
+   "accentHover": "#5D4500",
+   "accentText": "#FFFFFF",
+   "btn": "#7D5C00",
+   "btnHover": "#5D4500",
+   "border": "#D2CDC7"
+  },
+  "swatches": [
+   [
+    "",
+    [
+     [
+      "Bone",
+      "#F1EEEA",
+      "background"
+     ],
+     [
+      "Thamar Black",
+      "#181A18",
+      "text"
+     ],
+     [
+      "Gray",
+      "#57544D",
+      "secondary text"
+     ],
+     [
+      "Mustard",
+      "#7D5C00",
+      "links, buttons"
+     ],
+     [
+      "White",
+      "#FFFFFF",
+      "cards"
+     ],
+     [
+      "Seam",
+      "#D2CDC7",
+      "borders"
+     ]
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "G\u00b7Ochre",
+  "name": "Bone + Ochre",
+  "mark": "ribbon",
+  "mode": "Light",
+  "blurb": "",
+  "notes": [
+   [
+    "Idea",
+    "G's ground and ink with a true ochre"
+   ],
+   [
+    "Color",
+    "#7A4E00 on #F1EEEA"
+   ]
+  ],
+  "top": {
+   "bg": "#F1EEEA",
+   "surface": "#FFFFFF",
+   "text": "#181A18",
+   "text2": "#57544D",
+   "link": "#7A4E00",
+   "accent": "#7A4E00",
+   "accentHover": "#5B3A00",
+   "accentText": "#FFFFFF",
+   "btn": "#7A4E00",
+   "btnHover": "#5B3A00",
+   "border": "#D2CDC7"
+  },
+  "body": {
+   "bg": "#F1EEEA",
+   "surface": "#FFFFFF",
+   "text": "#181A18",
+   "text2": "#57544D",
+   "link": "#7A4E00",
+   "accent": "#7A4E00",
+   "accentHover": "#5B3A00",
+   "accentText": "#FFFFFF",
+   "btn": "#7A4E00",
+   "btnHover": "#5B3A00",
+   "border": "#D2CDC7"
+  },
+  "swatches": [
+   [
+    "",
+    [
+     [
+      "Bone",
+      "#F1EEEA",
+      "background"
+     ],
+     [
+      "Thamar Black",
+      "#181A18",
+      "text"
+     ],
+     [
+      "Gray",
+      "#57544D",
+      "secondary text"
+     ],
+     [
+      "Ochre",
+      "#7A4E00",
+      "links, buttons"
+     ],
+     [
+      "White",
+      "#FFFFFF",
+      "cards"
+     ],
+     [
+      "Seam",
+      "#D2CDC7",
+      "borders"
+     ]
+    ]
+   ]
+  ]
+ },
+ {
+  "id": "G\u00b7Copper",
+  "name": "Bone + Copper",
+  "mark": "ribbon",
+  "mode": "Light",
+  "blurb": "",
+  "notes": [
+   [
+    "Idea",
+    "G's ground and ink with a rust-leaning: the warmest, closest to the old red"
+   ],
+   [
+    "Color",
+    "#86461A on #F1EEEA"
+   ]
+  ],
+  "top": {
+   "bg": "#F1EEEA",
+   "surface": "#FFFFFF",
+   "text": "#181A18",
+   "text2": "#57544D",
+   "link": "#86461A",
+   "accent": "#86461A",
+   "accentHover": "#643413",
+   "accentText": "#FFFFFF",
+   "btn": "#86461A",
+   "btnHover": "#643413",
+   "border": "#D2CDC7"
+  },
+  "body": {
+   "bg": "#F1EEEA",
+   "surface": "#FFFFFF",
+   "text": "#181A18",
+   "text2": "#57544D",
+   "link": "#86461A",
+   "accent": "#86461A",
+   "accentHover": "#643413",
+   "accentText": "#FFFFFF",
+   "btn": "#86461A",
+   "btnHover": "#643413",
+   "border": "#D2CDC7"
+  },
+  "swatches": [
+   [
+    "",
+    [
+     [
+      "Bone",
+      "#F1EEEA",
+      "background"
+     ],
+     [
+      "Thamar Black",
+      "#181A18",
+      "text"
+     ],
+     [
+      "Gray",
+      "#57544D",
+      "secondary text"
+     ],
+     [
+      "Copper",
+      "#86461A",
+      "links, buttons"
+     ],
+     [
+      "White",
+      "#FFFFFF",
+      "cards"
+     ],
+     [
+      "Seam",
+      "#D2CDC7",
+      "borders"
+     ]
+    ]
+   ]
+  ]
+ }
 ];
 const PAGES = [...OPTIONS.map(o => o.id), "summary"];
 
@@ -614,7 +1238,7 @@ function optionPage(o, i) {
       <h2>${esc(o.name)}</h2>
       <span class="badge" data-badge></span>
       <div class="swatches">${sw}</div>
-      <ul>${o.notes.filter(n => ["From", "Added", "Pros", "Cons"].includes(n[0])).map(([k, v]) => `<li><b>${esc(k)}:</b> ${esc(v)}</li>`).join("")}</ul>
+      <ul>${o.notes.filter(n => ["Idea", "Color", "From", "Added", "Pros", "Cons"].includes(n[0])).map(([k, v]) => `<li><b>${esc(k)}:</b> ${esc(v)}</li>`).join("")}</ul>
       <div class="controls">
         <div class="stars" role="group" aria-label="Rate ${esc(o.name)}">
           <span class="label">Rating</span>
@@ -681,7 +1305,7 @@ function render() {
   document.getElementById("tabs").innerHTML = PAGES.map((id, i) => {
     if (id === "summary") return `<button type="button" class="tab" data-goto="${i}" ${i === state.page ? 'aria-current="page"' : ""}>Summary</button>`;
     const o = OPTIONS[i], p = pick(id), st = statusText(p);
-    return `<button type="button" class="tab" data-goto="${i}" ${i === state.page ? 'aria-current="page"' : ""}><span class="dot" style="background:${o.body.accent}"></span>${id} · ${esc(o.name)}${st ? ` <span class="state">${esc(st)}</span>` : ""}</button>`;
+    return `<button type="button" class="tab" data-goto="${i}" ${i === state.page ? 'aria-current="page"' : ""}><span class="dot" style="background:${o.body.accent}"></span>${esc(id)}${st ? ` <span class="state">${esc(st)}</span>` : ""}</button>`;
   }).join("");
 
   pageEls.forEach(el => {
