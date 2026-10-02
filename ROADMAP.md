@@ -50,13 +50,14 @@ Legacy remote branches `Staging` (identical to `main`) and `prelim-test` (an ear
 
 ## Phase 1: Discovery & Positioning
 - [x] (prep) Seed research carried over from an earlier chat → `docs/research/prior-research.md`
-- [ ] (prep) Market research: how product design hiring and portfolio expectations have changed since ~2022, verifying and citing the seed → `docs/research/market.md`
-- [ ] (prep) Draft 2–4 candidate case study **content types** — all deep case studies, varying by kind of project; section outlines with the purpose of each section → `docs/research/content-types.md`
+- [ ] (prep) Research brief: the questions Molly answers so the research can be tailored to her → `docs/research/research-brief.md`
 - [ ] (prep) Brand direction intake questionnaire → `docs/research/brand-intake.md`
-- [ ] (session) Target audience: roles, seniority, company types
+- [ ] (session) Answer the research brief: target roles, seniority, company types, domains, her candidate projects
+- [ ] (session) Market research, tailored to her answers: how hiring and portfolio expectations have changed for *her* target roles since ~2022, verifying and citing the seed → `docs/research/market.md`
 - [ ] (session) Positioning statement / one-line pitch
 - [ ] (session) Select 3–4 case studies (flag any confidentiality agreement constraints, e.g. Code.org work)
-- [ ] (session) Pick content types and assign each case study one
+- [ ] (session) Draft 2–4 case study **content types** from the research and her projects — all deep, varying by kind of project; section outlines with the purpose of each section → `docs/research/content-types.md`
+- [ ] (session) Assign each case study a content type
 - [ ] (session) Complete brand intake
 
 **Success**: Case studies selected and each mapped to an agreed content-type outline; positioning and brand inputs written down in `docs/`.
@@ -127,6 +128,7 @@ Legacy remote branches `Staging` (identical to `main`) and `prelim-test` (an ear
 | 2026-10-01 | Small site: Home, portfolio + case studies, optional Contact |
 | 2026-10-01 | 3–4 case studies at launch |
 | 2026-10-01 | Build on `redesign`; `main` stays live until cutover |
+| 2026-10-01 | Market research and content types are done with Molly, tailored to her, not in prep |
 | 2026-10-01 | Carlos gets collaborator access to the repo so prep work can be pushed between sessions |
 | 2026-10-01 | All case studies are deep and robust, with no "earlier work" section |
 | 2026-10-01 | All old site content is retired; case studies come from her newer work only |

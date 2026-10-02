@@ -1,6 +1,6 @@
 # Prior Research (seed)
 
-> **Status:** Carried over from an earlier Claude chat, before this project started. Sources weren't kept, and the percentages are directional (mostly blogs plus vendor research such as Figma's). Treat this as a starting hypothesis for the Phase 1 market research in `market.md`, not as findings. Redo and cite before showing it to Molly as evidence.
+> **Status:** Carried over from an earlier Claude chat, before this project started. Sources weren't kept, and the percentages are directional (mostly blogs plus vendor research such as Figma's). Treat this as a starting hypothesis for the Phase 1 market research in `market.md`, not as findings. The redo happens with Molly in S1, tailored to her target roles and companies, and cites its sources.
 
 ## What the research says (and why it shapes the outline)
 
@@ -46,6 +46,6 @@ No proven "correct" case study structure exists. The outline combines the hiring
 ## Notes for Phase 1 (added 2026-10-01)
 
 - **Ruled out: "selected earlier work."** The old graphic design pieces are retired, and every case study is a deep one (decided 2026-10-01).
-- **The outline is one format; the content types are variations on it.** The 2–4 types in `content-types.md` are all deep case studies, differing by the kind of project (for example, how much weight goes to research, systems, accessibility, or shipping at scale) rather than by depth.
+- **The outline is one format; the content types are variations on it.** The 2–4 types in `content-types.md` (drafted with Molly in S1) are all deep case studies, differing by the kind of project (for example, how much weight goes to research, systems, accessibility, or shipping at scale) rather than by depth.
 - **"Where AI fit" assumes she has AI-assisted work to show.** If her recent projects predate that, this rebuild can serve as the example.
 - **To verify in the redo:** the Figma survey figures (73%, 58%, 56%), the NN/g claim, the 10–15 second skim time, and the referral statistics.
