@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Molly's Color Options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;700&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&display=swap">
+<style>
+/* Page chrome stays neutral so the palettes are the only color on screen.
+   Layout: a top pager; each page is a side panel (choices) beside a full-size preview. */
+:root {
+  --c-bg: #F3F3F4;
+  --c-surface: #FFFFFF;
+  --c-ink: #17171A;
+  --c-muted: #5D5D66;
+  --c-line: #DADADF;
+  --c-font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-bg: #141416;
+    --c-surface: #1D1D20;
+    --c-ink: #EDEDF0;
+    --c-muted: #A3A3AD;
+    --c-line: #34343A;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0; background: var(--c-bg); color: var(--c-ink);
+  font: 15px/1.5 var(--c-font);
+  display: flex; flex-direction: column;
+}
+
+/* Pager */
+.pager { border-bottom: 1px solid var(--c-line); background: var(--c-surface); flex: none; }
+.pager-inner { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; padding: 10px 20px; }
+.pager h1 { font-size: 15px; margin: 0; font-weight: 700; white-space: nowrap; }
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; flex: 1; min-width: 0; }
+.tab {
+  appearance: none; font: inherit; font-size: 14px; cursor: pointer;
+  border: 1px solid transparent; background: transparent; color: var(--c-muted);
+  padding: 6px 12px; border-radius: 999px; display: inline-flex; gap: 6px; align-items: center;
+}
+.tab:hover { color: var(--c-ink); }
+.tab[aria-current="page"] { color: var(--c-ink); border-color: var(--c-ink); font-weight: 600; }
+.tab .dot { width: 10px; height: 10px; border-radius: 50%; border: 1px solid var(--c-line); flex: none; }
+.tab .state { font-size: 12px; color: var(--c-muted); font-weight: 400; }
+.nav-btns { display: flex; gap: 6px; align-items: center; }
+.count { font-size: 13px; color: var(--c-muted); font-variant-numeric: tabular-nums; margin-right: 4px; }
+
+.btn-c {
+  appearance: none; font: inherit; font-size: 14px; font-weight: 600;
+  padding: 7px 14px; border-radius: 6px; cursor: pointer;
+  border: 1px solid var(--c-line); background: transparent; color: var(--c-ink);
+}
+.btn-c:hover { border-color: var(--c-muted); }
+.btn-c:disabled { opacity: .4; cursor: default; }
+.btn-c[aria-pressed="true"] { background: var(--c-ink); color: var(--c-surface); border-color: var(--c-ink); }
+:where(button, textarea, a):focus-visible { outline: 2px solid var(--c-ink); outline-offset: 2px; }
+
+/* Pages */
+main { flex: 1; min-height: 0; }
+.page { height: 100%; display: grid; grid-template-columns: minmax(300px, 360px) minmax(0, 1fr); gap: 20px; padding: 20px; }
+.side { overflow: auto; display: flex; flex-direction: column; gap: 16px; min-width: 0; padding-right: 4px; }
+.stage { overflow: auto; min-width: 0; border-radius: 8px; }
+.eyebrow { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--c-muted); font-weight: 600; }
+.side h2 { margin: 0; font-size: 26px; line-height: 1.15; text-wrap: balance; }
+.side .blurb { margin: 0; }
+.side ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.side li { color: var(--c-muted); font-size: 14px; }
+.side li b { color: var(--c-ink); font-weight: 600; }
+.badge { align-self: flex-start; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; border: 1px solid var(--c-ink); border-radius: 999px; padding: 2px 10px; }
+.badge:empty { display: none; }
+
+.swatches { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.zone-label { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--c-muted); grid-column: 1 / -1; margin-top: 4px; }
+.swatch { display: grid; grid-template-columns: 34px 1fr; gap: 8px; align-items: center; min-width: 0; }
+.swatch .chip { width: 34px; height: 34px; border-radius: 6px; border: 1px solid var(--c-line); }
+.swatch .info { display: grid; font-size: 12px; line-height: 1.3; min-width: 0; }
+.swatch .info b { font-weight: 600; font-size: 13px; }
+.swatch .info span { color: var(--c-muted); }
+
+.controls { display: grid; gap: 12px; border-top: 1px solid var(--c-line); padding-top: 16px; }
+.stars { display: flex; gap: 2px; align-items: center; }
+.stars .label { font-size: 12px; color: var(--c-muted); width: 52px; }
+.star { appearance: none; border: 0; background: none; padding: 2px; font-size: 24px; line-height: 1; cursor: pointer; color: var(--c-line); }
+.star.on { color: var(--c-ink); }
+.decide { display: flex; gap: 6px; }
+.notes { display: grid; gap: 4px; }
+.notes label { font-size: 12px; color: var(--c-muted); }
+.notes textarea {
+  font: inherit; font-size: 14px; color: var(--c-ink); background: var(--c-bg);
+  border: 1px solid var(--c-line); border-radius: 6px; padding: 8px 10px;
+  min-height: 72px; resize: vertical; width: 100%;
+}
+.hint { font-size: 12px; color: var(--c-muted); margin: 0; }
+
+/* Summary page */
+.summary { overflow: auto; padding: 20px; height: 100%; }
+.summary-inner { max-width: 1000px; margin: 0 auto; display: grid; gap: 20px; }
+.summary h2 { margin: 0; font-size: 26px; }
+.compare { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.cmp { background: var(--c-surface); border: 1px solid var(--c-line); border-radius: 10px; overflow: hidden; display: grid; cursor: pointer; text-align: left; font: inherit; color: inherit; padding: 0; }
+.cmp.is-accepted { border: 2px solid var(--c-ink); }
+.cmp.is-rejected { opacity: .5; }
+.cmp .strip { display: flex; height: 64px; }
+.cmp .strip span { flex: 1; }
+.cmp .body { padding: 12px 14px; display: grid; gap: 4px; }
+.cmp .body b { font-size: 16px; }
+.cmp .body .meta { font-size: 13px; color: var(--c-muted); }
+.cmp .body .note { font-size: 13px; }
+.summary pre { margin: 0; white-space: pre-wrap; font: 13px/1.55 ui-monospace, "SF Mono", Menlo, monospace; background: var(--c-surface); border: 1px solid var(--c-line); border-radius: 8px; padding: 14px; overflow-x: auto; }
+.summary-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.summary-actions .msg { font-size: 13px; color: var(--c-muted); }
+
+/* ---------- Specimen: colors come from the palette being previewed ---------- */
+.spec {
+  --f-display: "Fraunces", Georgia, serif;
+  --f-body: "Atkinson Hyperlegible Next", system-ui, sans-serif;
+  font-family: var(--f-body); font-size: 1.0625rem; line-height: 1.6;
+  border-radius: 8px; overflow: hidden; border: 1px solid var(--c-line); position: relative;
+}
+.spec .tag { position: absolute; top: 10px; right: 12px; font: 600 10px/1 var(--c-font); letter-spacing: .08em; text-transform: uppercase; color: var(--z-text2); opacity: .8; }
+.zone { background: var(--z-bg); color: var(--z-text); padding: 56px clamp(20px, 4vw, 48px); display: flex; flex-direction: column; gap: 16px; }
+.zone.top { padding-top: 18px; }
+.zone a { color: var(--z-link); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.zone a:hover { text-decoration-thickness: 2px; }
+.zone a:focus-visible, .zone .btn:focus-visible { outline: 2px solid var(--z-link); outline-offset: 3px; }
+.s-nav { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+.s-word { font-family: var(--f-display); font-weight: 600; font-size: 1.1em; }
+.s-links { display: flex; gap: 24px; font-size: .9em; }
+.zone .s-links a { color: var(--z-text); text-decoration: none; }
+.zone .s-links a[aria-current] { text-decoration: underline; text-decoration-color: var(--z-accent); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.s-summary { max-width: 66ch; display: flex; flex-direction: column; gap: 16px; }
+.s-dateline { font-size: .78em; letter-spacing: .14em; text-transform: uppercase; color: var(--z-text2); display: flex; align-items: center; gap: .7em; }
+.mark-diamond .s-dateline::before { content: ""; width: 7px; height: 7px; background: var(--z-accent); transform: rotate(45deg); flex: none; }
+.s-h1 { font-family: var(--f-display); font-weight: 600; font-size: clamp(1.8rem, 3.6vw, 2.7rem); line-height: 1.08; margin: 0; text-wrap: balance; }
+.s-ribbon { display: none; width: 72px; height: 4px; background: var(--z-accent); }
+.mark-ribbon .s-ribbon { display: block; }
+.s-hook { margin: 0; font-size: 1.15em; color: var(--z-text2); }
+.s-meta { display: grid; grid-template-columns: repeat(3, minmax(0, max-content)); gap: 8px 32px; font-size: .85em; margin: 0; }
+.s-meta dt { color: var(--z-text2); font-size: .85em; letter-spacing: .06em; text-transform: uppercase; }
+.s-meta dd { margin: 0; }
+.s-metrics { display: flex; flex-wrap: wrap; gap: 32px; }
+.s-metric { display: grid; gap: 2px; max-width: 14ch; }
+.s-metric b { font-family: var(--f-display); font-weight: 600; font-size: 2em; line-height: 1; font-variant-numeric: tabular-nums lining-nums; }
+.s-metric span { font-size: .8em; color: var(--z-text2); }
+.s-btns { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-block; padding: .65em 1.15em; font-weight: 600; font-size: .95em; text-decoration: none !important; border-radius: 2px; border: 1px solid transparent; }
+.btn.primary { background: var(--z-accent); color: var(--z-accentText) !important; }
+.btn.primary:hover { background: var(--z-accentHover); }
+.btn.secondary { background: transparent; color: var(--z-text) !important; border-color: var(--z-text); }
+.btn.secondary:hover { background: var(--z-surface); }
+.s-edge { height: 3px; background: var(--edge, transparent); display: none; }
+.mark-edge .s-edge { display: block; }
+.s-h2 { font-family: var(--f-display); font-weight: 600; font-size: 1.55rem; line-height: 1.2; margin: 0; max-width: 66ch; text-wrap: balance; }
+.s-p { margin: 0; max-width: 66ch; }
+.s-quote { margin: 0; padding-left: 16px; border-left: 2px solid var(--z-accent); max-width: 66ch; font-family: var(--f-display); font-style: italic; font-size: 1.2em; line-height: 1.4; }
+.s-quote cite { display: block; margin-top: 8px; font-family: var(--f-body); font-style: normal; font-size: .75em; color: var(--z-text2); }
+.s-figure { margin: 0; display: grid; gap: 8px; max-width: 78ch; }
+.s-frame { aspect-ratio: 16 / 7; max-width: 100%; background: var(--z-surface); border: 1px solid var(--z-border); display: grid; place-items: center; font-size: .85em; color: var(--z-text2); }
+.s-figure figcaption { font-size: .8em; color: var(--z-text2); }
+
+@media (max-width: 900px) {
+  html, body { height: auto; }
+  body { display: block; }
+  .pager { position: sticky; top: 0; z-index: 2; }
+  .page { height: auto; grid-template-columns: 1fr; }
+  .side, .stage { overflow: visible; }
+  .summary { height: auto; }
+  .compare { grid-template-columns: 1fr; }
+  .s-meta { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="pager">
+  <div class="pager-inner">
+    <h1>Color, round 1</h1>
+    <nav class="tabs" id="tabs" aria-label="Pages"></nav>
+    <div class="nav-btns">
+      <span class="count" id="count"></span>
+      <button class="btn-c" id="prev" type="button" aria-label="Previous page">← Prev</button>
+      <button class="btn-c" id="next" type="button" aria-label="Next page">Next →</button>
+    </div>
+  </div>
+</header>
+
+<main id="main"></main>
+
+<script>
+const ROUND = 1;
+const KEY = "molly-color-round-" + ROUND;
+
+const OPTIONS = [
+  {
+    id: "A", name: "Papercut", mark: "diamond", mode: "Light",
+    blurb: "Black ink on paper, with red as small points, like the tulips and flames on the papercut cover.",
+    notes: [
+      ["Red's role", "links, the focus ring, one small mark per section"],
+      ["Pros", "best for long reading; the deep red passes contrast everywhere; the most restrained"],
+      ["Cons", "the least \"night\"; the theme comes mostly from type and ornament"],
+      ["Contrast", "text 18.2 · secondary 6.6 · red links 6.4 · white on red button 6.9"]
+    ],
+    top:  { bg: "#F7F6F3", surface: "#EAE9E5", text: "#0B0B0B", text2: "#585858", link: "#B01E23", accent: "#B01E23", accentHover: "#700000", accentText: "#FFFFFF", border: "#CFCECE" },
+    body: { bg: "#F7F6F3", surface: "#EAE9E5", text: "#0B0B0B", text2: "#585858", link: "#B01E23", accent: "#B01E23", accentHover: "#700000", accentText: "#FFFFFF", border: "#CFCECE" },
+    swatches: [["", [["Paper", "#F7F6F3", "background"], ["Ink", "#0B0B0B", "text"], ["Graphite", "#585858", "secondary text"], ["Silver", "#CFCECE", "borders"], ["Crimson", "#B01E23", "accent, links"], ["Oxblood", "#700000", "hover, pressed"]]]]
+  },
+  {
+    id: "B", name: "After Dark", mark: "ribbon", mode: "Dark",
+    blurb: "Silver on black, with red as one sweeping gesture, like the ribbon through the UK cover's title.",
+    notes: [
+      ["Red's role", "one gesture per page (a ribbon under the title), plus buttons"],
+      ["The catch", "true scarf red on black is 2.9:1, so red appears filled or as large decoration only; text links use a lighter lantern red"],
+      ["Pros", "the most immersive and the most Night Circus; light product screenshots pop on black"],
+      ["Cons", "long light-on-dark reading is harder for some; two reds to manage; closest to \"fan site\""],
+      ["Contrast", "text 16.2 · secondary 9.5 · lantern links 6.6 · white on oxblood button 8.8"]
+    ],
+    top:  { bg: "#0C0B0B", surface: "#1A1919", text: "#E9E9E9", text2: "#B4B4B7", link: "#E8736D", accent: "#911B17", accentHover: "#700000", accentText: "#FFFFFF", border: "#3A3939" },
+    body: { bg: "#0C0B0B", surface: "#1A1919", text: "#E9E9E9", text2: "#B4B4B7", link: "#E8736D", accent: "#911B17", accentHover: "#700000", accentText: "#FFFFFF", border: "#3A3939" },
+    swatches: [["", [["Night", "#0C0B0B", "background"], ["Raised", "#1A1919", "surfaces"], ["Papercut", "#E9E9E9", "text"], ["Pewter", "#B4B4B7", "secondary text"], ["Oxblood", "#911B17", "buttons, ribbon"], ["Lantern", "#E8736D", "text links"]]]]
+  },
+  {
+    id: "C", name: "Nightfall and Dawn", mark: "edge", mode: "Both", edge: "#B01E23",
+    blurb: "The circus opens at nightfall and closes at dawn. The header and case study summary are night; the reading area is dawn. A red edge marks the line between them, like the US cover's spine.",
+    notes: [
+      ["Red's role", "a structural edge between night and dawn, plus links and buttons"],
+      ["Why", "matches the two-layer principle from Phase 1: drama in the summary, calm where people read"],
+      ["Pros", "attention where it's earned, readability where it's needed"],
+      ["Cons", "the most complex: two color sets, and every component designed for both"],
+      ["Contrast", "night text 17.0 · night links 7.0 · dawn text 17.6 · dawn links 6.1"]
+    ],
+    top:  { bg: "#030303", surface: "#141414", text: "#E9E9E9", text2: "#B4B4B7", link: "#E8736D", accent: "#911B17", accentHover: "#700000", accentText: "#FFFFFF", border: "#333333" },
+    body: { bg: "#F2F2F0", surface: "#E4E4E1", text: "#0B0B0B", text2: "#585858", link: "#B01E23", accent: "#B01E23", accentHover: "#700000", accentText: "#FFFFFF", border: "#CFCECE" },
+    swatches: [
+      ["Night", [["Night", "#030303", "background"], ["Papercut", "#E9E9E9", "text"], ["Pewter", "#B4B4B7", "secondary text"], ["Lantern", "#E8736D", "links"]]],
+      ["Dawn", [["Dawn", "#F2F2F0", "background"], ["Ink", "#0B0B0B", "text"], ["Graphite", "#585858", "secondary text"], ["Crimson", "#B01E23", "links, edge"]]]
+    ]
+  }
+];
+const PAGES = [...OPTIONS.map(o => o.id), "summary"];
+
+/* ---------- State (localStorage, guarded) ---------- */
+function load() { try { const r = localStorage.getItem(KEY); return r ? JSON.parse(r) : null; } catch (e) { return null; } }
+function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+let state = load() || { picks: {}, page: 0 };
+state.picks = state.picks || {};
+if (!(state.page >= 0 && state.page < PAGES.length)) state.page = 0;
+const pick = id => state.picks[id] || (state.picks[id] = { rating: 0, status: null, notes: "" });
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const zoneVars = z => `--z-bg:${z.bg};--z-surface:${z.surface};--z-text:${z.text};--z-text2:${z.text2};--z-link:${z.link};--z-accent:${z.accent};--z-accentHover:${z.accentHover};--z-accentText:${z.accentText};--z-border:${z.border};`;
+
+function specimen(o) {
+  return `
+  <div class="spec mark-${o.mark}" style="--edge:${o.edge || "transparent"}">
+    <div class="zone top" style="${zoneVars(o.top)}">
+      <span class="tag">Sample copy · placeholder type</span>
+      <nav class="s-nav" aria-label="Sample navigation">
+        <span class="s-word">Molly Peredo</span>
+        <span class="s-links"><a href="#" aria-current="page" onclick="return false">Work</a><a href="#" onclick="return false">Contact</a></span>
+      </nav>
+      <div class="s-summary">
+        <div class="s-dateline">Teaching Assistant · 2023–2026</div>
+        <h3 class="s-h1">Building an AI teaching assistant teachers trust</h3>
+        <span class="s-ribbon" aria-hidden="true"></span>
+        <p class="s-hook">Three years of small bets that added up to one platform-wide tool.</p>
+        <dl class="s-meta">
+          <div><dt>Role</dt><dd>Lead product designer</dd></div>
+          <div><dt>Timeline</dt><dd>3 years, 4 releases</dd></div>
+          <div><dt>Domain</dt><dd>K-12 computer science</dd></div>
+        </dl>
+        <div class="s-metrics">
+          <div class="s-metric"><b>38%</b><span>of active teachers using it weekly</span></div>
+          <div class="s-metric"><b>4.6</b><span>average teacher rating</span></div>
+          <div class="s-metric"><b>2×</b><span>faster lesson setup</span></div>
+        </div>
+        <div class="s-btns">
+          <a class="btn primary" href="#" onclick="return false">Try the prototype</a>
+          <a class="btn secondary" href="#" onclick="return false">Read the case study</a>
+        </div>
+      </div>
+    </div>
+    <div class="s-edge" aria-hidden="true"></div>
+    <div class="zone body" style="${zoneVars(o.body)}">
+      <h4 class="s-h2">The hard call: what we left out of the MVP</h4>
+      <p class="s-p">Grading support was the feature teachers asked for most, and the riskiest one to get wrong. We shipped without it and shaped the data model so it could arrive as a fast follow, without moving anything teachers had already learned. <a href="#" onclick="return false">See the fast-follow plan</a>.</p>
+      <blockquote class="s-quote">“It finally feels like it's working for me, not the other way around.”<cite>Middle school CS teacher, pilot interview</cite></blockquote>
+      <figure class="s-figure">
+        <div class="s-frame">Embedded prototype</div>
+        <figcaption>The recap and reflection flow, playable in the page.</figcaption>
+      </figure>
+    </div>
+  </div>`;
+}
+
+function optionPage(o, i) {
+  const sw = o.swatches.map(([zone, items]) =>
+    (zone ? `<div class="zone-label">${esc(zone)}</div>` : "") +
+    items.map(([n, hex, role]) => `<div class="swatch"><span class="chip" style="background:${hex}"></span><span class="info"><b>${esc(n)}</b><span>${hex} · ${esc(role)}</span></span></div>`).join("")
+  ).join("");
+  return `
+  <section class="page" data-opt="${o.id}">
+    <div class="side">
+      <span class="eyebrow">${esc(o.mode)}</span>
+      <h2>${esc(o.name)}</h2>
+      <span class="badge" data-badge></span>
+      <div class="swatches">${sw}</div>
+      <ul>${o.notes.filter(n => ["Pros", "Cons"].includes(n[0])).map(([k, v]) => `<li><b>${esc(k)}:</b> ${esc(v)}</li>`).join("")}</ul>
+      <div class="controls">
+        <div class="stars" role="group" aria-label="Rate ${esc(o.name)}">
+          <span class="label">Rating</span>
+          ${[1, 2, 3, 4, 5].map(n => `<button type="button" class="star" data-star="${n}" aria-label="${n} of 5" aria-pressed="false">★</button>`).join("")}
+        </div>
+        <div class="decide">
+          <button type="button" class="btn-c" data-act="accepted" aria-pressed="false">Accept</button>
+          <button type="button" class="btn-c" data-act="rejected" aria-pressed="false">Reject</button>
+        </div>
+        <div class="notes">
+          <label for="notes-${o.id}">Notes</label>
+          <textarea id="notes-${o.id}" placeholder="What works, what doesn't"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="stage">${specimen(o)}</div>
+  </section>`;
+}
+
+function summaryPage() {
+  return `
+  <section class="summary" data-summary>
+    <div class="summary-inner">
+      <h2>Summary</h2>
+      <div class="compare">
+        ${OPTIONS.map((o, i) => `
+          <button type="button" class="cmp" data-goto="${i}" aria-label="Go to ${esc(o.name)}">
+            <span class="strip">${o.swatches.flatMap(([, items]) => items).map(([, hex]) => `<span style="background:${hex}"></span>`).join("")}</span>
+            <span class="body">
+              <b>${o.id} · ${esc(o.name)}</b>
+              <span class="meta" data-cmp-meta="${o.id}"></span>
+              <span class="note" data-cmp-note="${o.id}"></span>
+            </span>
+          </button>`).join("")}
+      </div>
+      <pre id="summary-text"></pre>
+      <div class="summary-actions">
+        <button class="btn-c" id="copy-btn" type="button">Copy summary</button>
+        <button class="btn-c" id="reset-btn" type="button">Start over</button>
+        <span class="msg" id="summary-msg"></span>
+      </div>
+    </div>
+  </section>`;
+}
+
+/* ---------- Render ---------- */
+const main = document.getElementById("main");
+main.innerHTML = OPTIONS.map(optionPage).join("") + summaryPage();
+const pageEls = [...main.children];
+
+function statusText(p) {
+  const bits = [];
+  if (p.rating) bits.push(`${p.rating}/5`);
+  if (p.status) bits.push(p.status);
+  return bits.join(" · ");
+}
+
+function render() {
+  pageEls.forEach((el, i) => { el.hidden = i !== state.page; });
+  document.getElementById("count").textContent = `${state.page + 1} / ${PAGES.length}`;
+  document.getElementById("prev").disabled = state.page === 0;
+  document.getElementById("next").disabled = state.page === PAGES.length - 1;
+
+  document.getElementById("tabs").innerHTML = PAGES.map((id, i) => {
+    if (id === "summary") return `<button type="button" class="tab" data-goto="${i}" ${i === state.page ? 'aria-current="page"' : ""}>Summary</button>`;
+    const o = OPTIONS[i], p = pick(id), st = statusText(p);
+    return `<button type="button" class="tab" data-goto="${i}" ${i === state.page ? 'aria-current="page"' : ""}><span class="dot" style="background:${o.body.accent}"></span>${id} · ${esc(o.name)}${st ? ` <span class="state">${esc(st)}</span>` : ""}</button>`;
+  }).join("");
+
+  pageEls.forEach(el => {
+    const id = el.dataset.opt;
+    if (!id) return;
+    const p = pick(id);
+    el.querySelector("[data-badge]").textContent = p.status === "accepted" ? "Accepted" : p.status === "rejected" ? "Rejected" : "";
+    el.querySelectorAll(".star").forEach(b => {
+      b.classList.toggle("on", Number(b.dataset.star) <= p.rating);
+      b.setAttribute("aria-pressed", String(Number(b.dataset.star) === p.rating));
+    });
+    el.querySelectorAll("[data-act]").forEach(b => b.setAttribute("aria-pressed", String(p.status === b.dataset.act)));
+    const ta = el.querySelector("textarea");
+    if (document.activeElement !== ta && ta.value !== p.notes) ta.value = p.notes;
+  });
+
+  renderSummary();
+}
+
+function renderSummary() {
+  OPTIONS.forEach(o => {
+    const p = pick(o.id);
+    const card = main.querySelector(`.cmp[data-goto="${OPTIONS.indexOf(o)}"]`);
+    card.classList.toggle("is-accepted", p.status === "accepted");
+    card.classList.toggle("is-rejected", p.status === "rejected");
+    main.querySelector(`[data-cmp-meta="${o.id}"]`).textContent = statusText(p) || "Not rated yet";
+    main.querySelector(`[data-cmp-note="${o.id}"]`).textContent = p.notes.trim();
+  });
+  const acc = OPTIONS.find(o => pick(o.id).status === "accepted");
+  const lines = [`Color, round ${ROUND}`, acc ? `Accepted: ${acc.id} (${acc.name})` : "Accepted: none yet", ""];
+  OPTIONS.forEach(o => {
+    const p = pick(o.id);
+    lines.push(`${o.id} ${o.name}: ${statusText(p) || "unrated"}`);
+    if (p.notes.trim()) lines.push(`   Notes: ${p.notes.trim().replace(/\n+/g, " / ")}`);
+  });
+  document.getElementById("summary-text").textContent = lines.join("\n");
+}
+
+function go(i) {
+  state.page = Math.max(0, Math.min(PAGES.length - 1, i));
+  save();
+  render();
+  const el = pageEls[state.page];
+  el.querySelectorAll(".side, .stage, .summary").forEach(s => s.scrollTop = 0);
+  window.scrollTo(0, 0);
+}
+
+/* ---------- Events ---------- */
+document.getElementById("prev").addEventListener("click", () => go(state.page - 1));
+document.getElementById("next").addEventListener("click", () => go(state.page + 1));
+document.addEventListener("keydown", ev => {
+  if (ev.target.closest("textarea, input")) return;
+  if (ev.key === "ArrowRight") go(state.page + 1);
+  if (ev.key === "ArrowLeft") go(state.page - 1);
+});
+
+document.addEventListener("click", ev => {
+  const g = ev.target.closest("[data-goto]");
+  if (g) { go(Number(g.dataset.goto)); return; }
+  const page = ev.target.closest("[data-opt]");
+  if (!page) return;
+  const id = page.dataset.opt, p = pick(id);
+  const star = ev.target.closest("[data-star]");
+  const act = ev.target.closest("[data-act]");
+  if (star) {
+    const n = Number(star.dataset.star);
+    p.rating = p.rating === n ? 0 : n;
+  } else if (act) {
+    const want = act.dataset.act;
+    if (p.status === want) p.status = null;
+    else {
+      if (want === "accepted") OPTIONS.forEach(o => { if (pick(o.id).status === "accepted") pick(o.id).status = null; });
+      p.status = want;
+    }
+  } else return;
+  save();
+  render();
+});
+
+let noteTimer;
+document.addEventListener("input", ev => {
+  const ta = ev.target.closest("textarea");
+  if (!ta) return;
+  pick(ta.closest("[data-opt]").dataset.opt).notes = ta.value;
+  clearTimeout(noteTimer);
+  noteTimer = setTimeout(() => { save(); render(); }, 400);
+});
+
+document.getElementById("copy-btn").addEventListener("click", async () => {
+  const msg = document.getElementById("summary-msg");
+  const pre = document.getElementById("summary-text");
+  try {
+    await navigator.clipboard.writeText(pre.textContent);
+    msg.textContent = "Copied. Paste it into the chat.";
+  } catch (e) {
+    const r = document.createRange(); r.selectNodeContents(pre);
+    const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    msg.textContent = "Selected. Press Cmd+C to copy.";
+  }
+});
+
+let resetArmed = false;
+document.getElementById("reset-btn").addEventListener("click", ev => {
+  const msg = document.getElementById("summary-msg");
+  if (!resetArmed) {
+    resetArmed = true;
+    ev.target.textContent = "Click again to clear everything";
+    setTimeout(() => { resetArmed = false; ev.target.textContent = "Start over"; }, 4000);
+    return;
+  }
+  resetArmed = false;
+  ev.target.textContent = "Start over";
+  state = { picks: {}, page: state.page };
+  save();
+  main.querySelectorAll("textarea").forEach(t => t.value = "");
+  render();
+  msg.textContent = "Cleared.";
+});
+
+render();
+</script>
+</body>
+</html>
