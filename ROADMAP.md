@@ -50,9 +50,8 @@ Legacy remote branches `Staging` (identical to `main`) and `prelim-test` (an ear
 
 ## Phase 1: Discovery & Positioning
 - [x] (prep) Seed research carried over from an earlier chat → `docs/research/prior-research.md`
-- [ ] (prep) Research brief: the questions Molly answers so the research can be tailored to her → `docs/research/research-brief.md`
 - [ ] (prep) Brand direction intake questionnaire → `docs/research/brand-intake.md`
-- [ ] (session) Answer the research brief: target roles, seniority, company types, domains, her candidate projects
+- [x] (session) Targeting: roles, seniority, domains, strengths → `docs/research/targeting.md`
 - [ ] (session) Market research, tailored to her answers: how hiring and portfolio expectations have changed for *her* target roles since ~2022, verifying and citing the seed → `docs/research/market.md`
 - [ ] (session) Positioning statement / one-line pitch
 - [ ] (session) Select 3–4 case studies (flag any confidentiality agreement constraints, e.g. Code.org work)

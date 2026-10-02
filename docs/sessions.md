@@ -14,7 +14,7 @@ The PM plan: how the [roadmap](../ROADMAP.md) turns into working sessions with M
 |-----------|-------------|--------|--------|
 | Clone repo, local branches | S1 | Done | `archive/squarespace`, `redesign` |
 | Seed research | S1 | Done | `docs/research/prior-research.md` |
-| Research brief | S1 | — | `docs/research/research-brief.md` |
+| Targeting | S1 | Done | `docs/research/targeting.md` |
 | Brand intake questionnaire | S1 / S2 | — | `docs/research/brand-intake.md` |
 | Stack choice + skeleton scaffold | S2 | — | `redesign` branch |
 | Content model (`status` field) | S2 | — | `redesign` branch |
@@ -26,14 +26,14 @@ The PM plan: how the [roadmap](../ROADMAP.md) turns into working sessions with M
 ## S1 — Kickoff, Research & Positioning
 *Phases 0–1 · likely two sittings*
 
-**Prep:** research brief · seed research (`prior-research.md`) as a starting hypothesis · brand intake questionnaire
+**Prep:** targeting (`targeting.md`) · seed research (`prior-research.md`) as a starting hypothesis · brand intake questionnaire
 
 The research is done *with* Molly, not for her: it has to be tailored to the roles and companies she's targeting, and her answers steer it.
 
 **Agenda**
 1. Walk through the plan and how the sessions will run (10 min)
 2. Molly adds Carlos as a collaborator (Settings → Collaborators); push the branches
-3. Research brief: Molly answers who she's targeting (roles, seniority, company types, domains) and which projects she's considering
+3. Targeting: done ahead of the session (`targeting.md`); confirm with Molly
 4. Market research: Claude researches against her answers, using the seed as hypotheses to confirm or drop. Review the findings together.
 5. Positioning: one-line pitch, informed by the research
 6. Case study selection: from her newer work (Code.org? this rebuild?). Shortlist 3–4, all deep; flag confidentiality agreement constraints
