@@ -3,6 +3,8 @@ import { PageShell } from "@/components/layout/PageShell";
 import { Button } from "@/components/ui/Button";
 import { BrowserFrame, Stage } from "@/components/ui/Shot";
 import { Annotated, BeforeAfter, PrototypeFrame, ShotPair } from "@/components/ui/figures";
+import { Tag } from "@/components/ui/Tag";
+import { Check, Clock } from "@/components/ui/icons";
 import { Split } from "@/components/ui/Split";
 import { Callout, CompareTable, Decision, PullQuote, Retrospective, StatRow, Sticky, ThreeUp, Timeline } from "@/components/ui/content";
 import { CaseStudyCard } from "@/components/ui/CaseStudyCard";
@@ -142,6 +144,20 @@ export default function StyleGuide() {
               <a className="btn btn-secondary" aria-disabled="true" href="#buttons">Secondary</a>
             </div>
             <p>Inline links are <a href="#buttons">underlined</a> and thicken on hover. Keyboard focus draws a 3px outline in the current text color.</p>
+          </Region>
+        </Section>
+
+        <Section id="tags" title="Tags" lede="One component for every small label. 28px tall, 12px bold uppercase text, 4px corners. The tone only changes the fill. Text on the color tone is chosen automatically to meet WCAG AA.">
+          <Region color="#4A44C6">
+            <div className="sg-row">
+              <Tag>Outline</Tag>
+              <Tag tone="color">Color</Tag>
+              <Tag tone="solid">Solid</Tag>
+              <span style={{ background: "#555", padding: 12, borderRadius: 8, display: "inline-flex" }}><Tag tone="dark">Dark</Tag></span>
+              <Tag icon={<Check />}>With icon</Tag>
+              <Tag tone="solid" icon={<Clock />}>With icon</Tag>
+            </div>
+            <p className="sg-code">Use outline for topics and neutral states, color for labels that name a thing (Prototype, Annotation), solid for a chosen or &ldquo;after&rdquo; state, dark over imagery.</p>
           </Region>
         </Section>
 

@@ -1,3 +1,4 @@
+import { Tag } from "@/components/ui/Tag";
 import { PageShell } from "@/components/layout/PageShell";
 import { Button } from "@/components/ui/Button";
 import { CaseStudyCard } from "@/components/ui/CaseStudyCard";
@@ -56,7 +57,7 @@ export default function Home() {
         <section id="about" className="section" aria-labelledby="about-title">
           <div className="about-grid">
             <div className="portrait" role="img" aria-label="Placeholder portrait">
-              <span className="ph-label">Placeholder</span>
+              <Tag tone="dark" className="ph-label">Placeholder</Tag>
             </div>
             <div className="about-copy">
               <span className="eyebrow">About</span>

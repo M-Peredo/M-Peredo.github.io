@@ -1,3 +1,4 @@
+import { Tag } from "./Tag";
 import type { ReactNode } from "react";
 
 // Placeholder product visuals. Each one is a generic, text-free app screen drawn
@@ -269,7 +270,7 @@ export function Stage({ variant = "dashboard", label = true, className = "" }: {
       <div className="stage-window">
         <Shot variant={variant} />
       </div>
-      {label && <span className="ph-label">Placeholder</span>}
+      {label && <Tag tone="dark" className="ph-label">Placeholder</Tag>}
     </div>
   );
 }
@@ -284,7 +285,7 @@ export function BrowserFrame({ variant = "dashboard", label = true, tone = "norm
       </div>
       <div className="browser-body">
         {children ?? <Shot variant={variant} />}
-        {label && <span className="ph-label">Placeholder</span>}
+        {label && <Tag tone="dark" className="ph-label">Placeholder</Tag>}
       </div>
     </div>
   );

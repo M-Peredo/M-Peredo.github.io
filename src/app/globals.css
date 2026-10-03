@@ -256,13 +256,16 @@ a:hover { text-decoration-thickness: 2px; }
 .card-cta { display: inline-flex; align-items: center; gap: 0.5em; font-weight: 700; margin-top: var(--space-2); }
 .card-cta svg { transition: transform var(--fast) var(--ease); }
 .card:hover .card-cta svg { transform: translateX(4px); }
-/* Tag spec: every small tag, badge and verdict label shares this geometry. They differ only by fill. */
-.tag, .ph-label, .ba-badge, .verdict, .sticky strong, .proto-tag {
+/* Tag (see Tag.tsx): every small tag, badge and state label. One geometry; the tone only changes the fill. */
+.tag {
   display: inline-flex; align-items: center; gap: var(--space-2); width: fit-content; height: 1.75rem; padding: 0 var(--space-3);
-  border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 700; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap;
+  border: 1px solid transparent; border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 700; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap;
 }
+.tag-outline { border-color: var(--rule); color: var(--fg2); }
+.tag-color { background: var(--cs-tag-bg, var(--fg)); color: var(--cs-tag-fg, var(--bg)); }
+.tag-solid { background: var(--fg); color: var(--bg); }
+.tag-dark { background: rgb(0 0 0 / 0.7); color: #fff; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 0; list-style: none; }
-.tag { border: 1px solid var(--rule); }
 
 @media (min-width: 880px) {
   .card-featured { grid-column: 1 / -1; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); align-items: center; padding: var(--space-3); gap: var(--space-6); }
@@ -317,7 +320,6 @@ a:hover { text-decoration-thickness: 2px; }
 .shot { display: block; width: 100%; height: auto; }
 .ph-label {
   position: absolute; left: 12px; bottom: 12px; z-index: 1;
-  background: rgb(0 0 0 / 0.7); color: #fff;
 }
 
 /* Tinted backdrop with a window floating on it */
@@ -341,8 +343,6 @@ a:hover { text-decoration-thickness: 2px; }
 .pair { display: grid; gap: var(--space-4); grid-template-columns: 1fr 1fr; align-items: start; }
 
 .ba { display: grid; gap: var(--space-3); }
-.ba-badge { justify-self: start; border: 1px solid var(--fg2); color: var(--fg2); }
-.ba-badge-after { background: var(--fg); color: var(--bg); border-color: var(--fg); }
 .ba-note { font-size: 0.875rem; color: var(--fg2); }
 
 .annotated { display: grid; gap: var(--space-6); grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); align-items: start; }
@@ -365,7 +365,6 @@ a:hover { text-decoration-thickness: 2px; }
 .proto { background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius-lg); overflow: hidden; }
 .proto-head { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); padding: var(--card-pad-sm) var(--card-pad); font-size: 0.875rem; font-weight: 700; }
 .proto-title { display: inline-flex; align-items: center; gap: var(--space-3); min-width: 0; }
-.proto-tag { background: var(--cs-tag-bg, var(--fg)); color: var(--cs-tag-fg, var(--bg)); }
 .proto-open { display: inline-flex; align-items: center; gap: 6px; color: var(--fg2); font-weight: 700; white-space: nowrap; }
 .proto-stage { position: relative; width: 100%; overflow: hidden; background: #fff; }
 .proto-iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: top left; background: #fff; }
@@ -418,7 +417,6 @@ a:hover { text-decoration-thickness: 2px; }
 /* Annotation note: a neutral card with the small solid tag at the top-left, in the case study color. Text on the tag is white or
    near-black, chosen for contrast (always at least 4.5:1). Body text stays plain and full-contrast. */
 .sticky { display: grid; gap: var(--space-3); font-size: 1rem; background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: var(--card-pad); }
-.sticky strong { background: var(--cs-tag-bg, var(--fg)); color: var(--cs-tag-fg, var(--bg)); }
 .sticky p { margin: 0; color: var(--fg); }
 .decision { background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: var(--card-pad); display: grid; gap: var(--space-5); }
 .decision header { display: grid; gap: var(--space-2); }
@@ -426,10 +424,8 @@ a:hover { text-decoration-thickness: 2px; }
 .options { list-style: none; padding: 0; display: grid; gap: var(--card-gap); grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
 .option { display: grid; gap: var(--space-2); align-content: start; background: var(--bg); border: 1px solid var(--rule); border-radius: var(--radius); padding: var(--card-pad-sm); }
 .option p { font-size: 0.875rem; color: var(--fg2); line-height: 1.55; }
-.verdict { justify-self: start; border: 1px solid var(--rule); color: var(--fg2); }
 .option-chosen { border: 2px solid var(--cs-source, var(--fg)); }
-.option-chosen .verdict { background: var(--fg); color: var(--bg); border-color: var(--fg); }
-.option-rejected strong { text-decoration: line-through; text-decoration-thickness: 1px; opacity: 0.8; }
+.option-chosen .option-rejected strong { text-decoration: line-through; text-decoration-thickness: 1px; opacity: 0.8; }
 .option-deferred { border-style: dashed; }
 .decision-note { border-top: 1px solid var(--rule); padding-top: var(--space-4); color: var(--fg2); }
 
@@ -463,12 +459,13 @@ a:hover { text-decoration-thickness: 2px; }
 .statrow b { white-space: nowrap; font-family: var(--font-display); font-size: var(--fs-metric); line-height: 1; font-weight: 500; letter-spacing: 0.005em; font-variant-numeric: lining-nums tabular-nums; }
 .statrow span { font-size: 0.875rem; color: var(--fg2); line-height: 1.4; max-width: 24ch; }
 
-.retro { margin-top: var(--space-7); background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: var(--card-pad); display: grid; gap: var(--space-6); }
-.retro-cols { display: grid; gap: var(--space-6) var(--space-7); grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
-.retro h3 { font-size: 1.25rem; margin-bottom: var(--space-3); }
-.retro ul { list-style: none; padding: 0; display: grid; gap: var(--space-3); }
-.retro li { padding-left: 22px; position: relative; color: var(--fg2); font-size: 1rem; line-height: 1.55; }
-.retro li::before { content: ""; position: absolute; left: 0; top: calc(0.775em - 1px); width: 10px; height: 2px; background: var(--cs-source, var(--fg)); }
+.retro { margin-top: var(--space-7); display: grid; gap: var(--card-gap); }
+.retro > .eyebrow { margin-bottom: calc(var(--space-2) * -1); }
+.retro-card { background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: var(--card-pad); display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: var(--space-4) var(--space-6); align-items: start; }
+.retro-card h3 { margin: 0; font-size: inherit; line-height: 1; }
+.retro-card ul { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-4); }
+.retro-card li { color: var(--fg); line-height: 1.7; }
+.retro-card li + li { padding-top: var(--space-4); border-top: 1px solid var(--rule); }
 
 @media (max-width: 760px) {
   .pair, .annotated { grid-template-columns: 1fr; }
@@ -586,3 +583,5 @@ textarea.bi { resize: vertical; }
 .bcode { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.75rem; min-height: 320px; white-space: pre; }
 
 @media (max-width: 1100px) { .bmain { grid-template-columns: 200px minmax(0, 1fr) 280px; } }
+
+@media (max-width: 720px) { .retro-card { grid-template-columns: 1fr; } }

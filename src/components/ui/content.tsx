@@ -1,5 +1,6 @@
+import { Tag } from "./Tag";
 import type { ReactNode } from "react";
-import { Check, Cross, Clock } from "./icons";
+import { ArrowRight, Check, Cross, Clock } from "./icons";
 
 export function PullQuote({ who, role, children }: { who: string; role?: string; children: ReactNode }) {
   return (
@@ -25,7 +26,7 @@ export function Callout({ label = "Key insight", children }: { label?: string; c
 export function Sticky({ label = "Annotation", children }: { label?: string; children: ReactNode }) {
   return (
     <aside className="sticky">
-      <strong>{label}</strong>
+      <Tag tone="color" as="strong">{label}</Tag>
       {typeof children === "string" ? <p>{children}</p> : children}
     </aside>
   );
@@ -43,10 +44,7 @@ export function Decision({ id, question, options, children }: { id?: string; que
       <ul className="options">
         {options.map((o) => (
           <li key={o.name} className={`option option-${o.verdict.toLowerCase()}`}>
-            <span className="verdict">
-              {o.verdict === "Chosen" ? <Check /> : o.verdict === "Rejected" ? <Cross /> : <Clock />}
-              {o.verdict}
-            </span>
+            <Tag tone={o.verdict === "Chosen" ? "solid" : "outline"} icon={o.verdict === "Chosen" ? <Check /> : o.verdict === "Rejected" ? <Cross /> : <Clock />}>{o.verdict}</Tag>
             <strong>{o.name}</strong>
             <p>{o.why}</p>
           </li>
@@ -122,23 +120,19 @@ export function ThreeUp({ items }: { items: Item[] }) {
 }
 
 export function Retrospective({ worked, change, next }: { worked: string[]; change: string[]; next?: string[] }) {
-  const cols: [string, string[]][] = [["What worked", worked], ["What I'd change", change]];
-  if (next) cols.push(["What's next", next]);
+  const cols: [string, string[], ReactNode][] = [["What worked", worked, <Check key="w" />], ["What I'd change", change, <Clock key="c" />]];
+  if (next) cols.push(["What's next", next, <ArrowRight key="n" />]);
   return (
     <section className="retro wide" aria-label="Retrospective">
-      <header>
-        <span className="eyebrow">Retrospective</span>
-      </header>
-      <div className="retro-cols">
-        {cols.map(([title, items]) => (
-          <div key={title}>
-            <h3>{title}</h3>
-            <ul>
-              {items.map((i) => <li key={i}>{i}</li>)}
-            </ul>
-          </div>
-        ))}
-      </div>
+      <span className="eyebrow">Retrospective</span>
+      {cols.map(([title, items, icon]) => (
+        <div className="retro-card" key={title}>
+          <h3><Tag tone="color" icon={icon}>{title}</Tag></h3>
+          <ul>
+            {items.map((i) => <li key={i}>{i}</li>)}
+          </ul>
+        </div>
+      ))}
     </section>
   );
 }

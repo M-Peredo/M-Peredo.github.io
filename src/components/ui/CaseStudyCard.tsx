@@ -1,3 +1,4 @@
+import { Tag } from "./Tag";
 import Link from "next/link";
 import type { CaseStudy } from "@/lib/case-studies";
 import { contentStyle } from "@/lib/color";
@@ -14,7 +15,7 @@ export function CaseStudyCard({ study, featured = false }: { study: CaseStudy; f
         <h3>{study.title}</h3>
         <p className="card-hook">{study.hook}</p>
         <ul className="tags">
-          {study.tags.map((t) => <li key={t} className="tag">{t}</li>)}
+          {study.tags.map((t) => <Tag as="li" key={t}>{t}</Tag>)}
         </ul>
         <span className="card-cta">Read case study <ArrowRight /></span>
       </div>

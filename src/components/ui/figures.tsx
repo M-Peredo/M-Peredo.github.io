@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { BrowserFrame, Shot, type ShotVariant } from "./Shot";
+import { Tag } from "./Tag";
 import { PrototypeEmbed, PrototypeOpen } from "./PrototypeEmbed";
 
 export function Figure({ id, caption, children, wide = true }: { id?: string; caption?: ReactNode; children: ReactNode; wide?: boolean }) {
@@ -35,12 +36,12 @@ export function BeforeAfter({ before = "dashboard", after = "editor", beforeNote
     <Figure caption={caption}>
       <div className="pair">
         <div className="ba">
-          <span className="ba-badge">Before</span>
+          <Tag>Before</Tag>
           <BrowserFrame variant={before} tone="muted" />
           {beforeNote && <p className="ba-note">{beforeNote}</p>}
         </div>
         <div className="ba">
-          <span className="ba-badge ba-badge-after">After</span>
+          <Tag tone="solid">After</Tag>
           <BrowserFrame variant={after} />
           {afterNote && <p className="ba-note">{afterNote}</p>}
         </div>
@@ -87,7 +88,7 @@ export function PrototypeFrame({ id = "prototype", src = "/prototypes/sample/ind
     <Figure id={id} caption={caption}>
       <div className="proto">
         <div className="proto-head">
-          <span className="proto-title"><span className="proto-tag">Prototype</span>{title}</span>
+          <span className="proto-title"><Tag tone="color">Prototype</Tag>{title}</span>
           <PrototypeOpen src={src} />
         </div>
         <PrototypeEmbed src={src} title={title} width={width} height={height} poster={<Shot variant={variant} />} />
