@@ -47,10 +47,10 @@ function attr(key: string, v: any): string {
   return `${key}={${json}}`;
 }
 
-function jsx(name: string, props: Record<string, any>, children?: string, raw = false): string {
+function jsx(name: string, props: Record<string, any>, children?: string): string {
   const entries = Object.entries(props).filter(([, v]) => v !== undefined && v !== "");
   const open = entries.length ? `<${name}\n${entries.map(([k, v]) => "  " + attr(k, v)).join("\n")}\n` : `<${name}`;
-  if (children) return `${open}>\n${raw ? children : escText(children)}\n</${name}>`;
+  if (children) return `${open}>\n${escText(children)}\n</${name}>`;
   return entries.length ? `${open}/>` : `${open} />`;
 }
 
@@ -220,14 +220,14 @@ export const BLOCKS: Record<string, BlockDef> = {
   },
   sticky: {
     label: "Annotation note", group: "Story", hint: "A short narrated aside", wide: false,
-    defaults: () => ({ variant: "rule", label: "Annotation", text: "Totam rem aperiam, ==eaque ipsa quae ab illo== inventore veritatis et quasi architecto beatae vitae dicta sunt." }),
+    defaults: () => ({ variant: "rule", label: "Annotation", text: "Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt." }),
     fields: [
-      { kind: "select", key: "variant", label: "Style", options: [["rule", "Rule above"], ["underline", "Underlined words"], ["panel", "Panel"]] },
+      { kind: "select", key: "variant", label: "Style", options: [["rule", "Rule with label"], ["margin", "Margin note"], ["panel", "Panel"]] },
       { kind: "text", key: "label", label: "Label" },
-      { kind: "textarea", key: "text", label: "Text (wrap the words to mark in ==double equals==)" },
+      { kind: "textarea", key: "text", label: "Text" },
     ],
     render: (p) => <Sticky label={p.label} variant={p.variant ?? "rule"}>{p.text}</Sticky>,
-    mdx: (p) => jsx("Sticky", { label: p.label, variant: p.variant && p.variant !== "rule" ? p.variant : undefined }, escText(p.text).replace(/==(.+?)==/g, "<mark>$1</mark>"), true),
+    mdx: (p) => jsx("Sticky", { label: p.label, variant: p.variant && p.variant !== "rule" ? p.variant : undefined }, p.text),
   },
   decision: {
     label: "The hard call", group: "Story", hint: "Options considered and what was chosen", wide: true,

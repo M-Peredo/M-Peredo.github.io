@@ -174,13 +174,13 @@ export default function StyleGuide() {
           </Region>
         </Section>
 
-        <Section id="notes" title="Annotation note options" lede="Three ways to set the short narrated aside. Color appears only on the words the author marks, so the text stays easy to read. Wrap words in ==double equals== (or use <mark> in an MDX file) to mark them.">
+        <Section id="notes" title="Annotation note options" lede="Three ways to set the short narrated aside. Plain, full-contrast text; the label is a small flag like the annotated screenshot markers.">
           <Region color="#0FA3B1">
             <div style={{ display: "grid", gap: 56 }}>
-              {(["rule", "underline", "panel"] as const).map((v, i) => (
+              {(["margin", "panel", "rule"] as const).map((v, i) => (
                 <div key={v} style={{ display: "grid", gap: 12 }}>
-                  <p className="eyebrow">{"ABC"[i]} · {({ rule: "Rule above, highlighted words", underline: "Rule above, underlined words", panel: "Panel, highlighted words" })[v]}</p>
-                  <Sticky label="Annotation" variant={v}>Totam rem aperiam, ==eaque ipsa quae ab illo inventore== veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia ==voluptas sit aspernatur== aut odit aut fugit.</Sticky>
+                  <p className="eyebrow">{"ABC"[i]} · {({ margin: "Margin note", panel: "Panel", rule: "Rule with label" })[v]}</p>
+                  <Sticky label="Annotation" variant={v}>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</Sticky>
                 </div>
               ))}
             </div>

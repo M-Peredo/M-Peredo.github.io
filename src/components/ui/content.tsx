@@ -22,18 +22,13 @@ export function Callout({ label = "Key insight", children }: { label?: string; c
   );
 }
 
-export type StickyVariant = "rule" | "underline" | "panel";
-
-// Wrap words in ==double equals== (or <mark> in MDX) to mark the ones that matter.
-function withMarks(text: string): ReactNode[] {
-  return text.split(/==(.+?)==/g).map((part, i) => (i % 2 ? <mark key={i}>{part}</mark> : part));
-}
+export type StickyVariant = "rule" | "margin" | "panel";
 
 export function Sticky({ label = "Note to self", variant = "rule", children }: { label?: string; variant?: StickyVariant; children: ReactNode }) {
   return (
     <aside className={`sticky st-${variant}`}>
       <strong>{label}</strong>
-      {typeof children === "string" ? <p>{withMarks(children)}</p> : children}
+      {typeof children === "string" ? <p>{children}</p> : children}
     </aside>
   );
 }
