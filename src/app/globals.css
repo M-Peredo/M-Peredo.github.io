@@ -184,9 +184,8 @@ a:hover { text-decoration-thickness: 2px; }
   text-decoration: none; cursor: pointer;
   transition: transform var(--fast) var(--ease), background-color var(--fast), border-color var(--fast);
 }
-.btn-icon { transition: transform var(--fast) var(--ease); font-size: 1.125rem; }
-.btn:hover, .btn.is-hover { text-decoration: none; transform: translateY(-1px); }
-.btn:hover .btn-icon, .btn.is-hover .btn-icon { transform: translateX(3px); }
+.btn-icon { font-size: 1.125rem; }
+.btn:hover, .btn.is-hover { text-decoration: none; transform: translateY(-2px); }
 .btn:active { transform: translateY(0); }
 .btn-primary { background: var(--btn); color: var(--btn-fg); }
 .btn-primary:hover, .btn-primary.is-hover { background: color-mix(in srgb, var(--btn) 88%, var(--bg)); }
@@ -254,8 +253,6 @@ a:hover { text-decoration-thickness: 2px; }
 .card-meta { font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg2); font-weight: 700; }
 .card-hook { color: var(--fg2); font-size: 1rem; }
 .card-cta { display: inline-flex; align-items: center; gap: 0.5em; font-weight: 700; margin-top: var(--space-2); }
-.card-cta svg { transition: transform var(--fast) var(--ease); }
-.card:hover .card-cta svg { transform: translateX(4px); }
 /* Tag (see Tag.tsx): every small tag, badge and state label. One geometry; the tone only changes the fill. */
 .tag {
   display: inline-flex; align-items: center; gap: var(--space-2); width: fit-content; height: 1.75rem; padding: 0 var(--space-3);
@@ -310,7 +307,7 @@ a:hover { text-decoration-thickness: 2px; }
   display: grid; gap: var(--space-2); padding: var(--card-pad); border-radius: var(--radius-lg); text-decoration: none;
   transition: transform var(--base) var(--ease);
 }
-.pager-link:hover { transform: translateY(-3px); text-decoration: none; }
+.pager-link:hover { transform: translateY(-4px); text-decoration: none; }
 .pager-link small { color: var(--fg2); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 0.5em; }
 .pager-link span { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; line-height: 1.2; }
 .pager-link.next { text-align: right; }
@@ -371,7 +368,7 @@ a:hover { text-decoration-thickness: 2px; }
 .proto-poster { position: absolute; inset: 0; width: 100%; padding: 0; border: 0; cursor: pointer; display: block; line-height: 0; background: none; }
 .proto-poster::after { content: ""; position: absolute; inset: 0; background: rgb(0 0 0 / 0.55); }
 .proto-cta { position: absolute; inset: 0; z-index: 1; display: grid; place-items: center; pointer-events: none; }
-.proto-poster:hover .btn-primary { background: color-mix(in srgb, var(--btn) 88%, var(--bg)); transform: translateY(-1px); }
+.proto-poster:hover .btn-primary { background: color-mix(in srgb, var(--btn) 88%, var(--bg)); transform: translateY(-2px); }
 .proto-poster:focus-visible { outline-offset: -3px; }
 @media (max-width: 640px) { .proto-stage { display: none; } }
 
