@@ -138,3 +138,4 @@ Legacy remote branches `Staging` (identical to `main`) and `prelim-test` (an ear
 | 2026-10-02 | Molly writes her own copy; in Phase 3 Claude helps her brainstorm copy and visuals |
 | 2026-10-02 | Positioning is a placeholder until Molly is ready |
 | 2026-10-02 | Brand intake questionnaire retired; the design system checklist covers it |
+| 2026-10-02 | Color direction (concept, specifics still open): dark mode with a neutral black/gray base; each case study card and page takes its background color from its own screenshot ("Rich" tint). Red dropped as the primary because it clashed with Code.org's content. |

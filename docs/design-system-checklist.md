@@ -48,6 +48,26 @@ A red that reads as a scarf fails text contrast on black, but passes on off-whit
 
 ---
 
+## Direction: content-driven color (2026-10-02)
+
+Molly is leaning toward a dark site with a neutral black and gray base. Each case study takes its color from its own content. Concept only, so specifics can change. This replaces the earlier red-based palettes, which clashed with Code.org's colorful screenshots.
+
+**How the concept behaves** (prototyped with three Code.org screenshots):
+- **Site base:** near-black page, grays for secondary text and borders, no brand color of its own.
+- **Case study card on the work page:** the card background is a color pulled from that case study's screenshot, so the color shows before it's opened.
+- **Case study page:** the whole page background uses the same color.
+- **Strength: "Rich".** The pulled color is blended toward black at about 55% color, 45% black. "Deep" (30%) read as mostly black and "Full" (100%) as too loud.
+- **Pulling the color:** sample the screenshot, ignore near-black, near-white and low-saturation pixels, group the rest by hue, and take the average of the strongest hue weighted toward mid-lightness and high saturation.
+- **Text color:** chosen automatically as white or near-black, depending on the background's brightness. Buttons, rules and secondary text follow.
+
+**Open questions for the Phase 2 session:**
+- Where color is stored: pulled automatically at build time or in the browser, or set by hand per case study in its Markdown file (hand-set is safer and lets Molly tune it)
+- A fallback color for a screenshot with no strong color
+- Guaranteeing contrast for every pulled color, not only the three tested
+- Whether the site needs any accent of its own beyond the per-case-study colors (links, focus ring, buttons on the home page)
+- Dark only, or also a light version
+- Whether the colored cards still look good next to each other on the work page (three bright cards in a row)
+
 ## Checklist
 
 ### Decisions for Molly to make first
@@ -60,7 +80,7 @@ A red that reads as a scarf fails text contrast on black, but passes on off-whit
 - [ ] Wordmark or monogram?
 
 ### Foundations
-- [ ] **Color:** grey scale from black to white; the red accent plus text-safe versions for each background; surface levels; borders and dividers; backdrop behind screenshots; focus ring; error color (only if there's a contact form)
+- [ ] **Color:** (see "Direction: content-driven color" above) grey scale from black to white; the red accent plus text-safe versions for each background; surface levels; borders and dividers; backdrop behind screenshots; focus ring; error color (only if there's a contact form)
 - [ ] **Typography:** display, body, and possibly a small utility face for labels and datelines; type scale; line heights; reading width (about 65 characters per line); weights; heading styles H1–H4
 - [ ] **Text styles:** small label above headings, caption, pull quote, metric numbers (with digits that line up), inline links
 - [ ] **Spacing scale** and **layout grid**
