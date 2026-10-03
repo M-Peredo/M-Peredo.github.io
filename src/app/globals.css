@@ -388,14 +388,14 @@ a:hover { text-decoration-thickness: 2px; }
 .sticky { background: var(--panel-2); border: 1px dashed var(--cs-source, var(--fg2)); border-radius: 4px; padding: var(--space-4) var(--space-5); font-size: 1rem; transform: rotate(-0.8deg); display: grid; gap: var(--space-1); box-shadow: var(--shadow-sm); }
 .sticky strong { font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg2); }
 
-.decision { border: 1px solid var(--cs-source, var(--rule)); border-radius: var(--radius-lg); padding: clamp(20px, 4vw, 40px); display: grid; gap: var(--space-5); }
+.decision { background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: clamp(20px, 4vw, 40px); display: grid; gap: var(--space-5); }
 .decision header { display: grid; gap: var(--space-2); }
 .decision h3 { font-size: var(--fs-decision); margin: 0; }
 .options { list-style: none; padding: 0; display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
-.option { display: grid; gap: var(--space-2); align-content: start; background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius); padding: var(--space-4) var(--space-5); }
+.option { display: grid; gap: var(--space-2); align-content: start; background: var(--bg); border: 1px solid var(--rule); border-radius: var(--radius); padding: var(--space-4) var(--space-5); }
 .option p { font-size: 0.875rem; color: var(--fg2); line-height: 1.55; }
 .verdict { display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; justify-self: start; border-radius: 999px; padding: 4px 11px 4px 8px; border: 1px solid var(--rule); color: var(--fg2); }
-.option-chosen { border: 2px solid var(--fg); }
+.option-chosen { border: 2px solid var(--cs-source, var(--fg)); }
 .option-chosen .verdict { background: var(--fg); color: var(--bg); border-color: var(--fg); }
 .option-rejected strong { text-decoration: line-through; text-decoration-thickness: 1px; opacity: 0.8; }
 .option-deferred { border-style: dashed; }
@@ -404,7 +404,7 @@ a:hover { text-decoration-thickness: 2px; }
 .timeline { list-style: none; padding: 0; display: grid; gap: var(--space-5); position: relative; }
 .timeline li { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: var(--space-5); align-items: start; position: relative; }
 .timeline-when { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg2); padding-top: var(--space-5); position: relative; }
-.timeline-card { border: 1px solid var(--cs-source, var(--rule)); border-radius: var(--radius); padding: var(--space-5) var(--space-6); display: grid; gap: var(--space-2); position: relative; }
+.timeline-card { background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius); padding: var(--space-5) var(--space-6); display: grid; gap: var(--space-2); position: relative; }
 .timeline-card::before { content: ""; position: absolute; left: calc(-1 * var(--space-5) / 2 - 5px - 1px); top: 28px; width: 10px; height: 10px; border-radius: 50%; background: var(--cs-source, var(--fg)); box-shadow: 0 0 0 4px var(--color-base); }
 .timeline::before { content: ""; position: absolute; left: calc(130px + var(--space-5) / 2 - 1px); top: 30px; bottom: 30px; width: 2px; background: var(--cs-source, var(--rule)); opacity: 0.6; }
 .timeline-card h3 { font-size: 1.25rem; margin: 0; }
@@ -431,12 +431,12 @@ a:hover { text-decoration-thickness: 2px; }
 .statrow b { font-family: var(--font-display); font-size: var(--fs-stat); line-height: 1; font-weight: 700; letter-spacing: 0.005em; font-variant-numeric: lining-nums; }
 .statrow span { font-size: 0.875rem; color: var(--fg2); }
 
-.retro { margin-top: var(--space-7); border: 1px solid var(--cs-source, var(--rule)); border-radius: var(--radius-lg); padding: clamp(24px, 4vw, 48px); display: grid; gap: var(--space-6); }
+.retro { margin-top: var(--space-7); background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: clamp(24px, 4vw, 48px); display: grid; gap: var(--space-6); }
 .retro-cols { display: grid; gap: var(--space-6) var(--space-7); grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
 .retro h3 { font-size: 1.125rem; margin-bottom: var(--space-3); }
 .retro ul { list-style: none; padding: 0; display: grid; gap: var(--space-3); }
 .retro li { padding-left: 22px; position: relative; color: var(--fg2); font-size: 1rem; line-height: 1.55; }
-.retro li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 10px; height: 2px; background: var(--fg); }
+.retro li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 10px; height: 2px; background: var(--cs-source, var(--fg)); }
 
 @media (max-width: 760px) {
   .pair, .annotated { grid-template-columns: 1fr; }

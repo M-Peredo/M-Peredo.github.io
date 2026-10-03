@@ -35,7 +35,7 @@ export type Option = { name: string; verdict: "Chosen" | "Rejected" | "Deferred"
 
 export function Decision({ id, question, options, children }: { id?: string; question: string; options: Option[]; children?: ReactNode }) {
   return (
-    <section id={id} className="decision tinted wide" aria-label="Decision">
+    <section id={id} className="decision wide" aria-label="Decision">
       <header>
         <span className="eyebrow">The call</span>
         <h3>{question}</h3>
@@ -65,7 +65,7 @@ export function Timeline({ stages }: { stages: Stage[] }) {
       {stages.map((s) => (
         <li key={s.title}>
           <span className="timeline-when">{s.when}</span>
-          <div className="timeline-card tinted">
+          <div className="timeline-card">
             <h3>{s.title}</h3>
             <p>{s.text}</p>
             {s.stat && (
@@ -125,7 +125,7 @@ export function Retrospective({ worked, change, next }: { worked: string[]; chan
   const cols: [string, string[]][] = [["What worked", worked], ["What I'd change", change]];
   if (next) cols.push(["What's next", next]);
   return (
-    <section className="retro tinted wide" aria-label="Retrospective">
+    <section className="retro wide" aria-label="Retrospective">
       <header>
         <span className="eyebrow">Retrospective</span>
       </header>
