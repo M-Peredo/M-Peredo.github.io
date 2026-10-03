@@ -39,14 +39,15 @@ We stopped working in phases. Molly responds better to something real and tangib
 
 **Built (on `redesign`)**
 - Next.js static site (see [CLAUDE.md](CLAUDE.md) for the stack, rules and design system)
-- Design system: dark neutral base, content-driven color per case study, Fraunces + Atkinson type, spacing scale, buttons, cards, summary block, figures and frames, and 10+ content blocks
+- Design system: black neutral page, content-driven color per case study (cards, content boxes, accents), whole-even-pixel type scale, spacing scale, buttons, cards, summary block, figures and frames, and 11 content blocks. Fonts are still the placeholders (Fraunces + Atkinson); see the type decision below.
 - `/styleguide` page documenting all of it
 - Home page and three case study templates (multi-year program, end-to-end project, shipped-then-ongoing)
 - Case study status (`live` / `unlisted` / `draft`) working
+- Dev-only **layout builder** (`npm run dev`, then `/builder`): Molly drags blocks into a live preview, edits copy, saves layouts, and exports a real case study MDX file. Not part of the production build.
 
 **Next: iterate with Molly**
 - [ ] Review the placeholder site together; note what she likes, hates, wants different
-- [ ] Choose real type, and confirm or change the content-driven color approach
+- [ ] Type: choose the body font (Open Sans, Inter or Zen Kaku Gothic New), then weight and tracking only if needed. One question at a time. Then apply the chosen fonts to the site (Zen Kaku Gothic Antique is decided for headlines but **not yet applied**).
 - [ ] Replace placeholder visuals with real screenshots and prototypes
 - [ ] Write real copy, one case study at a time (Molly writes; Claude helps brainstorm copy and visuals). See [docs/case-study-guidance.md](docs/case-study-guidance.md).
 - [ ] Decide which 3 to 5 case studies are live
@@ -67,7 +68,7 @@ We stopped working in phases. Molly responds better to something real and tangib
 
 | Decision | Options | Lean | Notes |
 |----------|---------|------|-------|
-| Type | Headline font decided: Zen Kaku Gothic Antique. Body font next (Open Sans, Inter or Zen Kaku Gothic New), then weight and tracking | Molly's call | One question at a time in `docs/design/type-round-1.html` |
+| Body font | Open Sans · Inter · Zen Kaku Gothic New (16px medium) | Molly's call | Page open in `docs/design/type-round-1.html`. Headline font is decided. |
 | Content color source | Hand-set per case study (today) · pulled from the screenshot automatically | Hand-set | Safer and tunable |
 | Site accent | None (today) · one accent for links and focus | | |
 | Contact | Section on home (today) · separate page | | |
@@ -90,6 +91,10 @@ We stopped working in phases. Molly responds better to something real and tangib
 | 2026-10-02 | Positioning is a placeholder until Molly is ready |
 | 2026-10-02 | Brand intake questionnaire retired; the design system checklist covers it |
 | 2026-10-02 | Stopped working in phases. Built a placeholder site (Next.js static export) to iterate on instead. Phases and sessions docs are kept for reference. |
-| 2026-10-02 | Color direction (concept, specifics still open): dark mode with a neutral black/gray base; each case study card and page takes its background color from its own screenshot ("Rich" tint). Red dropped as the primary because it clashed with Code.org's content. |
+| 2026-10-02 | Color direction: the page stays **black**. Each case study has one source color, used (blended toward black, "Rich" 55%) for its card, its content boxes (callout, decision, timeline cards, prototype frame, retrospective) and as accents. Text color is chosen automatically for contrast. The site has no brand color of its own. Red was dropped as a primary because it clashed with Code.org's colorful content. Source color is hand-set per case study. |
 | 2026-10-02 | Type: body font must be a sans-serif (a serif body is "too hard to reach"). Molly's ratings of her six pairings: Urbanist + Open Sans 5/5 ("increase the tracking on the headline font a bit"); Zen Kaku Gothic Antique + New 4/5 ("body font is a little hard to read at small sizes"); Rubik + Karla 3/5 ("headline might be too bold, drawing too much attention"); Voltaire + Inter 2/5 ("tracking on the numbers is too large; body very readable, but the headline font isn't giving the feel"); Ovo + Mulish 2/5 ("headline fonts work better at larger sizes, numbers are not balanced"); Zain + Nunito 1/5 ("too childish, and the downstrokes on the lowercase l make it difficult to read"). Themes: restrained headline weight, balanced numbers, strong small-size readability. Next round builds variations of the top two. |
 | 2026-10-02 | Type: headline font is **Zen Kaku Gothic Antique** (chosen over Urbanist, body held at Open Sans). Molly: "a nice balance between approachable and professional. Side by side Urbanist is a little too casual." Open: body font, then weight and tracking. |
+| 2026-10-02 | **Font sizes are whole, even pixel values only**, never half sizes or odd numbers: 12, 14, 16, 18, 20, 24, 28, 32, 36, 40, 48, 56, 64, 72, 80, 96. Body text is 16px. Big headings step down at breakpoints (no fluid sizing). Applied across the whole site and checked by measuring rendered sizes. |
+| 2026-10-02 | Stack: Next.js static export (matches Carlos's own site), MDX case studies, Tailwind v4. All repo work is done as the PaleoDM account on `redesign`; `main` keeps serving the old site until launch. |
+| 2026-10-02 | A dev-only layout builder exists for Molly to experiment with layouts and export a case study draft as MDX. |
+| 2026-10-02 | Working style with Molly: one decision at a time (too many options causes decision paralysis). Her results come back as a saved file in Downloads (or she types them). |
