@@ -220,14 +220,14 @@ export const BLOCKS: Record<string, BlockDef> = {
   },
   sticky: {
     label: "Annotation note", group: "Story", hint: "A short narrated aside", wide: false,
-    defaults: () => ({ variant: "rule", label: "Annotation", text: "Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt." }),
+    defaults: () => ({ variant: "inside", label: "Annotation", text: "Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt." }),
     fields: [
-      { kind: "select", key: "variant", label: "Style", options: [["rule", "Rule with label"], ["margin", "Margin note"], ["panel", "Panel"]] },
+      { kind: "select", key: "variant", label: "Style", options: [["inside", "Tag inside"], ["edge", "Tag on the edge"], ["split", "Split card"]] },
       { kind: "text", key: "label", label: "Label" },
       { kind: "textarea", key: "text", label: "Text" },
     ],
-    render: (p) => <Sticky label={p.label} variant={p.variant ?? "rule"}>{p.text}</Sticky>,
-    mdx: (p) => jsx("Sticky", { label: p.label, variant: p.variant && p.variant !== "rule" ? p.variant : undefined }, p.text),
+    render: (p) => <Sticky label={p.label} variant={p.variant ?? "inside"}>{p.text}</Sticky>,
+    mdx: (p) => jsx("Sticky", { label: p.label, variant: p.variant && p.variant !== "inside" ? p.variant : undefined }, p.text),
   },
   decision: {
     label: "The hard call", group: "Story", hint: "Options considered and what was chosen", wide: true,

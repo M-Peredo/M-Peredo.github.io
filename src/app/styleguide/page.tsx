@@ -7,7 +7,7 @@ import { Split } from "@/components/ui/Split";
 import { Callout, CompareTable, Decision, PullQuote, Retrospective, StatRow, Sticky, ThreeUp, Timeline } from "@/components/ui/content";
 import { CaseStudyCard } from "@/components/ui/CaseStudyCard";
 import { SummaryBlock } from "@/components/ui/SummaryBlock";
-import { contentColors, contentStyle, contrast, TINT } from "@/lib/color";
+import { contentColors, contentStyle, contrast, tagColors, TINT } from "@/lib/color";
 import { getLiveCaseStudies } from "@/lib/case-studies";
 
 export const metadata: Metadata = {
@@ -174,17 +174,22 @@ export default function StyleGuide() {
           </Region>
         </Section>
 
-        <Section id="notes" title="Annotation note options" lede="Three ways to set the short narrated aside. Plain, full-contrast text; the label is a small flag like the annotated screenshot markers.">
-          <Region color="#0FA3B1">
-            <div style={{ display: "grid", gap: 56 }}>
-              {(["margin", "panel", "rule"] as const).map((v, i) => (
-                <div key={v} style={{ display: "grid", gap: 12 }}>
-                  <p className="eyebrow">{"ABC"[i]} · {({ margin: "Margin note", panel: "Panel", rule: "Rule with label" })[v]}</p>
-                  <Sticky label="Annotation" variant={v}>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</Sticky>
+        <Section id="notes" title="Annotation note options" lede="Three card layouts for the short narrated aside. The tag is filled with the case study color, and its text is white or near-black (pure black or white for a few mid-tone colors), chosen automatically so it always meets WCAG AA (4.5:1). Body text stays plain.">
+          <div style={{ display: "grid", gap: 72 }}>
+            {(["inside", "edge", "split"] as const).map((v, i) => (
+              <div key={v} style={{ display: "grid", gap: 12 }}>
+                <p className="eyebrow">{"ABC"[i]} · {({ inside: "Tag inside", edge: "Tag on the edge", split: "Split card" })[v]}</p>
+                <div style={{ display: "grid", gap: 40 }}>
+                  {([["Teal", "#0FA3B1"], ["Yellow", "#F2C230"], ["Indigo", "#4A44C6"]] as const).map(([name, hex]) => (
+                    <div key={name} style={{ ...contentStyle(hex), display: "grid", gap: 8 }}>
+                      <Sticky label="Annotation" variant={v}>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</Sticky>
+                      <span className="sg-code">{name} {hex}: tag text {contrast(hex, tagColors(hex)["--cs-tag-fg"]).toFixed(1)}:1</span>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </Region>
+              </div>
+            ))}
+          </div>
         </Section>
 
         <Section id="blocks" title="Content blocks" lede="The building blocks of a case study. Mix and pick; no case study uses all of them.">

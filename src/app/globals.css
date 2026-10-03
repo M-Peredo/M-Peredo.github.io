@@ -401,19 +401,17 @@ a:hover { text-decoration-thickness: 2px; }
 .callout p { font-size: 1.125rem; }
 @media (max-width: 640px) { .pullquote::before { font-size: 4.5rem; } }
 
-/* Annotation note: a short narrated aside. Plain, full-contrast text; the only color is a thin edge on the label flag. */
-.sticky { display: grid; gap: var(--space-3); font-size: 1rem; }
-.sticky strong { display: inline-flex; align-items: center; width: fit-content; height: 1.75rem; padding: 0 var(--space-3) 0 0.6875rem; background: var(--bg); border: 1px solid var(--rule); border-radius: var(--radius-sm); box-shadow: inset 3px 0 0 var(--cs-source, var(--fg)); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg); }
+/* Annotation note: a neutral card with a small solid tag in the case study color. Text on the tag is white or
+   near-black, chosen for contrast (always at least 4.5:1). Body text stays plain and full-contrast. */
+.sticky { display: grid; gap: var(--space-3); font-size: 1rem; background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: var(--space-6); }
+.sticky strong { display: inline-flex; align-items: center; width: fit-content; height: 1.75rem; padding: 0 var(--space-3); background: var(--cs-tag-bg, var(--fg)); color: var(--cs-tag-fg, var(--bg)); border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
 .sticky p { margin: 0; color: var(--fg); }
-/* Rule with label: a hairline across the page with the label sitting on it */
-.st-rule { position: relative; margin-top: 0.875rem; padding-top: var(--space-6); border-top: 1px solid var(--rule); }
-.st-rule strong { position: absolute; top: -0.875rem; left: 0; }
-/* Margin note: label in a narrow left column, text beside it, between thin rules */
-.st-margin { grid-template-columns: 11rem minmax(0, 1fr); gap: var(--space-5); align-items: start; padding-block: var(--space-5); border-block: 1px solid var(--rule); }
-/* Panel: a neutral panel with the label on its top edge */
-.st-panel { position: relative; margin-top: 0.875rem; padding: var(--space-6) var(--space-5) var(--space-5); background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius); }
-.st-panel strong { position: absolute; top: -0.875rem; left: var(--space-5); }
-@media (max-width: 640px) { .st-margin { grid-template-columns: 1fr; gap: var(--space-3); } }
+/* Edge: the tag straddles the card's top border */
+.st-edge { position: relative; margin-top: 0.875rem; padding-top: var(--space-7); }
+.st-edge strong { position: absolute; top: -0.875rem; left: var(--space-6); }
+/* Split: tag in a narrow left column, text beside it */
+.st-split { grid-template-columns: 11rem minmax(0, 1fr); gap: var(--space-6); align-items: start; }
+@media (max-width: 640px) { .st-split { grid-template-columns: 1fr; gap: var(--space-3); } .sticky { padding: var(--space-5); } .st-edge strong { left: var(--space-5); } }
 .decision { background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: clamp(20px, 4vw, 40px); display: grid; gap: var(--space-5); }
 .decision header { display: grid; gap: var(--space-2); }
 .decision h3 { font-size: var(--fs-decision); margin: 0; }

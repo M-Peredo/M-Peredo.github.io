@@ -57,6 +57,15 @@ export function contentColors(source: string, tint: number = TINT): ContentColor
   };
 }
 
+// A small solid tag in the case study color. Its text is white or near-black, whichever has the higher
+// contrast. For a few mid-tone colors neither reaches WCAG AA (4.5:1) for small text, so in that case it
+// falls back to pure white or pure black, whose best contrast is always at least 4.58:1.
+export function tagColors(source: string): Record<string, string> {
+  let fg = contrast(LIGHT, source) >= contrast(DARK, source) ? LIGHT : DARK;
+  if (contrast(fg, source) < 4.5) fg = contrast("#FFFFFF", source) >= contrast("#000000", source) ? "#FFFFFF" : "#000000";
+  return { "--cs-tag-bg": source, "--cs-tag-fg": fg };
+}
+
 // CSS custom properties for a content-colored region (page or card).
 export function contentStyle(source: string, tint: number = TINT): React.CSSProperties {
   const c = contentColors(source, tint);
@@ -68,5 +77,6 @@ export function contentStyle(source: string, tint: number = TINT): React.CSSProp
     "--cs-btn": c.btn,
     "--cs-btn-fg": c.btnFg,
     "--cs-source": source,
+    ...tagColors(source),
   } as React.CSSProperties;
 }
