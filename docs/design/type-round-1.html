@@ -6,367 +6,111 @@
 <title>Molly's Type Options</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Instrument+Serif:ital@0;1&family=Young+Serif&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Atkinson+Hyperlegible+Next:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Figtree:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700&family=Voltaire&family=Inter:wght@400;500;600;700&family=Urbanist:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Ovo&family=Mulish:wght@400;500;600;700&family=Rubik:wght@400;500;600;700;800&family=Karla:wght@400;500;600;700&family=Zain:wght@400;700;800&family=Nunito:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600;700;800&family=Zen+Kaku+Gothic+Antique:wght@400;500;700;900&family=Open+Sans:wght@400;500;600;700&display=swap">
 <style>
-:root { --c-bg: #101012; --c-panel: #17171a; --c-line: #2b2b30; --c-ink: #f2f2f3; --c-muted: #a4a4ab; --c-accent: #8ab4ff; color-scheme: dark; }
+:root { --ink: #f2f2f3; --muted: #a4a4ab; --line: #2b2b30; --accent: #8ab4ff; color-scheme: dark; }
 * { box-sizing: border-box; }
-[hidden] { display: none !important; }
-html, body { height: 100%; }
-body { margin: 0; background: var(--c-bg); color: var(--c-ink); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; display: flex; flex-direction: column; }
-button, select, textarea { font: inherit; color: inherit; }
-:where(button, select, textarea):focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }
+body { margin: 0; background: #101012; color: var(--ink); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+button, textarea { font: inherit; color: inherit; }
+:where(button, textarea):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+header { padding: 22px clamp(18px, 4vw, 40px) 4px; }
+header h1 { margin: 0; font-size: 22px; }
+header p { margin: 6px 0 0; color: var(--muted); max-width: 70ch; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; padding: 18px clamp(18px, 4vw, 40px); }
+.col { display: grid; gap: 12px; align-content: start; min-width: 0; }
+.tag { display: flex; align-items: baseline; gap: 10px; }
+.tag b { font-size: 26px; }
+.tag span { color: var(--muted); }
 
-.pager { border-bottom: 1px solid var(--c-line); background: var(--c-panel); flex: none; }
-.pager-inner { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 10px 18px; }
-.pager h1 { font-size: 15px; margin: 0; white-space: nowrap; }
-.tabs { display: flex; flex-wrap: wrap; gap: 4px; flex: 1; min-width: 0; }
-.tab { appearance: none; border: 1px solid transparent; background: transparent; color: var(--c-muted); padding: 5px 11px; border-radius: 999px; cursor: pointer; font-size: 13.5px; }
-.tab:hover { color: var(--c-ink); }
-.tab[aria-current="page"] { color: var(--c-ink); border-color: var(--c-ink); font-weight: 600; }
-.tab small { color: var(--c-muted); margin-left: 4px; font-weight: 400; }
-.nav { display: flex; gap: 6px; align-items: center; }
-.count { color: var(--c-muted); font-size: 13px; font-variant-numeric: tabular-nums; }
-.btn { appearance: none; border: 1px solid #3a3a40; background: #26262a; padding: 7px 13px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; }
-.btn:hover:not(:disabled) { border-color: var(--c-accent); }
-.btn:disabled { opacity: .4; cursor: default; }
-.btn[aria-pressed="true"] { background: var(--c-ink); color: #101012; border-color: var(--c-ink); }
+/* Both columns use the same body font and text. Only the headline font differs. */
+.spec { background: #0b0b0c; border-radius: 12px; padding: clamp(22px, 3vw, 38px); display: grid; gap: 18px; align-content: start; font-family: 'Open Sans', system-ui, sans-serif; font-size: 17px; line-height: 1.65; font-weight: 400; }
+.spec .eb { font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.spec h2 { font-family: var(--fd); font-weight: var(--dw); letter-spacing: var(--dls); font-size: clamp(1.9rem, 3.2vw, 2.9rem); line-height: 1.08; margin: 0; text-wrap: balance; }
+.spec .lede { margin: 0; color: var(--muted); font-size: 1.15rem; line-height: 1.5; }
+.spec .nums { display: flex; flex-wrap: wrap; gap: 18px 36px; padding-block: 14px; border-block: 2px solid #4a44c6; }
+.spec .nums div { display: grid; }
+.spec .nums b { font-family: var(--fd); font-weight: var(--dw); font-size: clamp(2.1rem, 3.4vw, 3rem); line-height: 1; font-variant-numeric: lining-nums tabular-nums; }
+.spec .nums span { font-size: .85rem; color: var(--muted); }
+.spec h3 { font-family: var(--fd); font-weight: var(--dw); letter-spacing: var(--dls); font-size: clamp(1.35rem, 2.2vw, 1.8rem); line-height: 1.15; margin: 6px 0 0; }
+.spec p { margin: 0; color: #ddddde; }
+.spec .btn { justify-self: start; background: #f2f2f3; color: #0b0b0c; font-weight: 700; padding: .85em 1.3em; border-radius: 8px; }
 
-main { flex: 1; min-height: 0; }
-.page { height: 100%; display: grid; grid-template-columns: minmax(280px, 340px) minmax(0, 1fr); gap: 18px; padding: 18px; }
-.side { overflow: auto; display: flex; flex-direction: column; gap: 14px; min-width: 0; padding-right: 4px; }
-.stage { overflow: auto; min-width: 0; border-radius: 10px; }
-.eyebrow { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--c-muted); font-weight: 700; }
-.side h2 { margin: 0; font-size: 26px; line-height: 1.15; }
-.note { margin: 0; color: var(--c-muted); }
-.chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.stars { display: flex; gap: 2px; align-items: center; }
-.stars .label { font-size: 12px; color: var(--c-muted); width: 52px; }
-.star { appearance: none; border: 0; background: none; padding: 2px; font-size: 24px; line-height: 1; cursor: pointer; color: var(--c-line); }
-.star.on { color: var(--c-ink); }
-.controls { display: grid; gap: 12px; border-top: 1px solid var(--c-line); padding-top: 14px; }
-.field { display: grid; gap: 4px; }
-.field label, .field .l { font-size: 12px; color: var(--c-muted); }
-textarea, select { width: 100%; background: #0d0d0f; border: 1px solid var(--c-line); border-radius: 6px; padding: 8px 10px; }
-textarea { min-height: 70px; resize: vertical; }
-
-.summary { overflow: auto; padding: 20px; height: 100%; }
-.summary-inner { max-width: 960px; margin: 0 auto; display: grid; gap: 18px; }
-.summary h2 { margin: 0; font-size: 26px; }
-.compare { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
-.cmp { text-align: left; background: var(--c-panel); border: 1px solid var(--c-line); border-radius: 10px; padding: 12px 14px; cursor: pointer; display: grid; gap: 4px; }
-.cmp b { font-size: 18px; }
-.cmp small { color: var(--c-muted); }
-.cmp.liked { border-color: var(--c-accent); }
-pre { margin: 0; white-space: pre-wrap; background: var(--c-panel); border: 1px solid var(--c-line); border-radius: 8px; padding: 14px; font: 13px/1.55 ui-monospace, "SF Mono", Menlo, monospace; }
-.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-.msg { color: var(--c-muted); font-size: 13px; }
-
-/* ---- Specimen: a mini case study page. Fonts come from the variables below. ---- */
-.spec { --fd: Georgia, serif; --fb: system-ui, sans-serif; --dw: 600; --dls: 0; --qs: italic;
-  background: #0b0b0c; color: #f2f2f3; padding: clamp(24px, 4vw, 48px); border-radius: 10px; font-family: var(--fb); font-size: var(--bs, 17px); font-weight: var(--bw, 400); line-height: var(--blh, 1.65); display: grid; gap: 22px; align-content: start; }
-.spec .eb { font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: #a4a4ab; font-weight: 700; }
-.spec .glyphs { font-family: var(--fd); font-weight: var(--dw); font-size: clamp(2.4rem, 5vw, 3.6rem); line-height: 1.1; letter-spacing: var(--dls); color: #f2f2f3; word-break: break-word; }
-.spec .glyphs small { display: block; font-family: var(--fb); font-weight: 400; font-size: 1.05rem; letter-spacing: .02em; color: #a4a4ab; margin-top: 6px; }
-.spec h3 { font-family: var(--fd); font-weight: var(--dw); letter-spacing: var(--dls); font-size: clamp(2rem, 4.4vw, 3.3rem); line-height: 1.08; margin: 0; max-width: 20ch; text-wrap: balance; }
-.spec .lede { margin: 0; font-size: 1.25rem; line-height: 1.5; color: #a4a4ab; max-width: 52ch; }
-.spec .metrics { display: flex; flex-wrap: wrap; gap: 20px 48px; padding-block: 8px; border-block: 2px solid #4a44c6; }
-.spec .metric { display: grid; gap: 2px; padding-block: 12px; }
-.spec .metric b { font-family: var(--fd); font-weight: var(--dw); font-size: clamp(2.4rem, 5vw, 3.6rem); line-height: 1; letter-spacing: var(--nls, 0); font-variant-numeric: lining-nums tabular-nums; }
-.spec .metric span { font-size: .875rem; color: #a4a4ab; }
-.spec h4 { font-family: var(--fd); font-weight: var(--dw); letter-spacing: var(--dls); font-size: clamp(1.5rem, 2.8vw, 2rem); line-height: 1.15; margin: 8px 0 0; max-width: 30ch; }
-.spec p { margin: 0; max-width: 62ch; color: #ddddde; }
-.spec blockquote { margin: 0; border-left: 3px solid #4a44c6; padding-left: 18px; font-family: var(--fd); font-style: var(--qs); font-weight: 500; font-size: 1.55rem; line-height: 1.35; max-width: 34ch; }
-.spec cite { display: block; margin-top: 8px; font-family: var(--fb); font-style: normal; font-size: .85rem; color: #a4a4ab; }
-.spec .box { background: #29256d; border: 1px solid #4a44c6; border-radius: 14px; padding: 22px 26px; display: grid; gap: 8px; color: #fff; }
-.spec .box .eb { color: rgba(255,255,255,.75); }
-.spec .box p { color: rgba(255,255,255,.92); }
-.spec .btns { display: flex; flex-wrap: wrap; gap: 12px; }
-.spec .b1, .spec .b2 { font-family: var(--fb); font-weight: 700; font-size: .97rem; padding: .9em 1.4em; border-radius: 8px; border: 2px solid #f2f2f3; }
-.spec .b1 { background: #f2f2f3; color: #0b0b0c; }
-.spec .b2 { color: #f2f2f3; }
-.spec .small { font-size: .875rem; color: #a4a4ab; }
-.spec ul { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; color: #ddddde; max-width: 56ch; }
-
-@media (max-width: 900px) { html, body { height: auto; } body { display: block; } .pager { position: sticky; top: 0; z-index: 2; } .page { height: auto; grid-template-columns: 1fr; } .side, .stage { overflow: visible; } .summary { height: auto; } }
-
-.tune { display: grid; gap: 12px; border-top: 1px solid var(--c-line); padding-top: 14px; }
-.tune h3 { margin: 0; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--c-muted); }
-.tune .r { display: grid; gap: 4px; }
-.tune .r label { display: flex; justify-content: space-between; font-size: 12px; color: var(--c-muted); }
-.tune .r label b { color: var(--c-ink); font-weight: 600; font-variant-numeric: tabular-nums; }
-.tune input[type=range] { width: 100%; accent-color: var(--c-accent); }
-.tune .reset { justify-self: start; }
+.choose { display: grid; gap: 10px; padding: 0 clamp(18px, 4vw, 40px) 40px; max-width: 880px; }
+.choose h2 { margin: 6px 0 0; font-size: 20px; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.btn2 { appearance: none; border: 1px solid #3a3a40; background: #26262a; padding: 11px 18px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 15px; }
+.btn2:hover { border-color: var(--accent); }
+.btn2[aria-pressed="true"] { background: #f2f2f3; color: #101012; border-color: #f2f2f3; }
+textarea { width: 100%; min-height: 84px; background: #0d0d0f; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; resize: vertical; }
+.msg { color: var(--muted); font-size: 13px; }
+@media (max-width: 900px) { .cols { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
-
-<header class="pager">
-  <div class="pager-inner">
-    <h1>Type, round 3</h1>
-    <nav class="tabs" id="tabs" aria-label="Pages"></nav>
-    <div class="nav">
-      <span class="count" id="count"></span>
-      <button class="btn" id="prev" type="button">← Prev</button>
-      <button class="btn" id="next" type="button">Next →</button>
-    </div>
-  </div>
+<header>
+  <h1>Headline font: A or B?</h1>
+  <p>Same text, same body font (Open Sans). Only the headline font changes. Look at the title, the numbers, and the smaller heading.</p>
 </header>
-<main id="main"></main>
+
+<div class="cols">
+  <section class="col" aria-label="Option A">
+    <div class="tag"><b>A</b><span>Urbanist</span></div>
+    <div class="spec" style="--fd:'Urbanist', system-ui, sans-serif; --dw:700; --dls:0.01em">
+      <span class="eb">Teaching Assistant · 2023–2026</span>
+      <h2>Building an AI teaching assistant teachers trust</h2>
+      <p class="lede">Three years of small bets that added up to one platform-wide tool for K-12 classrooms.</p>
+      <div class="nums"><div><b>38%</b><span>weekly teacher use</span></div><div><b>4.6</b><span>average rating</span></div><div><b>2×</b><span>faster setup</span></div></div>
+      <h3>The hard call: what we left out of the MVP</h3>
+      <p>Grading support was the feature teachers asked for most, and the riskiest one to get wrong. We shipped without it and shaped the data model so it could arrive as a fast follow.</p>
+      <span class="btn">Try the prototype →</span>
+    </div>
+  </section>
+  <section class="col" aria-label="Option B">
+    <div class="tag"><b>B</b><span>Zen Kaku Gothic Antique</span></div>
+    <div class="spec" style="--fd:'Zen Kaku Gothic Antique', system-ui, sans-serif; --dw:700; --dls:0.005em">
+      <span class="eb">Teaching Assistant · 2023–2026</span>
+      <h2>Building an AI teaching assistant teachers trust</h2>
+      <p class="lede">Three years of small bets that added up to one platform-wide tool for K-12 classrooms.</p>
+      <div class="nums"><div><b>38%</b><span>weekly teacher use</span></div><div><b>4.6</b><span>average rating</span></div><div><b>2×</b><span>faster setup</span></div></div>
+      <h3>The hard call: what we left out of the MVP</h3>
+      <p>Grading support was the feature teachers asked for most, and the riskiest one to get wrong. We shipped without it and shaped the data model so it could arrive as a fast follow.</p>
+      <span class="btn">Try the prototype →</span>
+    </div>
+  </section>
+</div>
+
+<section class="choose" aria-label="Your choice">
+  <h2>Which headline font?</h2>
+  <div class="row" role="group" aria-label="Choose">
+    <button type="button" class="btn2" data-pick="A" aria-pressed="false">A · Urbanist</button>
+    <button type="button" class="btn2" data-pick="B" aria-pressed="false">B · Zen Kaku Antique</button>
+    <button type="button" class="btn2" data-pick="Neither" aria-pressed="false">Neither</button>
+  </div>
+  <label for="note" class="msg">Anything to say about why? (optional)</label>
+  <textarea id="note" placeholder="Why this one"></textarea>
+  <div class="row"><button type="button" class="btn2" id="save">Save a file for Claude</button><span class="msg" id="msg"></span></div>
+</section>
 
 <script>
-const ROUND = 3;
-const KEY = "molly-type-round-" + ROUND;
-
-// ws = weights available. dw = default heading weight. ital = real italic (quote).
-const F = (id, name, cat, fam, dw, ws, body, ital = false) => ({ id, name, cat, f: fam.replace(/"/g, "'"), dw, ws, body, ital });
-const FONTS = [
-  F("voltaire", "Voltaire", "Sans", '"Voltaire", system-ui, sans-serif', 400, [400], false),
-  F("inter", "Inter", "Sans", '"Inter", system-ui, sans-serif', 700, [400, 500, 600, 700], true),
-  F("urbanist", "Urbanist", "Sans", '"Urbanist", system-ui, sans-serif', 700, [400, 500, 600, 700, 800], true),
-  F("opensans", "Open Sans", "Sans", '"Open Sans", system-ui, sans-serif', 700, [400, 500, 600, 700], true),
-  F("zenanti", "Zen Kaku Gothic Antique", "Sans", '"Zen Kaku Gothic Antique", system-ui, sans-serif', 700, [400, 500, 700, 900], true),
-  F("zennew", "Zen Kaku Gothic New", "Sans", '"Zen Kaku Gothic New", system-ui, sans-serif', 700, [400, 500, 700], true),
-  F("ovo", "Ovo", "Serif", '"Ovo", Georgia, serif', 400, [400], false),
-  F("mulish", "Mulish", "Sans", '"Mulish", system-ui, sans-serif', 700, [400, 500, 600, 700], true),
-  F("rubik", "Rubik", "Sans", '"Rubik", system-ui, sans-serif', 700, [400, 500, 600, 700, 800], true),
-  F("karla", "Karla", "Sans", '"Karla", system-ui, sans-serif', 700, [400, 500, 600, 700], true),
-  F("zain", "Zain", "Sans", '"Zain", system-ui, sans-serif', 800, [400, 700, 800], false),
-  F("nunito", "Nunito", "Sans", '"Nunito", system-ui, sans-serif', 700, [400, 500, 600, 700], true),
-  F("fraunces", "Fraunces", "Serif", '"Fraunces", Georgia, serif', 600, [400, 500, 600, 700], false, true),
-  F("instrument", "Instrument Serif", "Serif", '"Instrument Serif", Georgia, serif', 400, [400], false, true),
-  F("young", "Young Serif", "Serif", '"Young Serif", Georgia, serif', 400, [400], false),
-  F("newsreader", "Newsreader", "Serif", '"Newsreader", Georgia, serif', 600, [400, 500, 600, 700], false, true),
-  F("atkinson", "Atkinson Hyperlegible Next", "Sans", '"Atkinson Hyperlegible Next", system-ui, sans-serif', 700, [400, 500, 600, 700], true),
-  F("bricolage", "Bricolage Grotesque", "Sans", '"Bricolage Grotesque", system-ui, sans-serif', 700, [400, 500, 600, 700, 800], true),
-  F("figtree", "Figtree", "Sans", '"Figtree", system-ui, sans-serif', 700, [400, 500, 600, 700, 800], true),
-  F("sora", "Sora", "Sans", '"Sora", system-ui, sans-serif', 600, [400, 500, 600, 700], true),
-];
-const BY = Object.fromEntries(FONTS.map(f => [f.id, f]));
-
-// Variations on Molly's two favorites. tr = heading tracking (em), hw = heading weight,
-// bs = body size (px), bw = body weight, lh = body line height.
-const base = { tr: 0, nt: 0, hw: 700, bs: 17, bw: 400, lh: 1.65 };
-const V = (h, b, short, note, o) => ({ h, b, short, note, p: { ...base, ...o } });
-const PAGESDEF = [
-  V("urbanist", "opensans", "Urbanist + Open Sans, looser", "Her 5/5 pairing with the headline tracking opened up, as she suggested.", { tr: 0.01, nt: -0.01 }),
-  V("urbanist", "opensans", "Urbanist + Open Sans, airy", "Looser tracking, a lighter heading weight, and a slightly larger, roomier body.", { tr: 0.02, nt: -0.005, hw: 600, bs: 17.5, lh: 1.75 }),
-  V("urbanist", "figtree", "Urbanist + Figtree", "Swaps Open Sans for Figtree, a rounder body that matches Urbanist's geometry.", { tr: 0.01 }),
-  V("zenanti", "zennew", "Zen Kaku, bigger body", "Her 4/5 pairing with a larger, heavier body to fix 'hard to read at small sizes'.", { tr: 0.01, bs: 18, bw: 500, lh: 1.7 }),
-  V("zenanti", "opensans", "Zen Antique + Open Sans", "Keeps the Zen headings, swaps in Open Sans, a very readable body.", { tr: 0.005 }),
-  V("zenanti", "inter", "Zen Antique + Inter", "Zen headings with Inter, which is built to stay clear at small sizes.", { tr: 0.005 }),
-  V("urbanist", "zennew", "Urbanist + Zen New", "The cross of her two favorites: Urbanist headings with the Zen body, set larger and heavier.", { tr: 0.01, bs: 18, bw: 500, lh: 1.7 }),
-];
-const PAGES = [...PAGESDEF.map((_, i) => "v" + i), "mix", "summary"];
-
-function load() { try { const r = localStorage.getItem(KEY); return r ? JSON.parse(r) : null; } catch (e) { return null; } }
-function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
-let state = load() || {};
-state.mix = state.mix || { h: "urbanist", b: "opensans" }; state.picks = state.picks || {}; state.tune = state.tune || {}; state.page = state.page ?? 0;
-if (!(state.page >= 0 && state.page < PAGES.length)) state.page = 0;
-const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-
-// An item = one page's worth of state, keyed by page id (mix pages are keyed by their fonts)
-const idOf = i => i < PAGESDEF.length ? "v" + i : "mix:" + state.mix.h + "+" + state.mix.b;
-const fontsOf = i => i < PAGESDEF.length ? [BY[PAGESDEF[i].h], BY[PAGESDEF[i].b]] : [BY[state.mix.h], BY[state.mix.b]];
-const paramsOf = (i, id) => state.tune[id] || (i < PAGESDEF.length ? PAGESDEF[i].p : { ...base, hw: BY[state.mix.h].dw });
-const pick = id => state.picks[id] || (state.picks[id] = { rating: 0, kept: false, notes: "" });
-
-function specimen(d, b, p, label) {
-  return `
-  <div class="spec" style="--fd:${d.f};--fb:${b.f};--dw:${p.hw};--dls:${p.tr}em;--nls:${p.nt}em;--qs:${d.ital ? "italic" : "normal"};--bs:${p.bs}px;--bw:${p.bw};--blh:${p.lh}">
-    <div class="eb">${esc(label)}</div>
-    <div class="glyphs">Aa Bb Cc 123<small>ABCDEFGHIJKLMNOPQRSTUVWXYZ · abcdefghijklmnopqrstuvwxyz · 0123456789 &amp; ? !</small></div>
-    <div class="eb" style="margin-top:8px">Teaching Assistant · 2023–2026</div>
-    <h3>Building an AI teaching assistant teachers trust</h3>
-    <p class="lede">Three years of small bets that added up to one platform-wide tool for K-12 classrooms.</p>
-    <div class="metrics">
-      <div class="metric"><b>38%</b><span>of teachers using it weekly</span></div>
-      <div class="metric"><b>4.6</b><span>average teacher rating</span></div>
-      <div class="metric"><b>2×</b><span>faster lesson setup</span></div>
-    </div>
-    <h4>The hard call: what we left out of the MVP</h4>
-    <p>Grading support was the feature teachers asked for most, and the riskiest one to get wrong. We shipped without it and shaped the data model so it could arrive as a fast follow, without moving anything teachers had already learned.</p>
-    <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-    <blockquote>“It finally feels like it's working for me, not the other way around.”<cite>Middle school CS teacher, pilot interview</cite></blockquote>
-    <div class="box"><span class="eb">Key insight</span><p>Teachers trusted the tool once they could see why it suggested what it did, and once they could always change its answer.</p></div>
-    <ul><li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li><li>Sed do eiusmod tempor incididunt ut labore et dolore</li><li>Ut enim ad minim veniam, quis nostrud exercitation</li></ul>
-    <div class="btns"><span class="b1">Try the prototype →</span><span class="b2">Read the case study</span></div>
-    <p class="small">Caption: small text sits under figures and tables. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  </div>`;
+const KEY = "molly-type-headline-v1";
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) {}
+const persist = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
+const note = document.getElementById("note"), msg = document.getElementById("msg");
+function paint() {
+  document.querySelectorAll("[data-pick]").forEach(b => b.setAttribute("aria-pressed", String(state.pick === b.dataset.pick)));
+  if (document.activeElement !== note) note.value = state.note || "";
 }
-
-const sliders = `
-  <div class="tune">
-    <h3>Fine-tune</h3>
-    <div class="r"><label>Headline tracking <b data-v="tr"></b></label><input type="range" data-t="tr" min="-0.04" max="0.08" step="0.005"></div>
-    <div class="r"><label>Number tracking <b data-v="nt"></b></label><input type="range" data-t="nt" min="-0.06" max="0.04" step="0.005"></div>
-    <div class="r"><label>Heading weight <b data-v="hw"></b></label><select data-t="hw"></select></div>
-    <div class="r"><label>Body size <b data-v="bs"></b></label><input type="range" data-t="bs" min="15" max="20" step="0.5"></div>
-    <div class="r"><label>Body weight <b data-v="bw"></b></label><select data-t="bw"></select></div>
-    <div class="r"><label>Body line height <b data-v="lh"></b></label><input type="range" data-t="lh" min="1.4" max="1.9" step="0.05"></div>
-    <button type="button" class="btn reset" data-treset>Reset to this page's settings</button>
-  </div>`;
-const controls = `
-  <div class="controls">
-    <div class="stars" role="group" aria-label="Rate"><span class="label">Rating</span>${[1,2,3,4,5].map(n => `<button type="button" class="star" data-star="${n}" aria-label="${n} of 5">★</button>`).join("")}</div>
-    <button type="button" class="btn" data-keep aria-pressed="false">Keep this version</button>
-    <div class="field"><label>Notes</label><textarea data-notes placeholder="What works, what doesn't"></textarea></div>
-  </div>`;
-
-function variantPage(v, i) {
-  const h = BY[v.h], b = BY[v.b];
-  return `
-  <section class="page" data-i="${i}">
-    <div class="side">
-      <span class="eyebrow">Variation ${i + 1} of ${PAGESDEF.length}</span>
-      <h2 style="font-family:${h.f};font-weight:${v.p.hw}">${esc(h.name)} <span style="font-family:${b.f};font-weight:400;color:var(--c-muted)">&amp; ${esc(b.name)}</span></h2>
-      <p class="note">${esc(v.note)}</p>
-      ${controls}${sliders}
-    </div>
-    <div class="stage" data-spec></div>
-  </section>`;
-}
-function mixPage() {
-  const heads = FONTS.map(f => `<option value="${f.id}">${esc(f.name)} (${f.cat.toLowerCase()})</option>`).join("");
-  const bodies = FONTS.filter(f => f.body).map(f => `<option value="${f.id}">${esc(f.name)}</option>`).join("");
-  return `
-  <section class="page" data-i="${PAGESDEF.length}">
-    <div class="side">
-      <span class="eyebrow">Mix and match</span>
-      <h2>Build your own</h2>
-      <p class="note">Any heading font, any sans body font, tuned however you like.</p>
-      <div class="field"><label for="mixh">Headings and numbers</label><select id="mixh">${heads}</select></div>
-      <div class="field"><label for="mixb">Body text (sans only)</label><select id="mixb">${bodies}</select></div>
-      ${controls}${sliders}
-    </div>
-    <div class="stage" data-spec></div>
-  </section>`;
-}
-function summaryPage() {
-  return `
-  <section class="summary" data-summary><div class="summary-inner">
-    <h2>Summary</h2>
-    <div class="compare" id="cmp"></div>
-    <pre id="sumtext"></pre>
-    <div class="row"><button class="btn" id="savefile" type="button">Save a file for Claude</button><button class="btn" id="copy" type="button">Copy summary</button><button class="btn" id="reset" type="button">Start over</button><span class="msg" id="msg"></span></div>
-  </div></section>`;
-}
-
-const main = document.getElementById("main");
-main.innerHTML = PAGESDEF.map(variantPage).join("") + mixPage() + summaryPage();
-const els = [...main.children];
-const MIXI = PAGESDEF.length;
-const fmt = { nt: v => (v > 0 ? "+" : "") + Number(v).toFixed(3) + "em", tr: v => (v > 0 ? "+" : "") + Number(v).toFixed(3) + "em", hw: v => v, bs: v => v + "px", bw: v => v, lh: v => Number(v).toFixed(2) };
-
-function paintPage(i) {
-  const el = els[i], id = idOf(i), [d, b] = fontsOf(i), p = paramsOf(i, id), k = pick(id);
-  const sig = id + JSON.stringify(p);
-  const stage = el.querySelector("[data-spec]");
-  if (stage.dataset.sig !== sig) { stage.dataset.sig = sig; stage.innerHTML = specimen(d, b, p, `${d.name} headings + ${b.name} body`); }
-  // controls reflect current params
-  const selOpts = (ws, cur) => ws.map(w => `<option value="${w}" ${Number(cur) === w ? "selected" : ""}>${w}</option>`).join("");
-  const hwSel = el.querySelector("[data-t='hw']"), bwSel = el.querySelector("[data-t='bw']");
-  const hsig = d.id + p.hw, bsig = b.id + p.bw;
-  if (hwSel.dataset.sig !== hsig) { hwSel.dataset.sig = hsig; hwSel.innerHTML = selOpts(d.ws, d.ws.includes(Number(p.hw)) ? p.hw : d.dw); }
-  if (bwSel.dataset.sig !== bsig) { bwSel.dataset.sig = bsig; bwSel.innerHTML = selOpts(b.ws.filter(w => w <= 700), b.ws.includes(Number(p.bw)) ? p.bw : 400); }
-  ["tr", "nt", "bs", "lh"].forEach(key => { const r = el.querySelector(`[data-t='${key}']`); if (document.activeElement !== r) r.value = p[key]; });
-  Object.keys(fmt).forEach(key => { el.querySelector(`[data-v='${key}']`).textContent = fmt[key](p[key]); });
-  el.querySelectorAll(".star").forEach(s => s.classList.toggle("on", Number(s.dataset.star) <= k.rating));
-  el.querySelector("[data-keep]").setAttribute("aria-pressed", String(k.kept));
-  const ta = el.querySelector("[data-notes]"); if (document.activeElement !== ta && ta.value !== k.notes) ta.value = k.notes;
-  if (i === MIXI) { el.querySelector("#mixh").value = state.mix.h; el.querySelector("#mixb").value = state.mix.b; }
-}
-
-function render() {
-  els.forEach((el, i) => el.hidden = i !== state.page);
-  document.getElementById("count").textContent = `${state.page + 1} / ${PAGES.length}`;
-  document.getElementById("prev").disabled = state.page === 0;
-  document.getElementById("next").disabled = state.page === PAGES.length - 1;
-  document.getElementById("tabs").innerHTML = PAGES.map((id, i) => {
-    const cur = i === state.page ? ' aria-current="page"' : "";
-    if (id === "summary") return `<button class="tab" type="button" data-go="${i}"${cur}>Summary</button>`;
-    if (id === "mix") return `<button class="tab" type="button" data-go="${i}"${cur}>Build your own</button>`;
-    const k = pick(id);
-    return `<button class="tab" type="button" data-go="${i}"${cur}>${esc(PAGESDEF[i].short)}${k.rating ? `<small>${k.rating}/5</small>` : ""}${k.kept ? "<small>✓</small>" : ""}</button>`;
-  }).join("");
-  if (state.page <= MIXI) paintPage(state.page);
-  renderSummary();
-}
-
-function describe(id, i, d, b, p) { return `${d.name} (${p.hw}, headline tracking ${fmt.tr(p.tr)}, number tracking ${fmt.nt(p.nt)}) + ${b.name} (${p.bw}, ${p.bs}px, line height ${Number(p.lh).toFixed(2)})`; }
-function allItems() {
-  const items = PAGESDEF.map((v, i) => ({ id: "v" + i, title: v.short, d: BY[v.h], b: BY[v.b], p: paramsOf(i, "v" + i) }));
-  Object.keys(state.picks).filter(k => k.startsWith("mix:")).forEach(k => {
-    const [h, b] = k.slice(4).split("+"); const pk = state.picks[k];
-    if (BY[h] && BY[b] && (pk.rating || pk.kept || pk.notes.trim())) items.push({ id: k, title: `Built: ${BY[h].name} + ${BY[b].name}`, d: BY[h], b: BY[b], p: state.tune[k] || { ...base, hw: BY[h].dw } });
-  });
-  return items;
-}
-function summaryObject() {
-  return allItems().map(it => { const k = pick(it.id); return { page: it.title, headings: it.d.name, body: it.b.name, settings: { headingWeight: Number(it.p.hw), headingTracking: Number(it.p.tr), numberTracking: Number(it.p.nt), bodySizePx: Number(it.p.bs), bodyWeight: Number(it.p.bw), bodyLineHeight: Number(it.p.lh) }, rating: k.rating || null, kept: k.kept, notes: k.notes.trim() }; });
-}
-function renderSummary() {
-  const items = allItems();
-  document.getElementById("cmp").innerHTML = items.map(it => {
-    const k = pick(it.id), pi = PAGES.indexOf(it.id);
-    return `<button class="cmp ${k.kept ? "liked" : ""}" type="button" ${pi >= 0 ? `data-go="${pi}"` : `data-mixid="${it.id}"`}><b style="font-family:${it.d.f};font-weight:${it.p.hw}">${esc(it.title)}</b><small>${k.rating ? k.rating + "/5" : "unrated"}${k.kept ? " · kept" : ""}</small><small>${esc(k.notes.trim())}</small></button>`;
-  }).join("");
-  const lines = [`Type, round ${ROUND}`, ""];
-  items.forEach(it => { const k = pick(it.id); lines.push(`- ${it.title}: ${k.rating ? k.rating + "/5" : "unrated"}${k.kept ? ", KEPT" : ""}\n    ${describe(it.id, 0, it.d, it.b, it.p)}${k.notes.trim() ? "\n    Notes: " + k.notes.trim().replace(/\n+/g, " / ") : ""}`); });
-  document.getElementById("sumtext").textContent = lines.join("\n");
-}
-
-function go(i) { state.page = Math.max(0, Math.min(PAGES.length - 1, i)); save(); render(); els[state.page].querySelectorAll(".side, .stage, .summary").forEach(s => s.scrollTop = 0); window.scrollTo(0, 0); }
-document.getElementById("prev").addEventListener("click", () => go(state.page - 1));
-document.getElementById("next").addEventListener("click", () => go(state.page + 1));
-document.addEventListener("keydown", e => { if (e.target.closest("textarea, select, input")) return; if (e.key === "ArrowRight") go(state.page + 1); if (e.key === "ArrowLeft") go(state.page - 1); });
-
-const curId = () => idOf(state.page);
-function setTune(key, value) {
-  const i = state.page, id = curId(), p = { ...paramsOf(i, id) };
-  p[key] = Number(value); state.tune[id] = p; save(); render();
-}
-document.addEventListener("click", e => {
-  const mx = e.target.closest("[data-mixid]");
-  if (mx) { const [h, b] = mx.dataset.mixid.slice(4).split("+"); state.mix = { h, b }; return go(MIXI); }
-  const g = e.target.closest("[data-go]"); if (g) return go(Number(g.dataset.go));
-  if (state.page > MIXI) return;
-  const k = pick(curId());
-  const st = e.target.closest("[data-star]");
-  if (st) { const n = Number(st.dataset.star); k.rating = k.rating === n ? 0 : n; save(); return render(); }
-  if (e.target.closest("[data-keep]")) { k.kept = !k.kept; save(); return render(); }
-  if (e.target.closest("[data-treset]")) { delete state.tune[curId()]; save(); return render(); }
-});
-document.addEventListener("input", e => {
-  const t = e.target;
-  if (t.matches("input[data-t]")) return setTune(t.dataset.t, t.value);
-  if (t.matches("[data-notes]")) { pick(curId()).notes = t.value; clearTimeout(window.__nt); window.__nt = setTimeout(() => { save(); render(); }, 400); }
-});
-document.addEventListener("change", e => {
-  const t = e.target;
-  if (t.matches("select[data-t]")) return setTune(t.dataset.t, t.value);
-  if (t.id === "mixh") { state.mix.h = t.value; delete state.tune[curId()]; save(); render(); }
-  if (t.id === "mixb") { state.mix.b = t.value; save(); render(); }
-});
-document.getElementById("copy").addEventListener("click", async () => {
-  const pre = document.getElementById("sumtext"), msg = document.getElementById("msg");
-  try { await navigator.clipboard.writeText(pre.textContent); msg.textContent = "Copied. Paste it into the chat."; }
-  catch (err) { const r = document.createRange(); r.selectNodeContents(pre); const s = getSelection(); s.removeAllRanges(); s.addRange(r); msg.textContent = "Selected. Press Cmd+C."; }
-});
-document.getElementById("savefile").addEventListener("click", () => {
-  const blob = new Blob([JSON.stringify({ page: "type", round: ROUND, savedAt: new Date().toISOString(), results: summaryObject() }, null, 2)], { type: "application/json" });
-  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = `type-round-${ROUND}-results.json`;
+document.querySelectorAll("[data-pick]").forEach(b => b.addEventListener("click", () => { state.pick = state.pick === b.dataset.pick ? null : b.dataset.pick; persist(); paint(); }));
+note.addEventListener("input", () => { state.note = note.value; persist(); });
+document.getElementById("save").addEventListener("click", () => {
+  const out = { page: "type-headline", question: "Headline font: Urbanist (A) or Zen Kaku Gothic Antique (B); body fixed at Open Sans", savedAt: new Date().toISOString(), choice: state.pick || null, notes: (state.note || "").trim() };
+  const blob = new Blob([JSON.stringify(out, null, 2)], { type: "application/json" });
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "type-headline-result.json";
   document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-  document.getElementById("msg").textContent = "Saved to your Downloads folder. Tell Claude it's there.";
+  msg.textContent = "Saved to Downloads. Tell Claude it's there, or just type your choice.";
 });
-let armed = false;
-document.getElementById("reset").addEventListener("click", e => {
-  if (!armed) { armed = true; e.target.textContent = "Click again to clear everything"; setTimeout(() => { armed = false; e.target.textContent = "Start over"; }, 4000); return; }
-  armed = false; e.target.textContent = "Start over"; state = { mix: { h: "urbanist", b: "opensans" }, picks: {}, tune: {}, page: state.page };
-  els.forEach(el => { el.querySelectorAll("textarea").forEach(x => x.value = ""); const st = el.querySelector("[data-spec]"); if (st) delete st.dataset.sig; });
-  save(); render(); document.getElementById("msg").textContent = "Cleared.";
-});
-render();
+paint();
 </script>
 </body>
 </html>
