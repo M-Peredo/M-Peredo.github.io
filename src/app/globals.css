@@ -351,25 +351,17 @@ a:hover { text-decoration-thickness: 2px; }
 .annotated-notes strong { display: block; margin-bottom: 2px; }
 .annotated-notes p { color: var(--fg2); font-size: 1rem; line-height: 1.55; }
 
-/* Annotation options */
-.annotated-stack { display: grid; gap: var(--space-5); }
-.annotated-cards { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
-.annotated-cards li { display: flex; gap: var(--space-3); align-items: start; background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: var(--space-5); }
-.annotated-cards strong { display: block; margin-bottom: 2px; }
-.annotated-cards p { color: var(--fg2); font-size: 1rem; line-height: 1.55; }
-/* inline: notes sit on the screenshot; on small screens they drop below as cards instead */
-.annotated-inline .annotated-cards { display: none; }
-.pin-note { position: absolute; z-index: 3; width: 220px; background: #fff; color: #0b0b0c; border-radius: var(--radius); padding: 12px 14px; box-shadow: 0 10px 30px rgb(0 0 0 / 0.35); line-height: 1.4; border-top: 3px solid var(--cs-source, #4a44c6); }
-.pin-note strong { display: block; font-size: 0.875rem; margin-bottom: 2px; }
-.pin-note p { font-size: 0.75rem; color: #3b3b44; margin: 0; }
-.pin-note-right { transform: translate(24px, -50%); }
-.pin-note-left { transform: translate(calc(-100% - 24px), -50%); }
-.pin-box { position: absolute; transform: translate(-50%, -50%); z-index: 2; border: 2px solid var(--cs-source, #4a44c6); border-radius: var(--radius-sm); box-shadow: 0 0 0 2px #fff; background: rgb(255 255 255 / 0.08); }
-.pin-box-num { position: absolute; top: -14px; left: -14px; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--cs-source, #4a44c6); color: #fff; font: 700 0.875rem/1 var(--font-body); box-shadow: 0 0 0 2px #fff; }
-@media (max-width: 760px) {
-  .annotated-inline .annotated-cards { display: grid; }
-  .annotated-inline .pin-note { display: none; }
-}
+/* Annotation number markers. The default is a circle; the others reuse the site's rectangles, labels and colored lines. */
+.pin-square { border-radius: var(--radius-sm); }
+.pin-flag, .pin-underline { width: auto; min-width: 2.25rem; height: 1.75rem; padding: 0 0.5rem; border-radius: var(--radius-sm); font-size: 0.75rem; letter-spacing: 0.08em; }
+.pin-flag { padding-left: 0.6875rem; box-shadow: inset 3px 0 0 var(--cs-source, #4a44c6), 0 4px 14px rgb(0 0 0 / 0.35); }
+.pin-underline { box-shadow: inset 0 -3px 0 var(--cs-source, #4a44c6), 0 4px 14px rgb(0 0 0 / 0.35); }
+/* In the notes column: square keeps a (neutral) square; flag and underline turn the number into a small label above the title */
+.pin-static.pin-square { border-radius: var(--radius-sm); }
+.annotated-m-flag .annotated-notes li, .annotated-m-underline .annotated-notes li { display: grid; gap: var(--space-2); }
+.annotated-m-flag .pin-static, .annotated-m-underline .pin-static { width: auto; height: auto; min-width: 0; padding: 0; background: none; box-shadow: none; border-radius: 0; color: var(--fg2); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; justify-self: start; }
+.annotated-m-flag .annotated-notes li { border-left: 3px solid var(--cs-source, var(--fg)); padding-left: var(--space-4); }
+.annotated-m-underline .pin-static { padding-bottom: var(--space-1); border-bottom: 3px solid var(--cs-source, var(--fg)); }
 
 .proto { border: 1px solid var(--cs-source, var(--rule)); border-radius: var(--radius); overflow: hidden; }
 .proto-head { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); padding: 12px 16px; font-size: 0.875rem; font-weight: 700; }

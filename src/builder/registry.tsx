@@ -142,20 +142,18 @@ export const BLOCKS: Record<string, BlockDef> = {
     }),
     fields: [
       { kind: "select", key: "variant", label: "Placeholder screen", options: VARIANTS },
-      { kind: "select", key: "style", label: "Annotation style", options: [["side", "Notes beside"], ["cards", "Notes below as cards"], ["inline", "Notes on the screen"], ["boxes", "Highlight boxes"]] },
+      { kind: "select", key: "marker", label: "Number marker", options: [["circle", "Circle"], ["square", "Square"], ["flag", "Flag"], ["underline", "Underline"]] },
       { kind: "text", key: "caption", label: "Caption" },
       { kind: "list", key: "pins", label: "Pins", itemLabel: "Pin", blank: () => ({ x: 50, y: 50, title: "New note", text: "Lorem ipsum dolor sit amet." }),
         fields: [
           { kind: "number", key: "x", label: "Across (0 to 100)", min: 0, max: 100 },
           { kind: "number", key: "y", label: "Down (0 to 100)", min: 0, max: 100 },
-          { kind: "number", key: "w", label: "Box width % (boxes only)", min: 4, max: 60 },
-          { kind: "number", key: "h", label: "Box height % (boxes only)", min: 4, max: 60 },
           { kind: "text", key: "title", label: "Title" },
           { kind: "textarea", key: "text", label: "Note" },
         ] },
     ],
-    render: (p) => <Annotated variant={p.variant} style={p.style ?? "side"} caption={p.caption} pins={p.pins} />,
-    mdx: (p) => jsx("Annotated", { variant: p.variant, style: p.style && p.style !== "side" ? p.style : undefined, caption: p.caption, pins: p.pins }),
+    render: (p) => <Annotated variant={p.variant} marker={p.marker ?? "circle"} caption={p.caption} pins={p.pins} />,
+    mdx: (p) => jsx("Annotated", { variant: p.variant, marker: p.marker && p.marker !== "circle" ? p.marker : undefined, caption: p.caption, pins: p.pins }),
   },
   prototype: {
     label: "Embedded prototype", group: "Screens", hint: "A playable prototype", wide: true,
