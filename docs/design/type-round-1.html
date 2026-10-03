@@ -6,7 +6,7 @@
 <title>Molly's Type Options</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600;700;800&family=Zen+Kaku+Gothic+Antique:wght@400;500;700;900&family=Open+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Open+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
 <style>
 :root { --ink: #f2f2f3; --muted: #a4a4ab; --line: #2b2b30; --accent: #8ab4ff; color-scheme: dark; }
 * { box-sizing: border-box; }
@@ -15,25 +15,25 @@ button, textarea { font: inherit; color: inherit; }
 :where(button, textarea):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 header { padding: 22px clamp(18px, 4vw, 40px) 4px; }
 header h1 { margin: 0; font-size: 22px; }
-header p { margin: 6px 0 0; color: var(--muted); max-width: 70ch; }
-.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; padding: 18px clamp(18px, 4vw, 40px); }
+header p { margin: 6px 0 0; color: var(--muted); max-width: 74ch; }
+.cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; padding: 18px clamp(18px, 4vw, 40px); }
 .col { display: grid; gap: 12px; align-content: start; min-width: 0; }
-.tag { display: flex; align-items: baseline; gap: 10px; }
+.tag { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
 .tag b { font-size: 26px; }
 .tag span { color: var(--muted); }
+.col > .msg { min-height: 2.8em; }
 
-/* Both columns use the same body font and text. Only the headline font differs. */
-.spec { background: #0b0b0c; border-radius: 12px; padding: clamp(22px, 3vw, 38px); display: grid; gap: 18px; align-content: start; font-family: 'Open Sans', system-ui, sans-serif; font-size: 17px; line-height: 1.65; font-weight: 400; }
+/* The headline font is decided (Zen Kaku Gothic Antique) and the same in every column. Only the body font differs. */
+.spec { background: #0b0b0c; border-radius: 12px; padding: clamp(20px, 2.4vw, 32px); display: grid; gap: 16px; align-content: start; font-family: var(--fb); font-size: var(--bs); font-weight: var(--bw); line-height: var(--blh); }
 .spec .eb { font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
-.spec h2 { font-family: var(--fd); font-weight: var(--dw); letter-spacing: var(--dls); font-size: clamp(1.9rem, 3.2vw, 2.9rem); line-height: 1.08; margin: 0; text-wrap: balance; }
-.spec .lede { margin: 0; color: var(--muted); font-size: 1.15rem; line-height: 1.5; }
-.spec .nums { display: flex; flex-wrap: wrap; gap: 18px 36px; padding-block: 14px; border-block: 2px solid #4a44c6; }
-.spec .nums div { display: grid; }
-.spec .nums b { font-family: var(--fd); font-weight: var(--dw); font-size: clamp(2.1rem, 3.4vw, 3rem); line-height: 1; font-variant-numeric: lining-nums tabular-nums; }
-.spec .nums span { font-size: .85rem; color: var(--muted); }
-.spec h3 { font-family: var(--fd); font-weight: var(--dw); letter-spacing: var(--dls); font-size: clamp(1.35rem, 2.2vw, 1.8rem); line-height: 1.15; margin: 6px 0 0; }
+.spec h2, .spec h3 { font-family: 'Zen Kaku Gothic Antique', system-ui, sans-serif; font-weight: 700; letter-spacing: 0.005em; margin: 0; text-wrap: balance; }
+.spec h2 { font-size: clamp(1.6rem, 2.4vw, 2.2rem); line-height: 1.1; }
+.spec h3 { font-size: 1.3rem; line-height: 1.2; margin-top: 6px; }
+.spec .lede { margin: 0; color: var(--muted); font-size: 1.12em; line-height: 1.5; }
 .spec p { margin: 0; color: #ddddde; }
-.spec .btn { justify-self: start; background: #f2f2f3; color: #0b0b0c; font-weight: 700; padding: .85em 1.3em; border-radius: 8px; }
+.spec ul { margin: 0; padding-left: 1.25em; display: grid; gap: 6px; color: #ddddde; }
+.spec .small { font-size: 13px; line-height: 1.5; color: var(--muted); }
+.spec .btn { justify-self: start; background: #f2f2f3; color: #0b0b0c; font-weight: 600; padding: .8em 1.2em; border-radius: 8px; font-size: .95em; }
 
 .choose { display: grid; gap: 10px; padding: 0 clamp(18px, 4vw, 40px) 40px; max-width: 880px; }
 .choose h2 { margin: 6px 0 0; font-size: 20px; }
@@ -43,56 +43,51 @@ header p { margin: 6px 0 0; color: var(--muted); max-width: 70ch; }
 .btn2[aria-pressed="true"] { background: #f2f2f3; color: #101012; border-color: #f2f2f3; }
 textarea { width: 100%; min-height: 84px; background: #0d0d0f; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; resize: vertical; }
 .msg { color: var(--muted); font-size: 13px; }
-@media (max-width: 900px) { .cols { grid-template-columns: 1fr; } }
+@media (max-width: 1100px) { .cols { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 <header>
-  <h1>Headline font: A or B?</h1>
-  <p>Same text, same body font (Open Sans). Only the headline font changes. Look at the title, the numbers, and the smaller heading.</p>
+  <h1>Body font: A, B or C?</h1>
+  <p>The headline font is settled (Zen Kaku Gothic Antique). Same text in all three; only the body font changes. Pay attention to the paragraphs, the bullet list, and the <b>small caption text</b> at the bottom. That small text is where you said the Zen body was hard to read.</p>
 </header>
 
-<div class="cols">
-  <section class="col" aria-label="Option A">
-    <div class="tag"><b>A</b><span>Urbanist</span></div>
-    <div class="spec" style="--fd:'Urbanist', system-ui, sans-serif; --dw:700; --dls:0.01em">
-      <span class="eb">Teaching Assistant · 2023–2026</span>
-      <h2>Building an AI teaching assistant teachers trust</h2>
-      <p class="lede">Three years of small bets that added up to one platform-wide tool for K-12 classrooms.</p>
-      <div class="nums"><div><b>38%</b><span>weekly teacher use</span></div><div><b>4.6</b><span>average rating</span></div><div><b>2×</b><span>faster setup</span></div></div>
-      <h3>The hard call: what we left out of the MVP</h3>
-      <p>Grading support was the feature teachers asked for most, and the riskiest one to get wrong. We shipped without it and shaped the data model so it could arrive as a fast follow.</p>
-      <span class="btn">Try the prototype →</span>
-    </div>
-  </section>
-  <section class="col" aria-label="Option B">
-    <div class="tag"><b>B</b><span>Zen Kaku Gothic Antique</span></div>
-    <div class="spec" style="--fd:'Zen Kaku Gothic Antique', system-ui, sans-serif; --dw:700; --dls:0.005em">
-      <span class="eb">Teaching Assistant · 2023–2026</span>
-      <h2>Building an AI teaching assistant teachers trust</h2>
-      <p class="lede">Three years of small bets that added up to one platform-wide tool for K-12 classrooms.</p>
-      <div class="nums"><div><b>38%</b><span>weekly teacher use</span></div><div><b>4.6</b><span>average rating</span></div><div><b>2×</b><span>faster setup</span></div></div>
-      <h3>The hard call: what we left out of the MVP</h3>
-      <p>Grading support was the feature teachers asked for most, and the riskiest one to get wrong. We shipped without it and shaped the data model so it could arrive as a fast follow.</p>
-      <span class="btn">Try the prototype →</span>
-    </div>
-  </section>
-</div>
+<div class="cols" id="cols"></div>
 
 <section class="choose" aria-label="Your choice">
-  <h2>Which headline font?</h2>
-  <div class="row" role="group" aria-label="Choose">
-    <button type="button" class="btn2" data-pick="A" aria-pressed="false">A · Urbanist</button>
-    <button type="button" class="btn2" data-pick="B" aria-pressed="false">B · Zen Kaku Antique</button>
-    <button type="button" class="btn2" data-pick="Neither" aria-pressed="false">Neither</button>
-  </div>
+  <h2>Which body font?</h2>
+  <div class="row" role="group" aria-label="Choose" id="picks"></div>
   <label for="note" class="msg">Anything to say about why? (optional)</label>
   <textarea id="note" placeholder="Why this one"></textarea>
   <div class="row"><button type="button" class="btn2" id="save">Save a file for Claude</button><span class="msg" id="msg"></span></div>
 </section>
 
 <script>
-const KEY = "molly-type-headline-v1";
+// bs = size, bw = weight, lh = line height
+const OPTS = [
+  { k: "A", name: "Open Sans", fb: "'Open Sans', system-ui, sans-serif", bs: "17px", bw: 400, lh: 1.65, note: "Familiar, very readable, a little plain." },
+  { k: "B", name: "Inter", fb: "'Inter', system-ui, sans-serif", bs: "17px", bw: 400, lh: 1.65, note: "Built for screens, clear at small sizes. Neutral and modern." },
+  { k: "C", name: "Zen Kaku Gothic New", fb: "'Zen Kaku Gothic New', system-ui, sans-serif", bs: "18px", bw: 500, lh: 1.7, note: "Matches the headline family. Shown larger and heavier (18px, medium) to fix the small-size problem." },
+];
+document.getElementById("cols").innerHTML = OPTS.map(o => `
+  <section class="col" aria-label="Option ${o.k}">
+    <div class="tag"><b>${o.k}</b><span>${o.name}</span></div>
+    <p class="msg" style="margin:0">${o.note}</p>
+    <div class="spec" style="--fb:${o.fb};--bs:${o.bs};--bw:${o.bw};--blh:${o.lh}">
+      <span class="eb">Teaching Assistant · 2023–2026</span>
+      <h2>Building an AI teaching assistant teachers trust</h2>
+      <p class="lede">Three years of small bets that added up to one platform-wide tool for K-12 classrooms.</p>
+      <h3>The hard call: what we left out of the MVP</h3>
+      <p>Grading support was the feature teachers asked for most, and the riskiest one to get wrong. We shipped without it and shaped the data model so it could arrive as a fast follow, without moving anything teachers had already learned.</p>
+      <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+      <ul><li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li><li>Sed do eiusmod tempor incididunt ut labore et dolore</li><li>Ut enim ad minim veniam, quis nostrud exercitation</li></ul>
+      <span class="btn">Try the prototype →</span>
+      <p class="small">Caption: small text sits under figures and tables, like this. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 0123456789.</p>
+    </div>
+  </section>`).join("");
+document.getElementById("picks").innerHTML = OPTS.map(o => `<button type="button" class="btn2" data-pick="${o.k}" aria-pressed="false">${o.k} · ${o.name}</button>`).join("") + `<button type="button" class="btn2" data-pick="Neither" aria-pressed="false">None of them</button>`;
+
+const KEY = "molly-type-body-v1";
 let state = {};
 try { state = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) {}
 const persist = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
@@ -104,9 +99,10 @@ function paint() {
 document.querySelectorAll("[data-pick]").forEach(b => b.addEventListener("click", () => { state.pick = state.pick === b.dataset.pick ? null : b.dataset.pick; persist(); paint(); }));
 note.addEventListener("input", () => { state.note = note.value; persist(); });
 document.getElementById("save").addEventListener("click", () => {
-  const out = { page: "type-headline", question: "Headline font: Urbanist (A) or Zen Kaku Gothic Antique (B); body fixed at Open Sans", savedAt: new Date().toISOString(), choice: state.pick || null, notes: (state.note || "").trim() };
+  const o = OPTS.find(x => x.k === state.pick);
+  const out = { page: "type-body", question: "Body font; headline fixed at Zen Kaku Gothic Antique", savedAt: new Date().toISOString(), choice: state.pick || null, choiceName: o ? o.name : null, notes: (state.note || "").trim() };
   const blob = new Blob([JSON.stringify(out, null, 2)], { type: "application/json" });
-  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "type-headline-result.json";
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "type-body-result.json";
   document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   msg.textContent = "Saved to Downloads. Tell Claude it's there, or just type your choice.";
 });
