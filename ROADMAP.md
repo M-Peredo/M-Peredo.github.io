@@ -67,7 +67,7 @@ We stopped working in phases. Molly responds better to something real and tangib
 
 | Decision | Options | Lean | Notes |
 |----------|---------|------|-------|
-| Type | Fraunces + Atkinson (placeholder) · others | Molly's call | |
+| Type | Finalists: Urbanist + Open Sans, Zen Kaku Gothic Antique + New (see Decisions Log) | Molly's call | Round 3 has variations and fine-tuning controls in `docs/design/type-round-1.html` |
 | Content color source | Hand-set per case study (today) · pulled from the screenshot automatically | Hand-set | Safer and tunable |
 | Site accent | None (today) · one accent for links and focus | | |
 | Contact | Section on home (today) · separate page | | |
@@ -91,3 +91,4 @@ We stopped working in phases. Molly responds better to something real and tangib
 | 2026-10-02 | Brand intake questionnaire retired; the design system checklist covers it |
 | 2026-10-02 | Stopped working in phases. Built a placeholder site (Next.js static export) to iterate on instead. Phases and sessions docs are kept for reference. |
 | 2026-10-02 | Color direction (concept, specifics still open): dark mode with a neutral black/gray base; each case study card and page takes its background color from its own screenshot ("Rich" tint). Red dropped as the primary because it clashed with Code.org's content. |
+| 2026-10-02 | Type: body font must be a sans-serif (a serif body is "too hard to reach"). Molly's ratings of her six pairings: Urbanist + Open Sans 5/5 ("increase the tracking on the headline font a bit"); Zen Kaku Gothic Antique + New 4/5 ("body font is a little hard to read at small sizes"); Rubik + Karla 3/5 ("headline might be too bold, drawing too much attention"); Voltaire + Inter 2/5 ("tracking on the numbers is too large; body very readable, but the headline font isn't giving the feel"); Ovo + Mulish 2/5 ("headline fonts work better at larger sizes, numbers are not balanced"); Zain + Nunito 1/5 ("too childish, and the downstrokes on the lowercase l make it difficult to read"). Themes: restrained headline weight, balanced numbers, strong small-size readability. Next round builds variations of the top two. |

@@ -63,7 +63,7 @@ pre { margin: 0; white-space: pre-wrap; background: var(--c-panel); border: 1px 
 
 /* ---- Specimen: a mini case study page. Fonts come from the variables below. ---- */
 .spec { --fd: Georgia, serif; --fb: system-ui, sans-serif; --dw: 600; --dls: 0; --qs: italic;
-  background: #0b0b0c; color: #f2f2f3; padding: clamp(24px, 4vw, 48px); border-radius: 10px; font-family: var(--fb); font-size: 1.0625rem; line-height: 1.65; display: grid; gap: 22px; align-content: start; }
+  background: #0b0b0c; color: #f2f2f3; padding: clamp(24px, 4vw, 48px); border-radius: 10px; font-family: var(--fb); font-size: var(--bs, 17px); font-weight: var(--bw, 400); line-height: var(--blh, 1.65); display: grid; gap: 22px; align-content: start; }
 .spec .eb { font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: #a4a4ab; font-weight: 700; }
 .spec .glyphs { font-family: var(--fd); font-weight: var(--dw); font-size: clamp(2.4rem, 5vw, 3.6rem); line-height: 1.1; letter-spacing: var(--dls); color: #f2f2f3; word-break: break-word; }
 .spec .glyphs small { display: block; font-family: var(--fb); font-weight: 400; font-size: 1.05rem; letter-spacing: .02em; color: #a4a4ab; margin-top: 6px; }
@@ -71,7 +71,7 @@ pre { margin: 0; white-space: pre-wrap; background: var(--c-panel); border: 1px 
 .spec .lede { margin: 0; font-size: 1.25rem; line-height: 1.5; color: #a4a4ab; max-width: 52ch; }
 .spec .metrics { display: flex; flex-wrap: wrap; gap: 20px 48px; padding-block: 8px; border-block: 2px solid #4a44c6; }
 .spec .metric { display: grid; gap: 2px; padding-block: 12px; }
-.spec .metric b { font-family: var(--fd); font-weight: var(--dw); font-size: clamp(2.4rem, 5vw, 3.6rem); line-height: 1; letter-spacing: var(--dls); font-variant-numeric: lining-nums tabular-nums; }
+.spec .metric b { font-family: var(--fd); font-weight: var(--dw); font-size: clamp(2.4rem, 5vw, 3.6rem); line-height: 1; letter-spacing: var(--nls, 0); font-variant-numeric: lining-nums tabular-nums; }
 .spec .metric span { font-size: .875rem; color: #a4a4ab; }
 .spec h4 { font-family: var(--fd); font-weight: var(--dw); letter-spacing: var(--dls); font-size: clamp(1.5rem, 2.8vw, 2rem); line-height: 1.15; margin: 8px 0 0; max-width: 30ch; }
 .spec p { margin: 0; max-width: 62ch; color: #ddddde; }
@@ -88,13 +88,21 @@ pre { margin: 0; white-space: pre-wrap; background: var(--c-panel); border: 1px 
 .spec ul { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; color: #ddddde; max-width: 56ch; }
 
 @media (max-width: 900px) { html, body { height: auto; } body { display: block; } .pager { position: sticky; top: 0; z-index: 2; } .page { height: auto; grid-template-columns: 1fr; } .side, .stage { overflow: visible; } .summary { height: auto; } }
+
+.tune { display: grid; gap: 12px; border-top: 1px solid var(--c-line); padding-top: 14px; }
+.tune h3 { margin: 0; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--c-muted); }
+.tune .r { display: grid; gap: 4px; }
+.tune .r label { display: flex; justify-content: space-between; font-size: 12px; color: var(--c-muted); }
+.tune .r label b { color: var(--c-ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+.tune input[type=range] { width: 100%; accent-color: var(--c-accent); }
+.tune .reset { justify-self: start; }
 </style>
 </head>
 <body>
 
 <header class="pager">
   <div class="pager-inner">
-    <h1>Type, round 2</h1>
+    <h1>Type, round 3</h1>
     <nav class="tabs" id="tabs" aria-label="Pages"></nav>
     <div class="nav">
       <span class="count" id="count"></span>
@@ -106,61 +114,66 @@ pre { margin: 0; white-space: pre-wrap; background: var(--c-panel); border: 1px 
 <main id="main"></main>
 
 <script>
-const ROUND = 2;
+const ROUND = 3;
 const KEY = "molly-type-round-" + ROUND;
 
-// cat: serif or sans. dw = heading weight. ital = has a real italic (used for the quote).
+// ws = weights available. dw = default heading weight. ital = real italic (quote).
+const F = (id, name, cat, fam, dw, ws, body, ital = false) => ({ id, name, cat, f: fam.replace(/"/g, "'"), dw, ws, body, ital });
 const FONTS = [
-  { id: "voltaire", name: "Voltaire", cat: "Sans", f: '"Voltaire", system-ui, sans-serif', dw: 400, dls: "0", ital: false, body: false },
-  { id: "inter", name: "Inter", cat: "Sans", f: '"Inter", system-ui, sans-serif', dw: 700, dls: "-0.015em", ital: false, body: true },
-  { id: "urbanist", name: "Urbanist", cat: "Sans", f: '"Urbanist", system-ui, sans-serif', dw: 700, dls: "-0.01em", ital: false, body: true },
-  { id: "opensans", name: "Open Sans", cat: "Sans", f: '"Open Sans", system-ui, sans-serif', dw: 700, dls: "-0.01em", ital: false, body: true },
-  { id: "zenanti", name: "Zen Kaku Gothic Antique", cat: "Sans", f: '"Zen Kaku Gothic Antique", system-ui, sans-serif', dw: 700, dls: "0", ital: false, body: true },
-  { id: "zennew", name: "Zen Kaku Gothic New", cat: "Sans", f: '"Zen Kaku Gothic New", system-ui, sans-serif', dw: 700, dls: "0", ital: false, body: true },
-  { id: "ovo", name: "Ovo", cat: "Serif", f: '"Ovo", Georgia, serif', dw: 400, dls: "0", ital: false, body: false },
-  { id: "mulish", name: "Mulish", cat: "Sans", f: '"Mulish", system-ui, sans-serif', dw: 700, dls: "-0.01em", ital: false, body: true },
-  { id: "rubik", name: "Rubik", cat: "Sans", f: '"Rubik", system-ui, sans-serif', dw: 700, dls: "-0.015em", ital: false, body: true },
-  { id: "karla", name: "Karla", cat: "Sans", f: '"Karla", system-ui, sans-serif', dw: 700, dls: "-0.01em", ital: false, body: true },
-  { id: "zain", name: "Zain", cat: "Sans", f: '"Zain", system-ui, sans-serif', dw: 800, dls: "0", ital: false, body: false },
-  { id: "nunito", name: "Nunito", cat: "Sans", f: '"Nunito", system-ui, sans-serif', dw: 700, dls: "-0.01em", ital: false, body: true },
-  { id: "fraunces", name: "Fraunces", cat: "Serif", f: '"Fraunces", Georgia, serif', dw: 600, dls: "-0.01em", ital: true, body: false },
-  { id: "instrument", name: "Instrument Serif", cat: "Serif", f: '"Instrument Serif", Georgia, serif', dw: 400, dls: "0", ital: true, body: false },
-  { id: "young", name: "Young Serif", cat: "Serif", f: '"Young Serif", Georgia, serif', dw: 400, dls: "0", ital: false, body: false },
-  { id: "newsreader", name: "Newsreader", cat: "Serif", f: '"Newsreader", Georgia, serif', dw: 600, dls: "-0.01em", ital: true, body: false },
-  { id: "atkinson", name: "Atkinson Hyperlegible Next", cat: "Sans", f: '"Atkinson Hyperlegible Next", system-ui, sans-serif', dw: 700, dls: "-0.01em", ital: false, body: true },
-  { id: "bricolage", name: "Bricolage Grotesque", cat: "Sans", f: '"Bricolage Grotesque", system-ui, sans-serif', dw: 700, dls: "-0.02em", ital: false, body: true },
-  { id: "figtree", name: "Figtree", cat: "Sans", f: '"Figtree", system-ui, sans-serif', dw: 700, dls: "-0.015em", ital: false, body: true },
-  { id: "sora", name: "Sora", cat: "Sans", f: '"Sora", system-ui, sans-serif', dw: 600, dls: "-0.02em", ital: false, body: true },
+  F("voltaire", "Voltaire", "Sans", '"Voltaire", system-ui, sans-serif', 400, [400], false),
+  F("inter", "Inter", "Sans", '"Inter", system-ui, sans-serif', 700, [400, 500, 600, 700], true),
+  F("urbanist", "Urbanist", "Sans", '"Urbanist", system-ui, sans-serif', 700, [400, 500, 600, 700, 800], true),
+  F("opensans", "Open Sans", "Sans", '"Open Sans", system-ui, sans-serif', 700, [400, 500, 600, 700], true),
+  F("zenanti", "Zen Kaku Gothic Antique", "Sans", '"Zen Kaku Gothic Antique", system-ui, sans-serif', 700, [400, 500, 700, 900], true),
+  F("zennew", "Zen Kaku Gothic New", "Sans", '"Zen Kaku Gothic New", system-ui, sans-serif', 700, [400, 500, 700], true),
+  F("ovo", "Ovo", "Serif", '"Ovo", Georgia, serif', 400, [400], false),
+  F("mulish", "Mulish", "Sans", '"Mulish", system-ui, sans-serif', 700, [400, 500, 600, 700], true),
+  F("rubik", "Rubik", "Sans", '"Rubik", system-ui, sans-serif', 700, [400, 500, 600, 700, 800], true),
+  F("karla", "Karla", "Sans", '"Karla", system-ui, sans-serif', 700, [400, 500, 600, 700], true),
+  F("zain", "Zain", "Sans", '"Zain", system-ui, sans-serif', 800, [400, 700, 800], false),
+  F("nunito", "Nunito", "Sans", '"Nunito", system-ui, sans-serif', 700, [400, 500, 600, 700], true),
+  F("fraunces", "Fraunces", "Serif", '"Fraunces", Georgia, serif', 600, [400, 500, 600, 700], false, true),
+  F("instrument", "Instrument Serif", "Serif", '"Instrument Serif", Georgia, serif', 400, [400], false, true),
+  F("young", "Young Serif", "Serif", '"Young Serif", Georgia, serif', 400, [400], false),
+  F("newsreader", "Newsreader", "Serif", '"Newsreader", Georgia, serif', 600, [400, 500, 600, 700], false, true),
+  F("atkinson", "Atkinson Hyperlegible Next", "Sans", '"Atkinson Hyperlegible Next", system-ui, sans-serif', 700, [400, 500, 600, 700], true),
+  F("bricolage", "Bricolage Grotesque", "Sans", '"Bricolage Grotesque", system-ui, sans-serif', 700, [400, 500, 600, 700, 800], true),
+  F("figtree", "Figtree", "Sans", '"Figtree", system-ui, sans-serif', 700, [400, 500, 600, 700, 800], true),
+  F("sora", "Sora", "Sans", '"Sora", system-ui, sans-serif', 600, [400, 500, 600, 700], true),
 ];
-// Font names go into inline style attributes, so use single quotes.
-FONTS.forEach(f => { f.f = f.f.replace(/"/g, "'"); });
 const BY = Object.fromEntries(FONTS.map(f => [f.id, f]));
 
-// Molly's six pairings: heading font + body font
-const PAIRS = [
-  { h: "voltaire", b: "inter", short: "Voltaire + Inter", note: "Tall, condensed headlines over a clean, neutral body. Newspaper-poster energy." },
-  { h: "urbanist", b: "opensans", short: "Urbanist + Open Sans", note: "Geometric, rounded headlines over a friendly, open body." },
-  { h: "zenanti", b: "zennew", short: "Zen Kaku Antique + New", note: "One family in two cuts. Calm and slightly retro." },
-  { h: "ovo", b: "mulish", short: "Ovo + Mulish", note: "A warm old-style serif for headlines over a soft, rounded sans. The only serif heading in the set." },
-  { h: "rubik", b: "karla", short: "Rubik + Karla", note: "Chunky, soft-cornered headlines over a quirky grotesque body." },
-  { h: "zain", b: "nunito", short: "Zain + Nunito", note: "Soft, friendly headlines over a rounded body. The gentlest set." },
+// Variations on Molly's two favorites. tr = heading tracking (em), hw = heading weight,
+// bs = body size (px), bw = body weight, lh = body line height.
+const base = { tr: 0, nt: 0, hw: 700, bs: 17, bw: 400, lh: 1.65 };
+const V = (h, b, short, note, o) => ({ h, b, short, note, p: { ...base, ...o } });
+const PAGESDEF = [
+  V("urbanist", "opensans", "Urbanist + Open Sans, looser", "Her 5/5 pairing with the headline tracking opened up, as she suggested.", { tr: 0.01, nt: -0.01 }),
+  V("urbanist", "opensans", "Urbanist + Open Sans, airy", "Looser tracking, a lighter heading weight, and a slightly larger, roomier body.", { tr: 0.02, nt: -0.005, hw: 600, bs: 17.5, lh: 1.75 }),
+  V("urbanist", "figtree", "Urbanist + Figtree", "Swaps Open Sans for Figtree, a rounder body that matches Urbanist's geometry.", { tr: 0.01 }),
+  V("zenanti", "zennew", "Zen Kaku, bigger body", "Her 4/5 pairing with a larger, heavier body to fix 'hard to read at small sizes'.", { tr: 0.01, bs: 18, bw: 500, lh: 1.7 }),
+  V("zenanti", "opensans", "Zen Antique + Open Sans", "Keeps the Zen headings, swaps in Open Sans, a very readable body.", { tr: 0.005 }),
+  V("zenanti", "inter", "Zen Antique + Inter", "Zen headings with Inter, which is built to stay clear at small sizes.", { tr: 0.005 }),
+  V("urbanist", "zennew", "Urbanist + Zen New", "The cross of her two favorites: Urbanist headings with the Zen body, set larger and heavier.", { tr: 0.01, bs: 18, bw: 500, lh: 1.7 }),
 ];
-const PAGES = [...PAIRS.map((p, i) => "pair" + i), "mix", "summary"];
-const REF_D = "Georgia, 'Times New Roman', serif", REF_B = "system-ui, -apple-system, 'Segoe UI', sans-serif";
+const PAGES = [...PAGESDEF.map((_, i) => "v" + i), "mix", "summary"];
 
 function load() { try { const r = localStorage.getItem(KEY); return r ? JSON.parse(r) : null; } catch (e) { return null; } }
 function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
 let state = load() || {};
-state.mix = state.mix || { h: "fraunces", b: "figtree" }; state.picks = state.picks || {}; state.page = state.page ?? 0;
+state.mix = state.mix || { h: "urbanist", b: "opensans" }; state.picks = state.picks || {}; state.tune = state.tune || {}; state.page = state.page ?? 0;
 if (!(state.page >= 0 && state.page < PAGES.length)) state.page = 0;
-const keyOf = (h, b) => h + "+" + b;
-const pick = (h, b) => state.picks[keyOf(h, b)] || (state.picks[keyOf(h, b)] = { rating: 0, kept: false, notes: "" });
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
-function specimen(d, b, label) {
-  const qs = d.ital ? "italic" : "normal";
+// An item = one page's worth of state, keyed by page id (mix pages are keyed by their fonts)
+const idOf = i => i < PAGESDEF.length ? "v" + i : "mix:" + state.mix.h + "+" + state.mix.b;
+const fontsOf = i => i < PAGESDEF.length ? [BY[PAGESDEF[i].h], BY[PAGESDEF[i].b]] : [BY[state.mix.h], BY[state.mix.b]];
+const paramsOf = (i, id) => state.tune[id] || (i < PAGESDEF.length ? PAGESDEF[i].p : { ...base, hw: BY[state.mix.h].dw });
+const pick = id => state.picks[id] || (state.picks[id] = { rating: 0, kept: false, notes: "" });
+
+function specimen(d, b, p, label) {
   return `
-  <div class="spec" style="--fd:${d.f};--fb:${b.f};--dw:${d.dw};--dls:${d.dls};--qs:${qs}">
+  <div class="spec" style="--fd:${d.f};--fb:${b.f};--dw:${p.hw};--dls:${p.tr}em;--nls:${p.nt}em;--qs:${d.ital ? "italic" : "normal"};--bs:${p.bs}px;--bw:${p.bw};--blh:${p.lh}">
     <div class="eb">${esc(label)}</div>
     <div class="glyphs">Aa Bb Cc 123<small>ABCDEFGHIJKLMNOPQRSTUVWXYZ · abcdefghijklmnopqrstuvwxyz · 0123456789 &amp; ? !</small></div>
     <div class="eb" style="margin-top:8px">Teaching Assistant · 2023–2026</div>
@@ -182,63 +195,86 @@ function specimen(d, b, label) {
   </div>`;
 }
 
-const controls = (id, ph) => `
+const sliders = `
+  <div class="tune">
+    <h3>Fine-tune</h3>
+    <div class="r"><label>Headline tracking <b data-v="tr"></b></label><input type="range" data-t="tr" min="-0.04" max="0.08" step="0.005"></div>
+    <div class="r"><label>Number tracking <b data-v="nt"></b></label><input type="range" data-t="nt" min="-0.06" max="0.04" step="0.005"></div>
+    <div class="r"><label>Heading weight <b data-v="hw"></b></label><select data-t="hw"></select></div>
+    <div class="r"><label>Body size <b data-v="bs"></b></label><input type="range" data-t="bs" min="15" max="20" step="0.5"></div>
+    <div class="r"><label>Body weight <b data-v="bw"></b></label><select data-t="bw"></select></div>
+    <div class="r"><label>Body line height <b data-v="lh"></b></label><input type="range" data-t="lh" min="1.4" max="1.9" step="0.05"></div>
+    <button type="button" class="btn reset" data-treset>Reset to this page's settings</button>
+  </div>`;
+const controls = `
   <div class="controls">
-    <div class="stars" role="group" aria-label="Rate this pairing"><span class="label">Rating</span>${[1,2,3,4,5].map(n => `<button type="button" class="star" data-star="${n}" aria-label="${n} of 5">★</button>`).join("")}</div>
-    <button type="button" class="btn" data-keep aria-pressed="false">Keep this pairing</button>
-    <div class="field"><label for="n-${id}">Notes</label><textarea id="n-${id}" placeholder="${ph}"></textarea></div>
+    <div class="stars" role="group" aria-label="Rate"><span class="label">Rating</span>${[1,2,3,4,5].map(n => `<button type="button" class="star" data-star="${n}" aria-label="${n} of 5">★</button>`).join("")}</div>
+    <button type="button" class="btn" data-keep aria-pressed="false">Keep this version</button>
+    <div class="field"><label>Notes</label><textarea data-notes placeholder="What works, what doesn't"></textarea></div>
   </div>`;
 
-function pairPage(p, i) {
-  const h = BY[p.h], b = BY[p.b];
+function variantPage(v, i) {
+  const h = BY[v.h], b = BY[v.b];
   return `
-  <section class="page" data-pair="${i}">
+  <section class="page" data-i="${i}">
     <div class="side">
-      <span class="eyebrow">Pairing ${i + 1} of ${PAIRS.length}</span>
-      <h2 style="font-family:${h.f};font-weight:${h.dw}">${esc(h.name)} <span style="font-family:${b.f};font-weight:400;color:var(--c-muted)">&amp; ${esc(b.name)}</span></h2>
-      <p class="note">${esc(p.note)}</p>
-      ${controls("p" + i, "What works, what doesn't")}
+      <span class="eyebrow">Variation ${i + 1} of ${PAGESDEF.length}</span>
+      <h2 style="font-family:${h.f};font-weight:${v.p.hw}">${esc(h.name)} <span style="font-family:${b.f};font-weight:400;color:var(--c-muted)">&amp; ${esc(b.name)}</span></h2>
+      <p class="note">${esc(v.note)}</p>
+      ${controls}${sliders}
     </div>
-    <div class="stage" data-spec>${specimen(h, b, `${h.name} headings + ${b.name} body`)}</div>
+    <div class="stage" data-spec></div>
   </section>`;
 }
-
 function mixPage() {
   const heads = FONTS.map(f => `<option value="${f.id}">${esc(f.name)} (${f.cat.toLowerCase()})</option>`).join("");
   const bodies = FONTS.filter(f => f.body).map(f => `<option value="${f.id}">${esc(f.name)}</option>`).join("");
   return `
-  <section class="page" data-mix>
+  <section class="page" data-i="${PAGESDEF.length}">
     <div class="side">
       <span class="eyebrow">Mix and match</span>
-      <h2>Pick a pairing</h2>
-      <p class="note">Headings can be any font, serif or sans. Body text is limited to sans-serifs.</p>
+      <h2>Build your own</h2>
+      <p class="note">Any heading font, any sans body font, tuned however you like.</p>
       <div class="field"><label for="mixh">Headings and numbers</label><select id="mixh">${heads}</select></div>
       <div class="field"><label for="mixb">Body text (sans only)</label><select id="mixb">${bodies}</select></div>
-      ${controls("mix", "Why this one")}
+      ${controls}${sliders}
     </div>
-    <div class="stage" data-mixspec></div>
+    <div class="stage" data-spec></div>
   </section>`;
 }
-
 function summaryPage() {
   return `
   <section class="summary" data-summary><div class="summary-inner">
     <h2>Summary</h2>
     <div class="compare" id="cmp"></div>
     <pre id="sumtext"></pre>
-    <div class="row"><button class="btn" id="copy" type="button">Copy summary</button><button class="btn" id="reset" type="button">Start over</button><span class="msg" id="msg"></span></div>
+    <div class="row"><button class="btn" id="savefile" type="button">Save a file for Claude</button><button class="btn" id="copy" type="button">Copy summary</button><button class="btn" id="reset" type="button">Start over</button><span class="msg" id="msg"></span></div>
   </div></section>`;
 }
 
 const main = document.getElementById("main");
-main.innerHTML = PAIRS.map(pairPage).join("") + mixPage() + summaryPage();
+main.innerHTML = PAGESDEF.map(variantPage).join("") + mixPage() + summaryPage();
 const els = [...main.children];
-const MIXI = PAIRS.length;
+const MIXI = PAGESDEF.length;
+const fmt = { nt: v => (v > 0 ? "+" : "") + Number(v).toFixed(3) + "em", tr: v => (v > 0 ? "+" : "") + Number(v).toFixed(3) + "em", hw: v => v, bs: v => v + "px", bw: v => v, lh: v => Number(v).toFixed(2) };
 
-function fill(el, p) {
-  el.querySelectorAll(".star").forEach(b => b.classList.toggle("on", Number(b.dataset.star) <= p.rating));
-  el.querySelector("[data-keep]").setAttribute("aria-pressed", String(p.kept));
-  const ta = el.querySelector("textarea"); if (document.activeElement !== ta && ta.value !== p.notes) ta.value = p.notes;
+function paintPage(i) {
+  const el = els[i], id = idOf(i), [d, b] = fontsOf(i), p = paramsOf(i, id), k = pick(id);
+  const sig = id + JSON.stringify(p);
+  const stage = el.querySelector("[data-spec]");
+  if (stage.dataset.sig !== sig) { stage.dataset.sig = sig; stage.innerHTML = specimen(d, b, p, `${d.name} headings + ${b.name} body`); }
+  // controls reflect current params
+  const selOpts = (ws, cur) => ws.map(w => `<option value="${w}" ${Number(cur) === w ? "selected" : ""}>${w}</option>`).join("");
+  const hwSel = el.querySelector("[data-t='hw']"), bwSel = el.querySelector("[data-t='bw']");
+  const hsig = d.id + p.hw, bsig = b.id + p.bw;
+  if (hwSel.dataset.sig !== hsig) { hwSel.dataset.sig = hsig; hwSel.innerHTML = selOpts(d.ws, d.ws.includes(Number(p.hw)) ? p.hw : d.dw); }
+  if (bwSel.dataset.sig !== bsig) { bwSel.dataset.sig = bsig; bwSel.innerHTML = selOpts(b.ws.filter(w => w <= 700), b.ws.includes(Number(p.bw)) ? p.bw : 400); }
+  ["tr", "nt", "bs", "lh"].forEach(key => { const r = el.querySelector(`[data-t='${key}']`); if (document.activeElement !== r) r.value = p[key]; });
+  Object.keys(fmt).forEach(key => { el.querySelector(`[data-v='${key}']`).textContent = fmt[key](p[key]); });
+  el.querySelectorAll(".star").forEach(s => s.classList.toggle("on", Number(s.dataset.star) <= k.rating));
+  el.querySelector("[data-keep]").setAttribute("aria-pressed", String(k.kept));
+  const ta = el.querySelector("[data-notes]"); if (document.activeElement !== ta && ta.value !== k.notes) ta.value = k.notes;
+  if (i === MIXI) { el.querySelector("#mixh").value = state.mix.h; el.querySelector("#mixb").value = state.mix.b; }
 }
 
 function render() {
@@ -249,77 +285,85 @@ function render() {
   document.getElementById("tabs").innerHTML = PAGES.map((id, i) => {
     const cur = i === state.page ? ' aria-current="page"' : "";
     if (id === "summary") return `<button class="tab" type="button" data-go="${i}"${cur}>Summary</button>`;
-    if (id === "mix") return `<button class="tab" type="button" data-go="${i}"${cur}>Mix and match</button>`;
-    const pr = PAIRS[i], k = pick(pr.h, pr.b);
-    return `<button class="tab" type="button" data-go="${i}"${cur}>${esc(pr.short)}${k.rating ? `<small>${k.rating}/5</small>` : ""}${k.kept ? "<small>✓</small>" : ""}</button>`;
+    if (id === "mix") return `<button class="tab" type="button" data-go="${i}"${cur}>Build your own</button>`;
+    const k = pick(id);
+    return `<button class="tab" type="button" data-go="${i}"${cur}>${esc(PAGESDEF[i].short)}${k.rating ? `<small>${k.rating}/5</small>` : ""}${k.kept ? "<small>✓</small>" : ""}</button>`;
   }).join("");
-
-  PAIRS.forEach((pr, i) => fill(els[i], pick(pr.h, pr.b)));
-
-  const mel = els[MIXI], sig = keyOf(state.mix.h, state.mix.b), stage = mel.querySelector("[data-mixspec]");
-  if (stage.dataset.sig !== sig) { stage.dataset.sig = sig; stage.innerHTML = specimen(BY[state.mix.h], BY[state.mix.b], `${BY[state.mix.h].name} headings + ${BY[state.mix.b].name} body`); }
-  mel.querySelector("#mixh").value = state.mix.h; mel.querySelector("#mixb").value = state.mix.b;
-  fill(mel, pick(state.mix.h, state.mix.b));
+  if (state.page <= MIXI) paintPage(state.page);
   renderSummary();
 }
 
+function describe(id, i, d, b, p) { return `${d.name} (${p.hw}, headline tracking ${fmt.tr(p.tr)}, number tracking ${fmt.nt(p.nt)}) + ${b.name} (${p.bw}, ${p.bs}px, line height ${Number(p.lh).toFixed(2)})`; }
+function allItems() {
+  const items = PAGESDEF.map((v, i) => ({ id: "v" + i, title: v.short, d: BY[v.h], b: BY[v.b], p: paramsOf(i, "v" + i) }));
+  Object.keys(state.picks).filter(k => k.startsWith("mix:")).forEach(k => {
+    const [h, b] = k.slice(4).split("+"); const pk = state.picks[k];
+    if (BY[h] && BY[b] && (pk.rating || pk.kept || pk.notes.trim())) items.push({ id: k, title: `Built: ${BY[h].name} + ${BY[b].name}`, d: BY[h], b: BY[b], p: state.tune[k] || { ...base, hw: BY[h].dw } });
+  });
+  return items;
+}
+function summaryObject() {
+  return allItems().map(it => { const k = pick(it.id); return { page: it.title, headings: it.d.name, body: it.b.name, settings: { headingWeight: Number(it.p.hw), headingTracking: Number(it.p.tr), numberTracking: Number(it.p.nt), bodySizePx: Number(it.p.bs), bodyWeight: Number(it.p.bw), bodyLineHeight: Number(it.p.lh) }, rating: k.rating || null, kept: k.kept, notes: k.notes.trim() }; });
+}
 function renderSummary() {
-  const label = k => { const [h, b] = k.split("+"); return `${BY[h].name} + ${BY[b].name}`; };
-  const fixed = PAIRS.map(p => keyOf(p.h, p.b));
-  const extra = Object.keys(state.picks).filter(k => !fixed.includes(k) && (state.picks[k].rating || state.picks[k].kept || state.picks[k].notes.trim()));
-  const all = [...fixed, ...extra];
-  document.getElementById("cmp").innerHTML = all.map(k => {
-    const [h, b] = k.split("+"), v = state.picks[k] || { rating: 0, kept: false, notes: "" }, i = fixed.indexOf(k);
-    return `<button class="cmp ${v.kept ? "liked" : ""}" type="button" ${i >= 0 ? `data-go="${i}"` : `data-mix="${k}"`}><b style="font-family:${BY[h].f};font-weight:${BY[h].dw}">${esc(BY[h].name)} <span style="font-family:${BY[b].f};font-weight:400;color:var(--c-muted)">+ ${esc(BY[b].name)}</span></b><small>${v.rating ? v.rating + "/5" : "unrated"}${v.kept ? " · kept" : ""}</small><small>${esc(v.notes.trim())}</small></button>`;
+  const items = allItems();
+  document.getElementById("cmp").innerHTML = items.map(it => {
+    const k = pick(it.id), pi = PAGES.indexOf(it.id);
+    return `<button class="cmp ${k.kept ? "liked" : ""}" type="button" ${pi >= 0 ? `data-go="${pi}"` : `data-mixid="${it.id}"`}><b style="font-family:${it.d.f};font-weight:${it.p.hw}">${esc(it.title)}</b><small>${k.rating ? k.rating + "/5" : "unrated"}${k.kept ? " · kept" : ""}</small><small>${esc(k.notes.trim())}</small></button>`;
   }).join("");
-  const lines = [`Type, round ${ROUND}`, "", "PAIRINGS (headings + body)"];
-  all.forEach(k => { const v = state.picks[k] || { rating: 0, kept: false, notes: "" }; lines.push(`- ${label(k)}: ${v.rating ? v.rating + "/5" : "unrated"}${v.kept ? ", KEPT" : ""}${v.notes.trim() ? "\n    Notes: " + v.notes.trim().replace(/\n+/g, " / ") : ""}`); });
+  const lines = [`Type, round ${ROUND}`, ""];
+  items.forEach(it => { const k = pick(it.id); lines.push(`- ${it.title}: ${k.rating ? k.rating + "/5" : "unrated"}${k.kept ? ", KEPT" : ""}\n    ${describe(it.id, 0, it.d, it.b, it.p)}${k.notes.trim() ? "\n    Notes: " + k.notes.trim().replace(/\n+/g, " / ") : ""}`); });
   document.getElementById("sumtext").textContent = lines.join("\n");
 }
 
 function go(i) { state.page = Math.max(0, Math.min(PAGES.length - 1, i)); save(); render(); els[state.page].querySelectorAll(".side, .stage, .summary").forEach(s => s.scrollTop = 0); window.scrollTo(0, 0); }
 document.getElementById("prev").addEventListener("click", () => go(state.page - 1));
 document.getElementById("next").addEventListener("click", () => go(state.page + 1));
-document.addEventListener("keydown", e => { if (e.target.closest("textarea, select")) return; if (e.key === "ArrowRight") go(state.page + 1); if (e.key === "ArrowLeft") go(state.page - 1); });
+document.addEventListener("keydown", e => { if (e.target.closest("textarea, select, input")) return; if (e.key === "ArrowRight") go(state.page + 1); if (e.key === "ArrowLeft") go(state.page - 1); });
 
-// Which pairing a control belongs to
-function targetOf(el) {
-  const pg = el.closest("[data-pair]");
-  if (pg) { const p = PAIRS[Number(pg.dataset.pair)]; return pick(p.h, p.b); }
-  if (el.closest("[data-mix]")) return pick(state.mix.h, state.mix.b);
-  return null;
+const curId = () => idOf(state.page);
+function setTune(key, value) {
+  const i = state.page, id = curId(), p = { ...paramsOf(i, id) };
+  p[key] = Number(value); state.tune[id] = p; save(); render();
 }
 document.addEventListener("click", e => {
-  const m = e.target.closest("[data-mix]:not(section)");
-  if (m) { const [h, b] = m.dataset.mix.split("+"); state.mix = { h, b }; return go(MIXI); }
+  const mx = e.target.closest("[data-mixid]");
+  if (mx) { const [h, b] = mx.dataset.mixid.slice(4).split("+"); state.mix = { h, b }; return go(MIXI); }
   const g = e.target.closest("[data-go]"); if (g) return go(Number(g.dataset.go));
-  const tgt = targetOf(e.target); if (!tgt) return;
-  const st = e.target.closest("[data-star]"), kp = e.target.closest("[data-keep]");
-  if (st) { const n = Number(st.dataset.star); tgt.rating = tgt.rating === n ? 0 : n; }
-  else if (kp) tgt.kept = !tgt.kept;
-  else return;
-  save(); render();
+  if (state.page > MIXI) return;
+  const k = pick(curId());
+  const st = e.target.closest("[data-star]");
+  if (st) { const n = Number(st.dataset.star); k.rating = k.rating === n ? 0 : n; save(); return render(); }
+  if (e.target.closest("[data-keep]")) { k.kept = !k.kept; save(); return render(); }
+  if (e.target.closest("[data-treset]")) { delete state.tune[curId()]; save(); return render(); }
+});
+document.addEventListener("input", e => {
+  const t = e.target;
+  if (t.matches("input[data-t]")) return setTune(t.dataset.t, t.value);
+  if (t.matches("[data-notes]")) { pick(curId()).notes = t.value; clearTimeout(window.__nt); window.__nt = setTimeout(() => { save(); render(); }, 400); }
 });
 document.addEventListener("change", e => {
-  if (e.target.id === "mixh") { state.mix.h = e.target.value; save(); render(); }
-  if (e.target.id === "mixb") { state.mix.b = e.target.value; save(); render(); }
-});
-let t;
-document.addEventListener("input", e => {
-  const ta = e.target.closest("textarea"); if (!ta) return;
-  const tgt = targetOf(ta); if (tgt) tgt.notes = ta.value;
-  clearTimeout(t); t = setTimeout(() => { save(); render(); }, 400);
+  const t = e.target;
+  if (t.matches("select[data-t]")) return setTune(t.dataset.t, t.value);
+  if (t.id === "mixh") { state.mix.h = t.value; delete state.tune[curId()]; save(); render(); }
+  if (t.id === "mixb") { state.mix.b = t.value; save(); render(); }
 });
 document.getElementById("copy").addEventListener("click", async () => {
   const pre = document.getElementById("sumtext"), msg = document.getElementById("msg");
   try { await navigator.clipboard.writeText(pre.textContent); msg.textContent = "Copied. Paste it into the chat."; }
   catch (err) { const r = document.createRange(); r.selectNodeContents(pre); const s = getSelection(); s.removeAllRanges(); s.addRange(r); msg.textContent = "Selected. Press Cmd+C."; }
 });
+document.getElementById("savefile").addEventListener("click", () => {
+  const blob = new Blob([JSON.stringify({ page: "type", round: ROUND, savedAt: new Date().toISOString(), results: summaryObject() }, null, 2)], { type: "application/json" });
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = `type-round-${ROUND}-results.json`;
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  document.getElementById("msg").textContent = "Saved to your Downloads folder. Tell Claude it's there.";
+});
 let armed = false;
 document.getElementById("reset").addEventListener("click", e => {
   if (!armed) { armed = true; e.target.textContent = "Click again to clear everything"; setTimeout(() => { armed = false; e.target.textContent = "Start over"; }, 4000); return; }
-  armed = false; e.target.textContent = "Start over"; state = { mix: { h: "fraunces", b: "figtree" }, picks: {}, page: state.page };
-  els.forEach(el => { el.querySelectorAll("textarea").forEach(x => x.value = ""); });
+  armed = false; e.target.textContent = "Start over"; state = { mix: { h: "urbanist", b: "opensans" }, picks: {}, tune: {}, page: state.page };
+  els.forEach(el => { el.querySelectorAll("textarea").forEach(x => x.value = ""); const st = el.querySelector("[data-spec]"); if (st) delete st.dataset.sig; });
   save(); render(); document.getElementById("msg").textContent = "Cleared.";
 });
 render();
