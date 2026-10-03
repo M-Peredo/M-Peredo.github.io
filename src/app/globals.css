@@ -277,6 +277,7 @@ a:hover { text-decoration-thickness: 2px; }
 .cs-hero { padding-bottom: var(--section); } 
 /* ---------- Case study summary ---------- */
 .sum-split { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: var(--space-8) var(--space-8); align-items: start; }
+.sum-single { grid-template-columns: minmax(0, 1fr); gap: var(--space-8); }
 .sum-main { display: grid; gap: var(--space-5); align-content: start; }
 /* Facts: a plain list with thin dividers, no box, so they stay quiet */
 .meta-stack { display: grid; gap: 0; margin: 0; padding: 0; border: 0; border-top: 1px solid var(--rule); }

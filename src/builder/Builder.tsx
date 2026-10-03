@@ -32,9 +32,8 @@ const SUMMARY_FIELDS: Field[] = [
   { kind: "text", key: "title", label: "Title" },
   { kind: "textarea", key: "hook", label: "One-line hook" },
   { kind: "text", key: "dateline", label: "Small label above the title" },
-  { kind: "text", key: "role", label: "Role" },
-  { kind: "text", key: "timeline", label: "Timeline" },
-  { kind: "text", key: "domain", label: "Domain" },
+  { kind: "list", key: "facts", label: "Facts beside the headline (optional)", itemLabel: "Fact", blank: () => ({ label: "Scope", value: "Lorem ipsum" }),
+    fields: [{ kind: "text", key: "label", label: "Label" }, { kind: "text", key: "value", label: "Value" }] },
   { kind: "text", key: "tags", label: "Tags (comma separated)" },
   { kind: "list", key: "metrics", label: "Headline numbers", itemLabel: "Number", blank: () => ({ value: "00", label: "Lorem ipsum" }),
     fields: [{ kind: "text", key: "value", label: "Number" }, { kind: "text", key: "label", label: "Label" }] },
@@ -162,7 +161,7 @@ export default function Builder() {
   // ---------- Canvas ----------
   const study: CaseStudy = {
     slug: meta.slug, status: "draft", order: 9, title: meta.title, dateline: meta.dateline, hook: meta.hook, color: meta.color,
-    role: meta.role, timeline: meta.timeline, domain: meta.domain,
+    facts: meta.facts ?? [],
     tags: meta.tags.split(",").map((t) => t.trim()).filter(Boolean), metrics: meta.metrics, source: "",
   };
   const types = new Set(doc.blocks.map((b) => b.type));

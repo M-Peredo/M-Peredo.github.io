@@ -9,6 +9,8 @@ import matter from "gray-matter";
 export type Status = "live" | "unlisted" | "draft";
 
 export type Metric = { value: string; label: string };
+// A short, optional fact shown beside the headline (for example Scope, Team, Timeline).
+export type Fact = { label: string; value: string };
 
 export type CaseStudy = {
   slug: string;
@@ -18,9 +20,7 @@ export type CaseStudy = {
   dateline: string;
   hook: string;
   color: string; // source color for the content-driven background
-  role: string;
-  timeline: string;
-  domain: string;
+  facts: Fact[];
   tags: string[];
   metrics: Metric[];
   source: string; // MDX body
@@ -39,9 +39,7 @@ function read(file: string): CaseStudy {
     dateline: String(data.dateline ?? ""),
     hook: String(data.hook ?? ""),
     color: String(data.color ?? "#4A44C6"),
-    role: String(data.role ?? ""),
-    timeline: String(data.timeline ?? ""),
-    domain: String(data.domain ?? ""),
+    facts: (data.facts ?? []) as Fact[],
     tags: (data.tags ?? []) as string[],
     metrics: (data.metrics ?? []) as Metric[],
     source: content,

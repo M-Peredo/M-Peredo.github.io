@@ -34,7 +34,7 @@ Everything lives in `src/app/globals.css` and `src/components/`. **The `/stylegu
 - **Pull quote:** a centered statement set off by colored rules, with an opening quote mark centered on the top rule (in the case study color). There is no closing mark. No other pull quote styles exist.
 - **Insight card (`Callout`):** no box, just a 3px line down the left side in the case study color, with a small label above the text. No other styles exist.
 
-- **Case study summary:** one layout. Headline, hook and action buttons on the left; the facts (Role, Timeline, Domain) on the right as a plain list with thin dividers (no box); the headline numbers underneath in three equal columns under a thin neutral rule. The headline must visually lead: numbers are 40px (36px on phones) at medium weight, never the same size as the headline.
+- **Case study summary:** headline, hook and action buttons on the left; optional `facts` on the right as a plain list with thin dividers (no box); the headline numbers underneath in three equal columns under a thin neutral rule. With no facts, the layout is a single column. Facts should be specific to the project, not generic: for example Scope (what she owned, e.g. "Sole designer, end to end"), Team (who she worked with) and Timeline. Do not add Domain (K-12 ed tech is already the site's headline) or a generic job title. The headline must visually lead: numbers are 40px (36px on phones) at medium weight, never the same size as the headline.
 
 ## Components (`src/components/ui/`)
 `Button`, `CaseStudyCard`, `SummaryBlock`, `Shot` (`Stage`, `BrowserFrame`), figures (`Screen`, `ShotPair`, `BeforeAfter`, `Annotated`, `PrototypeFrame`, `Figure`), content blocks (`PullQuote`, `Callout`, `Sticky`, `Decision`, `Timeline`, `CompareTable`, `ThreeUp`, `StatRow`, `Retrospective`, `Divider`, `Split`). All of the figure and content components can be used directly inside a case study `.mdx` file (see `src/components/ui/mdx.tsx`).
@@ -44,7 +44,7 @@ Everything lives in `src/app/globals.css` and `src/components/`. **The `/stylegu
 **When you add or change a component, add or update it in `src/builder/registry.tsx` too**, so the builder and the MDX components stay in step. To turn a builder export into a real case study: save the MDX in `content/case-studies/`, set `status`, and add its slug to `src/lib/variants.ts`.
 
 ## Case studies
-One file each in `content/case-studies/<slug>.mdx`. Front matter: `title`, `status`, `order`, `color`, `dateline`, `hook`, `role`, `timeline`, `domain`, `tags`, `metrics` (three value/label pairs).
+One file each in `content/case-studies/<slug>.mdx`. Front matter: `title`, `status`, `order`, `color`, `dateline`, `hook`, `tags`, `metrics` (three value/label pairs), and optional `facts` (a short list of label/value pairs shown beside the headline).
 
 `status`:
 - `live`: listed on the home page, has its own page

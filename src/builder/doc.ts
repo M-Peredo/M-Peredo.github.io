@@ -6,9 +6,7 @@ export type Meta = {
   title: string;
   hook: string;
   dateline: string;
-  role: string;
-  timeline: string;
-  domain: string;
+  facts: { label: string; value: string }[];
   tags: string;
   color: string;
   hero: string;
@@ -26,9 +24,7 @@ export const defaultMeta = (): Meta => ({
   title: "Lorem ipsum dolor sit amet consectetur",
   hook: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   dateline: "Lorem Ipsum · 2025",
-  role: "Lead product designer",
-  timeline: "6 months",
-  domain: "Lorem ipsum",
+  facts: [{ label: "Scope", value: "Lorem ipsum dolor sit amet" }, { label: "Timeline", value: "6 months" }],
   tags: "Lorem, Ipsum, Dolor",
   color: "#4A44C6",
   hero: "assistant",
@@ -89,9 +85,7 @@ export function toMdx(doc: Doc): string {
     `color: ${q(m.color)}`,
     `dateline: ${q(m.dateline)}`,
     `hook: ${q(m.hook)}`,
-    `role: ${q(m.role)}`,
-    `timeline: ${q(m.timeline)}`,
-    `domain: ${q(m.domain)}`,
+    ...((m.facts ?? []).length ? ["facts:", ...m.facts.map((f) => `  - { label: ${q(f.label)}, value: ${q(f.value)} }`)] : []),
     `tags: [${tags.map(q).join(", ")}]`,
     "metrics:",
     ...m.metrics.map((x) => `  - { value: ${q(x.value)}, label: ${q(x.label)} }`),
