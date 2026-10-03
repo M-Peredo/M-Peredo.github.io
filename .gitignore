@@ -12,3 +12,7 @@ out/
 .env
 .env.*
 docs/design/assets/
+
+# Next.js
+next-env.d.ts
+*.tsbuildinfo

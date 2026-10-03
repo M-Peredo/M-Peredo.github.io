@@ -1,5 +1,7 @@
 # Working Sessions
 
+> **Superseded 2026-10-02.** We stopped working in phases and sessions; see [ROADMAP.md](../ROADMAP.md). Kept for reference.
+
 The PM plan: how the [roadmap](../ROADMAP.md) turns into working sessions with Molly. Each session has prep that Carlos + Claude finish beforehand, the decisions that belong to Molly, and what the session should produce.
 
 **Ground rules**

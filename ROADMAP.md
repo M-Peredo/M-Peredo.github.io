@@ -5,7 +5,7 @@ Ground-up rebuild of **mollyperedodesigns.com**, replacing the Squarespace expor
 - **Owner / designer:** Molly Peredo — drives the build with Claude Code (agentic development)
 - **PM:** Carlos Peredo — runs prep work between sessions and facilitates working sessions
 - **Started:** 2026-10-01
-- **Session plan:** see [docs/sessions.md](docs/sessions.md)
+- **How we work:** iterate on a real, running site. See below.
 
 ## Scope
 
@@ -16,6 +16,7 @@ A deliberately small site:
 | `/` | Home — intro, positioning, featured case studies (absorbs the old About page) |
 | `/work` | Portfolio index — live case studies only |
 | `/work/<slug>` | Individual case studies (3–5 live at launch) |
+| `/styleguide` | Unlisted. Every token and component in one place. |
 | `/contact` | Optional, light |
 
 Everything on the current site is retired: archived on its own branch, not migrated. All case studies come from Molly's newer work.
@@ -28,98 +29,48 @@ Every case study is a deep, robust one. There's no short-format or "selected ear
 |--------|---------|
 | `main` | Live site. Keeps serving the old Squarespace export until launch — **do not clear it early**, it's what mollyperedodesigns.com serves. |
 | `archive/squarespace` | Frozen snapshot of the old site. |
-| `redesign` | All new work happens here. Merged to `main` at launch (Phase 6). |
+| `redesign` | All new work happens here. Merged to `main` at launch. |
 
 Legacy remote branches `Staging` (identical to `main`) and `prelim-test` (an earlier upload) were deleted in Phase 0 (2026-10-02).
 
-## Legend
+## Where things stand (2026-10-02)
 
-- **(prep)** — groundwork done by Carlos + Claude ahead of sessions
-- **(session)** — done with Molly in a working session; her decisions
+We stopped working in phases. Molly responds better to something real and tangible than to planning documents, so we built a first-pass **placeholder site** to iterate on: a design system, a home page, and three lorem ipsum case studies that show a wide range of design elements.
 
----
+**Built (on `redesign`)**
+- Next.js static site (see [CLAUDE.md](CLAUDE.md) for the stack, rules and design system)
+- Design system: dark neutral base, content-driven color per case study, Fraunces + Atkinson type, spacing scale, buttons, cards, summary block, figures and frames, and 10+ content blocks
+- `/styleguide` page documenting all of it
+- Home page and three case study templates (multi-year program, end-to-end project, shipped-then-ongoing)
+- Case study status (`live` / `unlisted` / `draft`) working
 
-## Phase 0: Setup & Archive — COMPLETE
-- [x] (prep) Clone repo locally, create `archive/squarespace` and `redesign` branches
-- [x] (session) Molly adds Carlos (`PaleoDM`) as a collaborator with write access
-- [x] (prep) Push `archive/squarespace` and `redesign` to GitHub (once collaborator access is in place)
-- [x] (prep) Clear the old site off `redesign`, keeping `CNAME`; add `.gitignore`
-- [x] (session) Delete legacy `Staging` and `prelim-test` branches
+**Next: iterate with Molly**
+- [ ] Review the placeholder site together; note what she likes, hates, wants different
+- [ ] Choose real type, and confirm or change the content-driven color approach
+- [ ] Replace placeholder visuals with real screenshots and prototypes
+- [ ] Write real copy, one case study at a time (Molly writes; Claude helps brainstorm copy and visuals). See [docs/case-study-guidance.md](docs/case-study-guidance.md).
+- [ ] Decide which 3 to 5 case studies are live
+- [ ] Positioning and home page copy
+- [ ] Contact: keep the section on the home page or add a page
 
-**Success**: `archive/squarespace` exists on GitHub with the full old site; `redesign` exists; the live site is unaffected.
-
-## Phase 1: Discovery & Positioning — COMPLETE
-- [x] (prep) Seed research carried over from an earlier chat → `docs/research/prior-research.md`
-- [x] (session) Targeting: roles, seniority, domains, strengths → `docs/research/targeting.md`
-- [x] (session) Market research, tailored to her targeting; findings reviewed in chat and reacted to by Molly (Pocket recording, 2026-10-02)
-- [x] (session) Lock the research decisions → `docs/case-study-guidance.md` (Principles)
-- [x] (session) Case study section suggestions and project shapes → `docs/case-study-guidance.md`
-- [x] (session) Positioning: placeholder locked until Molly is ready to write her own → `docs/case-study-guidance.md`
-- [x] ~~Brand intake questionnaire~~ — retired; covered by the "Decisions for Molly" section of `docs/design-system-checklist.md`
-
-**Success**: Research decisions locked; case study section suggestions agreed; positioning placeholder in place. Case study selection moved to Phase 3.
-
-## Phase 2: Brand & Design System
-- [ ] (prep) Pick the stack and scaffold the skeleton project on `redesign` (leaning Astro — see Open Decisions)
-- [ ] (prep) Exclude build/dependency folders from Dropbox sync once the stack is installed
-- [ ] (prep) Content model: each case study is one Markdown file with a `status` field (`live` / `unlisted` / `draft`)
-- [x] (prep) Design system checklist + Night Circus research → `docs/design-system-checklist.md`
-- [ ] (session) Work through the checklist: colors, type, spacing, states, components
-- [ ] (session) Unlisted `/styleguide` page showing every token and component
-- [ ] (session) Record the design system in `CLAUDE.md` so every later session follows it
-
-**Success**: Design tokens defined in code; `/styleguide` renders them; `CLAUDE.md` holds the design rules.
-
-## Phase 3: Case Study Content
-- [ ] (session) Select 3–5 case studies as they're written
-- [ ] (session) One iterative session per case study: Claude helps Molly brainstorm the copy and which visuals best complement it; Molly writes it. Built on `docs/case-study-guidance.md`.
-- [ ] (session) Gather her saved hiring-manager comments as a reference
-- [ ] (session) Gather and prepare images and prototypes for each case study from her source files
-
-**Success**: Final copy and assets for 3–5 case studies, in Markdown, written by Molly.
-
-*Can run alongside Phase 2.*
-
-## Phase 4: Case Study Templates
-- [ ] (session) Build 2–4 case study template variations that support the section suggestions and project shapes, using the real copy from Phase 3 (no placeholder text)
-- [ ] (session) Wire the `status` field: `live` appears on the index; `unlisted` builds at its URL but is hidden from the index and search engines; `draft` isn't built
-
-**Success**: All case studies render in their templates; status behavior verified for all three values.
-
-## Phase 5: Site Pages
-- [ ] (session) Home page
-- [ ] (session) Portfolio index (`/work`)
-- [ ] (session) Contact page — decide whether it's needed or whether a footer link is enough
-
-**Success**: All routes in the Scope table render with final copy.
-
-## Phase 6: Polish & Launch
-- [ ] Responsive pass (mobile, tablet, desktop)
-- [ ] Accessibility audit (alt text, keyboard nav, contrast, reduced motion)
-- [ ] Performance pass (image compression, lazy loading)
-- [ ] SEO + share previews (title, description, Open Graph image per case study)
+**Before launch**
+- [ ] Responsive, accessibility and performance pass
+- [ ] Share previews (Open Graph image per page), page titles and descriptions
 - [ ] GitHub Actions deploy workflow
-- [ ] Cutover: merge `redesign` → `main`, switch Pages source from "branch" to "GitHub Actions"
-- [ ] Verify mollyperedodesigns.com serves the new site over HTTPS
+- [ ] Cutover: merge `redesign` into `main`, switch Pages source to GitHub Actions, check mollyperedodesigns.com over HTTPS
 
-**Success**: New site live at mollyperedodesigns.com; old site recoverable from `archive/squarespace`.
-
-## Phase 7: Case Study Lifecycle (stretch)
-- [ ] `new-case-study` skill — codifies the Phase 3 brainstorming flow and the case study guidance
-- [ ] Rotation guide: how to flip a case study between `live` and `unlisted` (including from github.com in a browser)
-- [ ] Optional: a "rotate" command for picking which case studies are live before an interview
-
-**Success**: Molly can add a new case study, or change which ones are live, without help.
-
----
+**Later (stretch)**
+- [ ] A `new-case-study` skill for adding a case study from a new project
+- [ ] An easy way to rotate which case studies are live before an interview (today: change `status` in the file, including on github.com)
 
 ## Open Decisions
 
-| Decision | Options | Lean | Decide by |
-|----------|---------|------|-----------|
-| Stack | Astro · Next.js static export (matches Carlos's site) · plain HTML/CSS | Astro — built around Markdown files with validated fields | Phase 2 prep |
-| Design workflow | Figma first, then code · design directly in code with Claude | Molly's call | Phase 2 session |
-| Contact page | Dedicated page · footer link only | — | Phase 5 |
+| Decision | Options | Lean | Notes |
+|----------|---------|------|-------|
+| Type | Fraunces + Atkinson (placeholder) · others | Molly's call | |
+| Content color source | Hand-set per case study (today) · pulled from the screenshot automatically | Hand-set | Safer and tunable |
+| Site accent | None (today) · one accent for links and focus | | |
+| Contact | Section on home (today) · separate page | | |
 
 ## Decisions Log
 
@@ -138,4 +89,5 @@ Legacy remote branches `Staging` (identical to `main`) and `prelim-test` (an ear
 | 2026-10-02 | Molly writes her own copy; in Phase 3 Claude helps her brainstorm copy and visuals |
 | 2026-10-02 | Positioning is a placeholder until Molly is ready |
 | 2026-10-02 | Brand intake questionnaire retired; the design system checklist covers it |
+| 2026-10-02 | Stopped working in phases. Built a placeholder site (Next.js static export) to iterate on instead. Phases and sessions docs are kept for reference. |
 | 2026-10-02 | Color direction (concept, specifics still open): dark mode with a neutral black/gray base; each case study card and page takes its background color from its own screenshot ("Rich" tint). Red dropped as the primary because it clashed with Code.org's content. |
