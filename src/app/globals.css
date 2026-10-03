@@ -401,22 +401,15 @@ a:hover { text-decoration-thickness: 2px; }
 .callout p { font-size: 1.125rem; }
 @media (max-width: 640px) { .pullquote::before { font-size: 4.5rem; } }
 
-.sticky { display: grid; gap: var(--space-1); font-size: 1rem; }
+/* Annotation note: a short narrated aside. Color is used only on the few words the author marks. */
+.sticky { display: grid; gap: var(--space-2); font-size: 1rem; }
 .sticky strong { font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg2); }
-/* Note: the original, a tilted dashed panel */
-.st-note { background: var(--panel-2); border: 1px dashed var(--cs-source, var(--fg2)); border-radius: var(--radius-sm); padding: var(--space-4) var(--space-5); transform: rotate(-0.8deg); box-shadow: var(--shadow-sm); }
-/* Tab: a neutral panel with the label as a small tab on its top-left corner */
-.st-tab { position: relative; margin-top: 1.75rem; background: var(--panel); border: 1px solid var(--rule); border-radius: 0 var(--radius) var(--radius) var(--radius); padding: var(--space-5); }
-.st-tab strong { position: absolute; left: -1px; bottom: 100%; display: flex; align-items: center; height: 1.75rem; padding-inline: var(--space-3); background: var(--panel); border: 1px solid var(--rule); border-bottom: 0; border-top: 3px solid var(--cs-source, var(--fg)); border-radius: var(--radius-sm) var(--radius-sm) 0 0; color: var(--fg); }
-/* Footnote: no box, a thin rule above and the label running into the text */
-.st-footnote { display: block; border-top: 1px solid var(--rule); padding-top: var(--space-3); color: var(--fg2); }
-.st-footnote strong { display: inline; margin-right: var(--space-3); color: var(--fg); }
-.st-footnote p { display: inline; }
-/* Highlight: a colored highlighter stroke behind the text, as if marked up by hand */
-.st-highlight p { display: inline; padding-block: 0.1em; background: linear-gradient(transparent 55%, color-mix(in srgb, var(--cs-source, var(--fg)) 45%, transparent) 55%); box-decoration-break: clone; -webkit-box-decoration-break: clone; }
-.st-highlight { display: block; }
-.st-highlight strong { display: block; margin-bottom: var(--space-2); }
-
+.sticky p { margin: 0; color: var(--fg); }
+.sticky mark { background: none; color: inherit; }
+.st-rule, .st-underline { border-top: 1px solid var(--rule); padding-top: var(--space-4); }
+.st-panel { background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius); padding: var(--space-5); }
+.st-rule mark, .st-panel mark { background: linear-gradient(transparent 50%, color-mix(in srgb, var(--cs-source, var(--fg)) 50%, transparent) 50%); padding-inline: 0.2em; margin-inline: -0.2em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.st-underline mark { text-decoration: underline; text-decoration-color: var(--cs-source, var(--fg)); text-decoration-thickness: 3px; text-underline-offset: 0.3em; text-decoration-skip-ink: none; }
 .decision { background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: clamp(20px, 4vw, 40px); display: grid; gap: var(--space-5); }
 .decision header { display: grid; gap: var(--space-2); }
 .decision h3 { font-size: var(--fs-decision); margin: 0; }
