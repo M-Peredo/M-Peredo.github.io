@@ -205,32 +205,6 @@ export default function StyleGuide() {
           </Region>
         </Section>
 
-        <Section id="quotes" title="Pull quote options" lede="Four ways to set a pull quote. A is the current style. Set it with the style field on the PullQuote block, or variant in the MDX file.">
-          <Region color="#4A44C6">
-            <div style={{ display: "grid", gap: 56 }}>
-              {(["mark", "rule", "statement", "panel"] as const).map((v, i) => (
-                <div key={v} style={{ display: "grid", gap: 8 }}>
-                  <p className="eyebrow">{"ABCD"[i]} · {({ mark: "Quote mark (current)", rule: "Side rule", statement: "Statement", panel: "Panel" })[v]}</p>
-                  <PullQuote who="Lorem Ipsum" role="Dolor sit amet" variant={v}>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</PullQuote>
-                </div>
-              ))}
-            </div>
-          </Region>
-        </Section>
-
-        <Section id="insights" title="Insight card options" lede="Four ways to set an insight or constraint callout. A is the current style; B and C use almost no color.">
-          <Region color="#4A44C6">
-            <div style={{ display: "grid", gap: 40 }}>
-              {(["tint", "outline", "marker", "split"] as const).map((v, i) => (
-                <div key={v} style={{ display: "grid", gap: 8 }}>
-                  <p className="eyebrow">{"ABCD"[i]} · {({ tint: "Tinted box (current)", outline: "Outline", marker: "Side marker", split: "Split" })[v]}</p>
-                  <Callout label="Key insight" variant={v}>Teachers trusted the tool once they could see why it suggested what it did, and once they could always change its answer.</Callout>
-                </div>
-              ))}
-            </div>
-          </Region>
-        </Section>
-
         <Section id="status" title="Case study status" lede="Set in each case study's file with the status field.">
           <ul style={{ display: "grid", gap: 8, paddingLeft: 20 }}>
             <li><strong>live</strong>: appears on the home page and has its own page.</li>

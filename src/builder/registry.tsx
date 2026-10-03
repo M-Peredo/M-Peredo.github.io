@@ -207,22 +207,16 @@ export const BLOCKS: Record<string, BlockDef> = {
   pullquote: {
     label: "Pull quote", group: "Story", hint: "A voice from a user or stakeholder", wide: false,
     defaults: () => ({ who: "Lorem Ipsum", role: "Dolor sit amet", text: "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil." }),
-    fields: [
-      { kind: "select", key: "variant", label: "Style", options: [["mark", "Quote mark"], ["rule", "Side rule"], ["statement", "Statement"], ["panel", "Panel"]] },
-      { kind: "textarea", key: "text", label: "Quote" }, { kind: "text", key: "who", label: "Who" }, { kind: "text", key: "role", label: "Role" },
-    ],
-    render: (p) => <PullQuote who={p.who} role={p.role} variant={p.variant ?? "mark"}>{p.text}</PullQuote>,
-    mdx: (p) => jsx("PullQuote", { who: p.who, role: p.role, variant: p.variant && p.variant !== "mark" ? p.variant : undefined }, p.text),
+    fields: [{ kind: "textarea", key: "text", label: "Quote" }, { kind: "text", key: "who", label: "Who" }, { kind: "text", key: "role", label: "Role" }],
+    render: (p) => <PullQuote who={p.who} role={p.role}>{p.text}</PullQuote>,
+    mdx: (p) => jsx("PullQuote", { who: p.who, role: p.role }, p.text),
   },
   callout: {
     label: "Callout", group: "Story", hint: "A key insight or constraint", wide: false,
     defaults: () => ({ label: "Key insight", text: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit." }),
-    fields: [
-      { kind: "select", key: "variant", label: "Style", options: [["tint", "Tinted box"], ["outline", "Outline"], ["marker", "Side marker"], ["split", "Split"]] },
-      { kind: "text", key: "label", label: "Label" }, { kind: "textarea", key: "text", label: "Text" },
-    ],
-    render: (p) => <Callout label={p.label} variant={p.variant ?? "tint"}>{p.text}</Callout>,
-    mdx: (p) => jsx("Callout", { label: p.label, variant: p.variant && p.variant !== "tint" ? p.variant : undefined }, p.text),
+    fields: [{ kind: "text", key: "label", label: "Label" }, { kind: "textarea", key: "text", label: "Text" }],
+    render: (p) => <Callout label={p.label}>{p.text}</Callout>,
+    mdx: (p) => jsx("Callout", { label: p.label }, p.text),
   },
   sticky: {
     label: "Sticky note", group: "Story", hint: "A narrated aside", wide: false,

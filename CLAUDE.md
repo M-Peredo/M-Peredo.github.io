@@ -30,6 +30,10 @@ Everything lives in `src/app/globals.css` and `src/components/`. **The `/stylegu
 - **Motion:** respects `prefers-reduced-motion`; keep any new animation under it.
 - Placeholder visuals (`Shot`, `Stage`, `BrowserFrame`) are drawn in each case study's color. Replace with real screenshots when available.
 
+## Block styles (decided)
+- **Pull quote:** a centered statement set off by colored rules, with an opening quote mark centered on the top rule and a closing mark centered on the bottom rule (both in the case study color). No other pull quote styles exist.
+- **Insight card (`Callout`):** no box, just a 3px line down the left side in the case study color, with a small label above the text. No other styles exist.
+
 ## Components (`src/components/ui/`)
 `Button`, `CaseStudyCard`, `SummaryBlock`, `Shot` (`Stage`, `BrowserFrame`), figures (`Screen`, `ShotPair`, `BeforeAfter`, `Annotated`, `PrototypeFrame`, `Figure`), content blocks (`PullQuote`, `Callout`, `Sticky`, `Decision`, `Timeline`, `CompareTable`, `ThreeUp`, `StatRow`, `Retrospective`, `Divider`, `Split`). All of the figure and content components can be used directly inside a case study `.mdx` file (see `src/components/ui/mdx.tsx`).
 
