@@ -6,7 +6,7 @@
 <title>Molly's Type Options</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Instrument+Serif:ital@0;1&family=Young+Serif&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Atkinson+Hyperlegible+Next:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Figtree:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Instrument+Serif:ital@0;1&family=Young+Serif&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Atkinson+Hyperlegible+Next:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Figtree:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700&family=Voltaire&family=Inter:wght@400;500;600;700&family=Urbanist:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Ovo&family=Mulish:wght@400;500;600;700&family=Rubik:wght@400;500;600;700;800&family=Karla:wght@400;500;600;700&family=Zain:wght@400;700;800&family=Nunito:wght@400;500;600;700&display=swap">
 <style>
 :root { --c-bg: #101012; --c-panel: #17171a; --c-line: #2b2b30; --c-ink: #f2f2f3; --c-muted: #a4a4ab; --c-accent: #8ab4ff; color-scheme: dark; }
 * { box-sizing: border-box; }
@@ -94,7 +94,7 @@ pre { margin: 0; white-space: pre-wrap; background: var(--c-panel); border: 1px 
 
 <header class="pager">
   <div class="pager-inner">
-    <h1>Type, round 1</h1>
+    <h1>Type, round 2</h1>
     <nav class="tabs" id="tabs" aria-label="Pages"></nav>
     <div class="nav">
       <span class="count" id="count"></span>
@@ -106,40 +106,61 @@ pre { margin: 0; white-space: pre-wrap; background: var(--c-panel); border: 1px 
 <main id="main"></main>
 
 <script>
-const ROUND = 1;
+const ROUND = 2;
 const KEY = "molly-type-round-" + ROUND;
 
-// dw = heading weight, ital = has a real italic (used for the quote)
+// cat: serif or sans. dw = heading weight. ital = has a real italic (used for the quote).
 const FONTS = [
-  { id: "fraunces", name: "Fraunces", cat: "Serif", note: "Soft, slightly wonky, warm. Current placeholder.", f: '"Fraunces", Georgia, serif', dw: 600, dls: "-0.01em", ital: true },
-  { id: "instrument", name: "Instrument Serif", cat: "Serif", note: "Elegant, condensed, editorial. One weight only, so headings are light and refined.", f: '"Instrument Serif", Georgia, serif', dw: 400, dls: "0", ital: true },
-  { id: "young", name: "Young Serif", cat: "Serif", note: "Chunky, friendly, a little vintage. Big personality in headings.", f: '"Young Serif", Georgia, serif', dw: 400, dls: "0", ital: false },
-  { id: "newsreader", name: "Newsreader", cat: "Serif", note: "Refined editorial serif, made for long reading. Quiet personality.", f: '"Newsreader", Georgia, serif', dw: 600, dls: "-0.01em", ital: true },
-  { id: "atkinson", name: "Atkinson Hyperlegible Next", cat: "Sans", note: "Designed for low vision readers. Clear and friendly. Current placeholder.", f: '"Atkinson Hyperlegible Next", system-ui, sans-serif', dw: 700, dls: "-0.01em", ital: false },
-  { id: "bricolage", name: "Bricolage Grotesque", cat: "Sans", note: "Quirky, characterful grotesque with quirks in the letterforms.", f: '"Bricolage Grotesque", system-ui, sans-serif', dw: 700, dls: "-0.02em", ital: false },
-  { id: "figtree", name: "Figtree", cat: "Sans", note: "Friendly, rounded geometric. Approachable and clean.", f: '"Figtree", system-ui, sans-serif', dw: 700, dls: "-0.015em", ital: false },
-  { id: "sora", name: "Sora", cat: "Sans", note: "Wide, geometric, a little techy. Modern and confident.", f: '"Sora", system-ui, sans-serif', dw: 600, dls: "-0.02em", ital: false },
+  { id: "voltaire", name: "Voltaire", cat: "Sans", f: '"Voltaire", system-ui, sans-serif', dw: 400, dls: "0", ital: false, body: false },
+  { id: "inter", name: "Inter", cat: "Sans", f: '"Inter", system-ui, sans-serif', dw: 700, dls: "-0.015em", ital: false, body: true },
+  { id: "urbanist", name: "Urbanist", cat: "Sans", f: '"Urbanist", system-ui, sans-serif', dw: 700, dls: "-0.01em", ital: false, body: true },
+  { id: "opensans", name: "Open Sans", cat: "Sans", f: '"Open Sans", system-ui, sans-serif', dw: 700, dls: "-0.01em", ital: false, body: true },
+  { id: "zenanti", name: "Zen Kaku Gothic Antique", cat: "Sans", f: '"Zen Kaku Gothic Antique", system-ui, sans-serif', dw: 700, dls: "0", ital: false, body: true },
+  { id: "zennew", name: "Zen Kaku Gothic New", cat: "Sans", f: '"Zen Kaku Gothic New", system-ui, sans-serif', dw: 700, dls: "0", ital: false, body: true },
+  { id: "ovo", name: "Ovo", cat: "Serif", f: '"Ovo", Georgia, serif', dw: 400, dls: "0", ital: false, body: false },
+  { id: "mulish", name: "Mulish", cat: "Sans", f: '"Mulish", system-ui, sans-serif', dw: 700, dls: "-0.01em", ital: false, body: true },
+  { id: "rubik", name: "Rubik", cat: "Sans", f: '"Rubik", system-ui, sans-serif', dw: 700, dls: "-0.015em", ital: false, body: true },
+  { id: "karla", name: "Karla", cat: "Sans", f: '"Karla", system-ui, sans-serif', dw: 700, dls: "-0.01em", ital: false, body: true },
+  { id: "zain", name: "Zain", cat: "Sans", f: '"Zain", system-ui, sans-serif', dw: 800, dls: "0", ital: false, body: false },
+  { id: "nunito", name: "Nunito", cat: "Sans", f: '"Nunito", system-ui, sans-serif', dw: 700, dls: "-0.01em", ital: false, body: true },
+  { id: "fraunces", name: "Fraunces", cat: "Serif", f: '"Fraunces", Georgia, serif', dw: 600, dls: "-0.01em", ital: true, body: false },
+  { id: "instrument", name: "Instrument Serif", cat: "Serif", f: '"Instrument Serif", Georgia, serif', dw: 400, dls: "0", ital: true, body: false },
+  { id: "young", name: "Young Serif", cat: "Serif", f: '"Young Serif", Georgia, serif', dw: 400, dls: "0", ital: false, body: false },
+  { id: "newsreader", name: "Newsreader", cat: "Serif", f: '"Newsreader", Georgia, serif', dw: 600, dls: "-0.01em", ital: true, body: false },
+  { id: "atkinson", name: "Atkinson Hyperlegible Next", cat: "Sans", f: '"Atkinson Hyperlegible Next", system-ui, sans-serif', dw: 700, dls: "-0.01em", ital: false, body: true },
+  { id: "bricolage", name: "Bricolage Grotesque", cat: "Sans", f: '"Bricolage Grotesque", system-ui, sans-serif', dw: 700, dls: "-0.02em", ital: false, body: true },
+  { id: "figtree", name: "Figtree", cat: "Sans", f: '"Figtree", system-ui, sans-serif', dw: 700, dls: "-0.015em", ital: false, body: true },
+  { id: "sora", name: "Sora", cat: "Sans", f: '"Sora", system-ui, sans-serif', dw: 600, dls: "-0.02em", ital: false, body: true },
 ];
 // Font names go into inline style attributes, so use single quotes.
 FONTS.forEach(f => { f.f = f.f.replace(/"/g, "'"); });
 const BY = Object.fromEntries(FONTS.map(f => [f.id, f]));
-const PAGES = [...FONTS.map(f => f.id), "mix", "summary"];
+
+// Molly's six pairings: heading font + body font
+const PAIRS = [
+  { h: "voltaire", b: "inter", short: "Voltaire + Inter", note: "Tall, condensed headlines over a clean, neutral body. Newspaper-poster energy." },
+  { h: "urbanist", b: "opensans", short: "Urbanist + Open Sans", note: "Geometric, rounded headlines over a friendly, open body." },
+  { h: "zenanti", b: "zennew", short: "Zen Kaku Antique + New", note: "One family in two cuts. Calm and slightly retro." },
+  { h: "ovo", b: "mulish", short: "Ovo + Mulish", note: "A warm old-style serif for headlines over a soft, rounded sans. The only serif heading in the set." },
+  { h: "rubik", b: "karla", short: "Rubik + Karla", note: "Chunky, soft-cornered headlines over a quirky grotesque body." },
+  { h: "zain", b: "nunito", short: "Zain + Nunito", note: "Soft, friendly headlines over a rounded body. The gentlest set." },
+];
+const PAGES = [...PAIRS.map((p, i) => "pair" + i), "mix", "summary"];
 const REF_D = "Georgia, 'Times New Roman', serif", REF_B = "system-ui, -apple-system, 'Segoe UI', sans-serif";
 
 function load() { try { const r = localStorage.getItem(KEY); return r ? JSON.parse(r) : null; } catch (e) { return null; } }
 function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
 let state = load() || {};
-state.picks = state.picks || {}; state.show = state.show || {}; state.mix = state.mix || { h: "fraunces", b: "atkinson" }; state.page = state.page ?? 0;
+state.mix = state.mix || { h: "fraunces", b: "figtree" }; state.picks = state.picks || {}; state.page = state.page ?? 0;
 if (!(state.page >= 0 && state.page < PAGES.length)) state.page = 0;
-const pick = id => state.picks[id] || (state.picks[id] = { rating: 0, head: false, body: false, notes: "" });
+const keyOf = (h, b) => h + "+" + b;
+const pick = (h, b) => state.picks[keyOf(h, b)] || (state.picks[keyOf(h, b)] = { rating: 0, kept: false, notes: "" });
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
-// d, b = font objects for the heading role and the body role (or null for the neutral reference)
 function specimen(d, b, label) {
-  const fd = d ? d.f : REF_D, fb = b ? b.f : REF_B;
-  const dw = d ? d.dw : 600, dls = d ? d.dls : "0", qs = d && d.ital ? "italic" : "normal";
+  const qs = d.ital ? "italic" : "normal";
   return `
-  <div class="spec" style="--fd:${fd};--fb:${fb};--dw:${dw};--dls:${dls};--qs:${qs}">
+  <div class="spec" style="--fd:${d.f};--fb:${b.f};--dw:${d.dw};--dls:${d.dls};--qs:${qs}">
     <div class="eb">${esc(label)}</div>
     <div class="glyphs">Aa Bb Cc 123<small>ABCDEFGHIJKLMNOPQRSTUVWXYZ · abcdefghijklmnopqrstuvwxyz · 0123456789 &amp; ? !</small></div>
     <div class="eb" style="margin-top:8px">Teaching Assistant · 2023–2026</div>
@@ -161,47 +182,39 @@ function specimen(d, b, label) {
   </div>`;
 }
 
-function fontPage(f) {
+const controls = (id, ph) => `
+  <div class="controls">
+    <div class="stars" role="group" aria-label="Rate this pairing"><span class="label">Rating</span>${[1,2,3,4,5].map(n => `<button type="button" class="star" data-star="${n}" aria-label="${n} of 5">★</button>`).join("")}</div>
+    <button type="button" class="btn" data-keep aria-pressed="false">Keep this pairing</button>
+    <div class="field"><label for="n-${id}">Notes</label><textarea id="n-${id}" placeholder="${ph}"></textarea></div>
+  </div>`;
+
+function pairPage(p, i) {
+  const h = BY[p.h], b = BY[p.b];
   return `
-  <section class="page" data-font="${f.id}">
+  <section class="page" data-pair="${i}">
     <div class="side">
-      <span class="eyebrow">${f.cat}</span>
-      <h2 style="font-family:${f.f};font-weight:${f.dw}">${esc(f.name)}</h2>
-      <p class="note">${esc(f.note)}</p>
-      <div class="field"><span class="l">Show it as</span>
-        <div class="chips" role="group" aria-label="Show as">
-          <button type="button" class="btn" data-show="both">Headings and body</button>
-          <button type="button" class="btn" data-show="head">Headings only</button>
-          <button type="button" class="btn" data-show="body">Body only</button>
-        </div>
-      </div>
-      <div class="controls">
-        <div class="stars" role="group" aria-label="Rate ${esc(f.name)}"><span class="label">Rating</span>${[1,2,3,4,5].map(n => `<button type="button" class="star" data-star="${n}" aria-label="${n} of 5">★</button>`).join("")}</div>
-        <div class="field"><span class="l">I'd use it for</span>
-          <div class="chips"><button type="button" class="btn" data-role="head" aria-pressed="false">Headings</button><button type="button" class="btn" data-role="body" aria-pressed="false">Body text</button></div>
-        </div>
-        <div class="field"><label for="n-${f.id}">Notes</label><textarea id="n-${f.id}" placeholder="What works, what doesn't"></textarea></div>
-      </div>
+      <span class="eyebrow">Pairing ${i + 1} of ${PAIRS.length}</span>
+      <h2 style="font-family:${h.f};font-weight:${h.dw}">${esc(h.name)} <span style="font-family:${b.f};font-weight:400;color:var(--c-muted)">&amp; ${esc(b.name)}</span></h2>
+      <p class="note">${esc(p.note)}</p>
+      ${controls("p" + i, "What works, what doesn't")}
     </div>
-    <div class="stage" data-spec></div>
+    <div class="stage" data-spec>${specimen(h, b, `${h.name} headings + ${b.name} body`)}</div>
   </section>`;
 }
 
 function mixPage() {
-  const opts = id => FONTS.map(f => `<option value="${f.id}">${esc(f.name)} (${f.cat})</option>`).join("");
+  const heads = FONTS.map(f => `<option value="${f.id}">${esc(f.name)} (${f.cat.toLowerCase()})</option>`).join("");
+  const bodies = FONTS.filter(f => f.body).map(f => `<option value="${f.id}">${esc(f.name)}</option>`).join("");
   return `
   <section class="page" data-mix>
     <div class="side">
       <span class="eyebrow">Mix and match</span>
       <h2>Pick a pairing</h2>
-      <p class="note">Any font for headings and numbers, any font for body text. Try a serif with a sans, or a serif with a serif.</p>
-      <div class="field"><label for="mixh">Headings and numbers</label><select id="mixh">${opts()}</select></div>
-      <div class="field"><label for="mixb">Body text</label><select id="mixb">${opts()}</select></div>
-      <div class="controls">
-        <div class="stars" role="group" aria-label="Rate this pairing"><span class="label">Rating</span>${[1,2,3,4,5].map(n => `<button type="button" class="star" data-mixstar="${n}" aria-label="${n} of 5">★</button>`).join("")}</div>
-        <button type="button" class="btn" id="keep" aria-pressed="false">Keep this pairing</button>
-        <div class="field"><label for="mixn">Notes</label><textarea id="mixn" placeholder="Why this one"></textarea></div>
-      </div>
+      <p class="note">Headings can be any font, serif or sans. Body text is limited to sans-serifs.</p>
+      <div class="field"><label for="mixh">Headings and numbers</label><select id="mixh">${heads}</select></div>
+      <div class="field"><label for="mixb">Body text (sans only)</label><select id="mixb">${bodies}</select></div>
+      ${controls("mix", "Why this one")}
     </div>
     <div class="stage" data-mixspec></div>
   </section>`;
@@ -218,12 +231,15 @@ function summaryPage() {
 }
 
 const main = document.getElementById("main");
-main.innerHTML = FONTS.map(fontPage).join("") + mixPage() + summaryPage();
+main.innerHTML = PAIRS.map(pairPage).join("") + mixPage() + summaryPage();
 const els = [...main.children];
+const MIXI = PAIRS.length;
 
-const mixKey = () => state.mix.h + "+" + state.mix.b;
-state.mixPicks = state.mixPicks || {};
-const mixPick = () => state.mixPicks[mixKey()] || (state.mixPicks[mixKey()] = { rating: 0, kept: false, notes: "" });
+function fill(el, p) {
+  el.querySelectorAll(".star").forEach(b => b.classList.toggle("on", Number(b.dataset.star) <= p.rating));
+  el.querySelector("[data-keep]").setAttribute("aria-pressed", String(p.kept));
+  const ta = el.querySelector("textarea"); if (document.activeElement !== ta && ta.value !== p.notes) ta.value = p.notes;
+}
 
 function render() {
   els.forEach((el, i) => el.hidden = i !== state.page);
@@ -234,47 +250,30 @@ function render() {
     const cur = i === state.page ? ' aria-current="page"' : "";
     if (id === "summary") return `<button class="tab" type="button" data-go="${i}"${cur}>Summary</button>`;
     if (id === "mix") return `<button class="tab" type="button" data-go="${i}"${cur}>Mix and match</button>`;
-    const p = pick(id), f = BY[id];
-    return `<button class="tab" type="button" data-go="${i}"${cur}>${esc(f.name.replace(" Hyperlegible Next", ""))}${p.rating ? `<small>${p.rating}/5</small>` : ""}</button>`;
+    const pr = PAIRS[i], k = pick(pr.h, pr.b);
+    return `<button class="tab" type="button" data-go="${i}"${cur}>${esc(pr.short)}${k.rating ? `<small>${k.rating}/5</small>` : ""}${k.kept ? "<small>✓</small>" : ""}</button>`;
   }).join("");
 
-  FONTS.forEach((f, i) => {
-    const el = els[i], p = pick(f.id), show = state.show[f.id] || "both";
-    const stage = el.querySelector("[data-spec]"), sig = show;
-    if (stage.dataset.sig !== sig) {
-      stage.dataset.sig = sig;
-      const label = `${f.name} · ${show === "both" ? "headings and body" : show === "head" ? "headings (body is a plain stand-in)" : "body (headings are a plain stand-in)"}`;
-      stage.innerHTML = specimen(show === "body" ? null : f, show === "head" ? null : f, label);
-    }
-    el.querySelectorAll("[data-show]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.show === show)));
-    el.querySelectorAll(".star").forEach(b => b.classList.toggle("on", Number(b.dataset.star) <= p.rating));
-    el.querySelectorAll("[data-role]").forEach(b => b.setAttribute("aria-pressed", String(!!p[b.dataset.role])));
-    const ta = el.querySelector("textarea"); if (document.activeElement !== ta && ta.value !== p.notes) ta.value = p.notes;
-  });
+  PAIRS.forEach((pr, i) => fill(els[i], pick(pr.h, pr.b)));
 
-  const mel = els[FONTS.length], mp = mixPick();
-  const msig = mixKey();
-  const mstage = mel.querySelector("[data-mixspec]");
-  if (mstage.dataset.sig !== msig) { mstage.dataset.sig = msig; mstage.innerHTML = specimen(BY[state.mix.h], BY[state.mix.b], `${BY[state.mix.h].name} headings + ${BY[state.mix.b].name} body`); }
+  const mel = els[MIXI], sig = keyOf(state.mix.h, state.mix.b), stage = mel.querySelector("[data-mixspec]");
+  if (stage.dataset.sig !== sig) { stage.dataset.sig = sig; stage.innerHTML = specimen(BY[state.mix.h], BY[state.mix.b], `${BY[state.mix.h].name} headings + ${BY[state.mix.b].name} body`); }
   mel.querySelector("#mixh").value = state.mix.h; mel.querySelector("#mixb").value = state.mix.b;
-  mel.querySelectorAll("[data-mixstar]").forEach(b => b.classList.toggle("on", Number(b.dataset.mixstar) <= mp.rating));
-  mel.querySelector("#keep").setAttribute("aria-pressed", String(mp.kept));
-  const mn = mel.querySelector("#mixn"); if (document.activeElement !== mn && mn.value !== mp.notes) mn.value = mp.notes;
-
+  fill(mel, pick(state.mix.h, state.mix.b));
   renderSummary();
 }
 
 function renderSummary() {
-  const kept = Object.entries(state.mixPicks).filter(([, v]) => v.kept || v.rating);
-  document.getElementById("cmp").innerHTML = FONTS.map((f, i) => {
-    const p = pick(f.id), roles = [p.head && "headings", p.body && "body"].filter(Boolean).join(" + ");
-    return `<button class="cmp ${p.head || p.body ? "liked" : ""}" type="button" data-go="${i}"><b style="font-family:${f.f};font-weight:${f.dw}">${esc(f.name)}</b><small>${f.cat} · ${p.rating ? p.rating + "/5" : "unrated"}${roles ? " · " + roles : ""}</small><small>${esc(p.notes.trim())}</small></button>`;
+  const label = k => { const [h, b] = k.split("+"); return `${BY[h].name} + ${BY[b].name}`; };
+  const fixed = PAIRS.map(p => keyOf(p.h, p.b));
+  const extra = Object.keys(state.picks).filter(k => !fixed.includes(k) && (state.picks[k].rating || state.picks[k].kept || state.picks[k].notes.trim()));
+  const all = [...fixed, ...extra];
+  document.getElementById("cmp").innerHTML = all.map(k => {
+    const [h, b] = k.split("+"), v = state.picks[k] || { rating: 0, kept: false, notes: "" }, i = fixed.indexOf(k);
+    return `<button class="cmp ${v.kept ? "liked" : ""}" type="button" ${i >= 0 ? `data-go="${i}"` : `data-mix="${k}"`}><b style="font-family:${BY[h].f};font-weight:${BY[h].dw}">${esc(BY[h].name)} <span style="font-family:${BY[b].f};font-weight:400;color:var(--c-muted)">+ ${esc(BY[b].name)}</span></b><small>${v.rating ? v.rating + "/5" : "unrated"}${v.kept ? " · kept" : ""}</small><small>${esc(v.notes.trim())}</small></button>`;
   }).join("");
-  const lines = [`Type, round ${ROUND}`, "", "FONTS"];
-  FONTS.forEach(f => { const p = pick(f.id); const roles = [p.head && "headings", p.body && "body"].filter(Boolean).join(" + "); lines.push(`- ${f.name} (${f.cat}): ${p.rating ? p.rating + "/5" : "unrated"}${roles ? ", would use for " + roles : ""}${p.notes.trim() ? "\n    Notes: " + p.notes.trim().replace(/\n+/g, " / ") : ""}`); });
-  lines.push("", "PAIRINGS KEPT OR RATED");
-  if (!kept.length) lines.push("- none yet");
-  kept.forEach(([k, v]) => { const [h, b] = k.split("+"); lines.push(`- ${BY[h].name} headings + ${BY[b].name} body: ${v.rating ? v.rating + "/5" : "unrated"}${v.kept ? ", KEPT" : ""}${v.notes.trim() ? "\n    Notes: " + v.notes.trim().replace(/\n+/g, " / ") : ""}`); });
+  const lines = [`Type, round ${ROUND}`, "", "PAIRINGS (headings + body)"];
+  all.forEach(k => { const v = state.picks[k] || { rating: 0, kept: false, notes: "" }; lines.push(`- ${label(k)}: ${v.rating ? v.rating + "/5" : "unrated"}${v.kept ? ", KEPT" : ""}${v.notes.trim() ? "\n    Notes: " + v.notes.trim().replace(/\n+/g, " / ") : ""}`); });
   document.getElementById("sumtext").textContent = lines.join("\n");
 }
 
@@ -283,24 +282,23 @@ document.getElementById("prev").addEventListener("click", () => go(state.page - 
 document.getElementById("next").addEventListener("click", () => go(state.page + 1));
 document.addEventListener("keydown", e => { if (e.target.closest("textarea, select")) return; if (e.key === "ArrowRight") go(state.page + 1); if (e.key === "ArrowLeft") go(state.page - 1); });
 
+// Which pairing a control belongs to
+function targetOf(el) {
+  const pg = el.closest("[data-pair]");
+  if (pg) { const p = PAIRS[Number(pg.dataset.pair)]; return pick(p.h, p.b); }
+  if (el.closest("[data-mix]")) return pick(state.mix.h, state.mix.b);
+  return null;
+}
 document.addEventListener("click", e => {
+  const m = e.target.closest("[data-mix]:not(section)");
+  if (m) { const [h, b] = m.dataset.mix.split("+"); state.mix = { h, b }; return go(MIXI); }
   const g = e.target.closest("[data-go]"); if (g) return go(Number(g.dataset.go));
-  const page = e.target.closest("[data-font]");
-  if (page) {
-    const id = page.dataset.font, p = pick(id);
-    const sh = e.target.closest("[data-show]"), st = e.target.closest("[data-star]"), ro = e.target.closest("[data-role]");
-    if (sh) state.show[id] = sh.dataset.show;
-    else if (st) { const n = Number(st.dataset.star); p.rating = p.rating === n ? 0 : n; }
-    else if (ro) p[ro.dataset.role] = !p[ro.dataset.role];
-    else return;
-    save(); render(); return;
-  }
-  const mix = e.target.closest("[data-mix]");
-  if (mix) {
-    const ms = e.target.closest("[data-mixstar]"), mp = mixPick();
-    if (ms) { const n = Number(ms.dataset.mixstar); mp.rating = mp.rating === n ? 0 : n; save(); render(); }
-    else if (e.target.closest("#keep")) { mp.kept = !mp.kept; save(); render(); }
-  }
+  const tgt = targetOf(e.target); if (!tgt) return;
+  const st = e.target.closest("[data-star]"), kp = e.target.closest("[data-keep]");
+  if (st) { const n = Number(st.dataset.star); tgt.rating = tgt.rating === n ? 0 : n; }
+  else if (kp) tgt.kept = !tgt.kept;
+  else return;
+  save(); render();
 });
 document.addEventListener("change", e => {
   if (e.target.id === "mixh") { state.mix.h = e.target.value; save(); render(); }
@@ -309,8 +307,7 @@ document.addEventListener("change", e => {
 let t;
 document.addEventListener("input", e => {
   const ta = e.target.closest("textarea"); if (!ta) return;
-  const page = ta.closest("[data-font]");
-  if (page) pick(page.dataset.font).notes = ta.value; else mixPick().notes = ta.value;
+  const tgt = targetOf(ta); if (tgt) tgt.notes = ta.value;
   clearTimeout(t); t = setTimeout(() => { save(); render(); }, 400);
 });
 document.getElementById("copy").addEventListener("click", async () => {
@@ -321,8 +318,8 @@ document.getElementById("copy").addEventListener("click", async () => {
 let armed = false;
 document.getElementById("reset").addEventListener("click", e => {
   if (!armed) { armed = true; e.target.textContent = "Click again to clear everything"; setTimeout(() => { armed = false; e.target.textContent = "Start over"; }, 4000); return; }
-  armed = false; e.target.textContent = "Start over"; state = { picks: {}, show: {}, mix: { h: "fraunces", b: "atkinson" }, mixPicks: {}, page: state.page };
-  els.forEach(el => { el.querySelectorAll("[data-spec],[data-mixspec]").forEach(s => delete s.dataset.sig); el.querySelectorAll("textarea").forEach(x => x.value = ""); });
+  armed = false; e.target.textContent = "Start over"; state = { mix: { h: "fraunces", b: "figtree" }, picks: {}, page: state.page };
+  els.forEach(el => { el.querySelectorAll("textarea").forEach(x => x.value = ""); });
   save(); render(); document.getElementById("msg").textContent = "Cleared.";
 });
 render();
