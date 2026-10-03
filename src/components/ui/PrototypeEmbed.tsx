@@ -34,7 +34,7 @@ export function PrototypeEmbed({ src, title, width, height, poster }: { src: str
       ) : (
         <button type="button" className="proto-poster" onClick={() => setLive(true)} aria-label={`Play ${title}`}>
           {poster}
-          <span className="proto-cta"><Play /> Try it here</span>
+          <span className="proto-cta"><span className="btn btn-primary"><Play /> Try it here</span></span>
         </button>
       )}
     </div>
