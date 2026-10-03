@@ -97,7 +97,7 @@ export default function StyleGuide() {
             <div><span className="eyebrow">Body</span><p style={{ maxWidth: "var(--measure)" }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="#type">A text link</a> is underlined.</p></div>
             <div><span className="eyebrow">Small</span><p className="small muted">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p></div>
             <div><span className="eyebrow">Label</span><span className="eyebrow">Teaching assistant · 2023–2026</span></div>
-            <div><span className="eyebrow">Numbers</span><span className="num" style={{ fontFamily: "var(--font-display)", fontSize: "2.6rem", fontWeight: 600 }}>0123456789 · 38% · 4.6 · 2×</span></div>
+            <div><span className="eyebrow">Numbers</span><span className="num" style={{ fontFamily: "var(--font-display)", fontSize: 40, fontWeight: 600 }}>0123456789 · 38% · 4.6 · 2×</span></div>
           </div>
         </Section>
 

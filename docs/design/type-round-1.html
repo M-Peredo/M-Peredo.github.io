@@ -10,39 +10,39 @@
 <style>
 :root { --ink: #f2f2f3; --muted: #a4a4ab; --line: #2b2b30; --accent: #8ab4ff; color-scheme: dark; }
 * { box-sizing: border-box; }
-body { margin: 0; background: #101012; color: var(--ink); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+body { margin: 0; background: #101012; color: var(--ink); font: 14px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
 button, textarea { font: inherit; color: inherit; }
 :where(button, textarea):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 header { padding: 22px clamp(18px, 4vw, 40px) 4px; }
-header h1 { margin: 0; font-size: 22px; }
+header h1 { margin: 0; font-size: 24px; }
 header p { margin: 6px 0 0; color: var(--muted); max-width: 74ch; }
 .cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; padding: 18px clamp(18px, 4vw, 40px); }
 .col { display: grid; gap: 12px; align-content: start; min-width: 0; }
 .tag { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-.tag b { font-size: 26px; }
+.tag b { font-size: 28px; }
 .tag span { color: var(--muted); }
 .col > .msg { min-height: 2.8em; }
 
 /* The headline font is decided (Zen Kaku Gothic Antique) and the same in every column. Only the body font differs. */
 .spec { background: #0b0b0c; border-radius: 12px; padding: clamp(20px, 2.4vw, 32px); display: grid; gap: 16px; align-content: start; font-family: var(--fb); font-size: var(--bs); font-weight: var(--bw); line-height: var(--blh); }
-.spec .eb { font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.spec .eb { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
 .spec h2, .spec h3 { font-family: 'Zen Kaku Gothic Antique', system-ui, sans-serif; font-weight: 700; letter-spacing: 0.005em; margin: 0; text-wrap: balance; }
-.spec h2 { font-size: clamp(1.6rem, 2.4vw, 2.2rem); line-height: 1.1; }
-.spec h3 { font-size: 1.3rem; line-height: 1.2; margin-top: 6px; }
-.spec .lede { margin: 0; color: var(--muted); font-size: 1.12em; line-height: 1.5; }
+.spec h2 { font-size: 36px; line-height: 1.1; }
+.spec h3 { font-size: 20px; line-height: 1.2; margin-top: 6px; }
+.spec .lede { margin: 0; color: var(--muted); font-size: 18px; line-height: 1.5; }
 .spec p { margin: 0; color: #ddddde; }
 .spec ul { margin: 0; padding-left: 1.25em; display: grid; gap: 6px; color: #ddddde; }
-.spec .small { font-size: 13px; line-height: 1.5; color: var(--muted); }
-.spec .btn { justify-self: start; background: #f2f2f3; color: #0b0b0c; font-weight: 600; padding: .8em 1.2em; border-radius: 8px; font-size: .95em; }
+.spec .small { font-size: 14px; line-height: 1.5; color: var(--muted); }
+.spec .btn { justify-self: start; background: #f2f2f3; color: #0b0b0c; font-weight: 600; padding: .8em 1.2em; border-radius: 8px; font-size: 16px; }
 
 .choose { display: grid; gap: 10px; padding: 0 clamp(18px, 4vw, 40px) 40px; max-width: 880px; }
 .choose h2 { margin: 6px 0 0; font-size: 20px; }
 .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-.btn2 { appearance: none; border: 1px solid #3a3a40; background: #26262a; padding: 11px 18px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 15px; }
+.btn2 { appearance: none; border: 1px solid #3a3a40; background: #26262a; padding: 11px 18px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 14px; }
 .btn2:hover { border-color: var(--accent); }
 .btn2[aria-pressed="true"] { background: #f2f2f3; color: #101012; border-color: #f2f2f3; }
 textarea { width: 100%; min-height: 84px; background: #0d0d0f; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; resize: vertical; }
-.msg { color: var(--muted); font-size: 13px; }
+.msg { color: var(--muted); font-size: 14px; }
 @media (max-width: 1100px) { .cols { grid-template-columns: 1fr; } }
 </style>
 </head>
@@ -65,8 +65,8 @@ textarea { width: 100%; min-height: 84px; background: #0d0d0f; border: 1px solid
 <script>
 // bs = size, bw = weight, lh = line height
 const OPTS = [
-  { k: "A", name: "Open Sans", fb: "'Open Sans', system-ui, sans-serif", bs: "17px", bw: 400, lh: 1.65, note: "Familiar, very readable, a little plain." },
-  { k: "B", name: "Inter", fb: "'Inter', system-ui, sans-serif", bs: "17px", bw: 400, lh: 1.65, note: "Built for screens, clear at small sizes. Neutral and modern." },
+  { k: "A", name: "Open Sans", fb: "'Open Sans', system-ui, sans-serif", bs: "16px", bw: 400, lh: 1.65, note: "Familiar, very readable, a little plain." },
+  { k: "B", name: "Inter", fb: "'Inter', system-ui, sans-serif", bs: "16px", bw: 400, lh: 1.65, note: "Built for screens, clear at small sizes. Neutral and modern." },
   { k: "C", name: "Zen Kaku Gothic New", fb: "'Zen Kaku Gothic New', system-ui, sans-serif", bs: "16px", bw: 500, lh: 1.7, note: "Matches the headline family. Shown in medium weight (16px) to help the small-size problem." },
 ];
 document.getElementById("cols").innerHTML = OPTS.map(o => `
