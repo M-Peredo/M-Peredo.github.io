@@ -39,7 +39,7 @@ We stopped working in phases. Molly responds better to something real and tangib
 
 **Built (on `redesign`)**
 - Next.js static site (see [CLAUDE.md](CLAUDE.md) for the stack, rules and design system)
-- Design system: black neutral page, content-driven color per case study (cards, content boxes, accents), whole-even-pixel type scale, spacing scale, buttons, cards, summary block, figures and frames, and 11 content blocks. Fonts are still the placeholders (Fraunces + Atkinson); see the type decision below.
+- Design system: black neutral page, content-driven color per case study (cards, content boxes, accents), type scale (whole even px, written in rem), spacing scale, buttons, cards, summary block, figures and frames, and 11 content blocks. Type is decided and applied: Zen Kaku Gothic Antique headings, Zen Kaku Gothic New body.
 - `/styleguide` page documenting all of it
 - Home page and three case study templates (multi-year program, end-to-end project, shipped-then-ongoing)
 - Case study status (`live` / `unlisted` / `draft`) working
@@ -47,7 +47,7 @@ We stopped working in phases. Molly responds better to something real and tangib
 
 **Next: iterate with Molly**
 - [ ] Review the placeholder site together; note what she likes, hates, wants different
-- [ ] Type: choose the body font (Open Sans, Inter or Zen Kaku Gothic New), then weight and tracking only if needed. One question at a time. Then apply the chosen fonts to the site (Zen Kaku Gothic Antique is decided for headlines but **not yet applied**).
+- [x] Type: decided and applied to the site (see the Decisions Log).
 - [ ] Replace placeholder visuals with real screenshots and prototypes
 - [ ] Write real copy, one case study at a time (Molly writes; Claude helps brainstorm copy and visuals). See [docs/case-study-guidance.md](docs/case-study-guidance.md).
 - [ ] Decide which 3 to 5 case studies are live
@@ -68,7 +68,6 @@ We stopped working in phases. Molly responds better to something real and tangib
 
 | Decision | Options | Lean | Notes |
 |----------|---------|------|-------|
-| Body font | Open Sans · Inter · Zen Kaku Gothic New (16px medium) | Molly's call | Page open in `docs/design/type-round-1.html`. Headline font is decided. |
 | Content color source | Hand-set per case study (today) · pulled from the screenshot automatically | Hand-set | Safer and tunable |
 | Site accent | None (today) · one accent for links and focus | | |
 | Contact | Section on home (today) · separate page | | |
@@ -98,3 +97,5 @@ We stopped working in phases. Molly responds better to something real and tangib
 | 2026-10-02 | Stack: Next.js static export (matches Carlos's own site), MDX case studies, Tailwind v4. All repo work is done as the PaleoDM account on `redesign`; `main` keeps serving the old site until launch. |
 | 2026-10-02 | A dev-only layout builder exists for Molly to experiment with layouts and export a case study draft as MDX. |
 | 2026-10-02 | Working style with Molly: one decision at a time (too many options causes decision paralysis). Her results come back as a saved file in Downloads (or she types them). |
+| 2026-10-03 | **Type decided and applied.** Headings and numbers: Zen Kaku Gothic Antique bold (700), +0.005em tracking. Body: **Zen Kaku Gothic New**, medium (500), 16px, line height 1.7, **+0.02em tracking** (Molly chose it over Open Sans and Inter, and asked for the tracking to be opened up). Body must be a sans-serif. No italics (Zen has none). Weights available: Antique 500/700, New 400/500/700. |
+| 2026-10-03 | **Font sizes are written in rem** (px / 16) so they respect a visitor's browser text-size setting. The whole-even-pixel rule still holds at the default setting, and was verified by measuring rendered sizes and by confirming sizes scale with the root setting. Replaces the earlier px-only implementation. |

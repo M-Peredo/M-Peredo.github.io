@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import "@fontsource-variable/fraunces/opsz.css";
-import "@fontsource-variable/fraunces/opsz-italic.css";
-import "@fontsource/atkinson-hyperlegible-next/400.css";
-import "@fontsource/atkinson-hyperlegible-next/600.css";
-import "@fontsource/atkinson-hyperlegible-next/700.css";
+import "@fontsource/zen-kaku-gothic-antique/latin-500.css";
+import "@fontsource/zen-kaku-gothic-antique/latin-700.css";
+import "@fontsource/zen-kaku-gothic-new/latin-400.css";
+import "@fontsource/zen-kaku-gothic-new/latin-500.css";
+import "@fontsource/zen-kaku-gothic-new/latin-700.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
