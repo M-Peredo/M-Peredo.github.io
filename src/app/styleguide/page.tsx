@@ -157,19 +157,6 @@ export default function StyleGuide() {
           </Region>
         </Section>
 
-        <Section id="summary-options" title="Summary layout options" lede="Four layouts for the top of a case study. A is the current one. Same content in each.">
-          <div style={{ display: "grid", gap: 72 }}>
-            {(["stacked", "split", "sidebar", "columns"] as const).map((v, i) => (
-              <div key={v} style={{ display: "grid", gap: 12 }}>
-                <p className="eyebrow">{"ABCD"[i]} · {({ stacked: "Stacked (current)", split: "Side facts", sidebar: "Sidebar stats", columns: "Equal columns" })[v]}</p>
-                <Region color="#0FA3B1">
-                  <SummaryBlock study={studies[1]} hasPrototype hasDecision variant={v} />
-                </Region>
-              </div>
-            ))}
-          </div>
-        </Section>
-
         <Section id="figures" title="Figures and frames" lede="Placeholder visuals stand in for real screenshots. In production every figure has alt text and a caption.">
           <Region color="#C2338F">
             <div style={{ display: "grid", gap: 40 }}>

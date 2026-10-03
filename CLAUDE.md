@@ -34,6 +34,8 @@ Everything lives in `src/app/globals.css` and `src/components/`. **The `/stylegu
 - **Pull quote:** a centered statement set off by colored rules, with an opening quote mark centered on the top rule (in the case study color). There is no closing mark. No other pull quote styles exist.
 - **Insight card (`Callout`):** no box, just a 3px line down the left side in the case study color, with a small label above the text. No other styles exist.
 
+- **Case study summary:** one layout. Headline, hook and action buttons on the left; the facts (Role, Timeline, Domain) on the right as a plain list with thin dividers (no box); the headline numbers underneath in three equal columns under a thin neutral rule. The headline must visually lead: numbers are 40px (36px on phones) at medium weight, never the same size as the headline.
+
 ## Components (`src/components/ui/`)
 `Button`, `CaseStudyCard`, `SummaryBlock`, `Shot` (`Stage`, `BrowserFrame`), figures (`Screen`, `ShotPair`, `BeforeAfter`, `Annotated`, `PrototypeFrame`, `Figure`), content blocks (`PullQuote`, `Callout`, `Sticky`, `Decision`, `Timeline`, `CompareTable`, `ThreeUp`, `StatRow`, `Retrospective`, `Divider`, `Split`). All of the figure and content components can be used directly inside a case study `.mdx` file (see `src/components/ui/mdx.tsx`).
 
