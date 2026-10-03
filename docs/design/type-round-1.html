@@ -24,7 +24,7 @@ header p { margin: 6px 0 0; color: var(--muted); max-width: 74ch; }
 .col > .msg { min-height: 2.8em; }
 
 /* The headline font is decided (Zen Kaku Gothic Antique) and the same in every column. Only the body font differs. */
-.spec { background: #0b0b0c; border-radius: 12px; padding: clamp(20px, 2.4vw, 32px); display: grid; gap: 16px; align-content: start; font-family: var(--fb); font-size: var(--bs); font-weight: var(--bw); line-height: var(--blh); }
+.spec { background: #0b0b0c; border-radius: 12px; padding: clamp(20px, 2.4vw, 32px); display: grid; gap: 16px; align-content: start; font-family: var(--fb); font-size: var(--bs); font-weight: var(--bw); line-height: var(--blh); letter-spacing: var(--bls, 0); }
 .spec .eb { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
 .spec h2, .spec h3 { font-family: 'Zen Kaku Gothic Antique', system-ui, sans-serif; font-weight: 700; letter-spacing: 0.005em; margin: 0; text-wrap: balance; }
 .spec h2 { font-size: 36px; line-height: 1.1; }
@@ -67,13 +67,13 @@ textarea { width: 100%; min-height: 84px; background: #0d0d0f; border: 1px solid
 const OPTS = [
   { k: "A", name: "Open Sans", fb: "'Open Sans', system-ui, sans-serif", bs: "16px", bw: 400, lh: 1.65, note: "Familiar, very readable, a little plain." },
   { k: "B", name: "Inter", fb: "'Inter', system-ui, sans-serif", bs: "16px", bw: 400, lh: 1.65, note: "Built for screens, clear at small sizes. Neutral and modern." },
-  { k: "C", name: "Zen Kaku Gothic New", fb: "'Zen Kaku Gothic New', system-ui, sans-serif", bs: "16px", bw: 500, lh: 1.7, note: "Matches the headline family. Shown in medium weight (16px) to help the small-size problem." },
+  { k: "C", name: "Zen Kaku Gothic New", fb: "'Zen Kaku Gothic New', system-ui, sans-serif", bs: "16px", bw: 500, lh: 1.7, ls: "0.02em", note: "Matches the headline family. Medium weight, 16px, with the tracking opened up slightly (+0.02em) to help the small-size problem." },
 ];
 document.getElementById("cols").innerHTML = OPTS.map(o => `
   <section class="col" aria-label="Option ${o.k}">
     <div class="tag"><b>${o.k}</b><span>${o.name}</span></div>
     <p class="msg" style="margin:0">${o.note}</p>
-    <div class="spec" style="--fb:${o.fb};--bs:${o.bs};--bw:${o.bw};--blh:${o.lh}">
+    <div class="spec" style="--fb:${o.fb};--bs:${o.bs};--bw:${o.bw};--blh:${o.lh};--bls:${o.ls || '0'}">
       <span class="eb">Teaching Assistant · 2023–2026</span>
       <h2>Building an AI teaching assistant teachers trust</h2>
       <p class="lede">Three years of small bets that added up to one platform-wide tool for K-12 classrooms.</p>
