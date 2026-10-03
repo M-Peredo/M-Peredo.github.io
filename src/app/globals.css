@@ -282,11 +282,12 @@ a:hover { text-decoration-thickness: 2px; }
 /* Facts: a plain list with thin dividers, no box, so they stay quiet */
 .meta-stack { display: grid; gap: 0; margin: 0; padding: 0; border: 0; border-top: 1px solid var(--rule); }
 .meta-stack div { grid-template-columns: 7rem minmax(0, 1fr); gap: var(--space-4); align-items: baseline; padding-block: var(--space-4); border-bottom: 1px solid var(--rule); }
-/* Headline numbers: supporting evidence, deliberately smaller and lighter than the headline */
-.metrics-cols { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); border-top: 1px solid var(--rule); padding-top: var(--space-6); }
+/* Headline numbers: supporting evidence, in neutral cards, deliberately smaller and lighter than the headline */
+.metrics-cols { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); }
+.metrics-cols .metric { background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: var(--space-6); gap: var(--space-2); }
 @media (max-width: 760px) {
   .sum-split { grid-template-columns: 1fr; gap: var(--space-7); }
-  .metrics-cols { grid-template-columns: 1fr; gap: var(--space-5); }
+  .metrics-cols { grid-template-columns: 1fr; }
   .meta-stack div { grid-template-columns: 6rem minmax(0, 1fr); }
 }
 
