@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sample prototype, student view</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font:16px/1.5 system-ui,sans-serif;background:#f4f5f8;color:#1d2330}
+header{display:flex;gap:24px;align-items:center;padding:16px 32px;background:#fff;border-bottom:1px solid #dde1ea}
+header b{font-size:18px;margin-right:auto}header a{color:#1d2330;text-decoration:none;font-weight:600}
+main{padding:40px 32px;max-width:720px;margin:auto;display:grid;gap:16px}h1{margin:0;font-size:32px}
+.m{background:#fff;border:1px solid #dde1ea;border-radius:12px;padding:16px 24px}
+button{justify-self:start;background:#2f5be0;color:#fff;border:0;padding:12px 20px;border-radius:8px;font:600 16px system-ui;cursor:pointer}
+#r{display:none}
+</style></head><body>
+<header><b>Sample Classroom</b><a href="index.html">Dashboard</a><a href="page2.html">Student view</a></header>
+<main><h1>Ask the assistant</h1><div class="m">How do I start my loop lesson?</div>
+<button onclick="document.getElementById('r').style.display='block'">Send</button>
+<div class="m" id="r">Start by picking a block from the toolbox. Lorem ipsum dolor sit amet.</div></main></body></html>

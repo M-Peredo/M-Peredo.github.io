@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { BrowserFrame, Shot, type ShotVariant } from "./Shot";
-import { ArrowUpRight, Play } from "./icons";
+import { PrototypeEmbed, PrototypeOpen } from "./PrototypeEmbed";
 
 export function Figure({ id, caption, children, wide = true }: { id?: string; caption?: ReactNode; children: ReactNode; wide?: boolean }) {
   return (
@@ -82,21 +82,15 @@ export function Annotated({ variant = "assistant", pins, caption }: { variant?: 
 }
 
 // Stand-in for an embedded, playable prototype.
-export function PrototypeFrame({ id = "prototype", variant = "assistant", title = "Lorem ipsum prototype", caption }: { id?: string; variant?: ShotVariant; title?: string; caption?: ReactNode }) {
+export function PrototypeFrame({ id = "prototype", src = "/prototypes/sample/index.html", variant = "assistant", title = "Lorem ipsum prototype", width = 1280, height = 800, caption }: { id?: string; src?: string; variant?: ShotVariant; title?: string; width?: number; height?: number; caption?: ReactNode }) {
   return (
     <Figure id={id} caption={caption}>
-      <div className="proto tinted">
+      <div className="proto">
         <div className="proto-head">
-          <span className="proto-title"><span className="proto-dot" />{title}</span>
-          <span className="proto-open">Open full screen <ArrowUpRight /></span>
+          <span className="proto-title"><span className="proto-tag">Prototype</span>{title}</span>
+          <PrototypeOpen src={src} />
         </div>
-        <div className="proto-body">
-          <Shot variant={variant} />
-          <div className="proto-overlay">
-            <span className="proto-play"><Play /></span>
-            <span>Interactive prototype goes here</span>
-          </div>
-        </div>
+        <PrototypeEmbed src={src} title={title} width={width} height={height} poster={<Shot variant={variant} />} />
       </div>
     </Figure>
   );

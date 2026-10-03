@@ -65,3 +65,6 @@ Skip link, visible focus on everything, text contrast checked automatically for 
 
 ## Docs
 `ROADMAP.md` (what's decided and what's next), `docs/` (research and earlier planning; `docs/sessions.md` is superseded).
+
+## Prototype embeds
+`<PrototypeFrame src="/prototypes/<name>/index.html" title="..." width={1280} height={800} />`. Keep each prototype's files together in `public/prototypes/<name>/` (relative links). Frame is neutral; only the tag takes the case study color.
