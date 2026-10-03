@@ -49,35 +49,65 @@ export function BeforeAfter({ before = "dashboard", after = "editor", beforeNote
   );
 }
 
-export type Pin = { x: number; y: number; title: string; text: string };
+export type Pin = { x: number; y: number; title: string; text: string; w?: number; h?: number };
+export type AnnotatedVariant = "side" | "cards" | "inline" | "boxes";
 
-// A screenshot with numbered pins and a matching list of notes.
-export function Annotated({ variant = "assistant", pins, caption }: { variant?: ShotVariant; pins: Pin[]; caption?: ReactNode }) {
+// A screenshot with numbered markers and matching notes.
+//   side   : markers on the screenshot, notes in a column beside it
+//   cards  : markers on the screenshot, notes as cards in a row underneath
+//   inline : notes sit directly on the screenshot beside their markers
+//   boxes  : outlined highlight areas instead of dots, notes in a column beside it
+export function Annotated({ variant = "assistant", style = "side", pins, caption }: { variant?: ShotVariant; style?: AnnotatedVariant; pins: Pin[]; caption?: ReactNode }) {
+  const markers = pins.map((p, i) =>
+    style === "boxes" ? (
+      <span key={i} className="pin-box" style={{ left: `${p.x}%`, top: `${p.y}%`, width: `${p.w ?? 18}%`, height: `${p.h ?? 14}%` }} aria-hidden="true">
+        <span className="pin-box-num">{i + 1}</span>
+      </span>
+    ) : (
+      <span key={i} className="pin" style={{ left: `${p.x}%`, top: `${p.y}%` }} aria-hidden="true">{i + 1}</span>
+    )
+  );
+  const note = (p: Pin, i: number) => (
+    <>
+      <span className="pin pin-static" aria-hidden="true">{i + 1}</span>
+      <div>
+        <strong>{p.title}</strong>
+        <p>{p.text}</p>
+      </div>
+    </>
+  );
+  const shot = (
+    <div className="annotated-shot">
+      <BrowserFrame variant={variant} label={false}>
+        <Shot variant={variant} />
+        {markers}
+        {style === "inline" &&
+          pins.map((p, i) => (
+            <div key={i} className={`pin-note ${p.x > 55 ? "pin-note-left" : "pin-note-right"}`} style={{ left: `${p.x}%`, top: `${p.y}%` }}>
+              <strong>{p.title}</strong>
+              <p>{p.text}</p>
+            </div>
+          ))}
+      </BrowserFrame>
+    </div>
+  );
   return (
     <Figure caption={caption}>
-      <div className="annotated">
-        <div className="annotated-shot">
-          <BrowserFrame variant={variant} label={false}>
-            <Shot variant={variant} />
-            {pins.map((p, i) => (
-              <span key={i} className="pin" style={{ left: `${p.x}%`, top: `${p.y}%` }} aria-hidden="true">
-                {i + 1}
-              </span>
-            ))}
-          </BrowserFrame>
+      {style === "cards" || style === "inline" ? (
+        <div className={`annotated-stack annotated-${style}`}>
+          {shot}
+          <ol className="annotated-cards">
+            {pins.map((p, i) => <li key={i}>{note(p, i)}</li>)}
+          </ol>
         </div>
-        <ol className="annotated-notes">
-          {pins.map((p, i) => (
-            <li key={i}>
-              <span className="pin pin-static" aria-hidden="true">{i + 1}</span>
-              <div>
-                <strong>{p.title}</strong>
-                <p>{p.text}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </div>
+      ) : (
+        <div className="annotated">
+          {shot}
+          <ol className="annotated-notes">
+            {pins.map((p, i) => <li key={i}>{note(p, i)}</li>)}
+          </ol>
+        </div>
+      )}
     </Figure>
   );
 }

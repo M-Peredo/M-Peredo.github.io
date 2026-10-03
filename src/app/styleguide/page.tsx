@@ -174,6 +174,23 @@ export default function StyleGuide() {
           </Region>
         </Section>
 
+        <Section id="annotations" title="Annotation options" lede="Four ways to annotate a screenshot. A is the current style. Same screen and notes in each; set it with the style field in the builder or style in the MDX file.">
+          <Region color="#0FA3B1">
+            <div style={{ display: "grid", gap: 72 }}>
+              {(["side", "cards", "inline", "boxes"] as const).map((v, i) => (
+                <div key={v} style={{ display: "grid", gap: 12 }}>
+                  <p className="eyebrow">{"ABCD"[i]} · {({ side: "Notes beside (current)", cards: "Notes below as cards", inline: "Notes on the screen", boxes: "Highlight boxes" })[v]}</p>
+                  <Annotated style={v} variant="dashboard" pins={[
+                    { x: 28, y: 26, w: 24, h: 18, title: "Lorem ipsum dolor", text: "Sit amet consectetur adipiscing elit sed do eiusmod." },
+                    { x: 44, y: 70, w: 34, h: 28, title: "Ut enim ad minim", text: "Veniam quis nostrud exercitation ullamco laboris." },
+                    { x: 90, y: 40, w: 16, h: 28, title: "Duis aute irure", text: "Dolor in reprehenderit in voluptate velit esse." },
+                  ]} />
+                </div>
+              ))}
+            </div>
+          </Region>
+        </Section>
+
         <Section id="blocks" title="Content blocks" lede="The building blocks of a case study. Mix and pick; no case study uses all of them.">
           <Region color="#4A44C6">
             <div style={{ display: "grid", gap: 48 }}>
