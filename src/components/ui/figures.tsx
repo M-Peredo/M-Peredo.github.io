@@ -86,7 +86,7 @@ export function Annotated({ variant = "assistant", pins, caption }: { variant?: 
 export function PrototypeFrame({ id = "prototype", variant = "assistant", title = "Lorem ipsum prototype", caption }: { id?: string; variant?: ShotVariant; title?: string; caption?: ReactNode }) {
   return (
     <Figure id={id} caption={caption}>
-      <div className="proto">
+      <div className="proto tinted">
         <div className="proto-head">
           <span className="proto-title"><span className="proto-dot" />{title}</span>
           <span className="proto-open">Open full screen <ArrowUpRight /></span>

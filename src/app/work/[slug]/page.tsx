@@ -39,8 +39,8 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   const { prev, next } = getNeighbours(slug);
 
   return (
-    <PageShell style={contentStyle(study.color)} current="work">
-      <div className="container">
+    <PageShell current="work">
+      <div className="container" style={contentStyle(study.color)}>
         <div className="cs-head">
           <Link href="/#work" className="back"><ArrowLeft /> All work</Link>
           <SummaryBlock study={study} hasPrototype={study.source.includes("<PrototypeFrame")} hasDecision={study.source.includes("<Decision")} />

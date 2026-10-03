@@ -41,7 +41,7 @@ function Section({ id, title, lede, children }: { id: string; title: string; led
 
 function Region({ color, children }: { color: string; children: React.ReactNode }) {
   return (
-    <div className="tinted sg-demo" style={{ ...contentStyle(color), background: "var(--bg)" }}>
+    <div className="sg-demo" style={contentStyle(color)}>
       {children}
     </div>
   );
@@ -71,7 +71,7 @@ export default function StyleGuide() {
           </div>
         </Section>
 
-        <Section id="content-color" title="Content-driven color" lede="Each case study has one source color. Its card and page use that color blended toward black. The default is Rich (55% color). Text switches between white and near-black to stay readable. Ratios below are text against background; 4.5 is the minimum for body text.">
+        <Section id="content-color" title="Content-driven color" lede="Each case study has one source color. Its card, its content boxes (callouts, decision blocks, timeline, retrospective) and its accents use that color, and the page itself stays black. Boxes use the color blended toward black; the default is Rich (55% color). Text switches between white and near-black to stay readable. Ratios below are text against background; 4.5 is the minimum for body text.">
           <div className="sg-tints">
             {SOURCES.flatMap(([name, hex]) => TINTS.map(([label, t]) => {
               const c = contentColors(hex, t);
