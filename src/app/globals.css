@@ -461,7 +461,7 @@ a:hover { text-decoration-thickness: 2px; }
 
 .retro { margin-top: var(--space-7); display: grid; gap: var(--card-gap); }
 .retro > .eyebrow { margin-bottom: calc(var(--space-2) * -1); }
-.retro-card { background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: var(--card-pad); display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: var(--space-4) var(--space-6); align-items: start; }
+.retro-card { background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: var(--card-pad); display: grid; gap: var(--space-3); }
 .retro-card h3 { margin: 0; font-size: inherit; line-height: 1; }
 .retro-card ul { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-4); }
 .retro-card li { color: var(--fg); line-height: 1.7; }
@@ -584,4 +584,3 @@ textarea.bi { resize: vertical; }
 
 @media (max-width: 1100px) { .bmain { grid-template-columns: 200px minmax(0, 1fr) 280px; } }
 
-@media (max-width: 720px) { .retro-card { grid-template-columns: 1fr; } }
