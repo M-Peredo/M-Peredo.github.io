@@ -111,7 +111,7 @@ a:hover { text-decoration-thickness: 2px; }
 /* ---------- 3  Regions ----------
    .shell is the page; .tinted is any content-colored block (card, pager link).
    Both turn the --cs-* values into the working variables below.            */
-.shell, .tinted {
+.shell, .tinted, .canvas-page {
   --bg: var(--cs-bg, var(--color-base));
   --fg: var(--cs-fg, var(--color-ink));
   --fg2: var(--cs-fg2, var(--color-muted));
@@ -416,6 +416,8 @@ a:hover { text-decoration-thickness: 2px; }
 
 @media (max-width: 760px) {
   .pair, .annotated { grid-template-columns: 1fr; }
+  .split { grid-template-columns: 1fr; }
+  .split-left .split-shot { order: 0; }
   .about-grid { grid-template-columns: 1fr; }
   .portrait { max-width: 280px; }
   .timeline li { grid-template-columns: 1fr; gap: var(--space-2); }
@@ -445,3 +447,86 @@ a:hover { text-decoration-thickness: 2px; }
 .sg-tint b { font-family: var(--font-display); font-size: 1.4rem; }
 .sg-wide { display: grid; gap: var(--space-8); }
 @media (max-width: 760px) { .sg-type > div { grid-template-columns: 1fr; gap: 4px; } }
+
+/* ---------- Split (text beside a screen) ---------- */
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: var(--space-7); align-items: center; }
+.split-left .split-shot { order: -1; }
+.split-left { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
+.split-text { display: grid; gap: var(--space-3); align-content: center; }
+.split-text h3 { font-size: clamp(1.4rem, 2.6vw, 1.9rem); margin: 0; }
+.split-text p { color: var(--fg2); }
+
+/* ---------- Builder (dev only) ----------
+   Block wrappers take over the placement rules the .prose grid gives its direct children. */
+.bwrap { position: relative; grid-column: text; min-width: 0; cursor: pointer; }
+.bwrap.wide { grid-column: wide; }
+.bwrap > h2 { font-size: clamp(1.6rem, 3.2vw, 2.2rem); margin-top: var(--space-6); letter-spacing: -0.008em; }
+.bwrap > p { color: color-mix(in srgb, var(--fg) 93%, transparent); }
+.bwrap > ul { padding-left: 1.4em; display: grid; gap: var(--space-2); list-style: disc; color: color-mix(in srgb, var(--fg) 93%, transparent); }
+.bwrap.is-selected, .bsel.is-selected { outline: 2px solid #8ab4ff; outline-offset: 10px; border-radius: 4px; }
+.bwrap:hover:not(.is-selected), .bsel:hover:not(.is-selected) { outline: 1px dashed rgb(138 180 255 / 0.6); outline-offset: 10px; }
+.bwrap.is-dragging { opacity: 0.35; }
+.bwrap.drop-before::before, .bwrap.drop-after::after { content: ""; position: absolute; left: 0; right: 0; height: 4px; border-radius: 2px; background: #8ab4ff; z-index: 6; }
+.bwrap.drop-before::before { top: calc(-1 * var(--space-5) / 2 - 2px); }
+.bwrap.drop-after::after { bottom: calc(-1 * var(--space-5) / 2 - 2px); }
+.btools { position: absolute; top: -40px; right: 0; z-index: 5; display: none; gap: 4px; align-items: center; background: #1d1d20; border: 1px solid #3a3a40; border-radius: 8px; padding: 4px; font: 600 0.78rem/1 var(--font-body); color: #f2f2f3; }
+.bwrap:hover > .btools, .bwrap.is-selected > .btools { display: flex; }
+.btools button { appearance: none; border: 0; background: transparent; color: inherit; font: inherit; font-size: 0.95rem; padding: 6px 8px; border-radius: 5px; cursor: pointer; }
+.btools button:hover { background: #2e2e33; }
+.bhandle { cursor: grab; padding: 6px 10px; border-right: 1px solid #3a3a40; white-space: nowrap; }
+.bempty { grid-column: wide; border: 2px dashed var(--rule); border-radius: var(--radius); padding: var(--space-8); text-align: center; color: var(--fg2); }
+
+.builder { --b-bg: #101012; --b-panel: #17171a; --b-line: #2b2b30; --b-ink: #f2f2f3; --b-muted: #a4a4ab; --b-accent: #8ab4ff;
+  height: 100dvh; display: flex; flex-direction: column; background: var(--b-bg); color: var(--b-ink); font-family: var(--font-body); font-size: 0.92rem; line-height: 1.4; }
+.btop { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; padding: 10px 16px; border-bottom: 1px solid var(--b-line); background: var(--b-panel); }
+.btitle { font-size: 0.95rem; white-space: nowrap; }
+.btitle span { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: #101012; background: var(--b-accent); border-radius: 999px; padding: 2px 8px; margin-left: 6px; vertical-align: 2px; }
+.bspacer { flex: 1; }
+.bmsg { color: var(--b-accent); font-weight: 600; }
+.bmain { flex: 1; min-height: 0; display: grid; grid-template-columns: 250px minmax(0, 1fr) 320px; }
+.bpalette, .binspector { overflow: auto; padding: 16px; background: var(--b-panel); }
+.bpalette { border-right: 1px solid var(--b-line); }
+.binspector { border-left: 1px solid var(--b-line); }
+.bcanvas { overflow: auto; background: var(--color-base); }
+.canvas-page { padding-block: 24px 120px; padding-inline: 28px; }
+.bpalette h2, .binspector h2 { font-family: var(--font-body); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--b-muted); margin: 18px 0 8px; }
+.binspector h2 { font-size: 1rem; letter-spacing: 0; text-transform: none; color: var(--b-ink); margin-top: 0; }
+.bhelp { color: var(--b-muted); font-size: 0.85rem; margin: 0 0 8px; }
+.bhelp code { background: #26262a; padding: 1px 5px; border-radius: 4px; }
+.bpal { display: grid; gap: 1px; width: 100%; text-align: left; margin-bottom: 6px; padding: 9px 11px; border: 1px solid var(--b-line); border-radius: 8px; background: #1d1d20; color: var(--b-ink); font: inherit; cursor: grab; }
+.bpal:hover { border-color: var(--b-accent); }
+.bpal b { font-weight: 700; }
+.bpal span { color: var(--b-muted); font-size: 0.78rem; }
+.bi { width: 100%; font: inherit; font-size: 0.9rem; color: var(--b-ink); background: #0d0d0f; border: 1px solid var(--b-line); border-radius: 6px; padding: 7px 9px; }
+.bi:focus-visible { outline: 2px solid var(--b-accent); outline-offset: 1px; }
+textarea.bi { resize: vertical; }
+.bname { width: 200px; }
+.bselect { width: 180px; }
+.bbtn { appearance: none; font: inherit; font-weight: 600; font-size: 0.85rem; color: var(--b-ink); background: #26262a; border: 1px solid #3a3a40; border-radius: 6px; padding: 7px 12px; cursor: pointer; }
+.bbtn:hover { border-color: var(--b-accent); }
+.bbtn-primary { background: var(--b-accent); color: #101012; border-color: var(--b-accent); }
+.bbtn-quiet { background: transparent; }
+.bfields { display: grid; gap: 12px; }
+.bfield { display: grid; gap: 4px; }
+.bfield label, .blabel { font-size: 0.78rem; color: var(--b-muted); font-weight: 600; }
+.bfield label em { font-weight: 400; font-style: normal; }
+.blist { display: grid; gap: 10px; }
+.bitem { border: 1px solid var(--b-line); border-radius: 8px; padding: 10px; margin: 0; position: relative; min-width: 0; }
+.bitem legend { font-size: 0.72rem; color: var(--b-muted); padding-inline: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
+.bitem-tools { position: absolute; top: -14px; right: 8px; display: flex; gap: 2px; background: var(--b-panel); }
+.bitem-tools button { appearance: none; border: 0; background: transparent; color: var(--b-muted); cursor: pointer; padding: 2px 6px; font: inherit; }
+.bitem-tools button:hover { color: var(--b-ink); }
+.bactions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.bswatches { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 14px; }
+.bswatch { width: 28px; height: 28px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; }
+.bswatch.on { border-color: #fff; box-shadow: 0 0 0 2px var(--b-bg) inset; }
+.bcolor { width: 36px; height: 28px; border: 1px solid var(--b-line); border-radius: 6px; background: none; padding: 0; cursor: pointer; }
+.bmodal { position: fixed; inset: 0; z-index: 50; background: rgb(0 0 0 / 0.6); display: grid; place-items: center; padding: 24px; }
+.bmodal-card { width: min(860px, 100%); max-height: 100%; overflow: auto; background: var(--b-panel); border: 1px solid #3a3a40; border-radius: 12px; padding: 18px; display: grid; gap: 12px; }
+.bmodal-head { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+.btabs { display: flex; gap: 6px; }
+.btabs button { appearance: none; font: inherit; font-weight: 600; font-size: 0.85rem; color: var(--b-muted); background: transparent; border: 1px solid transparent; border-radius: 6px; padding: 7px 12px; cursor: pointer; }
+.btabs button[aria-selected="true"] { color: var(--b-ink); border-color: #3a3a40; background: #26262a; }
+.bcode { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.78rem; min-height: 320px; white-space: pre; }
+
+@media (max-width: 1100px) { .bmain { grid-template-columns: 200px minmax(0, 1fr) 280px; } }

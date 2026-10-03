@@ -30,7 +30,11 @@ Everything lives in `src/app/globals.css` and `src/components/`. **The `/stylegu
 - Placeholder visuals (`Shot`, `Stage`, `BrowserFrame`) are drawn in each case study's color. Replace with real screenshots when available.
 
 ## Components (`src/components/ui/`)
-`Button`, `CaseStudyCard`, `SummaryBlock`, `Shot` (`Stage`, `BrowserFrame`), figures (`Screen`, `ShotPair`, `BeforeAfter`, `Annotated`, `PrototypeFrame`, `Figure`), content blocks (`PullQuote`, `Callout`, `Sticky`, `Decision`, `Timeline`, `CompareTable`, `ThreeUp`, `StatRow`, `Retrospective`, `Divider`). All of the figure and content components can be used directly inside a case study `.mdx` file (see `src/components/ui/mdx.tsx`).
+`Button`, `CaseStudyCard`, `SummaryBlock`, `Shot` (`Stage`, `BrowserFrame`), figures (`Screen`, `ShotPair`, `BeforeAfter`, `Annotated`, `PrototypeFrame`, `Figure`), content blocks (`PullQuote`, `Callout`, `Sticky`, `Decision`, `Timeline`, `CompareTable`, `ThreeUp`, `StatRow`, `Retrospective`, `Divider`, `Split`). All of the figure and content components can be used directly inside a case study `.mdx` file (see `src/components/ui/mdx.tsx`).
+
+## Layout builder (dev only)
+`npm run dev`, then open http://localhost:3000/builder. Molly drags blocks onto a live preview made from the real components, edits their text, sets the case study color, and saves layouts (kept in the browser). **Export** gives a real case study `.mdx` file. The page file is `src/app/builder/page.dev.tsx`; the `.dev.tsx` extension is only recognized by the dev server (see `next.config.ts`), so the builder is never in the production build. Code is in `src/builder/`: `registry.tsx` (every block: fields, preview, MDX output), `doc.ts` (document, presets, MDX export), `Builder.tsx` (the UI).
+**When you add or change a component, add or update it in `src/builder/registry.tsx` too**, so the builder and the MDX components stay in step. To turn a builder export into a real case study: save the MDX in `content/case-studies/`, set `status`, and add its slug to `src/lib/variants.ts`.
 
 ## Case studies
 One file each in `content/case-studies/<slug>.mdx`. Front matter: `title`, `status`, `order`, `color`, `dateline`, `hook`, `role`, `timeline`, `domain`, `tags`, `metrics` (three value/label pairs).

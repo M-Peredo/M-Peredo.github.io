@@ -3,6 +3,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { Button } from "@/components/ui/Button";
 import { BrowserFrame, Stage } from "@/components/ui/Shot";
 import { Annotated, BeforeAfter, PrototypeFrame, ShotPair } from "@/components/ui/figures";
+import { Split } from "@/components/ui/Split";
 import { Callout, CompareTable, Decision, PullQuote, Retrospective, StatRow, Sticky, ThreeUp, Timeline } from "@/components/ui/content";
 import { CaseStudyCard } from "@/components/ui/CaseStudyCard";
 import { SummaryBlock } from "@/components/ui/SummaryBlock";
@@ -198,6 +199,7 @@ export default function StyleGuide() {
                 { label: "Learned", title: "Dolor sit", text: "Ut enim ad minim veniam quis nostrud." },
                 { label: "Changed", title: "Amet elit", text: "Duis aute irure dolor in reprehenderit." },
               ]} />
+              <Split side="right" eyebrow="Lorem ipsum" heading="Text beside a screen" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." variant="editor" />
               <Retrospective worked={["Lorem ipsum dolor sit amet", "Sed do eiusmod tempor"]} change={["Ut enim ad minim veniam"]} next={["Duis aute irure dolor"]} />
             </div>
           </Region>
