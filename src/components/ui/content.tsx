@@ -22,11 +22,9 @@ export function Callout({ label = "Key insight", children }: { label?: string; c
   );
 }
 
-export type StickyVariant = "inside" | "edge" | "split";
-
-export function Sticky({ label = "Note to self", variant = "inside", children }: { label?: string; variant?: StickyVariant; children: ReactNode }) {
+export function Sticky({ label = "Annotation", children }: { label?: string; children: ReactNode }) {
   return (
-    <aside className={`sticky st-${variant}`}>
+    <aside className="sticky">
       <strong>{label}</strong>
       {typeof children === "string" ? <p>{children}</p> : children}
     </aside>
