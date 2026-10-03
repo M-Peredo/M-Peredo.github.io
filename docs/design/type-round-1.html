@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Molly's Type Options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Instrument+Serif:ital@0;1&family=Young+Serif&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Atkinson+Hyperlegible+Next:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Figtree:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700&display=swap">
+<style>
+:root { --c-bg: #101012; --c-panel: #17171a; --c-line: #2b2b30; --c-ink: #f2f2f3; --c-muted: #a4a4ab; --c-accent: #8ab4ff; color-scheme: dark; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--c-bg); color: var(--c-ink); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; display: flex; flex-direction: column; }
+button, select, textarea { font: inherit; color: inherit; }
+:where(button, select, textarea):focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }
+
+.pager { border-bottom: 1px solid var(--c-line); background: var(--c-panel); flex: none; }
+.pager-inner { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 10px 18px; }
+.pager h1 { font-size: 15px; margin: 0; white-space: nowrap; }
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; flex: 1; min-width: 0; }
+.tab { appearance: none; border: 1px solid transparent; background: transparent; color: var(--c-muted); padding: 5px 11px; border-radius: 999px; cursor: pointer; font-size: 13.5px; }
+.tab:hover { color: var(--c-ink); }
+.tab[aria-current="page"] { color: var(--c-ink); border-color: var(--c-ink); font-weight: 600; }
+.tab small { color: var(--c-muted); margin-left: 4px; font-weight: 400; }
+.nav { display: flex; gap: 6px; align-items: center; }
+.count { color: var(--c-muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+.btn { appearance: none; border: 1px solid #3a3a40; background: #26262a; padding: 7px 13px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; }
+.btn:hover:not(:disabled) { border-color: var(--c-accent); }
+.btn:disabled { opacity: .4; cursor: default; }
+.btn[aria-pressed="true"] { background: var(--c-ink); color: #101012; border-color: var(--c-ink); }
+
+main { flex: 1; min-height: 0; }
+.page { height: 100%; display: grid; grid-template-columns: minmax(280px, 340px) minmax(0, 1fr); gap: 18px; padding: 18px; }
+.side { overflow: auto; display: flex; flex-direction: column; gap: 14px; min-width: 0; padding-right: 4px; }
+.stage { overflow: auto; min-width: 0; border-radius: 10px; }
+.eyebrow { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--c-muted); font-weight: 700; }
+.side h2 { margin: 0; font-size: 26px; line-height: 1.15; }
+.note { margin: 0; color: var(--c-muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.stars { display: flex; gap: 2px; align-items: center; }
+.stars .label { font-size: 12px; color: var(--c-muted); width: 52px; }
+.star { appearance: none; border: 0; background: none; padding: 2px; font-size: 24px; line-height: 1; cursor: pointer; color: var(--c-line); }
+.star.on { color: var(--c-ink); }
+.controls { display: grid; gap: 12px; border-top: 1px solid var(--c-line); padding-top: 14px; }
+.field { display: grid; gap: 4px; }
+.field label, .field .l { font-size: 12px; color: var(--c-muted); }
+textarea, select { width: 100%; background: #0d0d0f; border: 1px solid var(--c-line); border-radius: 6px; padding: 8px 10px; }
+textarea { min-height: 70px; resize: vertical; }
+
+.summary { overflow: auto; padding: 20px; height: 100%; }
+.summary-inner { max-width: 960px; margin: 0 auto; display: grid; gap: 18px; }
+.summary h2 { margin: 0; font-size: 26px; }
+.compare { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+.cmp { text-align: left; background: var(--c-panel); border: 1px solid var(--c-line); border-radius: 10px; padding: 12px 14px; cursor: pointer; display: grid; gap: 4px; }
+.cmp b { font-size: 18px; }
+.cmp small { color: var(--c-muted); }
+.cmp.liked { border-color: var(--c-accent); }
+pre { margin: 0; white-space: pre-wrap; background: var(--c-panel); border: 1px solid var(--c-line); border-radius: 8px; padding: 14px; font: 13px/1.55 ui-monospace, "SF Mono", Menlo, monospace; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.msg { color: var(--c-muted); font-size: 13px; }
+
+/* ---- Specimen: a mini case study page. Fonts come from the variables below. ---- */
+.spec { --fd: Georgia, serif; --fb: system-ui, sans-serif; --dw: 600; --dls: 0; --qs: italic;
+  background: #0b0b0c; color: #f2f2f3; padding: clamp(24px, 4vw, 48px); border-radius: 10px; font-family: var(--fb); font-size: 1.0625rem; line-height: 1.65; display: grid; gap: 22px; align-content: start; }
+.spec .eb { font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: #a4a4ab; font-weight: 700; }
+.spec .glyphs { font-family: var(--fd); font-weight: var(--dw); font-size: clamp(2.4rem, 5vw, 3.6rem); line-height: 1.1; letter-spacing: var(--dls); color: #f2f2f3; word-break: break-word; }
+.spec .glyphs small { display: block; font-family: var(--fb); font-weight: 400; font-size: 1.05rem; letter-spacing: .02em; color: #a4a4ab; margin-top: 6px; }
+.spec h3 { font-family: var(--fd); font-weight: var(--dw); letter-spacing: var(--dls); font-size: clamp(2rem, 4.4vw, 3.3rem); line-height: 1.08; margin: 0; max-width: 20ch; text-wrap: balance; }
+.spec .lede { margin: 0; font-size: 1.25rem; line-height: 1.5; color: #a4a4ab; max-width: 52ch; }
+.spec .metrics { display: flex; flex-wrap: wrap; gap: 20px 48px; padding-block: 8px; border-block: 2px solid #4a44c6; }
+.spec .metric { display: grid; gap: 2px; padding-block: 12px; }
+.spec .metric b { font-family: var(--fd); font-weight: var(--dw); font-size: clamp(2.4rem, 5vw, 3.6rem); line-height: 1; letter-spacing: var(--dls); font-variant-numeric: lining-nums tabular-nums; }
+.spec .metric span { font-size: .875rem; color: #a4a4ab; }
+.spec h4 { font-family: var(--fd); font-weight: var(--dw); letter-spacing: var(--dls); font-size: clamp(1.5rem, 2.8vw, 2rem); line-height: 1.15; margin: 8px 0 0; max-width: 30ch; }
+.spec p { margin: 0; max-width: 62ch; color: #ddddde; }
+.spec blockquote { margin: 0; border-left: 3px solid #4a44c6; padding-left: 18px; font-family: var(--fd); font-style: var(--qs); font-weight: 500; font-size: 1.55rem; line-height: 1.35; max-width: 34ch; }
+.spec cite { display: block; margin-top: 8px; font-family: var(--fb); font-style: normal; font-size: .85rem; color: #a4a4ab; }
+.spec .box { background: #29256d; border: 1px solid #4a44c6; border-radius: 14px; padding: 22px 26px; display: grid; gap: 8px; color: #fff; }
+.spec .box .eb { color: rgba(255,255,255,.75); }
+.spec .box p { color: rgba(255,255,255,.92); }
+.spec .btns { display: flex; flex-wrap: wrap; gap: 12px; }
+.spec .b1, .spec .b2 { font-family: var(--fb); font-weight: 700; font-size: .97rem; padding: .9em 1.4em; border-radius: 8px; border: 2px solid #f2f2f3; }
+.spec .b1 { background: #f2f2f3; color: #0b0b0c; }
+.spec .b2 { color: #f2f2f3; }
+.spec .small { font-size: .875rem; color: #a4a4ab; }
+.spec ul { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; color: #ddddde; max-width: 56ch; }
+
+@media (max-width: 900px) { html, body { height: auto; } body { display: block; } .pager { position: sticky; top: 0; z-index: 2; } .page { height: auto; grid-template-columns: 1fr; } .side, .stage { overflow: visible; } .summary { height: auto; } }
+</style>
+</head>
+<body>
+
+<header class="pager">
+  <div class="pager-inner">
+    <h1>Type, round 1</h1>
+    <nav class="tabs" id="tabs" aria-label="Pages"></nav>
+    <div class="nav">
+      <span class="count" id="count"></span>
+      <button class="btn" id="prev" type="button">← Prev</button>
+      <button class="btn" id="next" type="button">Next →</button>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+
+<script>
+const ROUND = 1;
+const KEY = "molly-type-round-" + ROUND;
+
+// dw = heading weight, ital = has a real italic (used for the quote)
+const FONTS = [
+  { id: "fraunces", name: "Fraunces", cat: "Serif", note: "Soft, slightly wonky, warm. Current placeholder.", f: '"Fraunces", Georgia, serif', dw: 600, dls: "-0.01em", ital: true },
+  { id: "instrument", name: "Instrument Serif", cat: "Serif", note: "Elegant, condensed, editorial. One weight only, so headings are light and refined.", f: '"Instrument Serif", Georgia, serif', dw: 400, dls: "0", ital: true },
+  { id: "young", name: "Young Serif", cat: "Serif", note: "Chunky, friendly, a little vintage. Big personality in headings.", f: '"Young Serif", Georgia, serif', dw: 400, dls: "0", ital: false },
+  { id: "newsreader", name: "Newsreader", cat: "Serif", note: "Refined editorial serif, made for long reading. Quiet personality.", f: '"Newsreader", Georgia, serif', dw: 600, dls: "-0.01em", ital: true },
+  { id: "atkinson", name: "Atkinson Hyperlegible Next", cat: "Sans", note: "Designed for low vision readers. Clear and friendly. Current placeholder.", f: '"Atkinson Hyperlegible Next", system-ui, sans-serif', dw: 700, dls: "-0.01em", ital: false },
+  { id: "bricolage", name: "Bricolage Grotesque", cat: "Sans", note: "Quirky, characterful grotesque with quirks in the letterforms.", f: '"Bricolage Grotesque", system-ui, sans-serif', dw: 700, dls: "-0.02em", ital: false },
+  { id: "figtree", name: "Figtree", cat: "Sans", note: "Friendly, rounded geometric. Approachable and clean.", f: '"Figtree", system-ui, sans-serif', dw: 700, dls: "-0.015em", ital: false },
+  { id: "sora", name: "Sora", cat: "Sans", note: "Wide, geometric, a little techy. Modern and confident.", f: '"Sora", system-ui, sans-serif', dw: 600, dls: "-0.02em", ital: false },
+];
+// Font names go into inline style attributes, so use single quotes.
+FONTS.forEach(f => { f.f = f.f.replace(/"/g, "'"); });
+const BY = Object.fromEntries(FONTS.map(f => [f.id, f]));
+const PAGES = [...FONTS.map(f => f.id), "mix", "summary"];
+const REF_D = "Georgia, 'Times New Roman', serif", REF_B = "system-ui, -apple-system, 'Segoe UI', sans-serif";
+
+function load() { try { const r = localStorage.getItem(KEY); return r ? JSON.parse(r) : null; } catch (e) { return null; } }
+function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+let state = load() || {};
+state.picks = state.picks || {}; state.show = state.show || {}; state.mix = state.mix || { h: "fraunces", b: "atkinson" }; state.page = state.page ?? 0;
+if (!(state.page >= 0 && state.page < PAGES.length)) state.page = 0;
+const pick = id => state.picks[id] || (state.picks[id] = { rating: 0, head: false, body: false, notes: "" });
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+// d, b = font objects for the heading role and the body role (or null for the neutral reference)
+function specimen(d, b, label) {
+  const fd = d ? d.f : REF_D, fb = b ? b.f : REF_B;
+  const dw = d ? d.dw : 600, dls = d ? d.dls : "0", qs = d && d.ital ? "italic" : "normal";
+  return `
+  <div class="spec" style="--fd:${fd};--fb:${fb};--dw:${dw};--dls:${dls};--qs:${qs}">
+    <div class="eb">${esc(label)}</div>
+    <div class="glyphs">Aa Bb Cc 123<small>ABCDEFGHIJKLMNOPQRSTUVWXYZ · abcdefghijklmnopqrstuvwxyz · 0123456789 &amp; ? !</small></div>
+    <div class="eb" style="margin-top:8px">Teaching Assistant · 2023–2026</div>
+    <h3>Building an AI teaching assistant teachers trust</h3>
+    <p class="lede">Three years of small bets that added up to one platform-wide tool for K-12 classrooms.</p>
+    <div class="metrics">
+      <div class="metric"><b>38%</b><span>of teachers using it weekly</span></div>
+      <div class="metric"><b>4.6</b><span>average teacher rating</span></div>
+      <div class="metric"><b>2×</b><span>faster lesson setup</span></div>
+    </div>
+    <h4>The hard call: what we left out of the MVP</h4>
+    <p>Grading support was the feature teachers asked for most, and the riskiest one to get wrong. We shipped without it and shaped the data model so it could arrive as a fast follow, without moving anything teachers had already learned.</p>
+    <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+    <blockquote>“It finally feels like it's working for me, not the other way around.”<cite>Middle school CS teacher, pilot interview</cite></blockquote>
+    <div class="box"><span class="eb">Key insight</span><p>Teachers trusted the tool once they could see why it suggested what it did, and once they could always change its answer.</p></div>
+    <ul><li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li><li>Sed do eiusmod tempor incididunt ut labore et dolore</li><li>Ut enim ad minim veniam, quis nostrud exercitation</li></ul>
+    <div class="btns"><span class="b1">Try the prototype →</span><span class="b2">Read the case study</span></div>
+    <p class="small">Caption: small text sits under figures and tables. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+  </div>`;
+}
+
+function fontPage(f) {
+  return `
+  <section class="page" data-font="${f.id}">
+    <div class="side">
+      <span class="eyebrow">${f.cat}</span>
+      <h2 style="font-family:${f.f};font-weight:${f.dw}">${esc(f.name)}</h2>
+      <p class="note">${esc(f.note)}</p>
+      <div class="field"><span class="l">Show it as</span>
+        <div class="chips" role="group" aria-label="Show as">
+          <button type="button" class="btn" data-show="both">Headings and body</button>
+          <button type="button" class="btn" data-show="head">Headings only</button>
+          <button type="button" class="btn" data-show="body">Body only</button>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="stars" role="group" aria-label="Rate ${esc(f.name)}"><span class="label">Rating</span>${[1,2,3,4,5].map(n => `<button type="button" class="star" data-star="${n}" aria-label="${n} of 5">★</button>`).join("")}</div>
+        <div class="field"><span class="l">I'd use it for</span>
+          <div class="chips"><button type="button" class="btn" data-role="head" aria-pressed="false">Headings</button><button type="button" class="btn" data-role="body" aria-pressed="false">Body text</button></div>
+        </div>
+        <div class="field"><label for="n-${f.id}">Notes</label><textarea id="n-${f.id}" placeholder="What works, what doesn't"></textarea></div>
+      </div>
+    </div>
+    <div class="stage" data-spec></div>
+  </section>`;
+}
+
+function mixPage() {
+  const opts = id => FONTS.map(f => `<option value="${f.id}">${esc(f.name)} (${f.cat})</option>`).join("");
+  return `
+  <section class="page" data-mix>
+    <div class="side">
+      <span class="eyebrow">Mix and match</span>
+      <h2>Pick a pairing</h2>
+      <p class="note">Any font for headings and numbers, any font for body text. Try a serif with a sans, or a serif with a serif.</p>
+      <div class="field"><label for="mixh">Headings and numbers</label><select id="mixh">${opts()}</select></div>
+      <div class="field"><label for="mixb">Body text</label><select id="mixb">${opts()}</select></div>
+      <div class="controls">
+        <div class="stars" role="group" aria-label="Rate this pairing"><span class="label">Rating</span>${[1,2,3,4,5].map(n => `<button type="button" class="star" data-mixstar="${n}" aria-label="${n} of 5">★</button>`).join("")}</div>
+        <button type="button" class="btn" id="keep" aria-pressed="false">Keep this pairing</button>
+        <div class="field"><label for="mixn">Notes</label><textarea id="mixn" placeholder="Why this one"></textarea></div>
+      </div>
+    </div>
+    <div class="stage" data-mixspec></div>
+  </section>`;
+}
+
+function summaryPage() {
+  return `
+  <section class="summary" data-summary><div class="summary-inner">
+    <h2>Summary</h2>
+    <div class="compare" id="cmp"></div>
+    <pre id="sumtext"></pre>
+    <div class="row"><button class="btn" id="copy" type="button">Copy summary</button><button class="btn" id="reset" type="button">Start over</button><span class="msg" id="msg"></span></div>
+  </div></section>`;
+}
+
+const main = document.getElementById("main");
+main.innerHTML = FONTS.map(fontPage).join("") + mixPage() + summaryPage();
+const els = [...main.children];
+
+const mixKey = () => state.mix.h + "+" + state.mix.b;
+state.mixPicks = state.mixPicks || {};
+const mixPick = () => state.mixPicks[mixKey()] || (state.mixPicks[mixKey()] = { rating: 0, kept: false, notes: "" });
+
+function render() {
+  els.forEach((el, i) => el.hidden = i !== state.page);
+  document.getElementById("count").textContent = `${state.page + 1} / ${PAGES.length}`;
+  document.getElementById("prev").disabled = state.page === 0;
+  document.getElementById("next").disabled = state.page === PAGES.length - 1;
+  document.getElementById("tabs").innerHTML = PAGES.map((id, i) => {
+    const cur = i === state.page ? ' aria-current="page"' : "";
+    if (id === "summary") return `<button class="tab" type="button" data-go="${i}"${cur}>Summary</button>`;
+    if (id === "mix") return `<button class="tab" type="button" data-go="${i}"${cur}>Mix and match</button>`;
+    const p = pick(id), f = BY[id];
+    return `<button class="tab" type="button" data-go="${i}"${cur}>${esc(f.name.replace(" Hyperlegible Next", ""))}${p.rating ? `<small>${p.rating}/5</small>` : ""}</button>`;
+  }).join("");
+
+  FONTS.forEach((f, i) => {
+    const el = els[i], p = pick(f.id), show = state.show[f.id] || "both";
+    const stage = el.querySelector("[data-spec]"), sig = show;
+    if (stage.dataset.sig !== sig) {
+      stage.dataset.sig = sig;
+      const label = `${f.name} · ${show === "both" ? "headings and body" : show === "head" ? "headings (body is a plain stand-in)" : "body (headings are a plain stand-in)"}`;
+      stage.innerHTML = specimen(show === "body" ? null : f, show === "head" ? null : f, label);
+    }
+    el.querySelectorAll("[data-show]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.show === show)));
+    el.querySelectorAll(".star").forEach(b => b.classList.toggle("on", Number(b.dataset.star) <= p.rating));
+    el.querySelectorAll("[data-role]").forEach(b => b.setAttribute("aria-pressed", String(!!p[b.dataset.role])));
+    const ta = el.querySelector("textarea"); if (document.activeElement !== ta && ta.value !== p.notes) ta.value = p.notes;
+  });
+
+  const mel = els[FONTS.length], mp = mixPick();
+  const msig = mixKey();
+  const mstage = mel.querySelector("[data-mixspec]");
+  if (mstage.dataset.sig !== msig) { mstage.dataset.sig = msig; mstage.innerHTML = specimen(BY[state.mix.h], BY[state.mix.b], `${BY[state.mix.h].name} headings + ${BY[state.mix.b].name} body`); }
+  mel.querySelector("#mixh").value = state.mix.h; mel.querySelector("#mixb").value = state.mix.b;
+  mel.querySelectorAll("[data-mixstar]").forEach(b => b.classList.toggle("on", Number(b.dataset.mixstar) <= mp.rating));
+  mel.querySelector("#keep").setAttribute("aria-pressed", String(mp.kept));
+  const mn = mel.querySelector("#mixn"); if (document.activeElement !== mn && mn.value !== mp.notes) mn.value = mp.notes;
+
+  renderSummary();
+}
+
+function renderSummary() {
+  const kept = Object.entries(state.mixPicks).filter(([, v]) => v.kept || v.rating);
+  document.getElementById("cmp").innerHTML = FONTS.map((f, i) => {
+    const p = pick(f.id), roles = [p.head && "headings", p.body && "body"].filter(Boolean).join(" + ");
+    return `<button class="cmp ${p.head || p.body ? "liked" : ""}" type="button" data-go="${i}"><b style="font-family:${f.f};font-weight:${f.dw}">${esc(f.name)}</b><small>${f.cat} · ${p.rating ? p.rating + "/5" : "unrated"}${roles ? " · " + roles : ""}</small><small>${esc(p.notes.trim())}</small></button>`;
+  }).join("");
+  const lines = [`Type, round ${ROUND}`, "", "FONTS"];
+  FONTS.forEach(f => { const p = pick(f.id); const roles = [p.head && "headings", p.body && "body"].filter(Boolean).join(" + "); lines.push(`- ${f.name} (${f.cat}): ${p.rating ? p.rating + "/5" : "unrated"}${roles ? ", would use for " + roles : ""}${p.notes.trim() ? "\n    Notes: " + p.notes.trim().replace(/\n+/g, " / ") : ""}`); });
+  lines.push("", "PAIRINGS KEPT OR RATED");
+  if (!kept.length) lines.push("- none yet");
+  kept.forEach(([k, v]) => { const [h, b] = k.split("+"); lines.push(`- ${BY[h].name} headings + ${BY[b].name} body: ${v.rating ? v.rating + "/5" : "unrated"}${v.kept ? ", KEPT" : ""}${v.notes.trim() ? "\n    Notes: " + v.notes.trim().replace(/\n+/g, " / ") : ""}`); });
+  document.getElementById("sumtext").textContent = lines.join("\n");
+}
+
+function go(i) { state.page = Math.max(0, Math.min(PAGES.length - 1, i)); save(); render(); els[state.page].querySelectorAll(".side, .stage, .summary").forEach(s => s.scrollTop = 0); window.scrollTo(0, 0); }
+document.getElementById("prev").addEventListener("click", () => go(state.page - 1));
+document.getElementById("next").addEventListener("click", () => go(state.page + 1));
+document.addEventListener("keydown", e => { if (e.target.closest("textarea, select")) return; if (e.key === "ArrowRight") go(state.page + 1); if (e.key === "ArrowLeft") go(state.page - 1); });
+
+document.addEventListener("click", e => {
+  const g = e.target.closest("[data-go]"); if (g) return go(Number(g.dataset.go));
+  const page = e.target.closest("[data-font]");
+  if (page) {
+    const id = page.dataset.font, p = pick(id);
+    const sh = e.target.closest("[data-show]"), st = e.target.closest("[data-star]"), ro = e.target.closest("[data-role]");
+    if (sh) state.show[id] = sh.dataset.show;
+    else if (st) { const n = Number(st.dataset.star); p.rating = p.rating === n ? 0 : n; }
+    else if (ro) p[ro.dataset.role] = !p[ro.dataset.role];
+    else return;
+    save(); render(); return;
+  }
+  const mix = e.target.closest("[data-mix]");
+  if (mix) {
+    const ms = e.target.closest("[data-mixstar]"), mp = mixPick();
+    if (ms) { const n = Number(ms.dataset.mixstar); mp.rating = mp.rating === n ? 0 : n; save(); render(); }
+    else if (e.target.closest("#keep")) { mp.kept = !mp.kept; save(); render(); }
+  }
+});
+document.addEventListener("change", e => {
+  if (e.target.id === "mixh") { state.mix.h = e.target.value; save(); render(); }
+  if (e.target.id === "mixb") { state.mix.b = e.target.value; save(); render(); }
+});
+let t;
+document.addEventListener("input", e => {
+  const ta = e.target.closest("textarea"); if (!ta) return;
+  const page = ta.closest("[data-font]");
+  if (page) pick(page.dataset.font).notes = ta.value; else mixPick().notes = ta.value;
+  clearTimeout(t); t = setTimeout(() => { save(); render(); }, 400);
+});
+document.getElementById("copy").addEventListener("click", async () => {
+  const pre = document.getElementById("sumtext"), msg = document.getElementById("msg");
+  try { await navigator.clipboard.writeText(pre.textContent); msg.textContent = "Copied. Paste it into the chat."; }
+  catch (err) { const r = document.createRange(); r.selectNodeContents(pre); const s = getSelection(); s.removeAllRanges(); s.addRange(r); msg.textContent = "Selected. Press Cmd+C."; }
+});
+let armed = false;
+document.getElementById("reset").addEventListener("click", e => {
+  if (!armed) { armed = true; e.target.textContent = "Click again to clear everything"; setTimeout(() => { armed = false; e.target.textContent = "Start over"; }, 4000); return; }
+  armed = false; e.target.textContent = "Start over"; state = { picks: {}, show: {}, mix: { h: "fraunces", b: "atkinson" }, mixPicks: {}, page: state.page };
+  els.forEach(el => { el.querySelectorAll("[data-spec],[data-mixspec]").forEach(s => delete s.dataset.sig); el.querySelectorAll("textarea").forEach(x => x.value = ""); });
+  save(); render(); document.getElementById("msg").textContent = "Cleared.";
+});
+render();
+</script>
+</body>
+</html>
