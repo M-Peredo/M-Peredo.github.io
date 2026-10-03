@@ -156,14 +156,15 @@ export const BLOCKS: Record<string, BlockDef> = {
   },
   prototype: {
     label: "Embedded prototype", group: "Screens", hint: "A playable prototype", wide: true,
-    defaults: () => ({ variant: "assistant", title: "Lorem ipsum prototype", caption: "Playable in the page." }),
+    defaults: () => ({ src: "/prototypes/sample/index.html", width: 1280, height: 800, variant: "assistant", title: "Lorem ipsum prototype", caption: "Playable in the page." }),
     fields: [
-      { kind: "select", key: "variant", label: "Placeholder screen", options: VARIANTS },
+      { kind: "text", key: "src", label: "File (in public/prototypes/)" },
       { kind: "text", key: "title", label: "Title" },
+      { kind: "select", key: "variant", label: "Placeholder poster", options: VARIANTS },
       { kind: "text", key: "caption", label: "Caption" },
     ],
-    render: (p) => <PrototypeFrame variant={p.variant} title={p.title} caption={p.caption} />,
-    mdx: (p) => jsx("PrototypeFrame", { variant: p.variant, title: p.title, caption: p.caption }),
+    render: (p) => <PrototypeFrame src={p.src} variant={p.variant} title={p.title} caption={p.caption} />,
+    mdx: (p) => jsx("PrototypeFrame", { src: p.src, title: p.title, variant: p.variant, caption: p.caption }),
   },
   statrow: {
     label: "Numbers row", group: "Evidence", hint: "A run of headline numbers", wide: true,
