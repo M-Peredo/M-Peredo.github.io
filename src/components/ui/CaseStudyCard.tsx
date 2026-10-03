@@ -7,7 +7,7 @@ import { VARIANTS } from "@/lib/variants";
 
 export function CaseStudyCard({ study, featured = false }: { study: CaseStudy; featured?: boolean }) {
   return (
-    <Link href={`/work/${study.slug}`} className={`card tinted ${featured ? "card-featured" : ""}`} style={contentStyle(study.color)}>
+    <Link href={`/work/${study.slug}`} className={`card ${featured ? "card-featured" : ""}`} style={contentStyle(study.color)}>
       <Stage variant={VARIANTS[study.slug] ?? "dashboard"} label={false} />
       <div className="card-text">
         <span className="card-meta">{study.dateline}</span>

@@ -56,11 +56,11 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
         {prev && next && (
           <nav className="pager" aria-label="More case studies">
-            <Link href={`/work/${prev.slug}`} className="pager-link tinted" style={contentStyle(prev.color)}>
+            <Link href={`/work/${prev.slug}`} className="pager-link">
               <small><ArrowLeft /> Previous</small>
               <span>{prev.title}</span>
             </Link>
-            <Link href={`/work/${next.slug}`} className="pager-link next tinted" style={contentStyle(next.color)}>
+            <Link href={`/work/${next.slug}`} className="pager-link next">
               <small>Next <ArrowRight /></small>
               <span>{next.title}</span>
             </Link>

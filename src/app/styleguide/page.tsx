@@ -145,7 +145,7 @@ export default function StyleGuide() {
           </Region>
         </Section>
 
-        <Section id="cards" title="Case study cards" lede="The card color is the case study's own, so the color shows before it's opened. The first card on the home page is featured.">
+        <Section id="cards" title="Case study cards" lede="Cards match the site theme. Only the frame around the image carries the case study's color, so the color shows before it's opened. The first card on the home page is featured.">
           <div className="card-grid">
             {studies.map((s, i) => <CaseStudyCard key={s.slug} study={s} featured={i === 0} />)}
           </div>
