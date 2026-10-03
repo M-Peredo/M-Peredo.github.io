@@ -372,12 +372,9 @@ a:hover { text-decoration-thickness: 2px; }
 
 .divider { border: 0; height: 1px; background: var(--rule); margin: var(--space-6) 0; }
 
-/* Pull quote: centered statement, set off by colored rules. An opening and a closing quote mark
-   sit on the rules, breaking the lines. */
+/* Pull quote: centered statement, set off by colored rules. An opening quote mark sits on the top rule, breaking the line. */
 .pullquote { margin: var(--space-4) 0; display: grid; gap: var(--space-4); position: relative; text-align: center; justify-items: center; padding-block: var(--space-8) var(--space-7); border-block: 2px solid var(--cs-source, var(--rule)); }
-.pullquote::before, .pullquote::after { position: absolute; left: 50%; font-family: var(--font-display); font-weight: 700; font-size: 6rem; line-height: 1; color: var(--cs-source, var(--fg)); background: var(--bg); padding-inline: var(--space-4); transform: translate(-50%, -38%); }
-.pullquote::before { content: "\201C"; top: 0; }
-.pullquote::after { content: "\201D"; top: 100%; }
+.pullquote::before { content: "\201C"; top: 0; position: absolute; left: 50%; font-family: var(--font-display); font-weight: 700; font-size: 6rem; line-height: 1; color: var(--cs-source, var(--fg)); background: var(--bg); padding-inline: var(--space-4); transform: translate(-50%, -38%); }
 .pullquote blockquote { margin: 0; font-family: var(--font-display); font-style: normal; font-weight: 500; font-size: var(--fs-h2); line-height: 1.3; color: var(--fg); text-wrap: balance; max-width: 28ch; }
 .pullquote figcaption { display: flex; align-items: center; justify-content: center; gap: var(--space-3); font-size: 0.875rem; }
 .avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--panel-2); display: grid; place-items: center; font-weight: 700; flex: none; }
@@ -386,7 +383,7 @@ a:hover { text-decoration-thickness: 2px; }
 .callout { display: grid; gap: var(--space-2); border-left: 3px solid var(--cs-source, var(--fg)); padding-left: var(--space-5); }
 .callout-label { font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--fg2); }
 .callout p { font-size: 1.125rem; }
-@media (max-width: 640px) { .pullquote::before, .pullquote::after { font-size: 4.5rem; } }
+@media (max-width: 640px) { .pullquote::before { font-size: 4.5rem; } }
 
 .sticky { background: var(--panel-2); border: 1px dashed var(--cs-source, var(--fg2)); border-radius: 4px; padding: var(--space-4) var(--space-5); font-size: 1rem; transform: rotate(-0.8deg); display: grid; gap: var(--space-1); box-shadow: var(--shadow-sm); }
 .sticky strong { font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg2); }
