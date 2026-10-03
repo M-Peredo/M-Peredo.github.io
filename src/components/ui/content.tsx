@@ -1,9 +1,12 @@
 import type { ReactNode } from "react";
-import { Check, Cross, Clock } from "./icons";
+import { Check, Cross, Clock, Spark } from "./icons";
 
-export function PullQuote({ who, role, children }: { who: string; role?: string; children: ReactNode }) {
+export type QuoteVariant = "mark" | "rule" | "statement" | "panel";
+export type CalloutVariant = "tint" | "outline" | "marker" | "split";
+
+export function PullQuote({ who, role, variant = "mark", children }: { who: string; role?: string; variant?: QuoteVariant; children: ReactNode }) {
   return (
-    <figure className="pullquote">
+    <figure className={`pullquote pq-${variant}`}>
       <blockquote>{children}</blockquote>
       <figcaption>
         <span className="avatar" aria-hidden="true">{who.charAt(0)}</span>
@@ -13,10 +16,13 @@ export function PullQuote({ who, role, children }: { who: string; role?: string;
   );
 }
 
-export function Callout({ label = "Key insight", children }: { label?: string; children: ReactNode }) {
+export function Callout({ label = "Key insight", variant = "tint", children }: { label?: string; variant?: CalloutVariant; children: ReactNode }) {
   return (
-    <aside className="callout tinted">
-      <span className="callout-label">{label}</span>
+    <aside className={`callout co-${variant} ${variant === "tint" ? "tinted" : ""}`.trim()}>
+      <span className="callout-label">
+        {variant === "split" && <Spark className="callout-icon" />}
+        {label}
+      </span>
       <div>{children}</div>
     </aside>
   );

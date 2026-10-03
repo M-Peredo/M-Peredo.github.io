@@ -17,7 +17,7 @@ export default function Home() {
         <section className="hero" aria-labelledby="hero-title">
           <span className="eyebrow">Lorem ipsum dolor sit amet</span>
           <h1 id="hero-title" className="display">Molly Peredo</h1>
-          <p className="lede hero-statement" style={{ maxWidth: "34ch" }}>
+          <p className="lede hero-statement">
             Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
           <div className="btn-row">
