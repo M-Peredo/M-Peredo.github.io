@@ -50,27 +50,25 @@ export function BeforeAfter({ before = "dashboard", after = "editor", beforeNote
 }
 
 export type Pin = { x: number; y: number; title: string; text: string };
-export type AnnotatedMarker = "circle" | "square" | "flag" | "underline";
-
-// A screenshot with numbered markers and matching notes in a column beside it.
-export function Annotated({ variant = "assistant", marker = "circle", pins, caption }: { variant?: ShotVariant; marker?: AnnotatedMarker; pins: Pin[]; caption?: ReactNode }) {
-  // Flag and underline markers use two-digit labels (01, 02) to match the site's tracked uppercase labels.
-  const num = (i: number) => (marker === "flag" || marker === "underline" ? String(i + 1).padStart(2, "0") : String(i + 1));
+// A screenshot with numbered flag markers and matching notes in a column beside it.
+// Markers use two-digit labels (01, 02) to match the site's tracked uppercase labels.
+export function Annotated({ variant = "assistant", pins, caption }: { variant?: ShotVariant; pins: Pin[]; caption?: ReactNode }) {
+  const num = (i: number) => String(i + 1).padStart(2, "0");
   return (
     <Figure caption={caption}>
-      <div className={`annotated annotated-m-${marker}`}>
+      <div className="annotated">
         <div className="annotated-shot">
           <BrowserFrame variant={variant} label={false}>
             <Shot variant={variant} />
             {pins.map((p, i) => (
-              <span key={i} className={`pin pin-${marker}`} style={{ left: `${p.x}%`, top: `${p.y}%` }} aria-hidden="true">{num(i)}</span>
+              <span key={i} className="pin" style={{ left: `${p.x}%`, top: `${p.y}%` }} aria-hidden="true">{num(i)}</span>
             ))}
           </BrowserFrame>
         </div>
         <ol className="annotated-notes">
           {pins.map((p, i) => (
             <li key={i}>
-              <span className={`pin pin-static pin-${marker}`} aria-hidden="true">{num(i)}</span>
+              <span className="pin-num" aria-hidden="true">{num(i)}</span>
               <div>
                 <strong>{p.title}</strong>
                 <p>{p.text}</p>

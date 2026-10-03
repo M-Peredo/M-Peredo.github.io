@@ -338,30 +338,19 @@ a:hover { text-decoration-thickness: 2px; }
 
 .annotated { display: grid; gap: var(--space-6); grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); align-items: start; }
 .annotated-shot .browser-body { position: relative; }
+/* Annotation markers: a small zero-padded flag with a colored left edge. Notes carry the same edge down their side. */
 .pin {
   position: absolute; transform: translate(-50%, -50%); z-index: 2;
-  width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
-  background: #fff; color: #0b0b0c; font: 700 0.875rem/1 var(--font-body);
-  box-shadow: 0 0 0 3px var(--cs-source, #4a44c6), 0 4px 14px rgb(0 0 0 / 0.35);
-  line-height: 1;
+  min-width: 2.25rem; height: 1.75rem; padding: 0 0.5rem 0 0.6875rem; display: grid; place-items: center;
+  background: #fff; color: #0b0b0c; font: 700 0.75rem/1 var(--font-body); letter-spacing: 0.08em;
+  border-radius: var(--radius-sm);
+  box-shadow: inset 3px 0 0 var(--cs-source, #4a44c6), 0 4px 14px rgb(0 0 0 / 0.35);
 }
-.pin-static { position: static; transform: none; flex: none; box-shadow: 0 0 0 2px var(--fg2); background: transparent; color: var(--fg); }
 .annotated-notes { list-style: none; padding: 0; display: grid; gap: var(--space-5); }
-.annotated-notes li { display: flex; gap: var(--space-3); align-items: start; }
+.annotated-notes li { display: grid; gap: var(--space-2); border-left: 3px solid var(--cs-source, var(--fg)); padding-left: var(--space-4); }
+.pin-num { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; color: var(--fg2); }
 .annotated-notes strong { display: block; margin-bottom: 2px; }
 .annotated-notes p { color: var(--fg2); font-size: 1rem; line-height: 1.55; }
-
-/* Annotation number markers. The default is a circle; the others reuse the site's rectangles, labels and colored lines. */
-.pin-square { border-radius: var(--radius-sm); }
-.pin-flag, .pin-underline { width: auto; min-width: 2.25rem; height: 1.75rem; padding: 0 0.5rem; border-radius: var(--radius-sm); font-size: 0.75rem; letter-spacing: 0.08em; }
-.pin-flag { padding-left: 0.6875rem; box-shadow: inset 3px 0 0 var(--cs-source, #4a44c6), 0 4px 14px rgb(0 0 0 / 0.35); }
-.pin-underline { box-shadow: inset 0 -3px 0 var(--cs-source, #4a44c6), 0 4px 14px rgb(0 0 0 / 0.35); }
-/* In the notes column: square keeps a (neutral) square; flag and underline turn the number into a small label above the title */
-.pin-static.pin-square { border-radius: var(--radius-sm); }
-.annotated-m-flag .annotated-notes li, .annotated-m-underline .annotated-notes li { display: grid; gap: var(--space-2); }
-.annotated-m-flag .pin-static, .annotated-m-underline .pin-static { width: auto; height: auto; min-width: 0; padding: 0; background: none; box-shadow: none; border-radius: 0; color: var(--fg2); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; justify-self: start; }
-.annotated-m-flag .annotated-notes li { border-left: 3px solid var(--cs-source, var(--fg)); padding-left: var(--space-4); }
-.annotated-m-underline .pin-static { padding-bottom: var(--space-1); border-bottom: 3px solid var(--cs-source, var(--fg)); }
 
 .proto { border: 1px solid var(--cs-source, var(--rule)); border-radius: var(--radius); overflow: hidden; }
 .proto-head { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); padding: 12px 16px; font-size: 0.875rem; font-weight: 700; }
@@ -412,8 +401,21 @@ a:hover { text-decoration-thickness: 2px; }
 .callout p { font-size: 1.125rem; }
 @media (max-width: 640px) { .pullquote::before { font-size: 4.5rem; } }
 
-.sticky { background: var(--panel-2); border: 1px dashed var(--cs-source, var(--fg2)); border-radius: 4px; padding: var(--space-4) var(--space-5); font-size: 1rem; transform: rotate(-0.8deg); display: grid; gap: var(--space-1); box-shadow: var(--shadow-sm); }
+.sticky { display: grid; gap: var(--space-1); font-size: 1rem; }
 .sticky strong { font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg2); }
+/* Note: the original, a tilted dashed panel */
+.st-note { background: var(--panel-2); border: 1px dashed var(--cs-source, var(--fg2)); border-radius: var(--radius-sm); padding: var(--space-4) var(--space-5); transform: rotate(-0.8deg); box-shadow: var(--shadow-sm); }
+/* Tab: a neutral panel with the label as a small tab on its top-left corner */
+.st-tab { position: relative; margin-top: 1.75rem; background: var(--panel); border: 1px solid var(--rule); border-radius: 0 var(--radius) var(--radius) var(--radius); padding: var(--space-5); }
+.st-tab strong { position: absolute; left: -1px; bottom: 100%; display: flex; align-items: center; height: 1.75rem; padding-inline: var(--space-3); background: var(--panel); border: 1px solid var(--rule); border-bottom: 0; border-top: 3px solid var(--cs-source, var(--fg)); border-radius: var(--radius-sm) var(--radius-sm) 0 0; color: var(--fg); }
+/* Footnote: no box, a thin rule above and the label running into the text */
+.st-footnote { display: block; border-top: 1px solid var(--rule); padding-top: var(--space-3); color: var(--fg2); }
+.st-footnote strong { display: inline; margin-right: var(--space-3); color: var(--fg); }
+.st-footnote p { display: inline; }
+/* Highlight: a colored highlighter stroke behind the text, as if marked up by hand */
+.st-highlight p { display: inline; padding-block: 0.1em; background: linear-gradient(transparent 55%, color-mix(in srgb, var(--cs-source, var(--fg)) 45%, transparent) 55%); box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.st-highlight { display: block; }
+.st-highlight strong { display: block; margin-bottom: var(--space-2); }
 
 .decision { background: var(--panel); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: clamp(20px, 4vw, 40px); display: grid; gap: var(--space-5); }
 .decision header { display: grid; gap: var(--space-2); }

@@ -34,6 +34,7 @@ Everything lives in `src/app/globals.css` and `src/components/`. **The `/stylegu
 - **Pull quote:** a centered statement set off by colored rules, with an opening quote mark centered on the top rule (in the case study color). There is no closing mark. No other pull quote styles exist.
 - **Insight card (`Callout`):** no box, just a 3px line down the left side in the case study color, with a small label above the text. No other styles exist.
 
+- **Annotated screenshot:** notes in a column beside the screenshot. Markers are small zero-padded flags ("01", "02") with a colored left edge, and each note carries the same colored edge down its side. No circles anywhere in the system except avatars.
 - **Numbers (summary stats and the in-article Numbers row):** both are identical neutral cards (panel background, thin border, 12px radius, 40px medium-weight number, 14px caption). Keep them matching.
 - **Case study summary:** headline, hook and action buttons on the left; optional `facts` on the right as a plain list with thin dividers (no box); the headline numbers underneath as three equal neutral cards. With no facts, the layout is a single column. Facts should be specific to the project, not generic: for example Scope (what she owned, e.g. "Sole designer, end to end"), Team (who she worked with) and Timeline. Do not add Domain (K-12 ed tech is already the site's headline) or a generic job title. The headline must visually lead: numbers are 40px (36px on phones) at medium weight, never the same size as the headline.
 

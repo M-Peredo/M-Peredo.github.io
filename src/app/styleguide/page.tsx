@@ -174,17 +174,13 @@ export default function StyleGuide() {
           </Region>
         </Section>
 
-        <Section id="annotations" title="Annotation number markers" lede="The annotated screenshot keeps its layout (notes beside). These are four ways to show the numbers. A is the current circle; B to D reuse shapes the rest of the site already uses.">
-          <Region color="#0FA3B1">
-            <div style={{ display: "grid", gap: 72 }}>
-              {(["circle", "square", "flag", "underline"] as const).map((m, i) => (
-                <div key={m} style={{ display: "grid", gap: 12 }}>
-                  <p className="eyebrow">{"ABCD"[i]} · {({ circle: "Circle (current)", square: "Square", flag: "Flag", underline: "Underline" })[m]}</p>
-                  <Annotated marker={m} variant="dashboard" pins={[
-                    { x: 28, y: 26, title: "Lorem ipsum dolor", text: "Sit amet consectetur adipiscing elit sed do eiusmod." },
-                    { x: 44, y: 70, title: "Ut enim ad minim", text: "Veniam quis nostrud exercitation ullamco laboris." },
-                    { x: 90, y: 40, title: "Duis aute irure", text: "Dolor in reprehenderit in voluptate velit esse." },
-                  ]} />
+        <Section id="notes" title="Annotation note options" lede="Four ways to set the short narrated aside (the sticky note). A is the current style. Same text in each; set it with the style field in the builder or variant in the MDX file.">
+          <Region color="#4A44C6">
+            <div style={{ display: "grid", gap: 56 }}>
+              {(["note", "tab", "footnote", "highlight"] as const).map((v, i) => (
+                <div key={v} style={{ display: "grid", gap: 12 }}>
+                  <p className="eyebrow">{"ABCD"[i]} · {({ note: "Tilted note (current)", tab: "Tab", footnote: "Footnote", highlight: "Highlighter" })[v]}</p>
+                  <Sticky label="Annotation" variant={v}>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</Sticky>
                 </div>
               ))}
             </div>

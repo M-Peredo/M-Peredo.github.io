@@ -22,11 +22,13 @@ export function Callout({ label = "Key insight", children }: { label?: string; c
   );
 }
 
-export function Sticky({ label = "Note to self", children }: { label?: string; children: ReactNode }) {
+export type StickyVariant = "note" | "tab" | "footnote" | "highlight";
+
+export function Sticky({ label = "Note to self", variant = "note", children }: { label?: string; variant?: StickyVariant; children: ReactNode }) {
   return (
-    <aside className="sticky">
+    <aside className={`sticky st-${variant}`}>
       <strong>{label}</strong>
-      {children}
+      {typeof children === "string" ? <p>{children}</p> : children}
     </aside>
   );
 }

@@ -142,7 +142,6 @@ export const BLOCKS: Record<string, BlockDef> = {
     }),
     fields: [
       { kind: "select", key: "variant", label: "Placeholder screen", options: VARIANTS },
-      { kind: "select", key: "marker", label: "Number marker", options: [["circle", "Circle"], ["square", "Square"], ["flag", "Flag"], ["underline", "Underline"]] },
       { kind: "text", key: "caption", label: "Caption" },
       { kind: "list", key: "pins", label: "Pins", itemLabel: "Pin", blank: () => ({ x: 50, y: 50, title: "New note", text: "Lorem ipsum dolor sit amet." }),
         fields: [
@@ -152,8 +151,8 @@ export const BLOCKS: Record<string, BlockDef> = {
           { kind: "textarea", key: "text", label: "Note" },
         ] },
     ],
-    render: (p) => <Annotated variant={p.variant} marker={p.marker ?? "circle"} caption={p.caption} pins={p.pins} />,
-    mdx: (p) => jsx("Annotated", { variant: p.variant, marker: p.marker && p.marker !== "circle" ? p.marker : undefined, caption: p.caption, pins: p.pins }),
+    render: (p) => <Annotated variant={p.variant} caption={p.caption} pins={p.pins} />,
+    mdx: (p) => jsx("Annotated", { variant: p.variant, caption: p.caption, pins: p.pins }),
   },
   prototype: {
     label: "Embedded prototype", group: "Screens", hint: "A playable prototype", wide: true,
@@ -222,9 +221,12 @@ export const BLOCKS: Record<string, BlockDef> = {
   sticky: {
     label: "Sticky note", group: "Story", hint: "A narrated aside", wide: false,
     defaults: () => ({ label: "Note to self", text: "Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis." }),
-    fields: [{ kind: "text", key: "label", label: "Label" }, { kind: "textarea", key: "text", label: "Text" }],
-    render: (p) => <Sticky label={p.label}>{p.text}</Sticky>,
-    mdx: (p) => jsx("Sticky", { label: p.label }, p.text),
+    fields: [
+      { kind: "select", key: "variant", label: "Style", options: [["note", "Tilted note"], ["tab", "Tab"], ["footnote", "Footnote"], ["highlight", "Highlighter"]] },
+      { kind: "text", key: "label", label: "Label" }, { kind: "textarea", key: "text", label: "Text" },
+    ],
+    render: (p) => <Sticky label={p.label} variant={p.variant ?? "note"}>{p.text}</Sticky>,
+    mdx: (p) => jsx("Sticky", { label: p.label, variant: p.variant && p.variant !== "note" ? p.variant : undefined }, p.text),
   },
   decision: {
     label: "The hard call", group: "Story", hint: "Options considered and what was chosen", wide: true,
